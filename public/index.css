@@ -1,0 +1,134 @@
+body, html {
+  margin: 0;
+  padding: 0;
+}
+
+.clock-container {
+  box-sizing: border-box;
+  max-width: 400px;
+  min-width: 250px;
+  padding: 15px;
+  font-family: sans-serif;
+  position: relative;
+  user-select: none;
+  background-color: #27292a;
+  color: #939494;
+}
+.clock-container * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.clock-container .always-visible {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.clock-container .always-visible .time {
+  font-size: 40px;
+  line-height: 1.6em;
+}
+.clock-container .always-visible .time .am-pm {
+  font-size: 12px;
+  font-weight: bold;
+  padding-left: 3px;
+}
+.clock-container .always-visible .on-off {
+  width: 80px;
+  height: 20px;
+  border: 1px solid #2f2f30;
+  background-color: #2f2f30;
+}
+.clock-container .always-visible .on-off .slider {
+  height: 100%;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  border-radius: 1px;
+  align-items: center;
+  font-size: 12px;
+  background-color: #59595a;
+  font-weight: bold;
+  color: #bdbdbd;
+}
+.clock-container .delete-field {
+  position: absolute;
+  height: 20px;
+  right: 15px;
+  top: 80px;
+}
+.clock-container .delete-field svg {
+  height: 22px;
+  width: 22px;
+  fill: #939494;
+}
+.clock-container .hide-control[data-show=true] {
+  height: 140px;
+}
+.clock-container .hide-control {
+  height: 20px;
+  position: relative;
+  overflow: hidden;
+  transition-duration: 0.3s;
+}
+.clock-container .hide-control .show-details {
+  position: absolute;
+  bottom: 0;
+  height: 22px;
+  width: 20px;
+  transform: rotateZ(90deg);
+  transition-duration: 0.3s;
+  fill: #939494;
+}
+.clock-container .hide-control .show-details[data-rotate=true] {
+  transform: rotateZ(270deg);
+}
+.clock-container .hide-control .hide-subject {
+  width: 100%;
+  position: absolute;
+  bottom: 20px;
+  font-size: 16px;
+  line-height: 2.5em;
+}
+.clock-container .hide-control .hide-subject .song {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.clock-container .hide-control .hide-subject .song .music svg {
+  height: auto;
+  width: 8px;
+  fill: #939494;
+}
+.clock-container .hide-control .hide-subject .song .music span {
+  padding-left: 10px;
+}
+.clock-container .hide-control .hide-subject label {
+  position: relative;
+}
+.clock-container .hide-control .hide-subject label input {
+  opacity: 0;
+  height: 0;
+  width: 0;
+}
+.clock-container .hide-control .hide-subject label .checkmark {
+  display: inline-block;
+  border: 1px solid #939494;
+  width: 14px;
+  height: 14px;
+  margin-right: 10px;
+  position: relative;
+}
+.clock-container .hide-control .hide-subject label .checkmark svg {
+  display: none;
+}
+.clock-container .hide-control .hide-subject label input:checked ~ .checkmark svg {
+  display: inline-block;
+  height: 15px;
+  width: 18px;
+  position: absolute;
+  top: -2px;
+  fill: #1f94c2;
+}

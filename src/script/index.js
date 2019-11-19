@@ -1,4 +1,4 @@
-const name = 'Rafhael';
+import Animations from './AlarmAnimation';
 
-// eslint-disable-next-line no-console
-console.log(`Hello my name is ${name}`);
+const alarm1 = document.querySelector('.show-details');
+alarm1.addEventListener('click', Animations.showHideAlarmContent);

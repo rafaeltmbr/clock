@@ -13,6 +13,8 @@
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.18.2",
     "jest": "^24.9.0",
+    "pug-cli": "^1.0.0-alpha6",
+    "sass": "^1.23.6",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10"
   },
@@ -22,6 +24,10 @@
     "dev": "webpack --mode=development -w",
     "build": "webpack --mode=production",
     "execute": "yarn lint & yarn build & node ./public/bundle.js",
-    "test": "jest"
+    "test": "jest",
+    "pug": "pug ./src/markup -o ./public -P",
+    "pug-w": "pug ./src/markup/ -o ./public -P -w",
+    "style": "sass ./src/style/index.sass ./public/index.css --no-source-map",
+    "style-w": "sass ./src/style/index.sass ./public/index.css --no-source-map --watch"
   }
 }
