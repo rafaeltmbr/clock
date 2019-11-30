@@ -3,16 +3,44 @@ body, html {
   padding: 0;
 }
 
-.clock-container {
+* {
   box-sizing: border-box;
+}
+
+.clock-container[data-show=true], .clock-container[data-show=max] {
+  background-color: #27292a;
+}
+
+.clock-container[data-status=off] {
+  color: #c8c8c8;
+}
+.clock-container[data-status=off] .always-visible .on-off .slider {
+  color: #c8c8c8;
+}
+.clock-container[data-status=off] .delete-field svg {
+  fill: #c8c8c8;
+}
+.clock-container[data-status=off] .hide-control .hide-subject .clock-name {
+  color: #c8c8c8;
+}
+.clock-container[data-status=off] .hide-control .hide-subject .song .music svg {
+  fill: #c8c8c8;
+}
+.clock-container[data-status=off] .hide-control .hide-button .clock-name-minimized {
+  color: #939494;
+}
+
+.clock-container {
   max-width: 400px;
-  min-width: 250px;
-  padding: 15px;
+  min-width: 300px;
   font-family: sans-serif;
   position: relative;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
   user-select: none;
-  background-color: #27292a;
-  color: #939494;
+  background-color: #1c1e20;
+  color: white;
 }
 .clock-container * {
   box-sizing: border-box;
@@ -24,10 +52,11 @@ body, html {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  padding: 0 10px;
+  height: 60px;
 }
 .clock-container .always-visible .time {
   font-size: 40px;
-  line-height: 1.6em;
 }
 .clock-container .always-visible .time .am-pm {
   font-size: 12px;
@@ -49,47 +78,149 @@ body, html {
   align-items: center;
   font-size: 12px;
   background-color: #59595a;
-  font-weight: bold;
-  color: #bdbdbd;
+  color: white;
+  transition-duration: 0.4s;
+}
+.clock-container .always-visible .on-off .slider .on-text, .clock-container .always-visible .on-off .slider .off-text {
+  cursor: default;
+}
+.clock-container .always-visible .on-off .slider .on-text {
+  display: none;
+}
+.clock-container .always-visible .on-off .slider .off-text {
+  display: inline;
+}
+.clock-container .always-visible .on-off[data-status=on] .slider {
+  margin-left: 50%;
+  background-color: #0da6da;
+}
+.clock-container .always-visible .on-off[data-status=on] .slider .on-text {
+  display: inline;
+}
+.clock-container .always-visible .on-off[data-status=on] .slider .off-text {
+  display: none;
 }
 .clock-container .delete-field {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: absolute;
-  height: 20px;
-  right: 15px;
-  top: 80px;
+  height: 40px;
+  width: 40px;
+  right: 10px;
+  top: 60px;
 }
 .clock-container .delete-field svg {
   height: 22px;
   width: 22px;
-  fill: #939494;
+  fill: white;
 }
-.clock-container .hide-control[data-show=true] {
-  height: 140px;
+.clock-container .hide-control[data-show=true], .clock-container .hide-control[data-show=all], .clock-container .hide-control[data-show=min], .clock-container .hide-control[data-show=max] {
+  height: 160px;
+}
+.clock-container .hide-control[data-show=true] .hide-button, .clock-container .hide-control[data-show=all] .hide-button, .clock-container .hide-control[data-show=min] .hide-button, .clock-container .hide-control[data-show=max] .hide-button {
+  width: 100%;
+}
+.clock-container .hide-control[data-show=true] .hide-button .clock-name-minimized, .clock-container .hide-control[data-show=all] .hide-button .clock-name-minimized, .clock-container .hide-control[data-show=min] .hide-button .clock-name-minimized, .clock-container .hide-control[data-show=max] .hide-button .clock-name-minimized {
+  display: none;
+}
+.clock-container .hide-control[data-show=true] .line-separator, .clock-container .hide-control[data-show=all] .line-separator, .clock-container .hide-control[data-show=min] .line-separator, .clock-container .hide-control[data-show=max] .line-separator {
+  bottom: 40px;
+}
+.clock-container .hide-control[data-show=all], .clock-container .hide-control[data-show=max] {
+  height: 200px;
+}
+.clock-container .hide-control[data-show=all] .hide-subject .repeat-days, .clock-container .hide-control[data-show=max] .hide-subject .repeat-days {
+  display: flex;
+}
+.clock-container .hide-control[data-show=all], .clock-container .hide-control[data-show=min] {
+  transition-duration: 0s;
+}
+.clock-container .hide-control[data-repeat=true][data-show=false] .hide-button .days-name-minimized {
+  display: block;
 }
 .clock-container .hide-control {
-  height: 20px;
+  height: 40px;
   position: relative;
   overflow: hidden;
-  transition-duration: 0.3s;
+  transition-duration: 0.4s;
 }
-.clock-container .hide-control .show-details {
+.clock-container .hide-control .line-separator {
   position: absolute;
+  width: calc(100% - 20px);
+  height: 1px;
   bottom: 0;
-  height: 22px;
-  width: 20px;
-  transform: rotateZ(90deg);
-  transition-duration: 0.3s;
-  fill: #939494;
+  left: 10px;
+  background-color: #505050;
+  transition-duration: 0.4s;
 }
-.clock-container .hide-control .show-details[data-rotate=true] {
+.clock-container .hide-control .hide-button {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 40px;
+  width: calc(100% - 60px);
+  bottom: 0;
+}
+.clock-container .hide-control .hide-button .show-details {
+  height: 20px;
+  width: 20px;
+  min-width: 20px;
+  transform: rotateZ(90deg);
+  transition-duration: 0.4s;
+  fill: #939494;
+  margin-left: 5px;
+}
+.clock-container .hide-control .hide-button .show-details[data-rotate=true] {
   transform: rotateZ(270deg);
+}
+.clock-container .hide-control .hide-button .clock-name-minimized {
+  bottom: 10px;
+  color: #c8c8c8;
+}
+.clock-container .hide-control .hide-button .clock-name-minimized, .clock-container .hide-control .hide-button .days-name-minimized {
+  padding-left: 10px;
+  font-size: 14px;
+  height: 40px;
+  line-height: 20px;
+  overflow: hidden;
+}
+.clock-container .hide-control .hide-button .days-name-minimized {
+  min-width: 16ch;
+  display: none;
 }
 .clock-container .hide-control .hide-subject {
   width: 100%;
   position: absolute;
-  bottom: 20px;
+  bottom: 40px;
+  padding: 0 10px;
   font-size: 16px;
-  line-height: 2.5em;
+  line-height: 40px;
+}
+.clock-container .hide-control .hide-subject .clock-name {
+  display: block;
+  background-color: transparent;
+  outline: none;
+  border: 0;
+  height: 40px;
+  font-size: 18px;
+  width: calc(100% - 40px);
+  color: white;
+}
+.clock-container .hide-control .hide-subject .repeat-days {
+  display: none;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 40px;
+}
+.clock-container .hide-control .hide-subject .repeat-days .day {
+  height: calc(1em + 20px);
+  font-weight: bold;
+}
+.clock-container .hide-control .hide-subject .repeat-days .day[data-selected=true] {
+  border-bottom: 2px solid #0da6da;
 }
 .clock-container .hide-control .hide-subject .song {
   display: flex;
@@ -100,7 +231,7 @@ body, html {
 .clock-container .hide-control .hide-subject .song .music svg {
   height: auto;
   width: 8px;
-  fill: #939494;
+  fill: #c8c8c8;
 }
 .clock-container .hide-control .hide-subject .song .music span {
   padding-left: 10px;
@@ -129,6 +260,582 @@ body, html {
   height: 15px;
   width: 18px;
   position: absolute;
-  top: -2px;
-  fill: #1f94c2;
+  top: -3px;
+  fill: #0da6da;
+}
+
+.clock-settings[data-am-pm=pm] .time-container .pm {
+  display: inline;
+}
+.clock-settings[data-am-pm=pm] .time-container .am {
+  display: none;
+}
+.clock-settings[data-am-pm=pm] .disc-container .pm-button {
+  background-color: #8c3a3a;
+}
+.clock-settings[data-am-pm=pm] .disc-container .am-button {
+  background-color: #363636;
+}
+
+.clock-settings[data-hour="1"] .hour-selector-disc {
+  transform: rotate(-60deg) translate(80.8px) rotate(60deg);
+}
+.clock-settings[data-hour="1"] .hour-selector-axis {
+  transform: translate(-32.4px) rotate(-60deg) translate(32.4px);
+}
+
+.clock-settings[data-hour="2"] .hour-selector-disc {
+  transform: rotate(-30deg) translate(80.8px) rotate(30deg);
+}
+.clock-settings[data-hour="2"] .hour-selector-axis {
+  transform: translate(-32.4px) rotate(-30deg) translate(32.4px);
+}
+
+.clock-settings[data-hour="3"] .hour-selector-disc {
+  transform: rotate(0deg) translate(80.8px) rotate(0deg);
+}
+.clock-settings[data-hour="3"] .hour-selector-axis {
+  transform: translate(-32.4px) rotate(0deg) translate(32.4px);
+}
+
+.clock-settings[data-hour="4"] .hour-selector-disc {
+  transform: rotate(30deg) translate(80.8px) rotate(-30deg);
+}
+.clock-settings[data-hour="4"] .hour-selector-axis {
+  transform: translate(-32.4px) rotate(30deg) translate(32.4px);
+}
+
+.clock-settings[data-hour="5"] .hour-selector-disc {
+  transform: rotate(60deg) translate(80.8px) rotate(-60deg);
+}
+.clock-settings[data-hour="5"] .hour-selector-axis {
+  transform: translate(-32.4px) rotate(60deg) translate(32.4px);
+}
+
+.clock-settings[data-hour="6"] .hour-selector-disc {
+  transform: rotate(90deg) translate(80.8px) rotate(-90deg);
+}
+.clock-settings[data-hour="6"] .hour-selector-axis {
+  transform: translate(-32.4px) rotate(90deg) translate(32.4px);
+}
+
+.clock-settings[data-hour="7"] .hour-selector-disc {
+  transform: rotate(120deg) translate(80.8px) rotate(-120deg);
+}
+.clock-settings[data-hour="7"] .hour-selector-axis {
+  transform: translate(-32.4px) rotate(120deg) translate(32.4px);
+}
+
+.clock-settings[data-hour="8"] .hour-selector-disc {
+  transform: rotate(150deg) translate(80.8px) rotate(-150deg);
+}
+.clock-settings[data-hour="8"] .hour-selector-axis {
+  transform: translate(-32.4px) rotate(150deg) translate(32.4px);
+}
+
+.clock-settings[data-hour="9"] .hour-selector-disc {
+  transform: rotate(180deg) translate(80.8px) rotate(-180deg);
+}
+.clock-settings[data-hour="9"] .hour-selector-axis {
+  transform: translate(-32.4px) rotate(180deg) translate(32.4px);
+}
+
+.clock-settings[data-hour="10"] .hour-selector-disc {
+  transform: rotate(210deg) translate(80.8px) rotate(-210deg);
+}
+.clock-settings[data-hour="10"] .hour-selector-axis {
+  transform: translate(-32.4px) rotate(210deg) translate(32.4px);
+}
+
+.clock-settings[data-hour="11"] .hour-selector-disc {
+  transform: rotate(240deg) translate(80.8px) rotate(-240deg);
+}
+.clock-settings[data-hour="11"] .hour-selector-axis {
+  transform: translate(-32.4px) rotate(240deg) translate(32.4px);
+}
+
+.clock-settings[data-hour="12"] .hour-selector-disc {
+  transform: rotate(270deg) translate(80.8px) rotate(-270deg);
+}
+.clock-settings[data-hour="12"] .hour-selector-axis {
+  transform: translate(-32.4px) rotate(270deg) translate(32.4px);
+}
+
+.clock-settings[data-hour="1"] .hour-selector-disc {
+  transform: rotate(-60deg) translate(80.8px) rotate(60deg);
+}
+.clock-settings[data-hour="1"] .hour-selector-axis {
+  transform: translate(-32.4px) rotate(-60deg) translate(32.4px);
+}
+
+.clock-settings[data-hour="2"] .hour-selector-disc {
+  transform: rotate(-30deg) translate(80.8px) rotate(30deg);
+}
+.clock-settings[data-hour="2"] .hour-selector-axis {
+  transform: translate(-32.4px) rotate(-30deg) translate(32.4px);
+}
+
+.clock-settings[data-hour="3"] .hour-selector-disc {
+  transform: rotate(0deg) translate(80.8px) rotate(0deg);
+}
+.clock-settings[data-hour="3"] .hour-selector-axis {
+  transform: translate(-32.4px) rotate(0deg) translate(32.4px);
+}
+
+.clock-settings[data-hour="4"] .hour-selector-disc {
+  transform: rotate(30deg) translate(80.8px) rotate(-30deg);
+}
+.clock-settings[data-hour="4"] .hour-selector-axis {
+  transform: translate(-32.4px) rotate(30deg) translate(32.4px);
+}
+
+.clock-settings[data-hour="5"] .hour-selector-disc {
+  transform: rotate(60deg) translate(80.8px) rotate(-60deg);
+}
+.clock-settings[data-hour="5"] .hour-selector-axis {
+  transform: translate(-32.4px) rotate(60deg) translate(32.4px);
+}
+
+.clock-settings[data-hour="6"] .hour-selector-disc {
+  transform: rotate(90deg) translate(80.8px) rotate(-90deg);
+}
+.clock-settings[data-hour="6"] .hour-selector-axis {
+  transform: translate(-32.4px) rotate(90deg) translate(32.4px);
+}
+
+.clock-settings[data-hour="7"] .hour-selector-disc {
+  transform: rotate(120deg) translate(80.8px) rotate(-120deg);
+}
+.clock-settings[data-hour="7"] .hour-selector-axis {
+  transform: translate(-32.4px) rotate(120deg) translate(32.4px);
+}
+
+.clock-settings[data-hour="8"] .hour-selector-disc {
+  transform: rotate(150deg) translate(80.8px) rotate(-150deg);
+}
+.clock-settings[data-hour="8"] .hour-selector-axis {
+  transform: translate(-32.4px) rotate(150deg) translate(32.4px);
+}
+
+.clock-settings[data-hour="9"] .hour-selector-disc {
+  transform: rotate(180deg) translate(80.8px) rotate(-180deg);
+}
+.clock-settings[data-hour="9"] .hour-selector-axis {
+  transform: translate(-32.4px) rotate(180deg) translate(32.4px);
+}
+
+.clock-settings[data-hour="10"] .hour-selector-disc {
+  transform: rotate(210deg) translate(80.8px) rotate(-210deg);
+}
+.clock-settings[data-hour="10"] .hour-selector-axis {
+  transform: translate(-32.4px) rotate(210deg) translate(32.4px);
+}
+
+.clock-settings[data-hour="11"] .hour-selector-disc {
+  transform: rotate(240deg) translate(80.8px) rotate(-240deg);
+}
+.clock-settings[data-hour="11"] .hour-selector-axis {
+  transform: translate(-32.4px) rotate(240deg) translate(32.4px);
+}
+
+.clock-settings[data-hour="12"] .hour-selector-disc {
+  transform: rotate(270deg) translate(80.8px) rotate(-270deg);
+}
+.clock-settings[data-hour="12"] .hour-selector-axis {
+  transform: translate(-32.4px) rotate(270deg) translate(32.4px);
+}
+
+.clock-settings[data-hour="1"] .hour-disc[data-active=true] .hour-selector-axis {
+  transform: translate(-40.4px) rotate(-60deg) translate(40.4px);
+  width: 80.8px;
+}
+
+.clock-settings[data-hour="2"] .hour-disc[data-active=true] .hour-selector-axis {
+  transform: translate(-40.4px) rotate(-30deg) translate(40.4px);
+  width: 80.8px;
+}
+
+.clock-settings[data-hour="3"] .hour-disc[data-active=true] .hour-selector-axis {
+  transform: translate(-40.4px) rotate(0deg) translate(40.4px);
+  width: 80.8px;
+}
+
+.clock-settings[data-hour="4"] .hour-disc[data-active=true] .hour-selector-axis {
+  transform: translate(-40.4px) rotate(30deg) translate(40.4px);
+  width: 80.8px;
+}
+
+.clock-settings[data-hour="5"] .hour-disc[data-active=true] .hour-selector-axis {
+  transform: translate(-40.4px) rotate(60deg) translate(40.4px);
+  width: 80.8px;
+}
+
+.clock-settings[data-hour="6"] .hour-disc[data-active=true] .hour-selector-axis {
+  transform: translate(-40.4px) rotate(90deg) translate(40.4px);
+  width: 80.8px;
+}
+
+.clock-settings[data-hour="7"] .hour-disc[data-active=true] .hour-selector-axis {
+  transform: translate(-40.4px) rotate(120deg) translate(40.4px);
+  width: 80.8px;
+}
+
+.clock-settings[data-hour="8"] .hour-disc[data-active=true] .hour-selector-axis {
+  transform: translate(-40.4px) rotate(150deg) translate(40.4px);
+  width: 80.8px;
+}
+
+.clock-settings[data-hour="9"] .hour-disc[data-active=true] .hour-selector-axis {
+  transform: translate(-40.4px) rotate(180deg) translate(40.4px);
+  width: 80.8px;
+}
+
+.clock-settings[data-hour="10"] .hour-disc[data-active=true] .hour-selector-axis {
+  transform: translate(-40.4px) rotate(210deg) translate(40.4px);
+  width: 80.8px;
+}
+
+.clock-settings[data-hour="11"] .hour-disc[data-active=true] .hour-selector-axis {
+  transform: translate(-40.4px) rotate(240deg) translate(40.4px);
+  width: 80.8px;
+}
+
+.clock-settings[data-hour="12"] .hour-disc[data-active=true] .hour-selector-axis {
+  transform: translate(-40.4px) rotate(270deg) translate(40.4px);
+  width: 80.8px;
+}
+
+.clock-settings[data-select=minute] .time-container .hour {
+  color: white;
+}
+.clock-settings[data-select=minute] .time-container .minute {
+  color: #f53535;
+}
+.clock-settings[data-select=minute] .disc-container .hour-disc .hour-selector-disc, .clock-settings[data-select=minute] .disc-container .hour-disc .hour-selector-axis {
+  opacity: 0;
+  transition-duration: 0.3s;
+}
+
+.clock-settings[data-select=minute] .disc-container .hour-disc .hour:nth-child(1) {
+  transform: rotate(-60deg) translate(119.2px) rotate(60deg);
+  opacity: 0;
+}
+.clock-settings[data-select=minute] .disc-container .hour-disc .minute:nth-child(13) {
+  transform: rotate(-60deg) translate(80.8px) rotate(60deg);
+  opacity: 1;
+}
+
+.clock-settings[data-select=minute] .disc-container .hour-disc .hour:nth-child(2) {
+  transform: rotate(-30deg) translate(119.2px) rotate(30deg);
+  opacity: 0;
+}
+.clock-settings[data-select=minute] .disc-container .hour-disc .minute:nth-child(14) {
+  transform: rotate(-30deg) translate(80.8px) rotate(30deg);
+  opacity: 1;
+}
+
+.clock-settings[data-select=minute] .disc-container .hour-disc .hour:nth-child(3) {
+  transform: rotate(0deg) translate(119.2px) rotate(0deg);
+  opacity: 0;
+}
+.clock-settings[data-select=minute] .disc-container .hour-disc .minute:nth-child(15) {
+  transform: rotate(0deg) translate(80.8px) rotate(0deg);
+  opacity: 1;
+}
+
+.clock-settings[data-select=minute] .disc-container .hour-disc .hour:nth-child(4) {
+  transform: rotate(30deg) translate(119.2px) rotate(-30deg);
+  opacity: 0;
+}
+.clock-settings[data-select=minute] .disc-container .hour-disc .minute:nth-child(16) {
+  transform: rotate(30deg) translate(80.8px) rotate(-30deg);
+  opacity: 1;
+}
+
+.clock-settings[data-select=minute] .disc-container .hour-disc .hour:nth-child(5) {
+  transform: rotate(60deg) translate(119.2px) rotate(-60deg);
+  opacity: 0;
+}
+.clock-settings[data-select=minute] .disc-container .hour-disc .minute:nth-child(17) {
+  transform: rotate(60deg) translate(80.8px) rotate(-60deg);
+  opacity: 1;
+}
+
+.clock-settings[data-select=minute] .disc-container .hour-disc .hour:nth-child(6) {
+  transform: rotate(90deg) translate(119.2px) rotate(-90deg);
+  opacity: 0;
+}
+.clock-settings[data-select=minute] .disc-container .hour-disc .minute:nth-child(18) {
+  transform: rotate(90deg) translate(80.8px) rotate(-90deg);
+  opacity: 1;
+}
+
+.clock-settings[data-select=minute] .disc-container .hour-disc .hour:nth-child(7) {
+  transform: rotate(120deg) translate(119.2px) rotate(-120deg);
+  opacity: 0;
+}
+.clock-settings[data-select=minute] .disc-container .hour-disc .minute:nth-child(19) {
+  transform: rotate(120deg) translate(80.8px) rotate(-120deg);
+  opacity: 1;
+}
+
+.clock-settings[data-select=minute] .disc-container .hour-disc .hour:nth-child(8) {
+  transform: rotate(150deg) translate(119.2px) rotate(-150deg);
+  opacity: 0;
+}
+.clock-settings[data-select=minute] .disc-container .hour-disc .minute:nth-child(20) {
+  transform: rotate(150deg) translate(80.8px) rotate(-150deg);
+  opacity: 1;
+}
+
+.clock-settings[data-select=minute] .disc-container .hour-disc .hour:nth-child(9) {
+  transform: rotate(180deg) translate(119.2px) rotate(-180deg);
+  opacity: 0;
+}
+.clock-settings[data-select=minute] .disc-container .hour-disc .minute:nth-child(21) {
+  transform: rotate(180deg) translate(80.8px) rotate(-180deg);
+  opacity: 1;
+}
+
+.clock-settings[data-select=minute] .disc-container .hour-disc .hour:nth-child(10) {
+  transform: rotate(210deg) translate(119.2px) rotate(-210deg);
+  opacity: 0;
+}
+.clock-settings[data-select=minute] .disc-container .hour-disc .minute:nth-child(22) {
+  transform: rotate(210deg) translate(80.8px) rotate(-210deg);
+  opacity: 1;
+}
+
+.clock-settings[data-select=minute] .disc-container .hour-disc .hour:nth-child(11) {
+  transform: rotate(240deg) translate(119.2px) rotate(-240deg);
+  opacity: 0;
+}
+.clock-settings[data-select=minute] .disc-container .hour-disc .minute:nth-child(23) {
+  transform: rotate(240deg) translate(80.8px) rotate(-240deg);
+  opacity: 1;
+}
+
+.clock-settings[data-select=minute] .disc-container .hour-disc .hour:nth-child(12) {
+  transform: rotate(270deg) translate(119.2px) rotate(-270deg);
+  opacity: 0;
+}
+.clock-settings[data-select=minute] .disc-container .hour-disc .minute:nth-child(24) {
+  transform: rotate(270deg) translate(80.8px) rotate(-270deg);
+  opacity: 1;
+}
+
+.clock-settings {
+  -ms-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  width: 284px;
+  user-select: none;
+  border: 1px solid grey;
+  background-color: #404040;
+  font-family: sans-serif;
+  color: white;
+}
+.clock-settings .time-container {
+  font-size: 50px;
+  height: 76px;
+  padding: 10px;
+  background-color: #363636;
+  width: 100%;
+  text-align: center;
+}
+.clock-settings .time-container .hour, .clock-settings .time-container .separator, .clock-settings .time-container .minute {
+  position: relative;
+  left: 12px;
+  color: white;
+}
+.clock-settings .time-container .hour {
+  color: #f53535;
+}
+.clock-settings .time-container .pm {
+  display: none;
+}
+.clock-settings .time-container .am, .clock-settings .time-container .pm {
+  font-size: 16px;
+  position: relative;
+  left: 17px;
+}
+.clock-settings .disc-container {
+  height: 250px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.clock-settings .disc-container > * {
+  position: relative;
+}
+.clock-settings .disc-container .hour-disc[data-active=true] .hour-selector-disc .dot {
+  display: block;
+}
+.clock-settings .disc-container .hour-disc[data-active=true] .hour-selector-axis {
+  background-color: #c80000;
+}
+.clock-settings .disc-container .hour-disc {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-color: #363636;
+  top: -12px;
+  position: relative;
+}
+.clock-settings .disc-container .hour-disc .hour, .clock-settings .disc-container .hour-disc .minute {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 16px;
+  margin-left: -8px;
+  margin-top: -8px;
+  width: 1em;
+  text-align: center;
+}
+.clock-settings .disc-container .hour-disc .hour-selector-disc, .clock-settings .disc-container .hour-disc .minute-selector-disc {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: rgba(248, 64, 64, 0.4);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -16px;
+  margin-left: -16px;
+}
+.clock-settings .disc-container .hour-disc .hour-selector-disc .dot, .clock-settings .disc-container .hour-disc .minute-selector-disc .dot {
+  display: none;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  margin-left: -4px;
+  margin-top: -4px;
+  background-color: #c80000;
+}
+.clock-settings .disc-container .hour-disc .hour-selector-axis, .clock-settings .disc-container .hour-disc .minute-select-axis {
+  width: 64.8px;
+  height: 1px;
+  background-color: rgba(248, 64, 64, 0.4);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+.clock-settings .disc-container .hour-disc .hour, .clock-settings .disc-container .hour-disc .minute {
+  transition-duration: 0.3s;
+}
+.clock-settings .disc-container .hour-disc .hour:nth-child(1) {
+  transform: rotate(-60deg) translate(80.8px) rotate(60deg);
+}
+.clock-settings .disc-container .hour-disc .minute:nth-child(13) {
+  transform: rotate(-60deg) translate(42.4px) rotate(60deg);
+  opacity: 0;
+}
+.clock-settings .disc-container .hour-disc .hour:nth-child(2) {
+  transform: rotate(-30deg) translate(80.8px) rotate(30deg);
+}
+.clock-settings .disc-container .hour-disc .minute:nth-child(14) {
+  transform: rotate(-30deg) translate(42.4px) rotate(30deg);
+  opacity: 0;
+}
+.clock-settings .disc-container .hour-disc .hour:nth-child(3) {
+  transform: rotate(0deg) translate(80.8px) rotate(0deg);
+}
+.clock-settings .disc-container .hour-disc .minute:nth-child(15) {
+  transform: rotate(0deg) translate(42.4px) rotate(0deg);
+  opacity: 0;
+}
+.clock-settings .disc-container .hour-disc .hour:nth-child(4) {
+  transform: rotate(30deg) translate(80.8px) rotate(-30deg);
+}
+.clock-settings .disc-container .hour-disc .minute:nth-child(16) {
+  transform: rotate(30deg) translate(42.4px) rotate(-30deg);
+  opacity: 0;
+}
+.clock-settings .disc-container .hour-disc .hour:nth-child(5) {
+  transform: rotate(60deg) translate(80.8px) rotate(-60deg);
+}
+.clock-settings .disc-container .hour-disc .minute:nth-child(17) {
+  transform: rotate(60deg) translate(42.4px) rotate(-60deg);
+  opacity: 0;
+}
+.clock-settings .disc-container .hour-disc .hour:nth-child(6) {
+  transform: rotate(90deg) translate(80.8px) rotate(-90deg);
+}
+.clock-settings .disc-container .hour-disc .minute:nth-child(18) {
+  transform: rotate(90deg) translate(42.4px) rotate(-90deg);
+  opacity: 0;
+}
+.clock-settings .disc-container .hour-disc .hour:nth-child(7) {
+  transform: rotate(120deg) translate(80.8px) rotate(-120deg);
+}
+.clock-settings .disc-container .hour-disc .minute:nth-child(19) {
+  transform: rotate(120deg) translate(42.4px) rotate(-120deg);
+  opacity: 0;
+}
+.clock-settings .disc-container .hour-disc .hour:nth-child(8) {
+  transform: rotate(150deg) translate(80.8px) rotate(-150deg);
+}
+.clock-settings .disc-container .hour-disc .minute:nth-child(20) {
+  transform: rotate(150deg) translate(42.4px) rotate(-150deg);
+  opacity: 0;
+}
+.clock-settings .disc-container .hour-disc .hour:nth-child(9) {
+  transform: rotate(180deg) translate(80.8px) rotate(-180deg);
+}
+.clock-settings .disc-container .hour-disc .minute:nth-child(21) {
+  transform: rotate(180deg) translate(42.4px) rotate(-180deg);
+  opacity: 0;
+}
+.clock-settings .disc-container .hour-disc .hour:nth-child(10) {
+  transform: rotate(210deg) translate(80.8px) rotate(-210deg);
+}
+.clock-settings .disc-container .hour-disc .minute:nth-child(22) {
+  transform: rotate(210deg) translate(42.4px) rotate(-210deg);
+  opacity: 0;
+}
+.clock-settings .disc-container .hour-disc .hour:nth-child(11) {
+  transform: rotate(240deg) translate(80.8px) rotate(-240deg);
+}
+.clock-settings .disc-container .hour-disc .minute:nth-child(23) {
+  transform: rotate(240deg) translate(42.4px) rotate(-240deg);
+  opacity: 0;
+}
+.clock-settings .disc-container .hour-disc .hour:nth-child(12) {
+  transform: rotate(270deg) translate(80.8px) rotate(-270deg);
+}
+.clock-settings .disc-container .hour-disc .minute:nth-child(24) {
+  transform: rotate(270deg) translate(42.4px) rotate(-270deg);
+  opacity: 0;
+}
+.clock-settings .disc-container .am-button, .clock-settings .disc-container .pm-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #363636;
+  top: 93px;
+}
+.clock-settings .disc-container .am-button {
+  background-color: #8c3a3a;
+}
+.clock-settings .disc-container .am-button {
+  left: 45px;
+}
+.clock-settings .disc-container .pm-button {
+  right: 45px;
+}
+.clock-settings .done-container {
+  border-top: 2px solid #595959;
+  text-align: center;
+  height: 50px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

@@ -1,21 +1,64 @@
 body, html
     margin: 0
     padding: 0
-    
-.clock-container
-    $container-padding: 15px
-    $container-background-color: rgb(39, 41, 42)
-    $color-1: rgb(147, 148, 148)
-    
+
+*
     box-sizing: border-box
+
+$color-background-show: rgb(39, 41, 42)
+$color-background-hide: rgb(28, 30, 32)
+.clock-container[data-show="true"], .clock-container[data-show="max"]
+    background-color: $color-background-show
+    
+.clock-container[data-status="off"]
+    $color-text-off: rgb(200, 200, 200)
+
+    color: $color-text-off
+
+    .always-visible
+        .on-off
+            .slider
+                color: $color-text-off
+
+    .delete-field
+        svg
+            fill: $color-text-off
+
+    .hide-control
+        .hide-subject
+            .clock-name
+                color: $color-text-off
+
+            .song
+                .music
+                    svg
+                        fill: $color-text-off
+
+        .hide-button
+            .clock-name-minimized
+                color: rgb(147, 148, 148)
+
+.clock-container
+    $container-padding-side: 10px
+    $color-text: rgb(255, 255, 255)
+    $color-show-button: rgb(147, 148, 148)
+    $color-on: rgb(13, 166, 218)
+    $color-text-off: rgb(200, 200, 200)
+    $always-visible-line-height: 60px
+    $hide-control-height: 40px
+    $details-line-height: 40px
+    $animation-duration: 0.4s
+    
     max-width: 400px
-    min-width: 250px
-    padding: $container-padding
+    min-width: 300px
     font-family: sans-serif
     position: relative
+    -ms-user-select: none
+    -moz-user-select: none
+    -webkit-user-select: none
     user-select: none
-    background-color: $container-background-color
-    color: $color-1
+    background-color: $color-background-hide
+    color: $color-text
 
     *
         box-sizing: border-box
@@ -27,10 +70,11 @@ body, html
         flex-direction: row
         align-items: center
         justify-content: space-between
+        padding: 0 $container-padding-side
+        height: $always-visible-line-height
 
         .time
             font-size: 40px
-            line-height: 1.6em
 
             .am-pm
                 font-size: 12px
@@ -54,52 +98,163 @@ body, html
                 align-items: center
                 font-size: 12px
                 background-color: $slider-color
-                font-weight: bold
-                color: rgb(189, 189, 189)
+                color: $color-text
+                transition-duration: $animation-duration
+
+                .on-text, .off-text
+                    cursor: default
+
+                .on-text
+                    display: none
+
+                .off-text
+                    display: inline
+
+        .on-off[data-status="on"]
+            .slider
+                margin-left: 50%
+                background-color: $color-on
+
+                .on-text
+                    display: inline
+
+                .off-text
+                    display: none
 
     .delete-field
         $trash-height: 20px
 
+        display: flex
+        align-items: center
+        justify-content: center
         position: absolute
-        height: 20px
-        right: $container-padding
-        top: 80px
+        height: $hide-control-height
+        width: $hide-control-height
+        right: $container-padding-side
+        top: $always-visible-line-height
 
         svg
             height: 22px
             width: 22px
-            fill: $color-1
+            fill: $color-text
 
-    .hide-control[data-show="true"]
-        height: 140px
+    .hide-control[data-show="true"], .hide-control[data-show="all"], .hide-control[data-show="min"], .hide-control[data-show="max"]
+        height: $details-line-height * 3 + $hide-control-height
+
+        .hide-button
+            width: 100%
+
+            .clock-name-minimized
+                display: none
+
+        .line-separator
+            bottom: $hide-control-height
+
+
+    .hide-control[data-show="all"], .hide-control[data-show="max"]
+        height: $details-line-height * 4 + $hide-control-height
+
+        .hide-subject
+            .repeat-days
+                display: flex
+
+    .hide-control[data-show="all"], .hide-control[data-show="min"]
+        transition-duration: 0s
+
+    .hide-control[data-repeat="true"][data-show="false"]
+        .hide-button
+            .days-name-minimized
+                display: block
 
     .hide-control
-        $animation-duration: 0.3s
         $show-details-height: 20px
+        $hide-button-padding-right: $hide-control-height + $container-padding-side * 2
 
-        height: $show-details-height
+        height: $hide-control-height
         position: relative
         overflow: hidden
         transition-duration: $animation-duration
 
-        .show-details
-            position: absolute
-            bottom: 0
-            height: $show-details-height + 2px
-            width: $show-details-height
-            transform: rotateZ(90deg)
-            transition-duration: $animation-duration
-            fill: $color-1
+        .line-separator
+            $separator-height: 1px
+            $line-separator-padding: 10px
 
-        .show-details[data-rotate="true"]
-            transform: rotateZ(270deg)
+            position: absolute
+            width: calc(100% - #{$line-separator-padding * 2})
+            height: $separator-height
+            bottom: 0
+            left: $line-separator-padding
+            background-color: rgb(80, 80, 80)
+            transition-duration: $animation-duration
+
+        .hide-button
+            position: absolute
+            display: flex
+            flex-direction: row
+            align-items: center
+            height: $hide-control-height
+            width: calc(100% - #{$hide-button-padding-right})
+            bottom: 0
+
+            .show-details
+                height: $show-details-height
+                width: $show-details-height
+                min-width: $show-details-height
+                transform: rotateZ(90deg)
+                transition-duration: $animation-duration
+                fill: $color-show-button
+                margin-left: 5px
+
+            .show-details[data-rotate="true"]
+                transform: rotateZ(270deg)
+
+            .clock-name-minimized
+                bottom: ($hide-control-height - $show-details-height) / 2
+                color: $color-text-off
+
+            .clock-name-minimized, .days-name-minimized
+                padding-left: 10px
+                font-size: 14px
+                height: $hide-control-height
+                line-height: $hide-control-height / 2
+                overflow: hidden
+
+            .days-name-minimized
+                min-width: 16ch
+                display: none
 
         .hide-subject
             width: 100%
             position: absolute
-            bottom: $show-details-height
+            bottom: $hide-control-height
+            padding: 0 $container-padding-side
             font-size: 16px
-            line-height: 2.5em
+            line-height: $details-line-height
+
+            .clock-name
+                display: block
+                background-color: transparent
+                outline: none
+                border: 0
+                height: $details-line-height
+                font-size: 18px
+                width: calc(100% - #{$hide-control-height})
+                color: $color-text
+            
+            .repeat-days
+                display: none
+                flex-direction: row
+                align-items: center
+                justify-content: space-between
+                height: $details-line-height
+
+                .day
+                    height: calc(1em + 20px)
+                    font-weight: bold
+
+                .day[data-selected="true"]
+
+                    border-bottom: 2px solid $color-on
 
             .song
                 display: flex
@@ -111,7 +266,7 @@ body, html
                     svg
                         height: auto
                         width: 8px
-                        fill: $color-1
+                        fill: $color-text-off
 
                     span
                         padding-left: 10px
@@ -126,7 +281,7 @@ body, html
 
                 .checkmark
                     display: inline-block
-                    border: 1px solid $color-1
+                    border: 1px solid $color-show-button
                     width: 14px
                     height: 14px
                     margin-right: 10px
@@ -136,10 +291,239 @@ body, html
                         display: none
 
                 input:checked ~ .checkmark svg
-                    $check-color: rgb(31, 148, 194)
                     display: inline-block
                     height: 15px
                     width: 18px
                     position: absolute
-                    top: -2px
-                    fill: $check-color
+                    top: -3px
+                    fill: $color-on
+
+$button-inactive: rgb(54, 54, 54)
+$button-active: rgb(140, 58, 58)
+
+.clock-settings[data-am-pm="pm"]
+    .time-container
+        .pm
+            display: inline
+        .am
+            display: none
+
+    .disc-container
+        .pm-button
+            background-color: $button-active
+
+        .am-button
+            background-color: $button-inactive
+
+$total_hours: 12
+$hour_angle: 360 / $total_hours
+$angle_offset: -90
+$disc_radius: 100px
+$hour_font_size: 16px
+$hour_selector_disc_size: 32px
+$disc_selector_axis_width: $disc-radius - $hour_font_size * 1.2 - $hour_selector_disc_size / 2
+$disc_selector_dot_color: rgb(200, 0, 0)
+$disc_selector_color: rgba(248, 64, 64, 0.4)
+$text-color: rgb(255, 255, 255)
+$hour-minute-selected-color: rgb(245, 53, 53)
+$hour-minute-switch-animation-duration: 0.3s
+$total_minutes: 60
+$minute_angle: 360 / $total_minutes
+
+@for $i from 1 through $total_hours
+    .clock-settings[data-hour="#{$i}"]
+        .hour-selector-disc
+            transform: rotate(#{$i * $hour_angle + $angle_offset}deg) translate($disc_radius - $hour_font_size * 1.2) rotate(#{-$i * $hour_angle - $angle_offset}deg)
+        
+        .hour-selector-axis
+            transform: translate(#{$disc_selector_axis_width / -2}) rotate(#{$i * 30 - 90}deg) translate(#{$disc_selector_axis_width / 2})
+
+@for $i from 1 through $total_hours
+    .clock-settings[data-hour="#{$i}"]
+        .hour-selector-disc
+            transform: rotate(#{$i * $hour_angle + $angle_offset}deg) translate($disc_radius - $hour_font_size * 1.2) rotate(#{-$i * $hour_angle - $angle_offset}deg)
+        
+        .hour-selector-axis
+            transform: translate(#{$disc_selector_axis_width / -2}) rotate(#{$i * 30 - 90}deg) translate(#{$disc_selector_axis_width / 2})
+
+@for $i from 1 through $total_hours
+    $disc_selector_axis_new_width: $disc_selector_axis_width + $hour_selector_disc_size / 2 
+    .clock-settings[data-hour="#{$i}"]
+        .hour-disc[data-active="true"]
+            .hour-selector-axis
+                transform: translate(#{$disc_selector_axis_new_width / -2}) rotate(#{$i * 30 - 90}deg) translate(#{$disc_selector_axis_new_width / 2})
+                width: $disc_selector_axis_new_width
+
+.clock-settings[data-select="minute"]
+    .time-container
+        .hour
+            color: $text-color
+        .minute
+            color: $hour-minute-selected-color
+    .disc-container
+        .hour-disc
+            .hour-selector-disc, .hour-selector-axis
+                opacity: 0.0
+                transition-duration: $hour-minute-switch-animation-duration
+
+@for $i from 1 through $total_hours
+    .clock-settings[data-select="minute"]
+        .disc-container
+            .hour-disc
+                .hour:nth-child(#{$i})
+                    transform: rotate(#{$i * $hour_angle + $angle_offset}deg) translate($disc_radius + $hour_font_size * 1.2) rotate(#{-$i * $hour_angle - $angle_offset}deg)
+                    opacity: 0.0
+
+                .minute:nth-child(#{$total_hours + $i})
+                    transform: rotate(#{$i * $hour_angle + $angle_offset}deg) translate($disc_radius - $hour_font_size * 1.2) rotate(#{-$i * $hour_angle - $angle_offset}deg)
+                    opacity: 1.0
+
+.clock-settings
+    $dark-grey: rgb(54, 54, 54)
+    $light-grey: rgb(64, 64, 64)
+
+    -ms-user-select: none
+    -moz-user-select: none
+    -webkit-user-select: none
+    width: 284px
+    user-select: none
+    border: 1px solid grey
+    background-color: $light-grey
+    font-family: sans-serif
+    color: $text-color
+
+    .time-container
+        font-size: 50px
+        height: 76px
+        padding: 10px
+        background-color: $dark-grey
+        width: 100%
+        text-align: center
+
+        .hour, .separator, .minute
+            position: relative
+            left: 12px
+            color: $text-color
+
+        .hour
+            color: $hour-minute-selected-color
+
+        .pm
+            display: none
+
+        .am, .pm
+            font-size: 16px
+            position: relative
+            left: 17px
+
+    .disc-container
+        $am-pm-top-offset: 105px
+        $offset-top: -12px
+
+        height: 250px
+        display: flex
+        flex-direction: row
+        align-items: center
+        justify-content: space-between
+
+
+        > *
+            position: relative
+
+        .hour-disc[data-active="true"]
+            .hour-selector-disc
+                .dot
+                    display: block
+
+            .hour-selector-axis
+                background-color: $disc_selector_dot_color
+
+        .hour-disc
+            width: $disc_radius * 2
+            height: $disc_radius * 2
+            border-radius: 50%
+            background-color: $dark-grey
+            top: $offset-top
+            position: relative
+
+            .hour, .minute
+                position: absolute
+                top: 50%
+                left: 50%
+                font-size: $hour_font_size
+                margin-left: $hour_font_size / -2
+                margin-top: $hour_font_size / -2
+                width: 1em
+                text-align: center
+
+            .hour-selector-disc, .minute-selector-disc
+                width: $hour_selector_disc_size
+                height: $hour_selector_disc_size
+                border-radius: 50%
+                background-color: $disc_selector_color
+                position: absolute
+                top: 50%
+                left: 50%
+                margin-top: $hour_selector_disc_size / -2
+                margin-left: $hour_selector_disc_size / -2
+
+                .dot
+                    $dot-width: 8px
+                    display: none
+                    border-radius: 50%
+                    position: absolute
+                    top: 50%
+                    left: 50%
+                    width: $dot-width
+                    height: $dot-width
+                    margin-left: $dot-width / -2
+                    margin-top: $dot-width / -2
+                    background-color: $disc_selector_dot_color
+
+            .hour-selector-axis, .minute-select-axis
+                width: $disc_selector_axis_width
+                height: 1px
+                background-color: $disc_selector_color
+                position: absolute
+                top: 50%
+                left: 50%
+
+            .hour, .minute
+                transition-duration: $hour-minute-switch-animation-duration
+                
+            @for $i from 1 through $total_hours
+                .hour:nth-child(#{$i})
+                    transform: rotate(#{$i * $hour_angle + $angle_offset}deg) translate($disc_radius - $hour_font_size * 1.2) rotate(#{-$i * $hour_angle - $angle_offset}deg)
+
+                .minute:nth-child(#{$total_hours + $i})
+                    transform: rotate(#{$i * $hour_angle + $angle_offset}deg) translate($disc_radius - $hour_font_size * 3.6) rotate(#{-$i * $hour_angle - $angle_offset}deg)
+                    opacity: 0.0
+
+        .am-button, .pm-button
+            display: flex
+            align-items: center
+            justify-content: center
+            width: 40px
+            height: 40px
+            border-radius: 50%
+            background-color: $button-inactive
+            top: $am-pm-top-offset + $offset-top
+
+        .am-button
+             background-color: $button-active
+
+        .am-button
+            left: 45px
+
+        .pm-button
+            right: 45px
+
+    .done-container
+        border-top: 2px solid rgb(89, 89, 89)
+        text-align: center
+        height: 50px
+        font-size: 14px
+        display: flex
+        align-items: center
+        justify-content: center
+
