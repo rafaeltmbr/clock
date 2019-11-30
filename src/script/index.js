@@ -32,11 +32,15 @@ const hourSelectorDisc = document.querySelectorAll('.clock-settings .hour-select
 hourSelectorDisc.forEach((disc) => {
     disc.addEventListener('mousedown',
         (event) => {
+            disc.clicked = true; // eslint-disable-line no-param-reassign
             AlarmUserHandler.addDiscSelector(disc, event);
             disc.parentElement.setAttribute('data-active', 'true');
         });
 
     window.addEventListener('mouseup', () => {
+        if (!disc.clicked) return;
+        disc.clicked = false; // eslint-disable-line no-param-reassign
+
         AlarmUserHandler.removeDiscSelector(disc);
         disc.parentElement.setAttribute('data-active', 'false');
         disc.parentElement.parentElement.parentElement.setAttribute('data-select', 'minute');
