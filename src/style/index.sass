@@ -330,6 +330,7 @@ $hour-minute-selected-color: rgb(245, 53, 53)
 $hour-minute-switch-animation-duration: 0.3s
 $total_minutes: 60
 $minute_angle: 360 / $total_minutes
+$disc_selector_axis_new_width: $disc_selector_axis_width + $hour_selector_disc_size / 2 
 
 @for $i from 1 through $total_hours
     .clock-settings[data-hour="#{$i}"]
@@ -345,23 +346,22 @@ $minute_angle: 360 / $total_minutes
             transform: rotate(#{$i * $minute_angle + $angle_offset}deg) translate($disc_radius - $hour_font_size * 1.2) rotate(#{-$i * $minute_angle - $angle_offset}deg)
         
         .minute-selector-axis
-            transform: translate(#{$disc_selector_axis_width / -2}) rotate(#{$i * $minute_angle - 90}deg) translate(#{$disc_selector_axis_width / 2})
+            transform: translate(#{$disc_selector_axis_new_width / -2}) rotate(#{$i * $minute_angle - 90}deg) translate(#{$disc_selector_axis_new_width / 2})
 
 @for $i from 1 through $total_hours
-    $disc_selector_axis_new_width: $disc_selector_axis_width + $hour_selector_disc_size / 2 
     .clock-settings[data-hour="#{$i}"]
         .hour-disc[data-active="true"]
             .hour-selector-axis
                 transform: translate(#{$disc_selector_axis_new_width / -2}) rotate(#{$i * $hour_angle - 90}deg) translate(#{$disc_selector_axis_new_width / 2})
                 width: $disc_selector_axis_new_width
 
-@for $i from 0 through ($total_minutes - 1)
-    $disc_selector_axis_new_width: $disc_selector_axis_width + $hour_selector_disc_size / 2 
-    .clock-settings[data-minute="#{$i}"]
-        .hour-disc[data-active="true"]
-            .minute-selector-axis
-                transform: translate(#{$disc_selector_axis_new_width / -2}) rotate(#{$i * $minute_angle - 90}deg) translate(#{$disc_selector_axis_new_width / 2})
-                width: $disc_selector_axis_new_width
+// @for $i from 0 through ($total_minutes - 1)
+//     $disc_selector_axis_new_width: $disc_selector_axis_width + $hour_selector_disc_size / 2 
+//     .clock-settings[data-minute="#{$i}"]
+//         .hour-disc[data-active="false"]
+//             .minute-selector-axis
+//                 transform: translate(#{$disc_selector_axis_width / -2}) rotate(#{$i * $minute_angle - 90}deg) translate(#{$disc_selector_axis_width / 2})
+//                 width: $disc_selector_axis_width
 
 .clock-settings[data-select="minute"]
     .time-container
@@ -451,7 +451,7 @@ $minute_angle: 360 / $total_minutes
                 .dot
                     display: block
 
-            .hour-selector-axis, .minute-selector-axis
+            .hour-selector-axis
                 background-color: $disc_selector_dot_color
 
         .hour-disc
@@ -503,6 +503,14 @@ $minute_angle: 360 / $total_minutes
                 position: absolute
                 top: 50%
                 left: 50%
+
+            .minute-selector-axis
+                background-color: $disc_selector_dot_color
+                width: $disc_selector_axis_new_width
+
+            .minute-selector-disc
+                .dot
+                    display: block
 
             .minute-selector-disc, .minute-selector-axis
                 opacity: 0.0
