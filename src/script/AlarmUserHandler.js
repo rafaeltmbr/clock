@@ -211,18 +211,20 @@ export default class AlarmUserHandler {
     }
 
     static addDiscSelector(target, event) {
-        if (!target || target.className !== 'hour-selector-disc' || !event) return;
+        if (!target || !event) return;
 
         function handleDiscSelectorMove(e) {
-            AlarmUserHandler.handleDiscMovement(target, e);
+            if (target.className.indexOf('hour-selector-disc') >= 0) {
+                AlarmUserHandler.handleHourDiscMovement(target, e);
+            } else {
+                AlarmUserHandler.handleMinuteDiscMovement(target, e);
+            }
         }
 
         window.addEventListener('mousemove', handleDiscSelectorMove);
         target.handleDiscSelectorMove = handleDiscSelectorMove;
 
         const parentBoundaries = target.parentElement.getBoundingClientRect();
-        // target.startX = event.clientX;
-        // target.startY = event.clientY;
         target.parentX = parentBoundaries.left + parentBoundaries.width / 2;
         target.parentY = parentBoundaries.top + parentBoundaries.height / 2;
         target.started = true;
@@ -235,7 +237,7 @@ export default class AlarmUserHandler {
         target.started = false;
     }
 
-    static handleDiscMovement(disc, event) {
+    static handleHourDiscMovement(disc, event) {
         const angle = AlarmUserHandler.getAngle(disc.parentX, disc.parentY,
             event.clientX, event.clientY);
 
@@ -243,13 +245,32 @@ export default class AlarmUserHandler {
 
         const HOURS = 12;
         const hour = Math.round(angleFormatted * (HOURS / 360));
+        const hourFormatted = hour || 12;
 
         const clockSettings = disc.parentElement.parentElement.parentElement;
-        clockSettings.setAttribute('data-hour', hour || 12);
+        clockSettings.setAttribute('data-hour', hourFormatted);
 
         const timeContainer = AlarmUserHandler.getChildWithClass(clockSettings, 'time-container');
         const hourElement = AlarmUserHandler.getChildWithClass(timeContainer, 'hour');
-        hourElement.innerText = hour || 12;
+        hourElement.innerText = hourFormatted;
+    }
+
+    static handleMinuteDiscMovement(disc, event) {
+        const angle = AlarmUserHandler.getAngle(disc.parentX, disc.parentY,
+            event.clientX, event.clientY);
+
+        const angleFormatted = AlarmUserHandler.formatAngleToHour(angle);
+
+        const MINUTES = 60;
+        const minute = Math.round(angleFormatted * (MINUTES / 360));
+        const minuteFormatted = minute === 60 ? 0 : minute;
+
+        const clockSettings = disc.parentElement.parentElement.parentElement;
+        clockSettings.setAttribute('data-minute', minuteFormatted);
+
+        const timeContainer = AlarmUserHandler.getChildWithClass(clockSettings, 'time-container');
+        const minuteElement = AlarmUserHandler.getChildWithClass(timeContainer, 'minute');
+        minuteElement.innerText = minuteFormatted < 10 ? `0${minuteFormatted}` : minuteFormatted;
     }
 
     static getAngle(startX, startY, endX, endY) {

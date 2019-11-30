@@ -39,6 +39,21 @@ hourSelectorDisc.forEach((disc) => {
     window.addEventListener('mouseup', () => {
         AlarmUserHandler.removeDiscSelector(disc);
         disc.parentElement.setAttribute('data-active', 'false');
+        disc.parentElement.parentElement.parentElement.setAttribute('data-select', 'minute');
+    });
+});
+
+const minuteSelectorDisc = document.querySelectorAll('.clock-settings .minute-selector-disc');
+minuteSelectorDisc.forEach((disc) => {
+    disc.addEventListener('mousedown',
+        (event) => {
+            AlarmUserHandler.addDiscSelector(disc, event);
+            disc.parentElement.setAttribute('data-active', 'true');
+        });
+
+    window.addEventListener('mouseup', () => {
+        AlarmUserHandler.removeDiscSelector(disc);
+        disc.parentElement.setAttribute('data-active', 'false');
     });
 });
 
