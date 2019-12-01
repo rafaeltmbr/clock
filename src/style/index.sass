@@ -326,8 +326,8 @@ $disc_selector_axis_width: $disc-radius - $hour_font_size * 1.2 - $hour_selector
 $disc_selector_dot_color: rgb(200, 0, 0)
 $disc_selector_color: rgba(248, 64, 64, 0.4)
 $text-color: rgb(255, 255, 255)
-$hour-minute-selected-color: rgb(245, 53, 53)
-$hour-minute-switch-animation-duration: 0.3s
+$hour_minute_selected_color: rgb(245, 53, 53)
+$hour_minute_switch_animation_duration: 0.3s
 $total_minutes: 60
 $minute_angle: 360 / $total_minutes
 $disc_selector_axis_new_width: $disc_selector_axis_width + $hour_selector_disc_size / 2 
@@ -377,19 +377,16 @@ $disc_selector_axis_new_width: $disc_selector_axis_width + $hour_selector_disc_s
         .hour
             color: $text-color
         .minute
-            color: $hour-minute-selected-color
+            color: $hour_minute_selected_color
     .disc-container
         .hour-disc
             .hour-selector-disc, .hour-selector-axis
                 opacity: 0.0
                 pointer-events: none
-                transition-duration: $hour-minute-switch-animation-duration
 
             .minute-selector-disc, .minute-selector-axis
                 opacity: 1.0
                 pointer-events: auto
-                display: block
-                transition-duration: 0s
 
 @for $i from 1 through $total_hours
     .clock-settings[data-select="minute"]
@@ -426,12 +423,17 @@ $disc_selector_axis_new_width: $disc_selector_axis_width + $hour_selector_disc_s
         text-align: center
 
         .hour, .separator, .minute
+            display: inline-block
             position: relative
             left: 12px
             color: $text-color
 
+        .hour, .minute
+            text-align: right
+            width: 2ch
+
         .hour
-            color: $hour-minute-selected-color
+            color: $hour_minute_selected_color
 
         .pm
             display: none
@@ -457,8 +459,12 @@ $disc_selector_axis_new_width: $disc_selector_axis_width + $hour_selector_disc_s
 
         .hour-disc[data-active="true"]
             .hour-selector-disc, .minute-selector-disc
+                transition-duration: 0s
                 .dot
                     display: block
+
+            .hour-selector-axis, .minute-selector-axis
+                transition-duration: 0s
 
             .hour-selector-axis
                 background-color: $disc_selector_dot_color
@@ -491,6 +497,7 @@ $disc_selector_axis_new_width: $disc_selector_axis_width + $hour_selector_disc_s
                 left: 50%
                 margin-top: $hour_selector_disc_size / -2
                 margin-left: $hour_selector_disc_size / -2
+                transition-duration: $hour_minute_switch_animation_duration
 
                 .dot
                     $dot-width: 8px
@@ -512,6 +519,7 @@ $disc_selector_axis_new_width: $disc_selector_axis_width + $hour_selector_disc_s
                 position: absolute
                 top: 50%
                 left: 50%
+                transition-duration: $hour_minute_switch_animation_duration
 
             .minute-selector-axis
                 background-color: $disc_selector_dot_color
@@ -523,12 +531,11 @@ $disc_selector_axis_new_width: $disc_selector_axis_width + $hour_selector_disc_s
 
             .minute-selector-disc, .minute-selector-axis
                 opacity: 0.0
-                display: none
                 pointer-events: none
-                transition-duration: $hour-minute-switch-animation-duration
+                transition-duration: $hour_minute_switch_animation_duration
 
             .hour, .minute
-                transition-duration: $hour-minute-switch-animation-duration
+                transition-duration: $hour_minute_switch_animation_duration
                 
             @for $i from 1 through $total_hours
                 .hour:nth-child(#{$i})
