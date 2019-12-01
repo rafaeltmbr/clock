@@ -10,56 +10,88 @@ body, html
     user-select: none
     cursor: default
 
-$color-background-show: rgb(39, 41, 42)
-$color-background-hide: rgb(28, 30, 32)
+$color_background_show: rgb(39, 41, 42)
+$color_background_hide: rgb(28, 30, 32)
+$color_on: rgb(13, 166, 218)
+$color_show_button: rgb(147, 148, 148)
+
 .clock-container[data-show="true"], .clock-container[data-show="max"]
-    background-color: $color-background-show
+    background-color: $color_background_show
+    
+    .always-visible
+        .time:hover
+            background-color: $color_background_hide
+
+    .delete-field:hover
+        background-color: $color_background_hide
+
+.clock-container[data-status="on"]
+    .always-visible
+        .on-off
+            .slider
+                margin-left: 50%
+                background-color: $color_on
+
+                .on-text
+                    display: inline
+
+                .off-text
+                    display: none
     
 .clock-container[data-status="off"]
-    $color-text-off: rgb(200, 200, 200)
+    $color_text_off: rgb(200, 200, 200)
 
-    color: $color-text-off
+    color: $color_text_off
 
     .always-visible
         .on-off
             .slider
-                color: $color-text-off
+                color: $color_text_off
 
     .delete-field
         svg
-            fill: $color-text-off
+            fill: $color_text_off
 
     .hide-control
         .hide-subject
             .clock-name
-                color: $color-text-off
+                color: $color_text_off
 
             .song
                 .music
                     svg
-                        fill: $color-text-off
+                        fill: $color_text_off
+            .repeat-days
+                .day:hover
+                    border-color: $color_text_off
+
+                .day[data-selected="true"]
+                    border-color: $color_on
 
         .hide-button
+            .show-details
+                fill: $color_show_button
+
             .clock-name-minimized
                 color: rgb(147, 148, 148)
 
 .clock-container
-    $container-padding-side: 10px
-    $color-text: rgb(255, 255, 255)
-    $color-show-button: rgb(147, 148, 148)
-    $color-on: rgb(13, 166, 218)
-    $color-text-off: rgb(200, 200, 200)
-    $always-visible-line-height: 60px
-    $hide-control-height: 40px
-    $details-line-height: 40px
-    $animation-duration: 0.4s
+    $color_text: rgb(255, 255, 255)
+    $color_off: rgb(61, 63, 64)
+    $color_off_background: rgb(47, 47, 48)
+    $color_text_off: rgb(200, 200, 200)
+    $always_visible_line_height: 60px
+    $hide_control_height: 40px
+    $details_line_height: 40px
+    $animation_duration: 0.4s
+    $container_padding_side: 10px
     
     max-width: 400px
-    min-width: 300px
+    min-width: 320px
     font-family: sans-serif
     position: relative
-    background-color: $color-background-hide
-    color: $color-text
+    background-color: $color_background_hide
+    color: $color_text
 
     *
         box-sizing: border-box
@@ -71,19 +103,27 @@ $color-background-hide: rgb(28, 30, 32)
         flex-direction: row
         align-items: center
         justify-content: space-between
-        padding: 0 $container-padding-side
-        height: $always-visible-line-height
+        padding: 0 $container_padding_side
+        height: $always_visible_line_height
+
+        .time:hover
+            background-color: $color_background_show
 
         .time
             font-size: 40px
+            padding: 0 $container_padding_side
+            margin-left: -$container_padding_side
 
             .am-pm
                 font-size: 12px
                 font-weight: bold
                 padding-left: 3px
 
+        .on-off:hover
+            border-color: rgb(100, 100, 100)
+
         .on-off
-            $on-off-color: rgb(47, 47, 48)
+            $on-off-color: $color_off_background
             width: 80px
             height: 20px
             border: 1px solid $on-off-color
@@ -102,7 +142,7 @@ $color-background-hide: rgb(28, 30, 32)
                 align-items: center
                 font-size: 12px
                 background-color: $slider-color
-                color: $color-text
+                color: $color_text
                 transition-duration: 0.2s
 
                 .on-text
@@ -111,16 +151,8 @@ $color-background-hide: rgb(28, 30, 32)
                 .off-text
                     display: inline
 
-        .on-off[data-status="on"]
-            .slider
-                margin-left: 50%
-                background-color: $color-on
-
-                .on-text
-                    display: inline
-
-                .off-text
-                    display: none
+    .delete-field:hover
+        background-color: $color_background_show
 
     .delete-field
         $trash-height: 20px
@@ -129,18 +161,21 @@ $color-background-hide: rgb(28, 30, 32)
         align-items: center
         justify-content: center
         position: absolute
-        height: $hide-control-height
-        width: $hide-control-height
-        right: $container-padding-side
-        top: $always-visible-line-height
+        height: $hide_control_height
+        width: $hide_control_height
+        right: $container_padding_side
+        top: $always_visible_line_height
 
         svg
             height: 22px
             width: 22px
-            fill: $color-text
+            fill: $color_text
 
     .hide-control[data-show="true"], .hide-control[data-show="all"], .hide-control[data-show="min"], .hide-control[data-show="max"]
-        height: $details-line-height * 3 + $hide-control-height
+        height: $details_line_height * 3 + $hide_control_height
+
+        .hide-button:hover
+            background-color: $color_background_hide
 
         .hide-button
             width: 100%
@@ -149,11 +184,11 @@ $color-background-hide: rgb(28, 30, 32)
                 display: none
 
         .line-separator
-            bottom: $hide-control-height
+            bottom: $hide_control_height
 
 
     .hide-control[data-show="all"], .hide-control[data-show="max"]
-        height: $details-line-height * 4 + $hide-control-height
+        height: $details_line_height * 4 + $hide_control_height
 
         .hide-subject
             .repeat-days
@@ -168,13 +203,13 @@ $color-background-hide: rgb(28, 30, 32)
                 display: block
 
     .hide-control
-        $show-details-height: 20px
-        $hide-button-padding-right: $hide-control-height + $container-padding-side * 2
+        $show_details_height: 20px
+        $hide_button_padding_right: $hide_control_height + $container_padding_side * 2
 
-        height: $hide-control-height
+        height: $hide_control_height
         position: relative
         overflow: hidden
-        transition-duration: $animation-duration
+        transition-duration: $animation_duration
 
         .line-separator
             $separator-height: 1px
@@ -186,38 +221,42 @@ $color-background-hide: rgb(28, 30, 32)
             bottom: 0
             left: $line-separator-padding
             background-color: rgb(80, 80, 80)
-            transition-duration: $animation-duration
+            transition-duration: $animation_duration
+
+
+        .hide-button:hover
+            background-color: $color_background_show
 
         .hide-button
             position: absolute
             display: flex
             flex-direction: row
             align-items: center
-            height: $hide-control-height
-            width: calc(100% - #{$hide-button-padding-right})
+            height: $hide_control_height
+            width: calc(100% - #{$hide_button_padding_right})
             bottom: 0
 
             .show-details
-                height: $show-details-height
-                width: $show-details-height
-                min-width: $show-details-height
+                height: $show_details_height
+                width: $show_details_height
+                min-width: $show_details_height
                 transform: rotateZ(90deg)
-                transition-duration: $animation-duration
-                fill: $color-show-button
+                transition-duration: $animation_duration
+                fill: $color_text
                 margin-left: 5px
 
             .show-details[data-rotate="true"]
                 transform: rotateZ(270deg)
 
             .clock-name-minimized
-                bottom: ($hide-control-height - $show-details-height) / 2
-                color: $color-text-off
+                bottom: ($hide_control_height - $show_details_height) / 2
+                color: $color_text_off
 
             .clock-name-minimized, .days-name-minimized
                 padding-left: 10px
                 font-size: 14px
-                height: $hide-control-height
-                line-height: $hide-control-height / 2
+                height: $hide_control_height
+                line-height: $hide_control_height / 2
                 overflow: hidden
 
             .days-name-minimized
@@ -227,35 +266,45 @@ $color-background-hide: rgb(28, 30, 32)
         .hide-subject
             width: 100%
             position: absolute
-            bottom: $hide-control-height
-            padding: 0 $container-padding-side
+            bottom: $hide_control_height
+            padding: 0 $container_padding_side
             font-size: 16px
-            line-height: $details-line-height
+            line-height: $details_line_height
+
+            .clock-name:hover
+                background-color: $color_background_hide
 
             .clock-name
                 display: block
                 background-color: transparent
                 outline: none
                 border: 0
-                height: $details-line-height
+                height: $details_line_height
                 font-size: 18px
-                width: calc(100% - #{$hide-control-height})
-                color: $color-text
+                width: calc(100% - #{$hide_control_height})
+                color: $color_text
+                padding-left: $container_padding_side
+                margin-left: -$container_padding_side
             
             .repeat-days
                 display: none
                 flex-direction: row
                 align-items: center
                 justify-content: space-between
-                height: $details-line-height
+                height: $details_line_height
+
+                .day:hover
+                    border-color: $color_text
 
                 .day
-                    height: calc(1em + 20px)
+                    text-align: center
+                    width: 38px
+                    line-height: 1.4em
                     font-weight: bold
+                    border-bottom: 2px solid $color_off
 
                 .day[data-selected="true"]
-
-                    border-bottom: 2px solid $color-on
+                    border-bottom-color: $color_on
 
             .song
                 display: flex
@@ -267,10 +316,14 @@ $color-background-hide: rgb(28, 30, 32)
                     svg
                         height: auto
                         width: 8px
-                        fill: $color-text-off
+                        fill: $color_text_off
 
                     span
                         padding-left: 10px
+
+            label:hover
+                .checkmark
+                    border-color: rgb(230, 230, 230)
 
             label
                 position: relative
@@ -282,7 +335,7 @@ $color-background-hide: rgb(28, 30, 32)
 
                 .checkmark
                     display: inline-block
-                    border: 1px solid $color-show-button
+                    border: 1px solid $color_show_button
                     width: 14px
                     height: 14px
                     margin-right: 10px
@@ -297,10 +350,12 @@ $color-background-hide: rgb(28, 30, 32)
                     width: 18px
                     position: absolute
                     top: -3px
-                    fill: $color-on
+                    fill: $color_on
 
 $button-inactive: rgb(54, 54, 54)
+$button-inactive-hover: rgb(44, 44, 44)
 $button-active: rgb(140, 58, 58)
+$button-active-hover: rgb(131, 42, 42)
 
 .clock-settings[data-am-pm="pm"]
     .time-container
@@ -313,8 +368,14 @@ $button-active: rgb(140, 58, 58)
         .pm-button
             background-color: $button-active
 
+        .pm-button:hover
+            background-color: $button-active-hover
+
         .am-button
             background-color: $button-inactive
+        
+        .am-button:hover
+            background-color: $button-inactive-hover
 
 $total_hours: 12
 $hour_angle: 360 / $total_hours
@@ -326,6 +387,7 @@ $hour_selector_disc_size: 32px
 $disc_selector_axis_width: $disc-radius - $hour_font_size * 1.2 - $hour_selector_disc_size / 2
 $disc_selector_dot_color: rgb(200, 0, 0)
 $disc_selector_color: rgba(248, 64, 64, 0.4)
+$disc_selector_color_hover: rgba(255, 23, 23, 0.4)
 $text-color: rgb(255, 255, 255)
 $hour_minute_selected_color: rgb(245, 53, 53)
 $hour_minute_switch_animation_duration: 0.3s
@@ -434,14 +496,38 @@ $disc_selector_axis_minute_disappear_width: $disc_radius - $hour_font_size * 3.6
                 .minute-selector-axis
                     transform: translate(#{$disc_selector_axis_new_width / -2}) rotate(#{$i * $minute_angle - 90}deg) translate(#{$disc_selector_axis_new_width / 2})
 
+.clock-container[data-show-settings="true"]
+    .settings-wrapper
+        display: flex
+
+.clock-container
+    .settings-wrapper
+        display: none
+        align-items: center
+        justify-content: center
+        height: 100vh
+        width: 100vw
+        position: fixed
+        top: 0
+        left: 0
+        background-color: rgba(0, 0, 0, 0.5)
+
 .clock-settings
+    $clock_settings_width: 284px
+    $clock_settings_computed_height: 376px
+
+    // top: 50%
+    // left: 50%
+    // margin-left: $clock_settings_width / -2
+    // margin-top: $clock_settings_computed_height / -2
+
+    width: $clock_settings_width
     $dark-grey: rgb(54, 54, 54)
     $light-grey: rgb(64, 64, 64)
-    width: 284px
-    border: 1px solid grey
     background-color: $light-grey
     font-family: sans-serif
     color: $text-color
+    box-shadow: 0 3px 5px rgb(0, 0, 0)
 
     .time-container
         font-size: 50px
@@ -488,6 +574,7 @@ $disc_selector_axis_minute_disappear_width: $disc_radius - $hour_font_size * 3.6
 
         .hour-disc[data-active="true"]
             .hour-selector-disc, .minute-selector-disc
+                background-color: $disc_selector_color_hover
                 transition-duration: 0s
                 .dot
                     display: block
@@ -515,6 +602,9 @@ $disc_selector_axis_minute_disappear_width: $disc_radius - $hour_font_size * 3.6
                 margin-top: $hour_font_size / -2
                 width: 1em
                 text-align: center
+
+            .hour-selector-disc:hover, .minute-selector-disc:hover
+                background-color: $disc_selector_color_hover
 
             .hour-selector-disc, .minute-selector-disc
                 width: $hour_selector_disc_size
@@ -583,17 +673,26 @@ $disc_selector_axis_minute_disappear_width: $disc_radius - $hour_font_size * 3.6
             width: 40px
             height: 40px
             border-radius: 50%
-            background-color: $button-inactive
             top: $am-pm-top-offset + $offset-top
 
         .am-button
-             background-color: $button-active
+            background-color: $button-active
+
+        .am-button:hover
+            background-color: $button-active-hover
 
         .am-button
             left: 45px
 
         .pm-button
+            background-color: $button-inactive
             right: 45px
+
+        .pm-button:hover
+            background-color: $button-inactive-hover
+
+    .done-container:hover
+        background-color: $dark_grey
 
     .done-container
         border-top: 2px solid rgb(89, 89, 89)

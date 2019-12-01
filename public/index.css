@@ -15,6 +15,23 @@ body, html {
 .clock-container[data-show=true], .clock-container[data-show=max] {
   background-color: #27292a;
 }
+.clock-container[data-show=true] .always-visible .time:hover, .clock-container[data-show=max] .always-visible .time:hover {
+  background-color: #1c1e20;
+}
+.clock-container[data-show=true] .delete-field:hover, .clock-container[data-show=max] .delete-field:hover {
+  background-color: #1c1e20;
+}
+
+.clock-container[data-status=on] .always-visible .on-off .slider {
+  margin-left: 50%;
+  background-color: #0da6da;
+}
+.clock-container[data-status=on] .always-visible .on-off .slider .on-text {
+  display: inline;
+}
+.clock-container[data-status=on] .always-visible .on-off .slider .off-text {
+  display: none;
+}
 
 .clock-container[data-status=off] {
   color: #c8c8c8;
@@ -31,13 +48,22 @@ body, html {
 .clock-container[data-status=off] .hide-control .hide-subject .song .music svg {
   fill: #c8c8c8;
 }
+.clock-container[data-status=off] .hide-control .hide-subject .repeat-days .day:hover {
+  border-color: #c8c8c8;
+}
+.clock-container[data-status=off] .hide-control .hide-subject .repeat-days .day[data-selected=true] {
+  border-color: #0da6da;
+}
+.clock-container[data-status=off] .hide-control .hide-button .show-details {
+  fill: #939494;
+}
 .clock-container[data-status=off] .hide-control .hide-button .clock-name-minimized {
   color: #939494;
 }
 
 .clock-container {
   max-width: 400px;
-  min-width: 300px;
+  min-width: 320px;
   font-family: sans-serif;
   position: relative;
   background-color: #1c1e20;
@@ -56,13 +82,21 @@ body, html {
   padding: 0 10px;
   height: 60px;
 }
+.clock-container .always-visible .time:hover {
+  background-color: #27292a;
+}
 .clock-container .always-visible .time {
   font-size: 40px;
+  padding: 0 10px;
+  margin-left: -10px;
 }
 .clock-container .always-visible .time .am-pm {
   font-size: 12px;
   font-weight: bold;
   padding-left: 3px;
+}
+.clock-container .always-visible .on-off:hover {
+  border-color: #646464;
 }
 .clock-container .always-visible .on-off {
   width: 80px;
@@ -91,15 +125,8 @@ body, html {
 .clock-container .always-visible .on-off .slider .off-text {
   display: inline;
 }
-.clock-container .always-visible .on-off[data-status=on] .slider {
-  margin-left: 50%;
-  background-color: #0da6da;
-}
-.clock-container .always-visible .on-off[data-status=on] .slider .on-text {
-  display: inline;
-}
-.clock-container .always-visible .on-off[data-status=on] .slider .off-text {
-  display: none;
+.clock-container .delete-field:hover {
+  background-color: #27292a;
 }
 .clock-container .delete-field {
   display: flex;
@@ -118,6 +145,9 @@ body, html {
 }
 .clock-container .hide-control[data-show=true], .clock-container .hide-control[data-show=all], .clock-container .hide-control[data-show=min], .clock-container .hide-control[data-show=max] {
   height: 160px;
+}
+.clock-container .hide-control[data-show=true] .hide-button:hover, .clock-container .hide-control[data-show=all] .hide-button:hover, .clock-container .hide-control[data-show=min] .hide-button:hover, .clock-container .hide-control[data-show=max] .hide-button:hover {
+  background-color: #1c1e20;
 }
 .clock-container .hide-control[data-show=true] .hide-button, .clock-container .hide-control[data-show=all] .hide-button, .clock-container .hide-control[data-show=min] .hide-button, .clock-container .hide-control[data-show=max] .hide-button {
   width: 100%;
@@ -155,6 +185,9 @@ body, html {
   background-color: #505050;
   transition-duration: 0.4s;
 }
+.clock-container .hide-control .hide-button:hover {
+  background-color: #27292a;
+}
 .clock-container .hide-control .hide-button {
   position: absolute;
   display: flex;
@@ -170,7 +203,7 @@ body, html {
   min-width: 20px;
   transform: rotateZ(90deg);
   transition-duration: 0.4s;
-  fill: #939494;
+  fill: white;
   margin-left: 5px;
 }
 .clock-container .hide-control .hide-button .show-details[data-rotate=true] {
@@ -199,6 +232,9 @@ body, html {
   font-size: 16px;
   line-height: 40px;
 }
+.clock-container .hide-control .hide-subject .clock-name:hover {
+  background-color: #1c1e20;
+}
 .clock-container .hide-control .hide-subject .clock-name {
   display: block;
   background-color: transparent;
@@ -208,6 +244,8 @@ body, html {
   font-size: 18px;
   width: calc(100% - 40px);
   color: white;
+  padding-left: 10px;
+  margin-left: -10px;
 }
 .clock-container .hide-control .hide-subject .repeat-days {
   display: none;
@@ -216,12 +254,18 @@ body, html {
   justify-content: space-between;
   height: 40px;
 }
+.clock-container .hide-control .hide-subject .repeat-days .day:hover {
+  border-color: white;
+}
 .clock-container .hide-control .hide-subject .repeat-days .day {
-  height: calc(1em + 20px);
+  text-align: center;
+  width: 38px;
+  line-height: 1.4em;
   font-weight: bold;
+  border-bottom: 2px solid #3d3f40;
 }
 .clock-container .hide-control .hide-subject .repeat-days .day[data-selected=true] {
-  border-bottom: 2px solid #0da6da;
+  border-bottom-color: #0da6da;
 }
 .clock-container .hide-control .hide-subject .song {
   display: flex;
@@ -236,6 +280,9 @@ body, html {
 }
 .clock-container .hide-control .hide-subject .song .music span {
   padding-left: 10px;
+}
+.clock-container .hide-control .hide-subject label:hover .checkmark {
+  border-color: #e6e6e6;
 }
 .clock-container .hide-control .hide-subject label {
   position: relative;
@@ -274,8 +321,14 @@ body, html {
 .clock-settings[data-am-pm=pm] .disc-container .pm-button {
   background-color: #8c3a3a;
 }
+.clock-settings[data-am-pm=pm] .disc-container .pm-button:hover {
+  background-color: #832a2a;
+}
 .clock-settings[data-am-pm=pm] .disc-container .am-button {
   background-color: #363636;
+}
+.clock-settings[data-am-pm=pm] .disc-container .am-button:hover {
+  background-color: #2c2c2c;
 }
 
 .clock-settings[data-hour="1"] .disc-container .hour-disc .hour-selector-disc {
@@ -1589,12 +1642,28 @@ body, html {
   transform: translate(-40.4px) rotate(264deg) translate(40.4px);
 }
 
+.clock-container[data-show-settings=true] .settings-wrapper {
+  display: flex;
+}
+
+.clock-container .settings-wrapper {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
 .clock-settings {
   width: 284px;
-  border: 1px solid grey;
   background-color: #404040;
   font-family: sans-serif;
   color: white;
+  box-shadow: 0 3px 5px black;
 }
 .clock-settings .time-container {
   font-size: 50px;
@@ -1636,6 +1705,7 @@ body, html {
   position: relative;
 }
 .clock-settings .disc-container .hour-disc[data-active=true] .hour-selector-disc, .clock-settings .disc-container .hour-disc[data-active=true] .minute-selector-disc {
+  background-color: rgba(255, 23, 23, 0.4);
   transition-duration: 0s;
 }
 .clock-settings .disc-container .hour-disc[data-active=true] .hour-selector-disc .dot, .clock-settings .disc-container .hour-disc[data-active=true] .minute-selector-disc .dot {
@@ -1664,6 +1734,9 @@ body, html {
   margin-top: -8px;
   width: 1em;
   text-align: center;
+}
+.clock-settings .disc-container .hour-disc .hour-selector-disc:hover, .clock-settings .disc-container .hour-disc .minute-selector-disc:hover {
+  background-color: rgba(255, 23, 23, 0.4);
 }
 .clock-settings .disc-container .hour-disc .hour-selector-disc, .clock-settings .disc-container .hour-disc .minute-selector-disc {
   width: 32px;
@@ -1795,17 +1868,26 @@ body, html {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background-color: #363636;
   top: 93px;
 }
 .clock-settings .disc-container .am-button {
   background-color: #8c3a3a;
 }
+.clock-settings .disc-container .am-button:hover {
+  background-color: #832a2a;
+}
 .clock-settings .disc-container .am-button {
   left: 45px;
 }
 .clock-settings .disc-container .pm-button {
+  background-color: #363636;
   right: 45px;
+}
+.clock-settings .disc-container .pm-button:hover {
+  background-color: #2c2c2c;
+}
+.clock-settings .done-container:hover {
+  background-color: #363636;
 }
 .clock-settings .done-container {
   border-top: 2px solid #595959;

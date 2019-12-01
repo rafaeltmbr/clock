@@ -67,7 +67,6 @@ export default class AlarmUserHandler {
 
     static changeOnOffButtonStatus(onOffButton, status) {
         if (!onOffButton || !status) return;
-        onOffButton.setAttribute('data-status', status);
 
         const clockContainer = onOffButton.parentElement && onOffButton.parentElement.parentElement;
         if (!clockContainer) return;
@@ -161,9 +160,11 @@ export default class AlarmUserHandler {
         window.addEventListener('mousemove', handleSlideEvent);
         AlarmUserHandler.removeSlideEffect.handleSlideEvent = handleSlideEvent;
 
-        const parentWidth = parseInt(window.getComputedStyle(slider.parentElement).width, 10);
+        const parentStyle = window.getComputedStyle(slider.parentElement);
+        const parentWidth = parseInt(parentStyle.width, 10);
+        const parentBorder = parseInt(parentStyle.borderWidth, 10);
         const sliderWidth = parseInt(window.getComputedStyle(slider).width, 10);
-        slider.maxOffsetX = parentWidth - sliderWidth;
+        slider.maxOffsetX = parentWidth - sliderWidth - 2 * parentBorder;
         slider.startScreenX = event.screenX;
         slider.startOffsetX = parseInt(window.getComputedStyle(slider).marginLeft, 10) || 0;
         slider.offsetX = slider.startOffsetX;
@@ -181,7 +182,7 @@ export default class AlarmUserHandler {
         let on = (slider.offsetX > slider.maxOffsetX / 2);
         if (!slider.slided) on = !on;
         AlarmUserHandler.changeOnOffButtonStatus(target, on ? 'on' : 'off');
-        slider.style.marginLeft = `${on ? slider.maxOffsetX : 0}px`;
+        slider.setAttribute('style', '');
     }
 
     static buttonSlide(slider, event) {
@@ -295,5 +296,26 @@ export default class AlarmUserHandler {
 
     static formatAngleToHour(angle) {
         return (360 - angle + 90) % 360;
+    }
+
+    static handleClockSettingsDone(button) {
+        const clockSettings = AlarmUserHandler.getAncestorWithClass(button, 'clock-settings');
+        clockSettings.setAttribute('data-select', 'hour');
+        const hour = clockSettings.getAttribute('data-hour');
+        const minute = clockSettings.getAttribute('data-minute');
+        const dayPeriod = clockSettings.getAttribute('data-am-pm');
+        const timeFormatted = `${hour}:${minute < 10 ? `0${minute}` : minute}`;
+
+        const clockContainer = AlarmUserHandler.getAncestorWithClass(button, 'clock-container');
+        const alwaysVisible = AlarmUserHandler.getChildWithClass(clockContainer, 'always-visible');
+        const time = AlarmUserHandler.getChildWithClass(alwaysVisible, 'time');
+        const hourMinute = AlarmUserHandler.getChildWithClass(time, 'hour-minute');
+        hourMinute.innerText = timeFormatted;
+
+        const amPm = AlarmUserHandler.getChildWithClass(time, 'am-pm');
+        amPm.innerText = dayPeriod.toUpperCase();
+
+        clockContainer.setAttribute('data-show-settings', 'false');
+        clockContainer.setAttribute('data-status', 'on');
     }
 }

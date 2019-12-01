@@ -7,9 +7,13 @@ hideButtons.forEach((button) => button.addEventListener('click',
 const onOffSwitchs = document.querySelectorAll('.clock-container .on-off');
 onOffSwitchs.forEach((button) => {
     button.addEventListener('mousedown',
-        (event) => AlarmUserHandler.addSlideEffect(button, event));
-
-    window.addEventListener('mouseup', () => AlarmUserHandler.removeSlideEffect(button));
+        (event) => {
+            AlarmUserHandler.addSlideEffect(button, event);
+            window.addEventListener('mouseup', function removeEffect() {
+                AlarmUserHandler.removeSlideEffect(button);
+                window.removeEventListener('mouseup', removeEffect);
+            });
+        });
 });
 
 const deleteButtons = document.querySelectorAll('.clock-container .delete-field');
@@ -61,13 +65,13 @@ minuteSelectorDisc.forEach((disc) => {
     });
 });
 
-const amButtons = document.querySelectorAll('.clock-settings .am-button');
+const amButtons = document.querySelectorAll('.clock-settings .disc-container .am-button');
 amButtons.forEach((button) => {
     button.addEventListener('click',
         () => button.parentElement.parentElement.setAttribute('data-am-pm', 'am'));
 });
 
-const pmButtons = document.querySelectorAll('.clock-settings .pm-button');
+const pmButtons = document.querySelectorAll('.clock-settings .disc-container .pm-button');
 pmButtons.forEach((button) => {
     button.addEventListener('click',
         () => button.parentElement.parentElement.setAttribute('data-am-pm', 'pm'));
@@ -81,4 +85,25 @@ hourDisplay.forEach((hour) => {
 const minuteDisplay = document.querySelectorAll('.clock-settings .time-container .minute');
 minuteDisplay.forEach((minute) => {
     minute.addEventListener('click', () => minute.parentElement.parentElement.setAttribute('data-select', 'minute'));
+});
+
+const timeButton = document.querySelectorAll('.clock-container .always-visible .time');
+timeButton.forEach((button) => {
+    button.addEventListener('click', () => {
+        button.parentElement.parentElement.setAttribute('data-show-settings', 'true');
+    });
+});
+
+const doneSettingsButton = document.querySelectorAll('.settings-wrapper .clock-settings .done-container');
+doneSettingsButton.forEach((button) => {
+    button.addEventListener('click', () => AlarmUserHandler.handleClockSettingsDone(button));
+});
+
+const settingsWrapper = document.querySelectorAll('.settings-wrapper');
+settingsWrapper.forEach((wrapper) => {
+    wrapper.addEventListener('click', ({ target }) => {
+        if (target.className === 'settings-wrapper') {
+            wrapper.parentElement.setAttribute('data-show-settings', 'false');
+        }
+    });
 });
