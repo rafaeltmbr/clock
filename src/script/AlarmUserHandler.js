@@ -162,7 +162,7 @@ export default class AlarmUserHandler {
 
         const parentStyle = window.getComputedStyle(slider.parentElement);
         const parentWidth = parseInt(parentStyle.width, 10);
-        const parentBorder = parseInt(parentStyle.borderWidth, 10);
+        const parentBorder = parseInt(parentStyle.borderRightWidth, 10);
         const sliderWidth = parseInt(window.getComputedStyle(slider).width, 10);
         slider.maxOffsetX = parentWidth - sliderWidth - 2 * parentBorder;
         slider.startScreenX = event.screenX;
