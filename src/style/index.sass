@@ -4,6 +4,11 @@ body, html
 
 *
     box-sizing: border-box
+    -ms-user-select: none
+    -moz-user-select: none
+    -webkit-user-select: none
+    user-select: none
+    cursor: default
 
 $color-background-show: rgb(39, 41, 42)
 $color-background-hide: rgb(28, 30, 32)
@@ -53,10 +58,6 @@ $color-background-hide: rgb(28, 30, 32)
     min-width: 300px
     font-family: sans-serif
     position: relative
-    -ms-user-select: none
-    -moz-user-select: none
-    -webkit-user-select: none
-    user-select: none
     background-color: $color-background-hide
     color: $color-text
 
@@ -88,6 +89,9 @@ $color-background-hide: rgb(28, 30, 32)
             border: 1px solid $on-off-color
             background-color: $on-off-color
 
+            .slider:active
+                transition-duration: 0s
+
             .slider
                 $slider-color: rgb(89, 89, 90)
                 height: 100%
@@ -99,10 +103,7 @@ $color-background-hide: rgb(28, 30, 32)
                 font-size: 12px
                 background-color: $slider-color
                 color: $color-text
-                transition-duration: $animation-duration
-
-                .on-text, .off-text
-                    cursor: default
+                transition-duration: 0.2s
 
                 .on-text
                     display: none
@@ -330,7 +331,9 @@ $hour_minute_selected_color: rgb(245, 53, 53)
 $hour_minute_switch_animation_duration: 0.3s
 $total_minutes: 60
 $minute_angle: 360 / $total_minutes
-$disc_selector_axis_new_width: $disc_selector_axis_width + $hour_selector_disc_size / 2 
+$disc_selector_axis_new_width: $disc_selector_axis_width + $hour_selector_disc_size / 2
+$disc_selector_axis_hour_disappear_width: $disc_selector_axis_new_width + $hour_selector_disc_size
+$disc_selector_axis_minute_disappear_width: $disc_radius - $hour_font_size * 3.6
 
 @for $i from 1 through $total_hours
     .clock-settings[data-hour="#{$i}"]
@@ -347,14 +350,15 @@ $disc_selector_axis_new_width: $disc_selector_axis_width + $hour_selector_disc_s
         .disc-container
             .hour-disc
                 .minute-selector-disc
-                    transform: rotate(#{$i * $minute_angle + $angle_offset}deg) translate($disc_radius - $hour_font_size * 1.2) rotate(#{-$i * $minute_angle - $angle_offset}deg)
+                    transform: rotate(#{$i * $minute_angle + $angle_offset}deg) translate($disc_selector_axis_minute_disappear_width) rotate(#{-$i * $minute_angle - $angle_offset}deg)
 
                 .minute-selector-axis
-                    transform: translate(#{$disc_selector_axis_new_width / -2}) rotate(#{$i * $minute_angle - 90}deg) translate(#{$disc_selector_axis_new_width / 2})
+                    transform: translate(#{$disc_selector_axis_minute_disappear_width / -2}) rotate(#{$i * $minute_angle - 90}deg) translate(#{$disc_selector_axis_minute_disappear_width / 2})
 
 @for $i from 0 through ($total_hours - 1)
     $minute: $i * 5
-    .clock-settings[data-minute="#{$minute}"]
+    .clock-settings[data-select="minute"][data-minute="#{$minute}"],
+    .clock-settings[data-select="hour"][data-minute="#{$minute}"]   // ensure priority
         .disc-container
             .hour-disc[data-active="false"]
                 .minute-selector-disc
@@ -380,9 +384,21 @@ $disc_selector_axis_new_width: $disc_selector_axis_width + $hour_selector_disc_s
             color: $hour_minute_selected_color
     .disc-container
         .hour-disc
+            .hour
+                opacity: 0.0
+
+            .minute
+                opacity: 1.0
+
             .hour-selector-disc, .hour-selector-axis
                 opacity: 0.0
                 pointer-events: none
+
+            .hour-selector-axis
+                width: $disc_selector_axis_hour_disappear_width
+            
+            .minute-selector-axis
+                width: $disc_selector_axis_new_width
 
             .minute-selector-disc, .minute-selector-axis
                 opacity: 1.0
@@ -394,21 +410,34 @@ $disc_selector_axis_new_width: $disc_selector_axis_width + $hour_selector_disc_s
             .hour-disc
                 .hour:nth-child(#{$i})
                     transform: rotate(#{$i * $hour_angle + $angle_offset}deg) translate($disc_radius + $hour_font_size * 1.2) rotate(#{-$i * $hour_angle - $angle_offset}deg)
-                    opacity: 0.0
 
                 .minute:nth-child(#{$total_hours + $i})
                     transform: rotate(#{$i * $hour_angle + $minute_angle_offset}deg) translate($disc_radius - $hour_font_size * 1.2) rotate(#{-$i * $hour_angle - $minute_angle_offset}deg)
-                    opacity: 1.0
+
+@for $i from 1 through $total_hours
+    .clock-settings[data-select="minute"][data-hour="#{$i}"]
+        .disc-container
+            .hour-disc
+                .hour-selector-disc
+                    transform: rotate(#{$i * $hour_angle + $angle_offset}deg) translate($disc_radius + $hour_font_size * 1.2) rotate(#{-$i * $hour_angle - $angle_offset}deg)
+
+                .hour-selector-axis
+                    transform: translate(#{$disc_selector_axis_hour_disappear_width / -2}) rotate(#{$i * $hour_angle - 90}deg) translate(#{$disc_selector_axis_hour_disappear_width / 2})
+
+@for $i from 0 through ($total_minutes - 1)
+    .clock-settings[data-select="minute"][data-minute="#{$i}"]
+        .disc-container
+            .hour-disc
+                .minute-selector-disc
+                    transform: rotate(#{$i * $minute_angle + $angle_offset}deg) translate($disc_radius - $hour_font_size * 1.2) rotate(#{-$i * $minute_angle - $angle_offset}deg)
+
+                .minute-selector-axis
+                    transform: translate(#{$disc_selector_axis_new_width / -2}) rotate(#{$i * $minute_angle - 90}deg) translate(#{$disc_selector_axis_new_width / 2})
 
 .clock-settings
     $dark-grey: rgb(54, 54, 54)
     $light-grey: rgb(64, 64, 64)
-
-    -ms-user-select: none
-    -moz-user-select: none
-    -webkit-user-select: none
     width: 284px
-    user-select: none
     border: 1px solid grey
     background-color: $light-grey
     font-family: sans-serif
@@ -523,7 +552,7 @@ $disc_selector_axis_new_width: $disc_selector_axis_width + $hour_selector_disc_s
 
             .minute-selector-axis
                 background-color: $disc_selector_dot_color
-                width: $disc_selector_axis_new_width
+                width: $disc_selector_axis_minute_disappear_width
 
             .minute-selector-disc
                 .dot
@@ -536,6 +565,9 @@ $disc_selector_axis_new_width: $disc_selector_axis_width + $hour_selector_disc_s
 
             .hour, .minute
                 transition-duration: $hour_minute_switch_animation_duration
+
+            .minute
+                opacity: 0.0
                 
             @for $i from 1 through $total_hours
                 .hour:nth-child(#{$i})
@@ -543,7 +575,6 @@ $disc_selector_axis_new_width: $disc_selector_axis_width + $hour_selector_disc_s
 
                 .minute:nth-child(#{$total_hours + $i})
                     transform: rotate(#{$i * $hour_angle + $minute_angle_offset}deg) translate($disc_radius - $hour_font_size * 3.6) rotate(#{-$i * $hour_angle - $minute_angle_offset}deg)
-                    opacity: 0.0
 
         .am-button, .pm-button
             display: flex
