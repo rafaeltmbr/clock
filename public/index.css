@@ -277,508 +277,616 @@ body, html {
   background-color: #363636;
 }
 
-.clock-settings[data-hour="1"] .hour-selector-disc {
+.clock-settings[data-hour="1"] .disc-container .hour-disc .hour-selector-disc {
   transform: rotate(-60deg) translate(80.8px) rotate(60deg);
 }
-.clock-settings[data-hour="1"] .hour-selector-axis {
+.clock-settings[data-hour="1"] .disc-container .hour-disc .hour-selector-axis {
   transform: translate(-32.4px) rotate(-60deg) translate(32.4px);
 }
 
-.clock-settings[data-hour="2"] .hour-selector-disc {
+.clock-settings[data-hour="2"] .disc-container .hour-disc .hour-selector-disc {
   transform: rotate(-30deg) translate(80.8px) rotate(30deg);
 }
-.clock-settings[data-hour="2"] .hour-selector-axis {
+.clock-settings[data-hour="2"] .disc-container .hour-disc .hour-selector-axis {
   transform: translate(-32.4px) rotate(-30deg) translate(32.4px);
 }
 
-.clock-settings[data-hour="3"] .hour-selector-disc {
+.clock-settings[data-hour="3"] .disc-container .hour-disc .hour-selector-disc {
   transform: rotate(0deg) translate(80.8px) rotate(0deg);
 }
-.clock-settings[data-hour="3"] .hour-selector-axis {
+.clock-settings[data-hour="3"] .disc-container .hour-disc .hour-selector-axis {
   transform: translate(-32.4px) rotate(0deg) translate(32.4px);
 }
 
-.clock-settings[data-hour="4"] .hour-selector-disc {
+.clock-settings[data-hour="4"] .disc-container .hour-disc .hour-selector-disc {
   transform: rotate(30deg) translate(80.8px) rotate(-30deg);
 }
-.clock-settings[data-hour="4"] .hour-selector-axis {
+.clock-settings[data-hour="4"] .disc-container .hour-disc .hour-selector-axis {
   transform: translate(-32.4px) rotate(30deg) translate(32.4px);
 }
 
-.clock-settings[data-hour="5"] .hour-selector-disc {
+.clock-settings[data-hour="5"] .disc-container .hour-disc .hour-selector-disc {
   transform: rotate(60deg) translate(80.8px) rotate(-60deg);
 }
-.clock-settings[data-hour="5"] .hour-selector-axis {
+.clock-settings[data-hour="5"] .disc-container .hour-disc .hour-selector-axis {
   transform: translate(-32.4px) rotate(60deg) translate(32.4px);
 }
 
-.clock-settings[data-hour="6"] .hour-selector-disc {
+.clock-settings[data-hour="6"] .disc-container .hour-disc .hour-selector-disc {
   transform: rotate(90deg) translate(80.8px) rotate(-90deg);
 }
-.clock-settings[data-hour="6"] .hour-selector-axis {
+.clock-settings[data-hour="6"] .disc-container .hour-disc .hour-selector-axis {
   transform: translate(-32.4px) rotate(90deg) translate(32.4px);
 }
 
-.clock-settings[data-hour="7"] .hour-selector-disc {
+.clock-settings[data-hour="7"] .disc-container .hour-disc .hour-selector-disc {
   transform: rotate(120deg) translate(80.8px) rotate(-120deg);
 }
-.clock-settings[data-hour="7"] .hour-selector-axis {
+.clock-settings[data-hour="7"] .disc-container .hour-disc .hour-selector-axis {
   transform: translate(-32.4px) rotate(120deg) translate(32.4px);
 }
 
-.clock-settings[data-hour="8"] .hour-selector-disc {
+.clock-settings[data-hour="8"] .disc-container .hour-disc .hour-selector-disc {
   transform: rotate(150deg) translate(80.8px) rotate(-150deg);
 }
-.clock-settings[data-hour="8"] .hour-selector-axis {
+.clock-settings[data-hour="8"] .disc-container .hour-disc .hour-selector-axis {
   transform: translate(-32.4px) rotate(150deg) translate(32.4px);
 }
 
-.clock-settings[data-hour="9"] .hour-selector-disc {
+.clock-settings[data-hour="9"] .disc-container .hour-disc .hour-selector-disc {
   transform: rotate(180deg) translate(80.8px) rotate(-180deg);
 }
-.clock-settings[data-hour="9"] .hour-selector-axis {
+.clock-settings[data-hour="9"] .disc-container .hour-disc .hour-selector-axis {
   transform: translate(-32.4px) rotate(180deg) translate(32.4px);
 }
 
-.clock-settings[data-hour="10"] .hour-selector-disc {
+.clock-settings[data-hour="10"] .disc-container .hour-disc .hour-selector-disc {
   transform: rotate(210deg) translate(80.8px) rotate(-210deg);
 }
-.clock-settings[data-hour="10"] .hour-selector-axis {
+.clock-settings[data-hour="10"] .disc-container .hour-disc .hour-selector-axis {
   transform: translate(-32.4px) rotate(210deg) translate(32.4px);
 }
 
-.clock-settings[data-hour="11"] .hour-selector-disc {
+.clock-settings[data-hour="11"] .disc-container .hour-disc .hour-selector-disc {
   transform: rotate(240deg) translate(80.8px) rotate(-240deg);
 }
-.clock-settings[data-hour="11"] .hour-selector-axis {
+.clock-settings[data-hour="11"] .disc-container .hour-disc .hour-selector-axis {
   transform: translate(-32.4px) rotate(240deg) translate(32.4px);
 }
 
-.clock-settings[data-hour="12"] .hour-selector-disc {
+.clock-settings[data-hour="12"] .disc-container .hour-disc .hour-selector-disc {
   transform: rotate(270deg) translate(80.8px) rotate(-270deg);
 }
-.clock-settings[data-hour="12"] .hour-selector-axis {
+.clock-settings[data-hour="12"] .disc-container .hour-disc .hour-selector-axis {
   transform: translate(-32.4px) rotate(270deg) translate(32.4px);
 }
 
-.clock-settings[data-minute="0"] .minute-selector-disc {
+.clock-settings[data-minute="0"] .disc-container .hour-disc .minute-selector-disc {
   transform: rotate(-90deg) translate(80.8px) rotate(90deg);
 }
-.clock-settings[data-minute="0"] .minute-selector-axis {
+.clock-settings[data-minute="0"] .disc-container .hour-disc .minute-selector-axis {
   transform: translate(-40.4px) rotate(-90deg) translate(40.4px);
 }
 
-.clock-settings[data-minute="1"] .minute-selector-disc {
+.clock-settings[data-minute="1"] .disc-container .hour-disc .minute-selector-disc {
   transform: rotate(-84deg) translate(80.8px) rotate(84deg);
 }
-.clock-settings[data-minute="1"] .minute-selector-axis {
+.clock-settings[data-minute="1"] .disc-container .hour-disc .minute-selector-axis {
   transform: translate(-40.4px) rotate(-84deg) translate(40.4px);
 }
 
-.clock-settings[data-minute="2"] .minute-selector-disc {
+.clock-settings[data-minute="2"] .disc-container .hour-disc .minute-selector-disc {
   transform: rotate(-78deg) translate(80.8px) rotate(78deg);
 }
-.clock-settings[data-minute="2"] .minute-selector-axis {
+.clock-settings[data-minute="2"] .disc-container .hour-disc .minute-selector-axis {
   transform: translate(-40.4px) rotate(-78deg) translate(40.4px);
 }
 
-.clock-settings[data-minute="3"] .minute-selector-disc {
+.clock-settings[data-minute="3"] .disc-container .hour-disc .minute-selector-disc {
   transform: rotate(-72deg) translate(80.8px) rotate(72deg);
 }
-.clock-settings[data-minute="3"] .minute-selector-axis {
+.clock-settings[data-minute="3"] .disc-container .hour-disc .minute-selector-axis {
   transform: translate(-40.4px) rotate(-72deg) translate(40.4px);
 }
 
-.clock-settings[data-minute="4"] .minute-selector-disc {
+.clock-settings[data-minute="4"] .disc-container .hour-disc .minute-selector-disc {
   transform: rotate(-66deg) translate(80.8px) rotate(66deg);
 }
-.clock-settings[data-minute="4"] .minute-selector-axis {
+.clock-settings[data-minute="4"] .disc-container .hour-disc .minute-selector-axis {
   transform: translate(-40.4px) rotate(-66deg) translate(40.4px);
 }
 
-.clock-settings[data-minute="5"] .minute-selector-disc {
+.clock-settings[data-minute="5"] .disc-container .hour-disc .minute-selector-disc {
   transform: rotate(-60deg) translate(80.8px) rotate(60deg);
 }
-.clock-settings[data-minute="5"] .minute-selector-axis {
+.clock-settings[data-minute="5"] .disc-container .hour-disc .minute-selector-axis {
   transform: translate(-40.4px) rotate(-60deg) translate(40.4px);
 }
 
-.clock-settings[data-minute="6"] .minute-selector-disc {
+.clock-settings[data-minute="6"] .disc-container .hour-disc .minute-selector-disc {
   transform: rotate(-54deg) translate(80.8px) rotate(54deg);
 }
-.clock-settings[data-minute="6"] .minute-selector-axis {
+.clock-settings[data-minute="6"] .disc-container .hour-disc .minute-selector-axis {
   transform: translate(-40.4px) rotate(-54deg) translate(40.4px);
 }
 
-.clock-settings[data-minute="7"] .minute-selector-disc {
+.clock-settings[data-minute="7"] .disc-container .hour-disc .minute-selector-disc {
   transform: rotate(-48deg) translate(80.8px) rotate(48deg);
 }
-.clock-settings[data-minute="7"] .minute-selector-axis {
+.clock-settings[data-minute="7"] .disc-container .hour-disc .minute-selector-axis {
   transform: translate(-40.4px) rotate(-48deg) translate(40.4px);
 }
 
-.clock-settings[data-minute="8"] .minute-selector-disc {
+.clock-settings[data-minute="8"] .disc-container .hour-disc .minute-selector-disc {
   transform: rotate(-42deg) translate(80.8px) rotate(42deg);
 }
-.clock-settings[data-minute="8"] .minute-selector-axis {
+.clock-settings[data-minute="8"] .disc-container .hour-disc .minute-selector-axis {
   transform: translate(-40.4px) rotate(-42deg) translate(40.4px);
 }
 
-.clock-settings[data-minute="9"] .minute-selector-disc {
+.clock-settings[data-minute="9"] .disc-container .hour-disc .minute-selector-disc {
   transform: rotate(-36deg) translate(80.8px) rotate(36deg);
 }
-.clock-settings[data-minute="9"] .minute-selector-axis {
+.clock-settings[data-minute="9"] .disc-container .hour-disc .minute-selector-axis {
   transform: translate(-40.4px) rotate(-36deg) translate(40.4px);
 }
 
-.clock-settings[data-minute="10"] .minute-selector-disc {
+.clock-settings[data-minute="10"] .disc-container .hour-disc .minute-selector-disc {
   transform: rotate(-30deg) translate(80.8px) rotate(30deg);
 }
-.clock-settings[data-minute="10"] .minute-selector-axis {
+.clock-settings[data-minute="10"] .disc-container .hour-disc .minute-selector-axis {
   transform: translate(-40.4px) rotate(-30deg) translate(40.4px);
 }
 
-.clock-settings[data-minute="11"] .minute-selector-disc {
+.clock-settings[data-minute="11"] .disc-container .hour-disc .minute-selector-disc {
   transform: rotate(-24deg) translate(80.8px) rotate(24deg);
 }
-.clock-settings[data-minute="11"] .minute-selector-axis {
+.clock-settings[data-minute="11"] .disc-container .hour-disc .minute-selector-axis {
   transform: translate(-40.4px) rotate(-24deg) translate(40.4px);
 }
 
-.clock-settings[data-minute="12"] .minute-selector-disc {
+.clock-settings[data-minute="12"] .disc-container .hour-disc .minute-selector-disc {
   transform: rotate(-18deg) translate(80.8px) rotate(18deg);
 }
-.clock-settings[data-minute="12"] .minute-selector-axis {
+.clock-settings[data-minute="12"] .disc-container .hour-disc .minute-selector-axis {
   transform: translate(-40.4px) rotate(-18deg) translate(40.4px);
 }
 
-.clock-settings[data-minute="13"] .minute-selector-disc {
+.clock-settings[data-minute="13"] .disc-container .hour-disc .minute-selector-disc {
   transform: rotate(-12deg) translate(80.8px) rotate(12deg);
 }
-.clock-settings[data-minute="13"] .minute-selector-axis {
+.clock-settings[data-minute="13"] .disc-container .hour-disc .minute-selector-axis {
   transform: translate(-40.4px) rotate(-12deg) translate(40.4px);
 }
 
-.clock-settings[data-minute="14"] .minute-selector-disc {
+.clock-settings[data-minute="14"] .disc-container .hour-disc .minute-selector-disc {
   transform: rotate(-6deg) translate(80.8px) rotate(6deg);
 }
-.clock-settings[data-minute="14"] .minute-selector-axis {
+.clock-settings[data-minute="14"] .disc-container .hour-disc .minute-selector-axis {
   transform: translate(-40.4px) rotate(-6deg) translate(40.4px);
 }
 
-.clock-settings[data-minute="15"] .minute-selector-disc {
+.clock-settings[data-minute="15"] .disc-container .hour-disc .minute-selector-disc {
   transform: rotate(0deg) translate(80.8px) rotate(0deg);
 }
-.clock-settings[data-minute="15"] .minute-selector-axis {
+.clock-settings[data-minute="15"] .disc-container .hour-disc .minute-selector-axis {
   transform: translate(-40.4px) rotate(0deg) translate(40.4px);
 }
 
-.clock-settings[data-minute="16"] .minute-selector-disc {
+.clock-settings[data-minute="16"] .disc-container .hour-disc .minute-selector-disc {
   transform: rotate(6deg) translate(80.8px) rotate(-6deg);
 }
-.clock-settings[data-minute="16"] .minute-selector-axis {
+.clock-settings[data-minute="16"] .disc-container .hour-disc .minute-selector-axis {
   transform: translate(-40.4px) rotate(6deg) translate(40.4px);
 }
 
-.clock-settings[data-minute="17"] .minute-selector-disc {
+.clock-settings[data-minute="17"] .disc-container .hour-disc .minute-selector-disc {
   transform: rotate(12deg) translate(80.8px) rotate(-12deg);
 }
-.clock-settings[data-minute="17"] .minute-selector-axis {
+.clock-settings[data-minute="17"] .disc-container .hour-disc .minute-selector-axis {
   transform: translate(-40.4px) rotate(12deg) translate(40.4px);
 }
 
-.clock-settings[data-minute="18"] .minute-selector-disc {
+.clock-settings[data-minute="18"] .disc-container .hour-disc .minute-selector-disc {
   transform: rotate(18deg) translate(80.8px) rotate(-18deg);
 }
-.clock-settings[data-minute="18"] .minute-selector-axis {
+.clock-settings[data-minute="18"] .disc-container .hour-disc .minute-selector-axis {
   transform: translate(-40.4px) rotate(18deg) translate(40.4px);
 }
 
-.clock-settings[data-minute="19"] .minute-selector-disc {
+.clock-settings[data-minute="19"] .disc-container .hour-disc .minute-selector-disc {
   transform: rotate(24deg) translate(80.8px) rotate(-24deg);
 }
-.clock-settings[data-minute="19"] .minute-selector-axis {
+.clock-settings[data-minute="19"] .disc-container .hour-disc .minute-selector-axis {
   transform: translate(-40.4px) rotate(24deg) translate(40.4px);
 }
 
-.clock-settings[data-minute="20"] .minute-selector-disc {
+.clock-settings[data-minute="20"] .disc-container .hour-disc .minute-selector-disc {
   transform: rotate(30deg) translate(80.8px) rotate(-30deg);
 }
-.clock-settings[data-minute="20"] .minute-selector-axis {
+.clock-settings[data-minute="20"] .disc-container .hour-disc .minute-selector-axis {
   transform: translate(-40.4px) rotate(30deg) translate(40.4px);
 }
 
-.clock-settings[data-minute="21"] .minute-selector-disc {
+.clock-settings[data-minute="21"] .disc-container .hour-disc .minute-selector-disc {
   transform: rotate(36deg) translate(80.8px) rotate(-36deg);
 }
-.clock-settings[data-minute="21"] .minute-selector-axis {
+.clock-settings[data-minute="21"] .disc-container .hour-disc .minute-selector-axis {
   transform: translate(-40.4px) rotate(36deg) translate(40.4px);
 }
 
-.clock-settings[data-minute="22"] .minute-selector-disc {
+.clock-settings[data-minute="22"] .disc-container .hour-disc .minute-selector-disc {
   transform: rotate(42deg) translate(80.8px) rotate(-42deg);
 }
-.clock-settings[data-minute="22"] .minute-selector-axis {
+.clock-settings[data-minute="22"] .disc-container .hour-disc .minute-selector-axis {
   transform: translate(-40.4px) rotate(42deg) translate(40.4px);
 }
 
-.clock-settings[data-minute="23"] .minute-selector-disc {
+.clock-settings[data-minute="23"] .disc-container .hour-disc .minute-selector-disc {
   transform: rotate(48deg) translate(80.8px) rotate(-48deg);
 }
-.clock-settings[data-minute="23"] .minute-selector-axis {
+.clock-settings[data-minute="23"] .disc-container .hour-disc .minute-selector-axis {
   transform: translate(-40.4px) rotate(48deg) translate(40.4px);
 }
 
-.clock-settings[data-minute="24"] .minute-selector-disc {
+.clock-settings[data-minute="24"] .disc-container .hour-disc .minute-selector-disc {
   transform: rotate(54deg) translate(80.8px) rotate(-54deg);
 }
-.clock-settings[data-minute="24"] .minute-selector-axis {
+.clock-settings[data-minute="24"] .disc-container .hour-disc .minute-selector-axis {
   transform: translate(-40.4px) rotate(54deg) translate(40.4px);
 }
 
-.clock-settings[data-minute="25"] .minute-selector-disc {
+.clock-settings[data-minute="25"] .disc-container .hour-disc .minute-selector-disc {
   transform: rotate(60deg) translate(80.8px) rotate(-60deg);
 }
-.clock-settings[data-minute="25"] .minute-selector-axis {
+.clock-settings[data-minute="25"] .disc-container .hour-disc .minute-selector-axis {
   transform: translate(-40.4px) rotate(60deg) translate(40.4px);
 }
 
-.clock-settings[data-minute="26"] .minute-selector-disc {
+.clock-settings[data-minute="26"] .disc-container .hour-disc .minute-selector-disc {
   transform: rotate(66deg) translate(80.8px) rotate(-66deg);
 }
-.clock-settings[data-minute="26"] .minute-selector-axis {
+.clock-settings[data-minute="26"] .disc-container .hour-disc .minute-selector-axis {
   transform: translate(-40.4px) rotate(66deg) translate(40.4px);
 }
 
-.clock-settings[data-minute="27"] .minute-selector-disc {
+.clock-settings[data-minute="27"] .disc-container .hour-disc .minute-selector-disc {
   transform: rotate(72deg) translate(80.8px) rotate(-72deg);
 }
-.clock-settings[data-minute="27"] .minute-selector-axis {
+.clock-settings[data-minute="27"] .disc-container .hour-disc .minute-selector-axis {
   transform: translate(-40.4px) rotate(72deg) translate(40.4px);
 }
 
-.clock-settings[data-minute="28"] .minute-selector-disc {
+.clock-settings[data-minute="28"] .disc-container .hour-disc .minute-selector-disc {
   transform: rotate(78deg) translate(80.8px) rotate(-78deg);
 }
-.clock-settings[data-minute="28"] .minute-selector-axis {
+.clock-settings[data-minute="28"] .disc-container .hour-disc .minute-selector-axis {
   transform: translate(-40.4px) rotate(78deg) translate(40.4px);
 }
 
-.clock-settings[data-minute="29"] .minute-selector-disc {
+.clock-settings[data-minute="29"] .disc-container .hour-disc .minute-selector-disc {
   transform: rotate(84deg) translate(80.8px) rotate(-84deg);
 }
-.clock-settings[data-minute="29"] .minute-selector-axis {
+.clock-settings[data-minute="29"] .disc-container .hour-disc .minute-selector-axis {
   transform: translate(-40.4px) rotate(84deg) translate(40.4px);
 }
 
-.clock-settings[data-minute="30"] .minute-selector-disc {
+.clock-settings[data-minute="30"] .disc-container .hour-disc .minute-selector-disc {
   transform: rotate(90deg) translate(80.8px) rotate(-90deg);
 }
-.clock-settings[data-minute="30"] .minute-selector-axis {
+.clock-settings[data-minute="30"] .disc-container .hour-disc .minute-selector-axis {
   transform: translate(-40.4px) rotate(90deg) translate(40.4px);
 }
 
-.clock-settings[data-minute="31"] .minute-selector-disc {
+.clock-settings[data-minute="31"] .disc-container .hour-disc .minute-selector-disc {
   transform: rotate(96deg) translate(80.8px) rotate(-96deg);
 }
-.clock-settings[data-minute="31"] .minute-selector-axis {
+.clock-settings[data-minute="31"] .disc-container .hour-disc .minute-selector-axis {
   transform: translate(-40.4px) rotate(96deg) translate(40.4px);
 }
 
-.clock-settings[data-minute="32"] .minute-selector-disc {
+.clock-settings[data-minute="32"] .disc-container .hour-disc .minute-selector-disc {
   transform: rotate(102deg) translate(80.8px) rotate(-102deg);
 }
-.clock-settings[data-minute="32"] .minute-selector-axis {
+.clock-settings[data-minute="32"] .disc-container .hour-disc .minute-selector-axis {
   transform: translate(-40.4px) rotate(102deg) translate(40.4px);
 }
 
-.clock-settings[data-minute="33"] .minute-selector-disc {
+.clock-settings[data-minute="33"] .disc-container .hour-disc .minute-selector-disc {
   transform: rotate(108deg) translate(80.8px) rotate(-108deg);
 }
-.clock-settings[data-minute="33"] .minute-selector-axis {
+.clock-settings[data-minute="33"] .disc-container .hour-disc .minute-selector-axis {
   transform: translate(-40.4px) rotate(108deg) translate(40.4px);
 }
 
-.clock-settings[data-minute="34"] .minute-selector-disc {
+.clock-settings[data-minute="34"] .disc-container .hour-disc .minute-selector-disc {
   transform: rotate(114deg) translate(80.8px) rotate(-114deg);
 }
-.clock-settings[data-minute="34"] .minute-selector-axis {
+.clock-settings[data-minute="34"] .disc-container .hour-disc .minute-selector-axis {
   transform: translate(-40.4px) rotate(114deg) translate(40.4px);
 }
 
-.clock-settings[data-minute="35"] .minute-selector-disc {
+.clock-settings[data-minute="35"] .disc-container .hour-disc .minute-selector-disc {
   transform: rotate(120deg) translate(80.8px) rotate(-120deg);
 }
-.clock-settings[data-minute="35"] .minute-selector-axis {
+.clock-settings[data-minute="35"] .disc-container .hour-disc .minute-selector-axis {
   transform: translate(-40.4px) rotate(120deg) translate(40.4px);
 }
 
-.clock-settings[data-minute="36"] .minute-selector-disc {
+.clock-settings[data-minute="36"] .disc-container .hour-disc .minute-selector-disc {
   transform: rotate(126deg) translate(80.8px) rotate(-126deg);
 }
-.clock-settings[data-minute="36"] .minute-selector-axis {
+.clock-settings[data-minute="36"] .disc-container .hour-disc .minute-selector-axis {
   transform: translate(-40.4px) rotate(126deg) translate(40.4px);
 }
 
-.clock-settings[data-minute="37"] .minute-selector-disc {
+.clock-settings[data-minute="37"] .disc-container .hour-disc .minute-selector-disc {
   transform: rotate(132deg) translate(80.8px) rotate(-132deg);
 }
-.clock-settings[data-minute="37"] .minute-selector-axis {
+.clock-settings[data-minute="37"] .disc-container .hour-disc .minute-selector-axis {
   transform: translate(-40.4px) rotate(132deg) translate(40.4px);
 }
 
-.clock-settings[data-minute="38"] .minute-selector-disc {
+.clock-settings[data-minute="38"] .disc-container .hour-disc .minute-selector-disc {
   transform: rotate(138deg) translate(80.8px) rotate(-138deg);
 }
-.clock-settings[data-minute="38"] .minute-selector-axis {
+.clock-settings[data-minute="38"] .disc-container .hour-disc .minute-selector-axis {
   transform: translate(-40.4px) rotate(138deg) translate(40.4px);
 }
 
-.clock-settings[data-minute="39"] .minute-selector-disc {
+.clock-settings[data-minute="39"] .disc-container .hour-disc .minute-selector-disc {
   transform: rotate(144deg) translate(80.8px) rotate(-144deg);
 }
-.clock-settings[data-minute="39"] .minute-selector-axis {
+.clock-settings[data-minute="39"] .disc-container .hour-disc .minute-selector-axis {
   transform: translate(-40.4px) rotate(144deg) translate(40.4px);
 }
 
-.clock-settings[data-minute="40"] .minute-selector-disc {
+.clock-settings[data-minute="40"] .disc-container .hour-disc .minute-selector-disc {
   transform: rotate(150deg) translate(80.8px) rotate(-150deg);
 }
-.clock-settings[data-minute="40"] .minute-selector-axis {
+.clock-settings[data-minute="40"] .disc-container .hour-disc .minute-selector-axis {
   transform: translate(-40.4px) rotate(150deg) translate(40.4px);
 }
 
-.clock-settings[data-minute="41"] .minute-selector-disc {
+.clock-settings[data-minute="41"] .disc-container .hour-disc .minute-selector-disc {
   transform: rotate(156deg) translate(80.8px) rotate(-156deg);
 }
-.clock-settings[data-minute="41"] .minute-selector-axis {
+.clock-settings[data-minute="41"] .disc-container .hour-disc .minute-selector-axis {
   transform: translate(-40.4px) rotate(156deg) translate(40.4px);
 }
 
-.clock-settings[data-minute="42"] .minute-selector-disc {
+.clock-settings[data-minute="42"] .disc-container .hour-disc .minute-selector-disc {
   transform: rotate(162deg) translate(80.8px) rotate(-162deg);
 }
-.clock-settings[data-minute="42"] .minute-selector-axis {
+.clock-settings[data-minute="42"] .disc-container .hour-disc .minute-selector-axis {
   transform: translate(-40.4px) rotate(162deg) translate(40.4px);
 }
 
-.clock-settings[data-minute="43"] .minute-selector-disc {
+.clock-settings[data-minute="43"] .disc-container .hour-disc .minute-selector-disc {
   transform: rotate(168deg) translate(80.8px) rotate(-168deg);
 }
-.clock-settings[data-minute="43"] .minute-selector-axis {
+.clock-settings[data-minute="43"] .disc-container .hour-disc .minute-selector-axis {
   transform: translate(-40.4px) rotate(168deg) translate(40.4px);
 }
 
-.clock-settings[data-minute="44"] .minute-selector-disc {
+.clock-settings[data-minute="44"] .disc-container .hour-disc .minute-selector-disc {
   transform: rotate(174deg) translate(80.8px) rotate(-174deg);
 }
-.clock-settings[data-minute="44"] .minute-selector-axis {
+.clock-settings[data-minute="44"] .disc-container .hour-disc .minute-selector-axis {
   transform: translate(-40.4px) rotate(174deg) translate(40.4px);
 }
 
-.clock-settings[data-minute="45"] .minute-selector-disc {
+.clock-settings[data-minute="45"] .disc-container .hour-disc .minute-selector-disc {
   transform: rotate(180deg) translate(80.8px) rotate(-180deg);
 }
-.clock-settings[data-minute="45"] .minute-selector-axis {
+.clock-settings[data-minute="45"] .disc-container .hour-disc .minute-selector-axis {
   transform: translate(-40.4px) rotate(180deg) translate(40.4px);
 }
 
-.clock-settings[data-minute="46"] .minute-selector-disc {
+.clock-settings[data-minute="46"] .disc-container .hour-disc .minute-selector-disc {
   transform: rotate(186deg) translate(80.8px) rotate(-186deg);
 }
-.clock-settings[data-minute="46"] .minute-selector-axis {
+.clock-settings[data-minute="46"] .disc-container .hour-disc .minute-selector-axis {
   transform: translate(-40.4px) rotate(186deg) translate(40.4px);
 }
 
-.clock-settings[data-minute="47"] .minute-selector-disc {
+.clock-settings[data-minute="47"] .disc-container .hour-disc .minute-selector-disc {
   transform: rotate(192deg) translate(80.8px) rotate(-192deg);
 }
-.clock-settings[data-minute="47"] .minute-selector-axis {
+.clock-settings[data-minute="47"] .disc-container .hour-disc .minute-selector-axis {
   transform: translate(-40.4px) rotate(192deg) translate(40.4px);
 }
 
-.clock-settings[data-minute="48"] .minute-selector-disc {
+.clock-settings[data-minute="48"] .disc-container .hour-disc .minute-selector-disc {
   transform: rotate(198deg) translate(80.8px) rotate(-198deg);
 }
-.clock-settings[data-minute="48"] .minute-selector-axis {
+.clock-settings[data-minute="48"] .disc-container .hour-disc .minute-selector-axis {
   transform: translate(-40.4px) rotate(198deg) translate(40.4px);
 }
 
-.clock-settings[data-minute="49"] .minute-selector-disc {
+.clock-settings[data-minute="49"] .disc-container .hour-disc .minute-selector-disc {
   transform: rotate(204deg) translate(80.8px) rotate(-204deg);
 }
-.clock-settings[data-minute="49"] .minute-selector-axis {
+.clock-settings[data-minute="49"] .disc-container .hour-disc .minute-selector-axis {
   transform: translate(-40.4px) rotate(204deg) translate(40.4px);
 }
 
-.clock-settings[data-minute="50"] .minute-selector-disc {
+.clock-settings[data-minute="50"] .disc-container .hour-disc .minute-selector-disc {
   transform: rotate(210deg) translate(80.8px) rotate(-210deg);
 }
-.clock-settings[data-minute="50"] .minute-selector-axis {
+.clock-settings[data-minute="50"] .disc-container .hour-disc .minute-selector-axis {
   transform: translate(-40.4px) rotate(210deg) translate(40.4px);
 }
 
-.clock-settings[data-minute="51"] .minute-selector-disc {
+.clock-settings[data-minute="51"] .disc-container .hour-disc .minute-selector-disc {
   transform: rotate(216deg) translate(80.8px) rotate(-216deg);
 }
-.clock-settings[data-minute="51"] .minute-selector-axis {
+.clock-settings[data-minute="51"] .disc-container .hour-disc .minute-selector-axis {
   transform: translate(-40.4px) rotate(216deg) translate(40.4px);
 }
 
-.clock-settings[data-minute="52"] .minute-selector-disc {
+.clock-settings[data-minute="52"] .disc-container .hour-disc .minute-selector-disc {
   transform: rotate(222deg) translate(80.8px) rotate(-222deg);
 }
-.clock-settings[data-minute="52"] .minute-selector-axis {
+.clock-settings[data-minute="52"] .disc-container .hour-disc .minute-selector-axis {
   transform: translate(-40.4px) rotate(222deg) translate(40.4px);
 }
 
-.clock-settings[data-minute="53"] .minute-selector-disc {
+.clock-settings[data-minute="53"] .disc-container .hour-disc .minute-selector-disc {
   transform: rotate(228deg) translate(80.8px) rotate(-228deg);
 }
-.clock-settings[data-minute="53"] .minute-selector-axis {
+.clock-settings[data-minute="53"] .disc-container .hour-disc .minute-selector-axis {
   transform: translate(-40.4px) rotate(228deg) translate(40.4px);
 }
 
-.clock-settings[data-minute="54"] .minute-selector-disc {
+.clock-settings[data-minute="54"] .disc-container .hour-disc .minute-selector-disc {
   transform: rotate(234deg) translate(80.8px) rotate(-234deg);
 }
-.clock-settings[data-minute="54"] .minute-selector-axis {
+.clock-settings[data-minute="54"] .disc-container .hour-disc .minute-selector-axis {
   transform: translate(-40.4px) rotate(234deg) translate(40.4px);
 }
 
-.clock-settings[data-minute="55"] .minute-selector-disc {
+.clock-settings[data-minute="55"] .disc-container .hour-disc .minute-selector-disc {
   transform: rotate(240deg) translate(80.8px) rotate(-240deg);
 }
-.clock-settings[data-minute="55"] .minute-selector-axis {
+.clock-settings[data-minute="55"] .disc-container .hour-disc .minute-selector-axis {
   transform: translate(-40.4px) rotate(240deg) translate(40.4px);
 }
 
-.clock-settings[data-minute="56"] .minute-selector-disc {
+.clock-settings[data-minute="56"] .disc-container .hour-disc .minute-selector-disc {
   transform: rotate(246deg) translate(80.8px) rotate(-246deg);
 }
-.clock-settings[data-minute="56"] .minute-selector-axis {
+.clock-settings[data-minute="56"] .disc-container .hour-disc .minute-selector-axis {
   transform: translate(-40.4px) rotate(246deg) translate(40.4px);
 }
 
-.clock-settings[data-minute="57"] .minute-selector-disc {
+.clock-settings[data-minute="57"] .disc-container .hour-disc .minute-selector-disc {
   transform: rotate(252deg) translate(80.8px) rotate(-252deg);
 }
-.clock-settings[data-minute="57"] .minute-selector-axis {
+.clock-settings[data-minute="57"] .disc-container .hour-disc .minute-selector-axis {
   transform: translate(-40.4px) rotate(252deg) translate(40.4px);
 }
 
-.clock-settings[data-minute="58"] .minute-selector-disc {
+.clock-settings[data-minute="58"] .disc-container .hour-disc .minute-selector-disc {
   transform: rotate(258deg) translate(80.8px) rotate(-258deg);
 }
-.clock-settings[data-minute="58"] .minute-selector-axis {
+.clock-settings[data-minute="58"] .disc-container .hour-disc .minute-selector-axis {
   transform: translate(-40.4px) rotate(258deg) translate(40.4px);
 }
 
-.clock-settings[data-minute="59"] .minute-selector-disc {
+.clock-settings[data-minute="59"] .disc-container .hour-disc .minute-selector-disc {
   transform: rotate(264deg) translate(80.8px) rotate(-264deg);
 }
-.clock-settings[data-minute="59"] .minute-selector-axis {
+.clock-settings[data-minute="59"] .disc-container .hour-disc .minute-selector-axis {
   transform: translate(-40.4px) rotate(264deg) translate(40.4px);
+}
+
+.clock-settings[data-minute="0"] .disc-container .hour-disc[data-active=false] .minute-selector-disc .dot {
+  display: none;
+}
+.clock-settings[data-minute="0"] .disc-container .hour-disc[data-active=false] .minute-selector-axis {
+  background-color: rgba(248, 64, 64, 0.4);
+  width: 64.8px;
+  transform: translate(-32.4px) rotate(-90deg) translate(32.4px);
+}
+
+.clock-settings[data-minute="5"] .disc-container .hour-disc[data-active=false] .minute-selector-disc .dot {
+  display: none;
+}
+.clock-settings[data-minute="5"] .disc-container .hour-disc[data-active=false] .minute-selector-axis {
+  background-color: rgba(248, 64, 64, 0.4);
+  width: 64.8px;
+  transform: translate(-32.4px) rotate(-60deg) translate(32.4px);
+}
+
+.clock-settings[data-minute="10"] .disc-container .hour-disc[data-active=false] .minute-selector-disc .dot {
+  display: none;
+}
+.clock-settings[data-minute="10"] .disc-container .hour-disc[data-active=false] .minute-selector-axis {
+  background-color: rgba(248, 64, 64, 0.4);
+  width: 64.8px;
+  transform: translate(-32.4px) rotate(-30deg) translate(32.4px);
+}
+
+.clock-settings[data-minute="15"] .disc-container .hour-disc[data-active=false] .minute-selector-disc .dot {
+  display: none;
+}
+.clock-settings[data-minute="15"] .disc-container .hour-disc[data-active=false] .minute-selector-axis {
+  background-color: rgba(248, 64, 64, 0.4);
+  width: 64.8px;
+  transform: translate(-32.4px) rotate(0deg) translate(32.4px);
+}
+
+.clock-settings[data-minute="20"] .disc-container .hour-disc[data-active=false] .minute-selector-disc .dot {
+  display: none;
+}
+.clock-settings[data-minute="20"] .disc-container .hour-disc[data-active=false] .minute-selector-axis {
+  background-color: rgba(248, 64, 64, 0.4);
+  width: 64.8px;
+  transform: translate(-32.4px) rotate(30deg) translate(32.4px);
+}
+
+.clock-settings[data-minute="25"] .disc-container .hour-disc[data-active=false] .minute-selector-disc .dot {
+  display: none;
+}
+.clock-settings[data-minute="25"] .disc-container .hour-disc[data-active=false] .minute-selector-axis {
+  background-color: rgba(248, 64, 64, 0.4);
+  width: 64.8px;
+  transform: translate(-32.4px) rotate(60deg) translate(32.4px);
+}
+
+.clock-settings[data-minute="30"] .disc-container .hour-disc[data-active=false] .minute-selector-disc .dot {
+  display: none;
+}
+.clock-settings[data-minute="30"] .disc-container .hour-disc[data-active=false] .minute-selector-axis {
+  background-color: rgba(248, 64, 64, 0.4);
+  width: 64.8px;
+  transform: translate(-32.4px) rotate(90deg) translate(32.4px);
+}
+
+.clock-settings[data-minute="35"] .disc-container .hour-disc[data-active=false] .minute-selector-disc .dot {
+  display: none;
+}
+.clock-settings[data-minute="35"] .disc-container .hour-disc[data-active=false] .minute-selector-axis {
+  background-color: rgba(248, 64, 64, 0.4);
+  width: 64.8px;
+  transform: translate(-32.4px) rotate(120deg) translate(32.4px);
+}
+
+.clock-settings[data-minute="40"] .disc-container .hour-disc[data-active=false] .minute-selector-disc .dot {
+  display: none;
+}
+.clock-settings[data-minute="40"] .disc-container .hour-disc[data-active=false] .minute-selector-axis {
+  background-color: rgba(248, 64, 64, 0.4);
+  width: 64.8px;
+  transform: translate(-32.4px) rotate(150deg) translate(32.4px);
+}
+
+.clock-settings[data-minute="45"] .disc-container .hour-disc[data-active=false] .minute-selector-disc .dot {
+  display: none;
+}
+.clock-settings[data-minute="45"] .disc-container .hour-disc[data-active=false] .minute-selector-axis {
+  background-color: rgba(248, 64, 64, 0.4);
+  width: 64.8px;
+  transform: translate(-32.4px) rotate(180deg) translate(32.4px);
+}
+
+.clock-settings[data-minute="50"] .disc-container .hour-disc[data-active=false] .minute-selector-disc .dot {
+  display: none;
+}
+.clock-settings[data-minute="50"] .disc-container .hour-disc[data-active=false] .minute-selector-axis {
+  background-color: rgba(248, 64, 64, 0.4);
+  width: 64.8px;
+  transform: translate(-32.4px) rotate(210deg) translate(32.4px);
+}
+
+.clock-settings[data-minute="55"] .disc-container .hour-disc[data-active=false] .minute-selector-disc .dot {
+  display: none;
+}
+.clock-settings[data-minute="55"] .disc-container .hour-disc[data-active=false] .minute-selector-axis {
+  background-color: rgba(248, 64, 64, 0.4);
+  width: 64.8px;
+  transform: translate(-32.4px) rotate(240deg) translate(32.4px);
 }
 
 .clock-settings[data-hour="1"] .hour-disc[data-active=true] .hour-selector-axis {
