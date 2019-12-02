@@ -274,7 +274,12 @@ $color_show_button: rgb(147, 148, 148)
             .clock-name:hover
                 background-color: $color_background_hide
 
+            .clock-name::selection
+                background-color: rgb(200, 200, 200)
+                color: rgb(0, 0, 0)
+
             .clock-name
+                cursor: text
                 display: block
                 background-color: transparent
                 outline: none
@@ -285,7 +290,12 @@ $color_show_button: rgb(147, 148, 148)
                 color: $color_text
                 padding-left: $container_padding_side
                 margin-left: -$container_padding_side
-            
+
+                -ms-user-select: text
+                -webkit-user-select: text
+                -moz-user-select: text
+                user-select: text
+                
             .repeat-days
                 display: none
                 flex-direction: row

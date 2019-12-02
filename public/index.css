@@ -235,7 +235,12 @@ body, html {
 .clock-container .hide-control .hide-subject .clock-name:hover {
   background-color: #1c1e20;
 }
+.clock-container .hide-control .hide-subject .clock-name::selection {
+  background-color: #c8c8c8;
+  color: black;
+}
 .clock-container .hide-control .hide-subject .clock-name {
+  cursor: text;
   display: block;
   background-color: transparent;
   outline: none;
@@ -246,6 +251,10 @@ body, html {
   color: white;
   padding-left: 10px;
   margin-left: -10px;
+  -ms-user-select: text;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  user-select: text;
 }
 .clock-container .hide-control .hide-subject .repeat-days {
   display: none;
