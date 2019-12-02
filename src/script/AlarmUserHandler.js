@@ -298,6 +298,26 @@ export default class AlarmUserHandler {
         return (360 - angle + 90) % 360;
     }
 
+    static handleSelectorDiscClick(disc) {
+        disc.addEventListener('mousedown',
+            (event) => {
+                AlarmUserHandler.addDiscSelector(disc, event);
+                disc.parentElement.setAttribute('data-active', 'true');
+                AlarmUserHandler.handleMouseupAfterSelectorDiscMousedown(disc);
+            });
+    }
+
+    static handleMouseupAfterSelectorDiscMousedown(disc) {
+        window.addEventListener('mouseup', function discMouseup() {
+            AlarmUserHandler.removeDiscSelector(disc);
+            disc.parentElement.setAttribute('data-active', 'false');
+            const clockSettings = AlarmUserHandler.getAncestorWithClass(disc, 'clock-settings');
+            clockSettings.setAttribute('data-skip-animation', 'false');
+            clockSettings.setAttribute('data-select', 'minute');
+            window.removeEventListener('mouseup', discMouseup);
+        });
+    }
+
     static handleClockSettingsDone(button) {
         const clockSettings = AlarmUserHandler.getAncestorWithClass(button, 'clock-settings');
         clockSettings.setAttribute('data-select', 'hour');

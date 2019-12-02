@@ -33,25 +33,7 @@ repeatDays.forEach((day) => day.addEventListener('click',
     AlarmUserHandler.handleDaySelection));
 
 const hourSelectorDisc = document.querySelectorAll('.clock-settings .hour-selector-disc');
-hourSelectorDisc.forEach((disc) => {
-    disc.addEventListener('mousedown',
-        (event) => {
-            disc.clicked = true; // eslint-disable-line no-param-reassign
-            AlarmUserHandler.addDiscSelector(disc, event);
-            disc.parentElement.setAttribute('data-active', 'true');
-        });
-
-    window.addEventListener('mouseup', () => {
-        if (!disc.clicked) return;
-        disc.clicked = false; // eslint-disable-line no-param-reassign
-
-        AlarmUserHandler.removeDiscSelector(disc);
-        disc.parentElement.setAttribute('data-active', 'false');
-        const clockSettings = AlarmUserHandler.getAncestorWithClass(disc, 'clock-settings');
-        clockSettings.setAttribute('data-skip-animation', 'false');
-        clockSettings.setAttribute('data-select', 'minute');
-    });
-});
+hourSelectorDisc.forEach(AlarmUserHandler.handleSelectorDiscClick);
 
 const minuteSelectorDisc = document.querySelectorAll('.clock-settings .minute-selector-disc');
 minuteSelectorDisc.forEach((disc) => {
@@ -111,7 +93,7 @@ doneSettingsButton.forEach((button) => {
 
 const settingsWrapper = document.querySelectorAll('.settings-wrapper');
 settingsWrapper.forEach((wrapper) => {
-    wrapper.addEventListener('click', ({ target }) => {
+    wrapper.addEventListener('mousedown', ({ target }) => {
         if (target.className === 'settings-wrapper') {
             wrapper.parentElement.setAttribute('data-show-settings', 'false');
         }
@@ -123,14 +105,16 @@ hourButtons.forEach((button) => {
     const hour = parseInt(button.innerText, 10);
     const clockSettings = AlarmUserHandler.getAncestorWithClass(button, 'clock-settings');
 
-    button.addEventListener('mousedown', () => {
+    button.addEventListener('mousedown', (event) => {
         clockSettings.setAttribute('data-skip-animation', 'true');
         AlarmUserHandler.changeHourOnClockSettings(clockSettings, hour);
 
-        window.addEventListener('mouseup', function handleMouseUP() {
-            clockSettings.setAttribute('data-select', 'minute');
-            window.removeEventListener('mouseup', handleMouseUP);
-        });
+        const hourDisc = AlarmUserHandler.getAncestorWithClass(button, 'hour-disc');
+        const selectorDisc = AlarmUserHandler.getChildWithClass(hourDisc, 'hour-selector-disc');
+
+        AlarmUserHandler.addDiscSelector(selectorDisc, event);
+        selectorDisc.parentElement.setAttribute('data-active', 'true');
+        AlarmUserHandler.handleMouseupAfterSelectorDiscMousedown(selectorDisc);
     });
 });
 
@@ -138,8 +122,16 @@ const minuteButtons = document.querySelectorAll('.clock-settings .hour-disc .min
 minuteButtons.forEach((button) => {
     const minute = parseInt(button.innerText, 10);
     const clockSettings = AlarmUserHandler.getAncestorWithClass(button, 'clock-settings');
-    button.addEventListener('click', () => {
+
+    button.addEventListener('mousedown', (event) => {
         clockSettings.setAttribute('data-skip-animation', 'true');
         AlarmUserHandler.changeMinuteOnClockSettings(clockSettings, minute);
+
+        const hourDisc = AlarmUserHandler.getAncestorWithClass(button, 'hour-disc');
+        const selectorDisc = AlarmUserHandler.getChildWithClass(hourDisc, 'minute-selector-disc');
+
+        AlarmUserHandler.addDiscSelector(selectorDisc, event);
+        selectorDisc.parentElement.setAttribute('data-active', 'true');
+        AlarmUserHandler.handleMouseupAfterSelectorDiscMousedown(selectorDisc);
     });
 });
