@@ -1680,8 +1680,13 @@ body, html {
   color: white;
 }
 .clock-settings .time-container .hour, .clock-settings .time-container .minute {
+  box-sizing: content-box;
   text-align: right;
   width: 2ch;
+  padding: 0 3px;
+}
+.clock-settings .time-container .hour:hover, .clock-settings .time-container .minute:hover {
+  background-color: rgba(0, 0, 0, 0.1);
 }
 .clock-settings .time-container .hour {
   color: #f53535;
