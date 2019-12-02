@@ -47,7 +47,9 @@ hourSelectorDisc.forEach((disc) => {
 
         AlarmUserHandler.removeDiscSelector(disc);
         disc.parentElement.setAttribute('data-active', 'false');
-        disc.parentElement.parentElement.parentElement.setAttribute('data-select', 'minute');
+        const clockSettings = AlarmUserHandler.getAncestorWithClass(disc, 'clock-settings');
+        clockSettings.setAttribute('data-skip-animation', 'false');
+        clockSettings.setAttribute('data-select', 'minute');
     });
 });
 
@@ -79,12 +81,20 @@ pmButtons.forEach((button) => {
 
 const hourDisplay = document.querySelectorAll('.clock-settings .time-container .hour');
 hourDisplay.forEach((hour) => {
-    hour.addEventListener('click', () => hour.parentElement.parentElement.setAttribute('data-select', 'hour'));
+    hour.addEventListener('click', () => {
+        const clockSettings = AlarmUserHandler.getAncestorWithClass(hour, 'clock-settings');
+        clockSettings.setAttribute('data-select', 'hour');
+        clockSettings.setAttribute('data-skip-animation', 'false');
+    });
 });
 
 const minuteDisplay = document.querySelectorAll('.clock-settings .time-container .minute');
 minuteDisplay.forEach((minute) => {
-    minute.addEventListener('click', () => minute.parentElement.parentElement.setAttribute('data-select', 'minute'));
+    minute.addEventListener('click', () => {
+        const clockSettings = AlarmUserHandler.getAncestorWithClass(minute, 'clock-settings');
+        clockSettings.setAttribute('data-select', 'minute');
+        clockSettings.setAttribute('data-skip-animation', 'false');
+    });
 });
 
 const timeButton = document.querySelectorAll('.clock-container .always-visible .time');
@@ -105,5 +115,31 @@ settingsWrapper.forEach((wrapper) => {
         if (target.className === 'settings-wrapper') {
             wrapper.parentElement.setAttribute('data-show-settings', 'false');
         }
+    });
+});
+
+const hourButtons = document.querySelectorAll('.clock-settings .hour-disc .hour');
+hourButtons.forEach((button) => {
+    const hour = parseInt(button.innerText, 10);
+    const clockSettings = AlarmUserHandler.getAncestorWithClass(button, 'clock-settings');
+
+    button.addEventListener('mousedown', () => {
+        clockSettings.setAttribute('data-skip-animation', 'true');
+        AlarmUserHandler.changeHourOnClockSettings(clockSettings, hour);
+
+        window.addEventListener('mouseup', function handleMouseUP() {
+            clockSettings.setAttribute('data-select', 'minute');
+            window.removeEventListener('mouseup', handleMouseUP);
+        });
+    });
+});
+
+const minuteButtons = document.querySelectorAll('.clock-settings .hour-disc .minute');
+minuteButtons.forEach((button) => {
+    const minute = parseInt(button.innerText, 10);
+    const clockSettings = AlarmUserHandler.getAncestorWithClass(button, 'clock-settings');
+    button.addEventListener('click', () => {
+        clockSettings.setAttribute('data-skip-animation', 'true');
+        AlarmUserHandler.changeMinuteOnClockSettings(clockSettings, minute);
     });
 });

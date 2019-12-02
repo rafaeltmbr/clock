@@ -512,6 +512,13 @@ $disc_selector_axis_minute_disappear_width: $disc_radius - $hour_font_size * 3.6
         left: 0
         background-color: rgba(0, 0, 0, 0.5)
 
+.clock-settings[data-skip-animation="true"]
+    .disc-container
+        .hour-disc
+            .hour-selector-axis, .minute-selector-axis, .hour-selector-disc, .minute-selector-disc
+                transition-duration: 0s
+
+
 .clock-settings
     $clock_settings_width: 284px
     $clock_settings_computed_height: 376px
@@ -593,14 +600,18 @@ $disc_selector_axis_minute_disappear_width: $disc_radius - $hour_font_size * 3.6
             position: relative
 
             .hour, .minute
+                $hour_minute_size: $hour_selector_disc_size
+                display: flex
+                align-items: center
+                justify-content: center
                 position: absolute
                 top: 50%
                 left: 50%
                 font-size: $hour_font_size
-                margin-left: $hour_font_size / -2
-                margin-top: $hour_font_size / -2
-                width: 1em
-                text-align: center
+                margin-left: $hour_minute_size / -2
+                margin-top: $hour_minute_size / -2
+                width: $hour_minute_size
+                height: $hour_minute_size
 
             .hour-selector-disc:hover, .minute-selector-disc:hover
                 background-color: $disc_selector_color_hover

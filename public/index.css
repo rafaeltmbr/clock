@@ -1658,6 +1658,10 @@ body, html {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
+.clock-settings[data-skip-animation=true] .disc-container .hour-disc .hour-selector-axis, .clock-settings[data-skip-animation=true] .disc-container .hour-disc .minute-selector-axis, .clock-settings[data-skip-animation=true] .disc-container .hour-disc .hour-selector-disc, .clock-settings[data-skip-animation=true] .disc-container .hour-disc .minute-selector-disc {
+  transition-duration: 0s;
+}
+
 .clock-settings {
   width: 284px;
   background-color: #404040;
@@ -1731,14 +1735,17 @@ body, html {
   position: relative;
 }
 .clock-settings .disc-container .hour-disc .hour, .clock-settings .disc-container .hour-disc .minute {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: absolute;
   top: 50%;
   left: 50%;
   font-size: 16px;
-  margin-left: -8px;
-  margin-top: -8px;
-  width: 1em;
-  text-align: center;
+  margin-left: -16px;
+  margin-top: -16px;
+  width: 32px;
+  height: 32px;
 }
 .clock-settings .disc-container .hour-disc .hour-selector-disc:hover, .clock-settings .disc-container .hour-disc .minute-selector-disc:hover {
   background-color: rgba(255, 23, 23, 0.4);

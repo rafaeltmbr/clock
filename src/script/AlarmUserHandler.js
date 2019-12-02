@@ -318,4 +318,34 @@ export default class AlarmUserHandler {
         clockContainer.setAttribute('data-show-settings', 'false');
         clockContainer.setAttribute('data-status', 'on');
     }
+
+    static changeHourOnClockSettings(clockSettings, hour) {
+        if (!clockSettings) return;
+
+        const hourInteger = parseInt(hour, 10);
+        clockSettings.setAttribute('data-hour', `${hour}`);
+
+        const timeContainer = AlarmUserHandler.getChildWithClass(clockSettings, 'time-container');
+        if (!timeContainer) return;
+
+        const hourElement = AlarmUserHandler.getChildWithClass(timeContainer, 'hour');
+        if (!hourElement) return;
+
+        hourElement.innerText = `${hourInteger}`;
+    }
+
+    static changeMinuteOnClockSettings(clockSettings, minute) {
+        if (!clockSettings) return;
+
+        const minuteInteger = parseInt(minute, 10);
+        clockSettings.setAttribute('data-minute', `${minute}`);
+
+        const timeContainer = AlarmUserHandler.getChildWithClass(clockSettings, 'time-container');
+        if (!timeContainer) return;
+
+        const minuteElement = AlarmUserHandler.getChildWithClass(timeContainer, 'minute');
+        if (!minuteElement) return;
+
+        minuteElement.innerText = minuteInteger < 10 ? `0${minuteInteger}` : `${minuteInteger}`;
+    }
 }
