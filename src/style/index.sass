@@ -75,6 +75,11 @@ $color_show_button: rgb(147, 148, 148)
             .clock-name-minimized
                 color: rgb(147, 148, 148)
 
+.clock-container[data-show="true"]
+    .hide-control
+        .hide-button
+            border-bottom-color: rgba(120, 120, 120)
+
 .clock-container
     $color_text: rgb(255, 255, 255)
     $color_off: rgb(61, 63, 64)
@@ -222,6 +227,7 @@ $color_show_button: rgb(147, 148, 148)
             left: $line-separator-padding
             background-color: rgb(80, 80, 80)
             transition-duration: $animation_duration
+            z-index: 1
 
 
         .hide-button:hover
@@ -235,6 +241,7 @@ $color_show_button: rgb(147, 148, 148)
             height: $hide_control_height
             width: calc(100% - #{$hide_button_padding_right})
             bottom: 0
+            border-bottom: 1px solid rgba(0, 0, 0, 0)
 
             .show-details
                 height: $show_details_height
@@ -512,6 +519,7 @@ $disc_selector_axis_minute_disappear_width: $disc_radius - $hour_font_size * 3.6
 
 .clock-container
     .settings-wrapper
+        z-index: 2
         display: none
         align-items: center
         justify-content: center

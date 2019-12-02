@@ -61,6 +61,10 @@ body, html {
   color: #939494;
 }
 
+.clock-container[data-show=true] .hide-control .hide-button {
+  border-bottom-color: #787878;
+}
+
 .clock-container {
   max-width: 400px;
   min-width: 320px;
@@ -184,6 +188,7 @@ body, html {
   left: 10px;
   background-color: #505050;
   transition-duration: 0.4s;
+  z-index: 1;
 }
 .clock-container .hide-control .hide-button:hover {
   background-color: #27292a;
@@ -196,6 +201,7 @@ body, html {
   height: 40px;
   width: calc(100% - 60px);
   bottom: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0);
 }
 .clock-container .hide-control .hide-button .show-details {
   height: 20px;
@@ -1656,6 +1662,7 @@ body, html {
 }
 
 .clock-container .settings-wrapper {
+  z-index: 2;
   display: none;
   align-items: center;
   justify-content: center;
