@@ -24,22 +24,22 @@ Thus, the final result is exepected to be like:
 <div id="images-container" style="display: flex; flex-direction: row; align-items: center; justify-content: space-between">
     <div class="image-container" style='display: flex; flex-direction: column; align-items: center; justify-content: space-between'>
         <img src="/public/assets/Clock-reference.png" alt="Alarm OFF expended" width="250px" style='display="block"'>
-        <footer> Image description </footer>
+        <div> Image description </div>
     </div>
     <div class="image-container" style='display: flex; flex-direction: column; align-items: center; justify-content: space-between'>
         <img src="/public/assets/Clock-reference-2.png" alt="Alarm ON expended" width="250px" style='display="block"'>
-        <footer> Image description </footer>
+        <div> Image description </div>
     </div>
     <div class="image-container" style='display: flex; flex-direction: column; align-items: center; justify-content: space-between'>
         <img src="/public/assets/Clock-reference-3.png" alt="Alarm ON REPEAT expended" width="250px" style='display="block"'>
-        <footer> Image description </footer>
+        <div> Image description </div>
     </div>
     <div class="image-container" style='display: flex; flex-direction: column; align-items: center; justify-content: space-between'>
         <img src="/public/assets/clock-settings-hour.png" alt="Alarm Hour Setting" width="250px" style='display="block"'>
-        <footer> Image description </footer>
+        <div> Image description </div>
     </div>
     <div class="image-container" style='display: flex; flex-direction: column; align-items: center; justify-content: space-between'>
         <img src="/public/assets/clock-settings-minute.png" alt="Alarm Minute Setting" width="250px" style='display="block"'>
-        <footer> Image description </footer>
+        <div> Image description </div>
     </div>
 </div>
