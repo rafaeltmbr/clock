@@ -16,7 +16,7 @@ Is preferable for animations to be created by CSS. Also, the javascript code jus
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**style/** - SASS source<br>
 
 &nbsp;&nbsp;&nbsp;&nbsp;**public/** - Hold all generated files<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**assets/** - Contain all images used as referênce for the UI. Also, it keeps all icons used in the project<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**assets/** - Contain all images used as reference for the UI development. Also, it keeps all icons used in the project<br>
 
 ## Expected Graphical Results
 The UI (extends for User Interface) have to be the closest possible to the one Android V4.4.4 uses.
