@@ -10,13 +10,13 @@ Is preferable for animations to be created by CSS. Also, the javascript code cha
 
 ## Folder Organization
 **./** - The root contains all configurations files for tools like Babel, Webpack, eslint etc.<br>
-&nbsp;&nbsp;&nbsp;&nbsp;**src/**<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**markup/** - PUG source<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**script/** - JavaScript source<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**style/** - SASS source<br>
+&nbsp;|-**src/**<br>
+&nbsp;&nbsp;&nbsp;&nbsp;|-**markup/** - PUG source<br>
+&nbsp;&nbsp;&nbsp;&nbsp;|-**script/** - JavaScript source<br>
+&nbsp;&nbsp;&nbsp;&nbsp;|-**style/** - SASS source<br>
 
-&nbsp;&nbsp;&nbsp;&nbsp;**public/** - Hold all generated files<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**assets/** - Contain all images used as reference for the UI development. Also, it keeps all icons used in the project<br>
+&nbsp;|-**public/** - Hold all generated files<br>
+&nbsp;&nbsp;&nbsp;&nbsp;|-;**assets/** - Contain all images used as reference for the UI development. Also, it keeps all icons used in the project<br>
 
 ## Expected Graphical Results
 The UI (extends for User Interface) have to be the closest possible to the one Android V4.4.4 uses.
