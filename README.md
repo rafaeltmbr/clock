@@ -1,5 +1,5 @@
 # Alarm Clock
-This project is a reengineering of an alarm clock used on **Android version 4.4.4**.
+This project is an attempt to reengineering the alarm clock used on **Android version 4.4.4**.
 The goal is for it to be responsive and build without using any framework, just vanilla javascript.
 Is preferable for animations to be created by CSS. Also, the javascript code just changes some of the HTML elements attributes, then it makes possible for CSS to animate and hold state.
 
