@@ -1,7 +1,7 @@
 # Alarm Clock
 This project is an attempt to reengineer the alarm clock used in **Android version 4.4.4**.
 The goal is for it to be responsive and build without any framework, just vanilla javascript.
-Is preferable for animations to be created by CSS. Also, the javascript code changes some of the HTML elements attributes, thus it makes possible for the CSS to display and animate according to the given state.
+Is preferable for animations to be created by CSS. Also, the javascript code changes some of the HTML elements attributes, thus it makes possible for the CSS to display and animate according to the given state. It's current version can be founded at https://rafaeltmbr.github.io/clock .
 
 ## Tecnologies
 * **CSS** - Compiled by SASS
@@ -22,7 +22,7 @@ Is preferable for animations to be created by CSS. Also, the javascript code cha
 
 ## Expected Graphical Results
 The UI (extends for User Interface) have to be the closest possible to the one Android V4.4.4 uses.
-Thus, the final result is exepected to be like:
+Thus, the final result is expected to be like:
 
 <div id="images-container" style="display: flex; flex-direction: row; align-items: center; justify-content: space-between">
     <img src="/public/assets/UI/alarm-off.png" alt="Alarm OFF" title="Alarm OFF" width="250px">
