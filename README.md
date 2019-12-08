@@ -28,3 +28,9 @@ Thus, the final result is exepected to be like:
     <img src="/public/assets/clock-settings-hour.png" alt="Alarm Hour Setting" title="Alarm Hour Setting" width="250px">
     <img src="/public/assets/clock-settings-minute.png" alt="Alarm Minute Setting" title="Alarm Minute Setting" width="250px">
 </div>
+
+## Design Methodology
+In this project, an adaptaion of MVC architectural pattern is used in the front-end. The parts are:
+* **Model** - Takes care of saving the alarm settings and issue an alarm event.
+* **View** - Create alarms and handle user interaction.
+* **Controler** - It controls the interaction between the *View* and *Model*. Thus, it create views and call the right methods when events on *View* or *Model* happens.
