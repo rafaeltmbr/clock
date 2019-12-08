@@ -1,0 +1,1928 @@
+body, html {
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: default;
+}
+
+.clock-container[data-show=true], .clock-container[data-show=max] {
+  background-color: #27292a;
+}
+.clock-container[data-show=true] .always-visible .time:hover, .clock-container[data-show=max] .always-visible .time:hover {
+  background-color: #1c1e20;
+}
+.clock-container[data-show=true] .delete-field:hover, .clock-container[data-show=max] .delete-field:hover {
+  background-color: #1c1e20;
+}
+
+.clock-container[data-status=on] .always-visible .on-off .slider {
+  margin-left: 50%;
+  background-color: #0da6da;
+}
+.clock-container[data-status=on] .always-visible .on-off .slider .on-text {
+  display: inline;
+}
+.clock-container[data-status=on] .always-visible .on-off .slider .off-text {
+  display: none;
+}
+
+.clock-container[data-status=off] {
+  color: #c8c8c8;
+}
+.clock-container[data-status=off] .always-visible .on-off .slider {
+  color: #c8c8c8;
+}
+.clock-container[data-status=off] .delete-field svg {
+  fill: #c8c8c8;
+}
+.clock-container[data-status=off] .hide-control .hide-subject .clock-name {
+  color: #c8c8c8;
+}
+.clock-container[data-status=off] .hide-control .hide-subject .song .music svg {
+  fill: #c8c8c8;
+}
+.clock-container[data-status=off] .hide-control .hide-subject .repeat-days .day:hover {
+  border-color: #c8c8c8;
+}
+.clock-container[data-status=off] .hide-control .hide-subject .repeat-days .day[data-selected=true] {
+  border-color: #0da6da;
+}
+.clock-container[data-status=off] .hide-control .hide-button .show-details {
+  fill: #939494;
+}
+.clock-container[data-status=off] .hide-control .hide-button .clock-name-minimized {
+  color: #939494;
+}
+
+.clock-container[data-show=true] .hide-control .hide-button {
+  border-bottom-color: #787878;
+}
+
+.clock-container {
+  max-width: 400px;
+  min-width: 320px;
+  font-family: sans-serif;
+  position: relative;
+  background-color: #1c1e20;
+  color: white;
+}
+.clock-container * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.clock-container .always-visible {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  height: 60px;
+}
+.clock-container .always-visible .time:hover {
+  background-color: #27292a;
+}
+.clock-container .always-visible .time {
+  font-size: 40px;
+  padding: 0 10px;
+  margin-left: -10px;
+}
+.clock-container .always-visible .time .am-pm {
+  font-size: 12px;
+  font-weight: bold;
+  padding-left: 3px;
+}
+.clock-container .always-visible .on-off:hover {
+  border-color: #646464;
+}
+.clock-container .always-visible .on-off {
+  width: 80px;
+  height: 20px;
+  border: 1px solid #2f2f30;
+  background-color: #2f2f30;
+}
+.clock-container .always-visible .on-off .slider:active {
+  transition-duration: 0s;
+}
+.clock-container .always-visible .on-off .slider {
+  height: 100%;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  border-radius: 1px;
+  align-items: center;
+  font-size: 12px;
+  background-color: #59595a;
+  color: white;
+  transition-duration: 0.2s;
+}
+.clock-container .always-visible .on-off .slider .on-text {
+  display: none;
+}
+.clock-container .always-visible .on-off .slider .off-text {
+  display: inline;
+}
+.clock-container .delete-field:hover {
+  background-color: #27292a;
+}
+.clock-container .delete-field {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  height: 40px;
+  width: 40px;
+  right: 10px;
+  top: 60px;
+}
+.clock-container .delete-field svg {
+  height: 22px;
+  width: 22px;
+  fill: white;
+}
+.clock-container .hide-control[data-show=true], .clock-container .hide-control[data-show=all], .clock-container .hide-control[data-show=min], .clock-container .hide-control[data-show=max] {
+  height: 160px;
+}
+.clock-container .hide-control[data-show=true] .hide-button:hover, .clock-container .hide-control[data-show=all] .hide-button:hover, .clock-container .hide-control[data-show=min] .hide-button:hover, .clock-container .hide-control[data-show=max] .hide-button:hover {
+  background-color: #1c1e20;
+}
+.clock-container .hide-control[data-show=true] .hide-button, .clock-container .hide-control[data-show=all] .hide-button, .clock-container .hide-control[data-show=min] .hide-button, .clock-container .hide-control[data-show=max] .hide-button {
+  width: 100%;
+}
+.clock-container .hide-control[data-show=true] .hide-button .clock-name-minimized, .clock-container .hide-control[data-show=all] .hide-button .clock-name-minimized, .clock-container .hide-control[data-show=min] .hide-button .clock-name-minimized, .clock-container .hide-control[data-show=max] .hide-button .clock-name-minimized {
+  display: none;
+}
+.clock-container .hide-control[data-show=true] .line-separator, .clock-container .hide-control[data-show=all] .line-separator, .clock-container .hide-control[data-show=min] .line-separator, .clock-container .hide-control[data-show=max] .line-separator {
+  bottom: 40px;
+}
+.clock-container .hide-control[data-show=all], .clock-container .hide-control[data-show=max] {
+  height: 200px;
+}
+.clock-container .hide-control[data-show=all] .hide-subject .repeat-days, .clock-container .hide-control[data-show=max] .hide-subject .repeat-days {
+  display: flex;
+}
+.clock-container .hide-control[data-show=all], .clock-container .hide-control[data-show=min] {
+  transition-duration: 0s;
+}
+.clock-container .hide-control[data-repeat=true][data-show=false] .hide-button .days-name-minimized {
+  display: block;
+}
+.clock-container .hide-control {
+  height: 40px;
+  position: relative;
+  overflow: hidden;
+  transition-duration: 0.4s;
+}
+.clock-container .hide-control .line-separator {
+  position: absolute;
+  width: calc(100% - 20px);
+  height: 1px;
+  bottom: 0;
+  left: 10px;
+  background-color: #505050;
+  transition-duration: 0.4s;
+  z-index: 1;
+}
+.clock-container .hide-control .hide-button:hover {
+  background-color: #27292a;
+}
+.clock-container .hide-control .hide-button {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 40px;
+  width: calc(100% - 60px);
+  bottom: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0);
+}
+.clock-container .hide-control .hide-button .show-details {
+  height: 20px;
+  width: 20px;
+  min-width: 20px;
+  transform: rotateZ(90deg);
+  transition-duration: 0.4s;
+  fill: white;
+  margin-left: 5px;
+}
+.clock-container .hide-control .hide-button .show-details[data-rotate=true] {
+  transform: rotateZ(270deg);
+}
+.clock-container .hide-control .hide-button .clock-name-minimized {
+  bottom: 10px;
+  color: #c8c8c8;
+}
+.clock-container .hide-control .hide-button .clock-name-minimized, .clock-container .hide-control .hide-button .days-name-minimized {
+  padding-left: 10px;
+  font-size: 14px;
+  height: 40px;
+  line-height: 20px;
+  overflow: hidden;
+}
+.clock-container .hide-control .hide-button .days-name-minimized {
+  min-width: 16ch;
+  display: none;
+}
+.clock-container .hide-control .hide-subject {
+  width: 100%;
+  position: absolute;
+  bottom: 40px;
+  padding: 0 10px;
+  font-size: 16px;
+  line-height: 40px;
+}
+.clock-container .hide-control .hide-subject .clock-name:hover {
+  background-color: #1c1e20;
+}
+.clock-container .hide-control .hide-subject .clock-name::selection {
+  background-color: #c8c8c8;
+  color: black;
+}
+.clock-container .hide-control .hide-subject .clock-name {
+  cursor: text;
+  display: block;
+  background-color: transparent;
+  outline: none;
+  border: 0;
+  height: 40px;
+  font-size: 18px;
+  width: calc(100% - 40px);
+  color: white;
+  padding-left: 10px;
+  margin-left: -10px;
+  -ms-user-select: text;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  user-select: text;
+}
+.clock-container .hide-control .hide-subject .repeat-days {
+  display: none;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 40px;
+}
+.clock-container .hide-control .hide-subject .repeat-days .day:hover {
+  border-color: white;
+}
+.clock-container .hide-control .hide-subject .repeat-days .day {
+  text-align: center;
+  width: 38px;
+  line-height: 1.4em;
+  font-weight: bold;
+  border-bottom: 2px solid #3d3f40;
+}
+.clock-container .hide-control .hide-subject .repeat-days .day[data-selected=true] {
+  border-bottom-color: #0da6da;
+}
+.clock-container .hide-control .hide-subject .song {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.clock-container .hide-control .hide-subject .song .music svg {
+  height: auto;
+  width: 8px;
+  fill: #c8c8c8;
+}
+.clock-container .hide-control .hide-subject .song .music span {
+  padding-left: 10px;
+}
+.clock-container .hide-control .hide-subject label:hover .checkmark {
+  border-color: #e6e6e6;
+}
+.clock-container .hide-control .hide-subject label {
+  position: relative;
+}
+.clock-container .hide-control .hide-subject label input {
+  opacity: 0;
+  height: 0;
+  width: 0;
+}
+.clock-container .hide-control .hide-subject label .checkmark {
+  display: inline-block;
+  border: 1px solid #939494;
+  width: 14px;
+  height: 14px;
+  margin-right: 10px;
+  position: relative;
+}
+.clock-container .hide-control .hide-subject label .checkmark svg {
+  display: none;
+}
+.clock-container .hide-control .hide-subject label input:checked ~ .checkmark svg {
+  display: inline-block;
+  height: 15px;
+  width: 18px;
+  position: absolute;
+  top: -3px;
+  fill: #0da6da;
+}
+
+.clock-settings[data-am-pm=pm] .time-container .pm {
+  display: inline;
+}
+.clock-settings[data-am-pm=pm] .time-container .am {
+  display: none;
+}
+.clock-settings[data-am-pm=pm] .disc-container .pm-button {
+  background-color: #8c3a3a;
+}
+.clock-settings[data-am-pm=pm] .disc-container .pm-button:hover {
+  background-color: #832a2a;
+}
+.clock-settings[data-am-pm=pm] .disc-container .am-button {
+  background-color: #363636;
+}
+.clock-settings[data-am-pm=pm] .disc-container .am-button:hover {
+  background-color: #2c2c2c;
+}
+
+.clock-settings[data-hour="1"] .disc-container .hour-disc .hour-selector-disc {
+  transform: rotate(-60deg) translate(80.8px) rotate(60deg);
+}
+.clock-settings[data-hour="1"] .disc-container .hour-disc .hour-selector-axis {
+  transform: translate(-32.4px) rotate(-60deg) translate(32.4px);
+}
+
+.clock-settings[data-hour="2"] .disc-container .hour-disc .hour-selector-disc {
+  transform: rotate(-30deg) translate(80.8px) rotate(30deg);
+}
+.clock-settings[data-hour="2"] .disc-container .hour-disc .hour-selector-axis {
+  transform: translate(-32.4px) rotate(-30deg) translate(32.4px);
+}
+
+.clock-settings[data-hour="3"] .disc-container .hour-disc .hour-selector-disc {
+  transform: rotate(0deg) translate(80.8px) rotate(0deg);
+}
+.clock-settings[data-hour="3"] .disc-container .hour-disc .hour-selector-axis {
+  transform: translate(-32.4px) rotate(0deg) translate(32.4px);
+}
+
+.clock-settings[data-hour="4"] .disc-container .hour-disc .hour-selector-disc {
+  transform: rotate(30deg) translate(80.8px) rotate(-30deg);
+}
+.clock-settings[data-hour="4"] .disc-container .hour-disc .hour-selector-axis {
+  transform: translate(-32.4px) rotate(30deg) translate(32.4px);
+}
+
+.clock-settings[data-hour="5"] .disc-container .hour-disc .hour-selector-disc {
+  transform: rotate(60deg) translate(80.8px) rotate(-60deg);
+}
+.clock-settings[data-hour="5"] .disc-container .hour-disc .hour-selector-axis {
+  transform: translate(-32.4px) rotate(60deg) translate(32.4px);
+}
+
+.clock-settings[data-hour="6"] .disc-container .hour-disc .hour-selector-disc {
+  transform: rotate(90deg) translate(80.8px) rotate(-90deg);
+}
+.clock-settings[data-hour="6"] .disc-container .hour-disc .hour-selector-axis {
+  transform: translate(-32.4px) rotate(90deg) translate(32.4px);
+}
+
+.clock-settings[data-hour="7"] .disc-container .hour-disc .hour-selector-disc {
+  transform: rotate(120deg) translate(80.8px) rotate(-120deg);
+}
+.clock-settings[data-hour="7"] .disc-container .hour-disc .hour-selector-axis {
+  transform: translate(-32.4px) rotate(120deg) translate(32.4px);
+}
+
+.clock-settings[data-hour="8"] .disc-container .hour-disc .hour-selector-disc {
+  transform: rotate(150deg) translate(80.8px) rotate(-150deg);
+}
+.clock-settings[data-hour="8"] .disc-container .hour-disc .hour-selector-axis {
+  transform: translate(-32.4px) rotate(150deg) translate(32.4px);
+}
+
+.clock-settings[data-hour="9"] .disc-container .hour-disc .hour-selector-disc {
+  transform: rotate(180deg) translate(80.8px) rotate(-180deg);
+}
+.clock-settings[data-hour="9"] .disc-container .hour-disc .hour-selector-axis {
+  transform: translate(-32.4px) rotate(180deg) translate(32.4px);
+}
+
+.clock-settings[data-hour="10"] .disc-container .hour-disc .hour-selector-disc {
+  transform: rotate(210deg) translate(80.8px) rotate(-210deg);
+}
+.clock-settings[data-hour="10"] .disc-container .hour-disc .hour-selector-axis {
+  transform: translate(-32.4px) rotate(210deg) translate(32.4px);
+}
+
+.clock-settings[data-hour="11"] .disc-container .hour-disc .hour-selector-disc {
+  transform: rotate(240deg) translate(80.8px) rotate(-240deg);
+}
+.clock-settings[data-hour="11"] .disc-container .hour-disc .hour-selector-axis {
+  transform: translate(-32.4px) rotate(240deg) translate(32.4px);
+}
+
+.clock-settings[data-hour="12"] .disc-container .hour-disc .hour-selector-disc {
+  transform: rotate(270deg) translate(80.8px) rotate(-270deg);
+}
+.clock-settings[data-hour="12"] .disc-container .hour-disc .hour-selector-axis {
+  transform: translate(-32.4px) rotate(270deg) translate(32.4px);
+}
+
+.clock-settings[data-minute="0"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(-90deg) translate(42.4px) rotate(90deg);
+}
+.clock-settings[data-minute="0"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-21.2px) rotate(-90deg) translate(21.2px);
+}
+
+.clock-settings[data-minute="1"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(-84deg) translate(42.4px) rotate(84deg);
+}
+.clock-settings[data-minute="1"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-21.2px) rotate(-84deg) translate(21.2px);
+}
+
+.clock-settings[data-minute="2"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(-78deg) translate(42.4px) rotate(78deg);
+}
+.clock-settings[data-minute="2"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-21.2px) rotate(-78deg) translate(21.2px);
+}
+
+.clock-settings[data-minute="3"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(-72deg) translate(42.4px) rotate(72deg);
+}
+.clock-settings[data-minute="3"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-21.2px) rotate(-72deg) translate(21.2px);
+}
+
+.clock-settings[data-minute="4"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(-66deg) translate(42.4px) rotate(66deg);
+}
+.clock-settings[data-minute="4"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-21.2px) rotate(-66deg) translate(21.2px);
+}
+
+.clock-settings[data-minute="5"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(-60deg) translate(42.4px) rotate(60deg);
+}
+.clock-settings[data-minute="5"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-21.2px) rotate(-60deg) translate(21.2px);
+}
+
+.clock-settings[data-minute="6"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(-54deg) translate(42.4px) rotate(54deg);
+}
+.clock-settings[data-minute="6"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-21.2px) rotate(-54deg) translate(21.2px);
+}
+
+.clock-settings[data-minute="7"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(-48deg) translate(42.4px) rotate(48deg);
+}
+.clock-settings[data-minute="7"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-21.2px) rotate(-48deg) translate(21.2px);
+}
+
+.clock-settings[data-minute="8"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(-42deg) translate(42.4px) rotate(42deg);
+}
+.clock-settings[data-minute="8"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-21.2px) rotate(-42deg) translate(21.2px);
+}
+
+.clock-settings[data-minute="9"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(-36deg) translate(42.4px) rotate(36deg);
+}
+.clock-settings[data-minute="9"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-21.2px) rotate(-36deg) translate(21.2px);
+}
+
+.clock-settings[data-minute="10"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(-30deg) translate(42.4px) rotate(30deg);
+}
+.clock-settings[data-minute="10"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-21.2px) rotate(-30deg) translate(21.2px);
+}
+
+.clock-settings[data-minute="11"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(-24deg) translate(42.4px) rotate(24deg);
+}
+.clock-settings[data-minute="11"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-21.2px) rotate(-24deg) translate(21.2px);
+}
+
+.clock-settings[data-minute="12"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(-18deg) translate(42.4px) rotate(18deg);
+}
+.clock-settings[data-minute="12"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-21.2px) rotate(-18deg) translate(21.2px);
+}
+
+.clock-settings[data-minute="13"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(-12deg) translate(42.4px) rotate(12deg);
+}
+.clock-settings[data-minute="13"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-21.2px) rotate(-12deg) translate(21.2px);
+}
+
+.clock-settings[data-minute="14"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(-6deg) translate(42.4px) rotate(6deg);
+}
+.clock-settings[data-minute="14"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-21.2px) rotate(-6deg) translate(21.2px);
+}
+
+.clock-settings[data-minute="15"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(0deg) translate(42.4px) rotate(0deg);
+}
+.clock-settings[data-minute="15"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-21.2px) rotate(0deg) translate(21.2px);
+}
+
+.clock-settings[data-minute="16"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(6deg) translate(42.4px) rotate(-6deg);
+}
+.clock-settings[data-minute="16"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-21.2px) rotate(6deg) translate(21.2px);
+}
+
+.clock-settings[data-minute="17"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(12deg) translate(42.4px) rotate(-12deg);
+}
+.clock-settings[data-minute="17"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-21.2px) rotate(12deg) translate(21.2px);
+}
+
+.clock-settings[data-minute="18"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(18deg) translate(42.4px) rotate(-18deg);
+}
+.clock-settings[data-minute="18"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-21.2px) rotate(18deg) translate(21.2px);
+}
+
+.clock-settings[data-minute="19"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(24deg) translate(42.4px) rotate(-24deg);
+}
+.clock-settings[data-minute="19"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-21.2px) rotate(24deg) translate(21.2px);
+}
+
+.clock-settings[data-minute="20"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(30deg) translate(42.4px) rotate(-30deg);
+}
+.clock-settings[data-minute="20"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-21.2px) rotate(30deg) translate(21.2px);
+}
+
+.clock-settings[data-minute="21"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(36deg) translate(42.4px) rotate(-36deg);
+}
+.clock-settings[data-minute="21"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-21.2px) rotate(36deg) translate(21.2px);
+}
+
+.clock-settings[data-minute="22"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(42deg) translate(42.4px) rotate(-42deg);
+}
+.clock-settings[data-minute="22"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-21.2px) rotate(42deg) translate(21.2px);
+}
+
+.clock-settings[data-minute="23"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(48deg) translate(42.4px) rotate(-48deg);
+}
+.clock-settings[data-minute="23"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-21.2px) rotate(48deg) translate(21.2px);
+}
+
+.clock-settings[data-minute="24"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(54deg) translate(42.4px) rotate(-54deg);
+}
+.clock-settings[data-minute="24"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-21.2px) rotate(54deg) translate(21.2px);
+}
+
+.clock-settings[data-minute="25"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(60deg) translate(42.4px) rotate(-60deg);
+}
+.clock-settings[data-minute="25"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-21.2px) rotate(60deg) translate(21.2px);
+}
+
+.clock-settings[data-minute="26"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(66deg) translate(42.4px) rotate(-66deg);
+}
+.clock-settings[data-minute="26"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-21.2px) rotate(66deg) translate(21.2px);
+}
+
+.clock-settings[data-minute="27"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(72deg) translate(42.4px) rotate(-72deg);
+}
+.clock-settings[data-minute="27"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-21.2px) rotate(72deg) translate(21.2px);
+}
+
+.clock-settings[data-minute="28"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(78deg) translate(42.4px) rotate(-78deg);
+}
+.clock-settings[data-minute="28"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-21.2px) rotate(78deg) translate(21.2px);
+}
+
+.clock-settings[data-minute="29"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(84deg) translate(42.4px) rotate(-84deg);
+}
+.clock-settings[data-minute="29"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-21.2px) rotate(84deg) translate(21.2px);
+}
+
+.clock-settings[data-minute="30"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(90deg) translate(42.4px) rotate(-90deg);
+}
+.clock-settings[data-minute="30"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-21.2px) rotate(90deg) translate(21.2px);
+}
+
+.clock-settings[data-minute="31"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(96deg) translate(42.4px) rotate(-96deg);
+}
+.clock-settings[data-minute="31"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-21.2px) rotate(96deg) translate(21.2px);
+}
+
+.clock-settings[data-minute="32"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(102deg) translate(42.4px) rotate(-102deg);
+}
+.clock-settings[data-minute="32"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-21.2px) rotate(102deg) translate(21.2px);
+}
+
+.clock-settings[data-minute="33"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(108deg) translate(42.4px) rotate(-108deg);
+}
+.clock-settings[data-minute="33"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-21.2px) rotate(108deg) translate(21.2px);
+}
+
+.clock-settings[data-minute="34"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(114deg) translate(42.4px) rotate(-114deg);
+}
+.clock-settings[data-minute="34"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-21.2px) rotate(114deg) translate(21.2px);
+}
+
+.clock-settings[data-minute="35"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(120deg) translate(42.4px) rotate(-120deg);
+}
+.clock-settings[data-minute="35"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-21.2px) rotate(120deg) translate(21.2px);
+}
+
+.clock-settings[data-minute="36"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(126deg) translate(42.4px) rotate(-126deg);
+}
+.clock-settings[data-minute="36"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-21.2px) rotate(126deg) translate(21.2px);
+}
+
+.clock-settings[data-minute="37"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(132deg) translate(42.4px) rotate(-132deg);
+}
+.clock-settings[data-minute="37"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-21.2px) rotate(132deg) translate(21.2px);
+}
+
+.clock-settings[data-minute="38"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(138deg) translate(42.4px) rotate(-138deg);
+}
+.clock-settings[data-minute="38"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-21.2px) rotate(138deg) translate(21.2px);
+}
+
+.clock-settings[data-minute="39"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(144deg) translate(42.4px) rotate(-144deg);
+}
+.clock-settings[data-minute="39"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-21.2px) rotate(144deg) translate(21.2px);
+}
+
+.clock-settings[data-minute="40"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(150deg) translate(42.4px) rotate(-150deg);
+}
+.clock-settings[data-minute="40"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-21.2px) rotate(150deg) translate(21.2px);
+}
+
+.clock-settings[data-minute="41"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(156deg) translate(42.4px) rotate(-156deg);
+}
+.clock-settings[data-minute="41"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-21.2px) rotate(156deg) translate(21.2px);
+}
+
+.clock-settings[data-minute="42"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(162deg) translate(42.4px) rotate(-162deg);
+}
+.clock-settings[data-minute="42"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-21.2px) rotate(162deg) translate(21.2px);
+}
+
+.clock-settings[data-minute="43"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(168deg) translate(42.4px) rotate(-168deg);
+}
+.clock-settings[data-minute="43"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-21.2px) rotate(168deg) translate(21.2px);
+}
+
+.clock-settings[data-minute="44"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(174deg) translate(42.4px) rotate(-174deg);
+}
+.clock-settings[data-minute="44"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-21.2px) rotate(174deg) translate(21.2px);
+}
+
+.clock-settings[data-minute="45"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(180deg) translate(42.4px) rotate(-180deg);
+}
+.clock-settings[data-minute="45"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-21.2px) rotate(180deg) translate(21.2px);
+}
+
+.clock-settings[data-minute="46"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(186deg) translate(42.4px) rotate(-186deg);
+}
+.clock-settings[data-minute="46"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-21.2px) rotate(186deg) translate(21.2px);
+}
+
+.clock-settings[data-minute="47"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(192deg) translate(42.4px) rotate(-192deg);
+}
+.clock-settings[data-minute="47"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-21.2px) rotate(192deg) translate(21.2px);
+}
+
+.clock-settings[data-minute="48"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(198deg) translate(42.4px) rotate(-198deg);
+}
+.clock-settings[data-minute="48"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-21.2px) rotate(198deg) translate(21.2px);
+}
+
+.clock-settings[data-minute="49"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(204deg) translate(42.4px) rotate(-204deg);
+}
+.clock-settings[data-minute="49"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-21.2px) rotate(204deg) translate(21.2px);
+}
+
+.clock-settings[data-minute="50"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(210deg) translate(42.4px) rotate(-210deg);
+}
+.clock-settings[data-minute="50"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-21.2px) rotate(210deg) translate(21.2px);
+}
+
+.clock-settings[data-minute="51"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(216deg) translate(42.4px) rotate(-216deg);
+}
+.clock-settings[data-minute="51"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-21.2px) rotate(216deg) translate(21.2px);
+}
+
+.clock-settings[data-minute="52"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(222deg) translate(42.4px) rotate(-222deg);
+}
+.clock-settings[data-minute="52"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-21.2px) rotate(222deg) translate(21.2px);
+}
+
+.clock-settings[data-minute="53"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(228deg) translate(42.4px) rotate(-228deg);
+}
+.clock-settings[data-minute="53"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-21.2px) rotate(228deg) translate(21.2px);
+}
+
+.clock-settings[data-minute="54"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(234deg) translate(42.4px) rotate(-234deg);
+}
+.clock-settings[data-minute="54"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-21.2px) rotate(234deg) translate(21.2px);
+}
+
+.clock-settings[data-minute="55"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(240deg) translate(42.4px) rotate(-240deg);
+}
+.clock-settings[data-minute="55"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-21.2px) rotate(240deg) translate(21.2px);
+}
+
+.clock-settings[data-minute="56"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(246deg) translate(42.4px) rotate(-246deg);
+}
+.clock-settings[data-minute="56"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-21.2px) rotate(246deg) translate(21.2px);
+}
+
+.clock-settings[data-minute="57"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(252deg) translate(42.4px) rotate(-252deg);
+}
+.clock-settings[data-minute="57"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-21.2px) rotate(252deg) translate(21.2px);
+}
+
+.clock-settings[data-minute="58"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(258deg) translate(42.4px) rotate(-258deg);
+}
+.clock-settings[data-minute="58"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-21.2px) rotate(258deg) translate(21.2px);
+}
+
+.clock-settings[data-minute="59"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(264deg) translate(42.4px) rotate(-264deg);
+}
+.clock-settings[data-minute="59"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-21.2px) rotate(264deg) translate(21.2px);
+}
+
+.clock-settings[data-select=minute][data-minute="0"] .disc-container .hour-disc[data-active=false] .minute-selector-disc .dot,
+.clock-settings[data-select=hour][data-minute="0"] .disc-container .hour-disc[data-active=false] .minute-selector-disc .dot {
+  display: none;
+}
+.clock-settings[data-select=minute][data-minute="0"] .disc-container .hour-disc[data-active=false] .minute-selector-axis,
+.clock-settings[data-select=hour][data-minute="0"] .disc-container .hour-disc[data-active=false] .minute-selector-axis {
+  background-color: rgba(248, 64, 64, 0.4);
+  width: 64.8px;
+  transform: translate(-32.4px) rotate(-90deg) translate(32.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="5"] .disc-container .hour-disc[data-active=false] .minute-selector-disc .dot,
+.clock-settings[data-select=hour][data-minute="5"] .disc-container .hour-disc[data-active=false] .minute-selector-disc .dot {
+  display: none;
+}
+.clock-settings[data-select=minute][data-minute="5"] .disc-container .hour-disc[data-active=false] .minute-selector-axis,
+.clock-settings[data-select=hour][data-minute="5"] .disc-container .hour-disc[data-active=false] .minute-selector-axis {
+  background-color: rgba(248, 64, 64, 0.4);
+  width: 64.8px;
+  transform: translate(-32.4px) rotate(-60deg) translate(32.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="10"] .disc-container .hour-disc[data-active=false] .minute-selector-disc .dot,
+.clock-settings[data-select=hour][data-minute="10"] .disc-container .hour-disc[data-active=false] .minute-selector-disc .dot {
+  display: none;
+}
+.clock-settings[data-select=minute][data-minute="10"] .disc-container .hour-disc[data-active=false] .minute-selector-axis,
+.clock-settings[data-select=hour][data-minute="10"] .disc-container .hour-disc[data-active=false] .minute-selector-axis {
+  background-color: rgba(248, 64, 64, 0.4);
+  width: 64.8px;
+  transform: translate(-32.4px) rotate(-30deg) translate(32.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="15"] .disc-container .hour-disc[data-active=false] .minute-selector-disc .dot,
+.clock-settings[data-select=hour][data-minute="15"] .disc-container .hour-disc[data-active=false] .minute-selector-disc .dot {
+  display: none;
+}
+.clock-settings[data-select=minute][data-minute="15"] .disc-container .hour-disc[data-active=false] .minute-selector-axis,
+.clock-settings[data-select=hour][data-minute="15"] .disc-container .hour-disc[data-active=false] .minute-selector-axis {
+  background-color: rgba(248, 64, 64, 0.4);
+  width: 64.8px;
+  transform: translate(-32.4px) rotate(0deg) translate(32.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="20"] .disc-container .hour-disc[data-active=false] .minute-selector-disc .dot,
+.clock-settings[data-select=hour][data-minute="20"] .disc-container .hour-disc[data-active=false] .minute-selector-disc .dot {
+  display: none;
+}
+.clock-settings[data-select=minute][data-minute="20"] .disc-container .hour-disc[data-active=false] .minute-selector-axis,
+.clock-settings[data-select=hour][data-minute="20"] .disc-container .hour-disc[data-active=false] .minute-selector-axis {
+  background-color: rgba(248, 64, 64, 0.4);
+  width: 64.8px;
+  transform: translate(-32.4px) rotate(30deg) translate(32.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="25"] .disc-container .hour-disc[data-active=false] .minute-selector-disc .dot,
+.clock-settings[data-select=hour][data-minute="25"] .disc-container .hour-disc[data-active=false] .minute-selector-disc .dot {
+  display: none;
+}
+.clock-settings[data-select=minute][data-minute="25"] .disc-container .hour-disc[data-active=false] .minute-selector-axis,
+.clock-settings[data-select=hour][data-minute="25"] .disc-container .hour-disc[data-active=false] .minute-selector-axis {
+  background-color: rgba(248, 64, 64, 0.4);
+  width: 64.8px;
+  transform: translate(-32.4px) rotate(60deg) translate(32.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="30"] .disc-container .hour-disc[data-active=false] .minute-selector-disc .dot,
+.clock-settings[data-select=hour][data-minute="30"] .disc-container .hour-disc[data-active=false] .minute-selector-disc .dot {
+  display: none;
+}
+.clock-settings[data-select=minute][data-minute="30"] .disc-container .hour-disc[data-active=false] .minute-selector-axis,
+.clock-settings[data-select=hour][data-minute="30"] .disc-container .hour-disc[data-active=false] .minute-selector-axis {
+  background-color: rgba(248, 64, 64, 0.4);
+  width: 64.8px;
+  transform: translate(-32.4px) rotate(90deg) translate(32.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="35"] .disc-container .hour-disc[data-active=false] .minute-selector-disc .dot,
+.clock-settings[data-select=hour][data-minute="35"] .disc-container .hour-disc[data-active=false] .minute-selector-disc .dot {
+  display: none;
+}
+.clock-settings[data-select=minute][data-minute="35"] .disc-container .hour-disc[data-active=false] .minute-selector-axis,
+.clock-settings[data-select=hour][data-minute="35"] .disc-container .hour-disc[data-active=false] .minute-selector-axis {
+  background-color: rgba(248, 64, 64, 0.4);
+  width: 64.8px;
+  transform: translate(-32.4px) rotate(120deg) translate(32.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="40"] .disc-container .hour-disc[data-active=false] .minute-selector-disc .dot,
+.clock-settings[data-select=hour][data-minute="40"] .disc-container .hour-disc[data-active=false] .minute-selector-disc .dot {
+  display: none;
+}
+.clock-settings[data-select=minute][data-minute="40"] .disc-container .hour-disc[data-active=false] .minute-selector-axis,
+.clock-settings[data-select=hour][data-minute="40"] .disc-container .hour-disc[data-active=false] .minute-selector-axis {
+  background-color: rgba(248, 64, 64, 0.4);
+  width: 64.8px;
+  transform: translate(-32.4px) rotate(150deg) translate(32.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="45"] .disc-container .hour-disc[data-active=false] .minute-selector-disc .dot,
+.clock-settings[data-select=hour][data-minute="45"] .disc-container .hour-disc[data-active=false] .minute-selector-disc .dot {
+  display: none;
+}
+.clock-settings[data-select=minute][data-minute="45"] .disc-container .hour-disc[data-active=false] .minute-selector-axis,
+.clock-settings[data-select=hour][data-minute="45"] .disc-container .hour-disc[data-active=false] .minute-selector-axis {
+  background-color: rgba(248, 64, 64, 0.4);
+  width: 64.8px;
+  transform: translate(-32.4px) rotate(180deg) translate(32.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="50"] .disc-container .hour-disc[data-active=false] .minute-selector-disc .dot,
+.clock-settings[data-select=hour][data-minute="50"] .disc-container .hour-disc[data-active=false] .minute-selector-disc .dot {
+  display: none;
+}
+.clock-settings[data-select=minute][data-minute="50"] .disc-container .hour-disc[data-active=false] .minute-selector-axis,
+.clock-settings[data-select=hour][data-minute="50"] .disc-container .hour-disc[data-active=false] .minute-selector-axis {
+  background-color: rgba(248, 64, 64, 0.4);
+  width: 64.8px;
+  transform: translate(-32.4px) rotate(210deg) translate(32.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="55"] .disc-container .hour-disc[data-active=false] .minute-selector-disc .dot,
+.clock-settings[data-select=hour][data-minute="55"] .disc-container .hour-disc[data-active=false] .minute-selector-disc .dot {
+  display: none;
+}
+.clock-settings[data-select=minute][data-minute="55"] .disc-container .hour-disc[data-active=false] .minute-selector-axis,
+.clock-settings[data-select=hour][data-minute="55"] .disc-container .hour-disc[data-active=false] .minute-selector-axis {
+  background-color: rgba(248, 64, 64, 0.4);
+  width: 64.8px;
+  transform: translate(-32.4px) rotate(240deg) translate(32.4px);
+}
+
+.clock-settings[data-hour="1"] .hour-disc[data-active=true] .hour-selector-axis {
+  transform: translate(-40.4px) rotate(-60deg) translate(40.4px);
+  width: 80.8px;
+}
+
+.clock-settings[data-hour="2"] .hour-disc[data-active=true] .hour-selector-axis {
+  transform: translate(-40.4px) rotate(-30deg) translate(40.4px);
+  width: 80.8px;
+}
+
+.clock-settings[data-hour="3"] .hour-disc[data-active=true] .hour-selector-axis {
+  transform: translate(-40.4px) rotate(0deg) translate(40.4px);
+  width: 80.8px;
+}
+
+.clock-settings[data-hour="4"] .hour-disc[data-active=true] .hour-selector-axis {
+  transform: translate(-40.4px) rotate(30deg) translate(40.4px);
+  width: 80.8px;
+}
+
+.clock-settings[data-hour="5"] .hour-disc[data-active=true] .hour-selector-axis {
+  transform: translate(-40.4px) rotate(60deg) translate(40.4px);
+  width: 80.8px;
+}
+
+.clock-settings[data-hour="6"] .hour-disc[data-active=true] .hour-selector-axis {
+  transform: translate(-40.4px) rotate(90deg) translate(40.4px);
+  width: 80.8px;
+}
+
+.clock-settings[data-hour="7"] .hour-disc[data-active=true] .hour-selector-axis {
+  transform: translate(-40.4px) rotate(120deg) translate(40.4px);
+  width: 80.8px;
+}
+
+.clock-settings[data-hour="8"] .hour-disc[data-active=true] .hour-selector-axis {
+  transform: translate(-40.4px) rotate(150deg) translate(40.4px);
+  width: 80.8px;
+}
+
+.clock-settings[data-hour="9"] .hour-disc[data-active=true] .hour-selector-axis {
+  transform: translate(-40.4px) rotate(180deg) translate(40.4px);
+  width: 80.8px;
+}
+
+.clock-settings[data-hour="10"] .hour-disc[data-active=true] .hour-selector-axis {
+  transform: translate(-40.4px) rotate(210deg) translate(40.4px);
+  width: 80.8px;
+}
+
+.clock-settings[data-hour="11"] .hour-disc[data-active=true] .hour-selector-axis {
+  transform: translate(-40.4px) rotate(240deg) translate(40.4px);
+  width: 80.8px;
+}
+
+.clock-settings[data-hour="12"] .hour-disc[data-active=true] .hour-selector-axis {
+  transform: translate(-40.4px) rotate(270deg) translate(40.4px);
+  width: 80.8px;
+}
+
+.clock-settings[data-select=minute] .time-container .hour {
+  color: white;
+}
+.clock-settings[data-select=minute] .time-container .minute {
+  color: #f53535;
+}
+.clock-settings[data-select=minute] .disc-container .hour-disc .hour {
+  opacity: 0;
+}
+.clock-settings[data-select=minute] .disc-container .hour-disc .minute {
+  opacity: 1;
+}
+.clock-settings[data-select=minute] .disc-container .hour-disc .hour-selector-disc, .clock-settings[data-select=minute] .disc-container .hour-disc .hour-selector-axis {
+  opacity: 0;
+  pointer-events: none;
+}
+.clock-settings[data-select=minute] .disc-container .hour-disc .hour-selector-axis {
+  width: 112.8px;
+}
+.clock-settings[data-select=minute] .disc-container .hour-disc .minute-selector-axis {
+  width: 80.8px;
+}
+.clock-settings[data-select=minute] .disc-container .hour-disc .minute-selector-disc, .clock-settings[data-select=minute] .disc-container .hour-disc .minute-selector-axis {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.clock-settings[data-select=minute] .disc-container .hour-disc .hour:nth-child(1) {
+  transform: rotate(-60deg) translate(119.2px) rotate(60deg);
+}
+.clock-settings[data-select=minute] .disc-container .hour-disc .minute:nth-child(13) {
+  transform: rotate(-90deg) translate(80.8px) rotate(90deg);
+}
+
+.clock-settings[data-select=minute] .disc-container .hour-disc .hour:nth-child(2) {
+  transform: rotate(-30deg) translate(119.2px) rotate(30deg);
+}
+.clock-settings[data-select=minute] .disc-container .hour-disc .minute:nth-child(14) {
+  transform: rotate(-60deg) translate(80.8px) rotate(60deg);
+}
+
+.clock-settings[data-select=minute] .disc-container .hour-disc .hour:nth-child(3) {
+  transform: rotate(0deg) translate(119.2px) rotate(0deg);
+}
+.clock-settings[data-select=minute] .disc-container .hour-disc .minute:nth-child(15) {
+  transform: rotate(-30deg) translate(80.8px) rotate(30deg);
+}
+
+.clock-settings[data-select=minute] .disc-container .hour-disc .hour:nth-child(4) {
+  transform: rotate(30deg) translate(119.2px) rotate(-30deg);
+}
+.clock-settings[data-select=minute] .disc-container .hour-disc .minute:nth-child(16) {
+  transform: rotate(0deg) translate(80.8px) rotate(0deg);
+}
+
+.clock-settings[data-select=minute] .disc-container .hour-disc .hour:nth-child(5) {
+  transform: rotate(60deg) translate(119.2px) rotate(-60deg);
+}
+.clock-settings[data-select=minute] .disc-container .hour-disc .minute:nth-child(17) {
+  transform: rotate(30deg) translate(80.8px) rotate(-30deg);
+}
+
+.clock-settings[data-select=minute] .disc-container .hour-disc .hour:nth-child(6) {
+  transform: rotate(90deg) translate(119.2px) rotate(-90deg);
+}
+.clock-settings[data-select=minute] .disc-container .hour-disc .minute:nth-child(18) {
+  transform: rotate(60deg) translate(80.8px) rotate(-60deg);
+}
+
+.clock-settings[data-select=minute] .disc-container .hour-disc .hour:nth-child(7) {
+  transform: rotate(120deg) translate(119.2px) rotate(-120deg);
+}
+.clock-settings[data-select=minute] .disc-container .hour-disc .minute:nth-child(19) {
+  transform: rotate(90deg) translate(80.8px) rotate(-90deg);
+}
+
+.clock-settings[data-select=minute] .disc-container .hour-disc .hour:nth-child(8) {
+  transform: rotate(150deg) translate(119.2px) rotate(-150deg);
+}
+.clock-settings[data-select=minute] .disc-container .hour-disc .minute:nth-child(20) {
+  transform: rotate(120deg) translate(80.8px) rotate(-120deg);
+}
+
+.clock-settings[data-select=minute] .disc-container .hour-disc .hour:nth-child(9) {
+  transform: rotate(180deg) translate(119.2px) rotate(-180deg);
+}
+.clock-settings[data-select=minute] .disc-container .hour-disc .minute:nth-child(21) {
+  transform: rotate(150deg) translate(80.8px) rotate(-150deg);
+}
+
+.clock-settings[data-select=minute] .disc-container .hour-disc .hour:nth-child(10) {
+  transform: rotate(210deg) translate(119.2px) rotate(-210deg);
+}
+.clock-settings[data-select=minute] .disc-container .hour-disc .minute:nth-child(22) {
+  transform: rotate(180deg) translate(80.8px) rotate(-180deg);
+}
+
+.clock-settings[data-select=minute] .disc-container .hour-disc .hour:nth-child(11) {
+  transform: rotate(240deg) translate(119.2px) rotate(-240deg);
+}
+.clock-settings[data-select=minute] .disc-container .hour-disc .minute:nth-child(23) {
+  transform: rotate(210deg) translate(80.8px) rotate(-210deg);
+}
+
+.clock-settings[data-select=minute] .disc-container .hour-disc .hour:nth-child(12) {
+  transform: rotate(270deg) translate(119.2px) rotate(-270deg);
+}
+.clock-settings[data-select=minute] .disc-container .hour-disc .minute:nth-child(24) {
+  transform: rotate(240deg) translate(80.8px) rotate(-240deg);
+}
+
+.clock-settings[data-select=minute][data-hour="1"] .disc-container .hour-disc .hour-selector-disc {
+  transform: rotate(-60deg) translate(119.2px) rotate(60deg);
+}
+.clock-settings[data-select=minute][data-hour="1"] .disc-container .hour-disc .hour-selector-axis {
+  transform: translate(-56.4px) rotate(-60deg) translate(56.4px);
+}
+
+.clock-settings[data-select=minute][data-hour="2"] .disc-container .hour-disc .hour-selector-disc {
+  transform: rotate(-30deg) translate(119.2px) rotate(30deg);
+}
+.clock-settings[data-select=minute][data-hour="2"] .disc-container .hour-disc .hour-selector-axis {
+  transform: translate(-56.4px) rotate(-30deg) translate(56.4px);
+}
+
+.clock-settings[data-select=minute][data-hour="3"] .disc-container .hour-disc .hour-selector-disc {
+  transform: rotate(0deg) translate(119.2px) rotate(0deg);
+}
+.clock-settings[data-select=minute][data-hour="3"] .disc-container .hour-disc .hour-selector-axis {
+  transform: translate(-56.4px) rotate(0deg) translate(56.4px);
+}
+
+.clock-settings[data-select=minute][data-hour="4"] .disc-container .hour-disc .hour-selector-disc {
+  transform: rotate(30deg) translate(119.2px) rotate(-30deg);
+}
+.clock-settings[data-select=minute][data-hour="4"] .disc-container .hour-disc .hour-selector-axis {
+  transform: translate(-56.4px) rotate(30deg) translate(56.4px);
+}
+
+.clock-settings[data-select=minute][data-hour="5"] .disc-container .hour-disc .hour-selector-disc {
+  transform: rotate(60deg) translate(119.2px) rotate(-60deg);
+}
+.clock-settings[data-select=minute][data-hour="5"] .disc-container .hour-disc .hour-selector-axis {
+  transform: translate(-56.4px) rotate(60deg) translate(56.4px);
+}
+
+.clock-settings[data-select=minute][data-hour="6"] .disc-container .hour-disc .hour-selector-disc {
+  transform: rotate(90deg) translate(119.2px) rotate(-90deg);
+}
+.clock-settings[data-select=minute][data-hour="6"] .disc-container .hour-disc .hour-selector-axis {
+  transform: translate(-56.4px) rotate(90deg) translate(56.4px);
+}
+
+.clock-settings[data-select=minute][data-hour="7"] .disc-container .hour-disc .hour-selector-disc {
+  transform: rotate(120deg) translate(119.2px) rotate(-120deg);
+}
+.clock-settings[data-select=minute][data-hour="7"] .disc-container .hour-disc .hour-selector-axis {
+  transform: translate(-56.4px) rotate(120deg) translate(56.4px);
+}
+
+.clock-settings[data-select=minute][data-hour="8"] .disc-container .hour-disc .hour-selector-disc {
+  transform: rotate(150deg) translate(119.2px) rotate(-150deg);
+}
+.clock-settings[data-select=minute][data-hour="8"] .disc-container .hour-disc .hour-selector-axis {
+  transform: translate(-56.4px) rotate(150deg) translate(56.4px);
+}
+
+.clock-settings[data-select=minute][data-hour="9"] .disc-container .hour-disc .hour-selector-disc {
+  transform: rotate(180deg) translate(119.2px) rotate(-180deg);
+}
+.clock-settings[data-select=minute][data-hour="9"] .disc-container .hour-disc .hour-selector-axis {
+  transform: translate(-56.4px) rotate(180deg) translate(56.4px);
+}
+
+.clock-settings[data-select=minute][data-hour="10"] .disc-container .hour-disc .hour-selector-disc {
+  transform: rotate(210deg) translate(119.2px) rotate(-210deg);
+}
+.clock-settings[data-select=minute][data-hour="10"] .disc-container .hour-disc .hour-selector-axis {
+  transform: translate(-56.4px) rotate(210deg) translate(56.4px);
+}
+
+.clock-settings[data-select=minute][data-hour="11"] .disc-container .hour-disc .hour-selector-disc {
+  transform: rotate(240deg) translate(119.2px) rotate(-240deg);
+}
+.clock-settings[data-select=minute][data-hour="11"] .disc-container .hour-disc .hour-selector-axis {
+  transform: translate(-56.4px) rotate(240deg) translate(56.4px);
+}
+
+.clock-settings[data-select=minute][data-hour="12"] .disc-container .hour-disc .hour-selector-disc {
+  transform: rotate(270deg) translate(119.2px) rotate(-270deg);
+}
+.clock-settings[data-select=minute][data-hour="12"] .disc-container .hour-disc .hour-selector-axis {
+  transform: translate(-56.4px) rotate(270deg) translate(56.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="0"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(-90deg) translate(80.8px) rotate(90deg);
+}
+.clock-settings[data-select=minute][data-minute="0"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-40.4px) rotate(-90deg) translate(40.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="1"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(-84deg) translate(80.8px) rotate(84deg);
+}
+.clock-settings[data-select=minute][data-minute="1"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-40.4px) rotate(-84deg) translate(40.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="2"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(-78deg) translate(80.8px) rotate(78deg);
+}
+.clock-settings[data-select=minute][data-minute="2"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-40.4px) rotate(-78deg) translate(40.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="3"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(-72deg) translate(80.8px) rotate(72deg);
+}
+.clock-settings[data-select=minute][data-minute="3"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-40.4px) rotate(-72deg) translate(40.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="4"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(-66deg) translate(80.8px) rotate(66deg);
+}
+.clock-settings[data-select=minute][data-minute="4"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-40.4px) rotate(-66deg) translate(40.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="5"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(-60deg) translate(80.8px) rotate(60deg);
+}
+.clock-settings[data-select=minute][data-minute="5"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-40.4px) rotate(-60deg) translate(40.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="6"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(-54deg) translate(80.8px) rotate(54deg);
+}
+.clock-settings[data-select=minute][data-minute="6"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-40.4px) rotate(-54deg) translate(40.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="7"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(-48deg) translate(80.8px) rotate(48deg);
+}
+.clock-settings[data-select=minute][data-minute="7"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-40.4px) rotate(-48deg) translate(40.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="8"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(-42deg) translate(80.8px) rotate(42deg);
+}
+.clock-settings[data-select=minute][data-minute="8"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-40.4px) rotate(-42deg) translate(40.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="9"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(-36deg) translate(80.8px) rotate(36deg);
+}
+.clock-settings[data-select=minute][data-minute="9"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-40.4px) rotate(-36deg) translate(40.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="10"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(-30deg) translate(80.8px) rotate(30deg);
+}
+.clock-settings[data-select=minute][data-minute="10"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-40.4px) rotate(-30deg) translate(40.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="11"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(-24deg) translate(80.8px) rotate(24deg);
+}
+.clock-settings[data-select=minute][data-minute="11"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-40.4px) rotate(-24deg) translate(40.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="12"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(-18deg) translate(80.8px) rotate(18deg);
+}
+.clock-settings[data-select=minute][data-minute="12"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-40.4px) rotate(-18deg) translate(40.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="13"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(-12deg) translate(80.8px) rotate(12deg);
+}
+.clock-settings[data-select=minute][data-minute="13"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-40.4px) rotate(-12deg) translate(40.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="14"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(-6deg) translate(80.8px) rotate(6deg);
+}
+.clock-settings[data-select=minute][data-minute="14"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-40.4px) rotate(-6deg) translate(40.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="15"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(0deg) translate(80.8px) rotate(0deg);
+}
+.clock-settings[data-select=minute][data-minute="15"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-40.4px) rotate(0deg) translate(40.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="16"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(6deg) translate(80.8px) rotate(-6deg);
+}
+.clock-settings[data-select=minute][data-minute="16"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-40.4px) rotate(6deg) translate(40.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="17"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(12deg) translate(80.8px) rotate(-12deg);
+}
+.clock-settings[data-select=minute][data-minute="17"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-40.4px) rotate(12deg) translate(40.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="18"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(18deg) translate(80.8px) rotate(-18deg);
+}
+.clock-settings[data-select=minute][data-minute="18"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-40.4px) rotate(18deg) translate(40.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="19"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(24deg) translate(80.8px) rotate(-24deg);
+}
+.clock-settings[data-select=minute][data-minute="19"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-40.4px) rotate(24deg) translate(40.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="20"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(30deg) translate(80.8px) rotate(-30deg);
+}
+.clock-settings[data-select=minute][data-minute="20"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-40.4px) rotate(30deg) translate(40.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="21"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(36deg) translate(80.8px) rotate(-36deg);
+}
+.clock-settings[data-select=minute][data-minute="21"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-40.4px) rotate(36deg) translate(40.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="22"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(42deg) translate(80.8px) rotate(-42deg);
+}
+.clock-settings[data-select=minute][data-minute="22"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-40.4px) rotate(42deg) translate(40.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="23"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(48deg) translate(80.8px) rotate(-48deg);
+}
+.clock-settings[data-select=minute][data-minute="23"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-40.4px) rotate(48deg) translate(40.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="24"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(54deg) translate(80.8px) rotate(-54deg);
+}
+.clock-settings[data-select=minute][data-minute="24"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-40.4px) rotate(54deg) translate(40.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="25"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(60deg) translate(80.8px) rotate(-60deg);
+}
+.clock-settings[data-select=minute][data-minute="25"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-40.4px) rotate(60deg) translate(40.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="26"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(66deg) translate(80.8px) rotate(-66deg);
+}
+.clock-settings[data-select=minute][data-minute="26"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-40.4px) rotate(66deg) translate(40.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="27"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(72deg) translate(80.8px) rotate(-72deg);
+}
+.clock-settings[data-select=minute][data-minute="27"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-40.4px) rotate(72deg) translate(40.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="28"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(78deg) translate(80.8px) rotate(-78deg);
+}
+.clock-settings[data-select=minute][data-minute="28"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-40.4px) rotate(78deg) translate(40.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="29"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(84deg) translate(80.8px) rotate(-84deg);
+}
+.clock-settings[data-select=minute][data-minute="29"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-40.4px) rotate(84deg) translate(40.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="30"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(90deg) translate(80.8px) rotate(-90deg);
+}
+.clock-settings[data-select=minute][data-minute="30"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-40.4px) rotate(90deg) translate(40.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="31"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(96deg) translate(80.8px) rotate(-96deg);
+}
+.clock-settings[data-select=minute][data-minute="31"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-40.4px) rotate(96deg) translate(40.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="32"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(102deg) translate(80.8px) rotate(-102deg);
+}
+.clock-settings[data-select=minute][data-minute="32"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-40.4px) rotate(102deg) translate(40.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="33"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(108deg) translate(80.8px) rotate(-108deg);
+}
+.clock-settings[data-select=minute][data-minute="33"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-40.4px) rotate(108deg) translate(40.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="34"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(114deg) translate(80.8px) rotate(-114deg);
+}
+.clock-settings[data-select=minute][data-minute="34"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-40.4px) rotate(114deg) translate(40.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="35"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(120deg) translate(80.8px) rotate(-120deg);
+}
+.clock-settings[data-select=minute][data-minute="35"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-40.4px) rotate(120deg) translate(40.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="36"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(126deg) translate(80.8px) rotate(-126deg);
+}
+.clock-settings[data-select=minute][data-minute="36"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-40.4px) rotate(126deg) translate(40.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="37"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(132deg) translate(80.8px) rotate(-132deg);
+}
+.clock-settings[data-select=minute][data-minute="37"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-40.4px) rotate(132deg) translate(40.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="38"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(138deg) translate(80.8px) rotate(-138deg);
+}
+.clock-settings[data-select=minute][data-minute="38"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-40.4px) rotate(138deg) translate(40.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="39"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(144deg) translate(80.8px) rotate(-144deg);
+}
+.clock-settings[data-select=minute][data-minute="39"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-40.4px) rotate(144deg) translate(40.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="40"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(150deg) translate(80.8px) rotate(-150deg);
+}
+.clock-settings[data-select=minute][data-minute="40"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-40.4px) rotate(150deg) translate(40.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="41"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(156deg) translate(80.8px) rotate(-156deg);
+}
+.clock-settings[data-select=minute][data-minute="41"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-40.4px) rotate(156deg) translate(40.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="42"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(162deg) translate(80.8px) rotate(-162deg);
+}
+.clock-settings[data-select=minute][data-minute="42"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-40.4px) rotate(162deg) translate(40.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="43"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(168deg) translate(80.8px) rotate(-168deg);
+}
+.clock-settings[data-select=minute][data-minute="43"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-40.4px) rotate(168deg) translate(40.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="44"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(174deg) translate(80.8px) rotate(-174deg);
+}
+.clock-settings[data-select=minute][data-minute="44"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-40.4px) rotate(174deg) translate(40.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="45"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(180deg) translate(80.8px) rotate(-180deg);
+}
+.clock-settings[data-select=minute][data-minute="45"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-40.4px) rotate(180deg) translate(40.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="46"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(186deg) translate(80.8px) rotate(-186deg);
+}
+.clock-settings[data-select=minute][data-minute="46"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-40.4px) rotate(186deg) translate(40.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="47"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(192deg) translate(80.8px) rotate(-192deg);
+}
+.clock-settings[data-select=minute][data-minute="47"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-40.4px) rotate(192deg) translate(40.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="48"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(198deg) translate(80.8px) rotate(-198deg);
+}
+.clock-settings[data-select=minute][data-minute="48"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-40.4px) rotate(198deg) translate(40.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="49"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(204deg) translate(80.8px) rotate(-204deg);
+}
+.clock-settings[data-select=minute][data-minute="49"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-40.4px) rotate(204deg) translate(40.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="50"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(210deg) translate(80.8px) rotate(-210deg);
+}
+.clock-settings[data-select=minute][data-minute="50"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-40.4px) rotate(210deg) translate(40.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="51"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(216deg) translate(80.8px) rotate(-216deg);
+}
+.clock-settings[data-select=minute][data-minute="51"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-40.4px) rotate(216deg) translate(40.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="52"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(222deg) translate(80.8px) rotate(-222deg);
+}
+.clock-settings[data-select=minute][data-minute="52"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-40.4px) rotate(222deg) translate(40.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="53"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(228deg) translate(80.8px) rotate(-228deg);
+}
+.clock-settings[data-select=minute][data-minute="53"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-40.4px) rotate(228deg) translate(40.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="54"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(234deg) translate(80.8px) rotate(-234deg);
+}
+.clock-settings[data-select=minute][data-minute="54"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-40.4px) rotate(234deg) translate(40.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="55"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(240deg) translate(80.8px) rotate(-240deg);
+}
+.clock-settings[data-select=minute][data-minute="55"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-40.4px) rotate(240deg) translate(40.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="56"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(246deg) translate(80.8px) rotate(-246deg);
+}
+.clock-settings[data-select=minute][data-minute="56"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-40.4px) rotate(246deg) translate(40.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="57"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(252deg) translate(80.8px) rotate(-252deg);
+}
+.clock-settings[data-select=minute][data-minute="57"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-40.4px) rotate(252deg) translate(40.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="58"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(258deg) translate(80.8px) rotate(-258deg);
+}
+.clock-settings[data-select=minute][data-minute="58"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-40.4px) rotate(258deg) translate(40.4px);
+}
+
+.clock-settings[data-select=minute][data-minute="59"] .disc-container .hour-disc .minute-selector-disc {
+  transform: rotate(264deg) translate(80.8px) rotate(-264deg);
+}
+.clock-settings[data-select=minute][data-minute="59"] .disc-container .hour-disc .minute-selector-axis {
+  transform: translate(-40.4px) rotate(264deg) translate(40.4px);
+}
+
+.clock-container[data-show-settings=true] .settings-wrapper {
+  display: flex;
+}
+
+.clock-container .settings-wrapper {
+  z-index: 2;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.clock-settings[data-skip-animation=true] .disc-container .hour-disc .hour-selector-axis, .clock-settings[data-skip-animation=true] .disc-container .hour-disc .minute-selector-axis, .clock-settings[data-skip-animation=true] .disc-container .hour-disc .hour-selector-disc, .clock-settings[data-skip-animation=true] .disc-container .hour-disc .minute-selector-disc {
+  transition-duration: 0s;
+}
+
+.clock-settings {
+  width: 284px;
+  background-color: #404040;
+  font-family: sans-serif;
+  color: white;
+  box-shadow: 0 3px 5px black;
+}
+.clock-settings .time-container {
+  font-size: 50px;
+  height: 76px;
+  padding: 10px;
+  background-color: #363636;
+  width: 100%;
+  text-align: center;
+}
+.clock-settings .time-container .hour, .clock-settings .time-container .separator, .clock-settings .time-container .minute {
+  display: inline-block;
+  position: relative;
+  left: 12px;
+  color: white;
+}
+.clock-settings .time-container .hour, .clock-settings .time-container .minute {
+  box-sizing: content-box;
+  text-align: right;
+  width: 2ch;
+  padding: 0 3px;
+}
+.clock-settings .time-container .hour:hover, .clock-settings .time-container .minute:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.clock-settings .time-container .hour {
+  color: #f53535;
+}
+.clock-settings .time-container .pm {
+  display: none;
+}
+.clock-settings .time-container .am, .clock-settings .time-container .pm {
+  font-size: 16px;
+  position: relative;
+  left: 17px;
+}
+.clock-settings .disc-container {
+  height: 250px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.clock-settings .disc-container > * {
+  position: relative;
+}
+.clock-settings .disc-container .hour-disc[data-active=true] .hour-selector-disc, .clock-settings .disc-container .hour-disc[data-active=true] .minute-selector-disc {
+  background-color: rgba(255, 23, 23, 0.4);
+  transition-duration: 0s;
+}
+.clock-settings .disc-container .hour-disc[data-active=true] .hour-selector-disc .dot, .clock-settings .disc-container .hour-disc[data-active=true] .minute-selector-disc .dot {
+  display: block;
+}
+.clock-settings .disc-container .hour-disc[data-active=true] .hour-selector-axis, .clock-settings .disc-container .hour-disc[data-active=true] .minute-selector-axis {
+  transition-duration: 0s;
+}
+.clock-settings .disc-container .hour-disc[data-active=true] .hour-selector-axis {
+  background-color: #c80000;
+}
+.clock-settings .disc-container .hour-disc {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-color: #363636;
+  top: -12px;
+  position: relative;
+}
+.clock-settings .disc-container .hour-disc .hour, .clock-settings .disc-container .hour-disc .minute {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 16px;
+  margin-left: -16px;
+  margin-top: -16px;
+  width: 32px;
+  height: 32px;
+}
+.clock-settings .disc-container .hour-disc .hour-selector-disc:hover, .clock-settings .disc-container .hour-disc .minute-selector-disc:hover {
+  background-color: rgba(255, 23, 23, 0.4);
+}
+.clock-settings .disc-container .hour-disc .hour-selector-disc, .clock-settings .disc-container .hour-disc .minute-selector-disc {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: rgba(248, 64, 64, 0.4);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -16px;
+  margin-left: -16px;
+  transition-duration: 0.3s;
+}
+.clock-settings .disc-container .hour-disc .hour-selector-disc .dot, .clock-settings .disc-container .hour-disc .minute-selector-disc .dot {
+  display: none;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  margin-left: -4px;
+  margin-top: -4px;
+  background-color: #c80000;
+}
+.clock-settings .disc-container .hour-disc .hour-selector-axis, .clock-settings .disc-container .hour-disc .minute-selector-axis {
+  width: 64.8px;
+  height: 1px;
+  background-color: rgba(248, 64, 64, 0.4);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transition-duration: 0.3s;
+}
+.clock-settings .disc-container .hour-disc .minute-selector-axis {
+  background-color: #c80000;
+  width: 42.4px;
+}
+.clock-settings .disc-container .hour-disc .minute-selector-disc .dot {
+  display: block;
+}
+.clock-settings .disc-container .hour-disc .minute-selector-disc, .clock-settings .disc-container .hour-disc .minute-selector-axis {
+  opacity: 0;
+  pointer-events: none;
+  transition-duration: 0.3s;
+}
+.clock-settings .disc-container .hour-disc .hour, .clock-settings .disc-container .hour-disc .minute {
+  transition-duration: 0.3s;
+}
+.clock-settings .disc-container .hour-disc .minute {
+  opacity: 0;
+}
+.clock-settings .disc-container .hour-disc .hour:nth-child(1) {
+  transform: rotate(-60deg) translate(80.8px) rotate(60deg);
+}
+.clock-settings .disc-container .hour-disc .minute:nth-child(13) {
+  transform: rotate(-90deg) translate(42.4px) rotate(90deg);
+}
+.clock-settings .disc-container .hour-disc .hour:nth-child(2) {
+  transform: rotate(-30deg) translate(80.8px) rotate(30deg);
+}
+.clock-settings .disc-container .hour-disc .minute:nth-child(14) {
+  transform: rotate(-60deg) translate(42.4px) rotate(60deg);
+}
+.clock-settings .disc-container .hour-disc .hour:nth-child(3) {
+  transform: rotate(0deg) translate(80.8px) rotate(0deg);
+}
+.clock-settings .disc-container .hour-disc .minute:nth-child(15) {
+  transform: rotate(-30deg) translate(42.4px) rotate(30deg);
+}
+.clock-settings .disc-container .hour-disc .hour:nth-child(4) {
+  transform: rotate(30deg) translate(80.8px) rotate(-30deg);
+}
+.clock-settings .disc-container .hour-disc .minute:nth-child(16) {
+  transform: rotate(0deg) translate(42.4px) rotate(0deg);
+}
+.clock-settings .disc-container .hour-disc .hour:nth-child(5) {
+  transform: rotate(60deg) translate(80.8px) rotate(-60deg);
+}
+.clock-settings .disc-container .hour-disc .minute:nth-child(17) {
+  transform: rotate(30deg) translate(42.4px) rotate(-30deg);
+}
+.clock-settings .disc-container .hour-disc .hour:nth-child(6) {
+  transform: rotate(90deg) translate(80.8px) rotate(-90deg);
+}
+.clock-settings .disc-container .hour-disc .minute:nth-child(18) {
+  transform: rotate(60deg) translate(42.4px) rotate(-60deg);
+}
+.clock-settings .disc-container .hour-disc .hour:nth-child(7) {
+  transform: rotate(120deg) translate(80.8px) rotate(-120deg);
+}
+.clock-settings .disc-container .hour-disc .minute:nth-child(19) {
+  transform: rotate(90deg) translate(42.4px) rotate(-90deg);
+}
+.clock-settings .disc-container .hour-disc .hour:nth-child(8) {
+  transform: rotate(150deg) translate(80.8px) rotate(-150deg);
+}
+.clock-settings .disc-container .hour-disc .minute:nth-child(20) {
+  transform: rotate(120deg) translate(42.4px) rotate(-120deg);
+}
+.clock-settings .disc-container .hour-disc .hour:nth-child(9) {
+  transform: rotate(180deg) translate(80.8px) rotate(-180deg);
+}
+.clock-settings .disc-container .hour-disc .minute:nth-child(21) {
+  transform: rotate(150deg) translate(42.4px) rotate(-150deg);
+}
+.clock-settings .disc-container .hour-disc .hour:nth-child(10) {
+  transform: rotate(210deg) translate(80.8px) rotate(-210deg);
+}
+.clock-settings .disc-container .hour-disc .minute:nth-child(22) {
+  transform: rotate(180deg) translate(42.4px) rotate(-180deg);
+}
+.clock-settings .disc-container .hour-disc .hour:nth-child(11) {
+  transform: rotate(240deg) translate(80.8px) rotate(-240deg);
+}
+.clock-settings .disc-container .hour-disc .minute:nth-child(23) {
+  transform: rotate(210deg) translate(42.4px) rotate(-210deg);
+}
+.clock-settings .disc-container .hour-disc .hour:nth-child(12) {
+  transform: rotate(270deg) translate(80.8px) rotate(-270deg);
+}
+.clock-settings .disc-container .hour-disc .minute:nth-child(24) {
+  transform: rotate(240deg) translate(42.4px) rotate(-240deg);
+}
+.clock-settings .disc-container .am-button, .clock-settings .disc-container .pm-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  top: 93px;
+}
+.clock-settings .disc-container .am-button {
+  background-color: #8c3a3a;
+}
+.clock-settings .disc-container .am-button:hover {
+  background-color: #832a2a;
+}
+.clock-settings .disc-container .am-button {
+  left: 45px;
+}
+.clock-settings .disc-container .pm-button {
+  background-color: #363636;
+  right: 45px;
+}
+.clock-settings .disc-container .pm-button:hover {
+  background-color: #2c2c2c;
+}
+.clock-settings .done-container:hover {
+  background-color: #363636;
+}
+.clock-settings .done-container {
+  border-top: 2px solid #595959;
+  text-align: center;
+  height: 50px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
