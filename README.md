@@ -30,7 +30,7 @@ Thus, the final result is exepected to be like:
 </div>
 
 ## Design Methodology
-In this project, an adaptaion of MVC architectural pattern is used in the front-end. The parts are:
+In this project, an adaptation of MVC architectural pattern is used in the front-end. The parts are:
 * **Model** - Takes care of saving the alarm settings and issue an alarm event.
-* **View** - Create alarms and handle user interaction.
-* **Controler** - It controls the interaction between the *View* and *Model*. Thus, it create views and call the right methods when events on *View* or *Model* happens.
+* **View** - Render alarms and handle user interaction.
+* **Controler** - Controls the interaction between the *View* and *Model*. Thus, it create views and call the right methods when events on *View* or *Model* happen.
