@@ -31,6 +31,6 @@ Thus, the final result is exepected to be like:
 
 ## Design Methodology
 In this project, an adaptation of MVC architectural pattern is used in the front-end. The parts are:
-* **Model** - Takes care of saving the alarm settings and issue an alarm event.
-* **View** - Render alarms and handle user interaction.
-* **Controler** - Controls the interaction between the *View* and *Model*. Thus, it create views and call the right methods when events on *View* or *Model* happen.
+* **Model** - Takes care of saving the clock settings and issue alarm events.
+* **View** - Render clocks and handle user interactions.
+* **Controler** - Controls the interaction between the *View* and *Model*. Thus, it create clocks and call the right methods when events on *View* or *Model* happen.
