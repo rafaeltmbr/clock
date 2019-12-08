@@ -9,7 +9,7 @@ Is preferable for animations to be created by CSS. Also, the javascript code jus
 * **JS** - Compiled by Babel with Webpack
 
 ## Folder Organization
-* **~/** - The root contains all configurations files for tools like Babel, Webpack, eslint etc.
+* **./** - The root contains all configurations files for tools like Babel, Webpack, eslint etc.
 * **src/**
     * **markup/** - PUG source
     * **script/** - JavaScript source
