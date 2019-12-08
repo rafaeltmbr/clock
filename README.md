@@ -21,7 +21,7 @@ Animations have to be performed by css when possible. Also, the javascript code 
 The UI (extends for User Interface) have to be the closest possible to the one on Android V4.4.4.
 Thus, the final result is exepected to be like:
 
-<div id="images-container" style='display: "flex"; flex-direction: "row"; align-items="center"; justify-content="space-between"'>
+<div id="images-container" style="display: flex; flex-direction: row; align-items: center; justify-content: space-between">
     <div class="image-container" style='display: flex; flex-direction: column; align-items: center; justify-content: space-between'>
         <img src="/public/assets/Clock-reference.png" alt="Alarm OFF expended" width="250px" style='display="block"'>
         <footer> Image description </footer>
