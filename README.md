@@ -23,12 +23,9 @@ The UI (extends for User Interface) have to be the closest possible to the one A
 Thus, the final result is exepected to be like:
 
 <div id="images-container" style="display: flex; flex-direction: row; align-items: center; justify-content: space-between">
-    <img src="/public/assets/Clock-reference-4.png" alt="Alarm ON" title="Alarm ON" width="250px">
-    <img src="/public/assets/Clock-reference.png" alt="Alarm OFF expended" title="Alarm OFF expended" width="250px">
-    <img src="/public/assets/Clock-reference-2.png" alt="Alarm ON expended" title="Alarm ON expended" width="250px">
-    <img src="/public/assets/Clock-reference-3.png" alt="Alarm ON REPEAT expended" title="Alarm ON REPEAT expended" width="250px">
-    <img src="/public/assets/clock-settings-hour.png" alt="Alarm Hour Setting" title="Alarm Hour Setting" width="250px">
-    <img src="/public/assets/clock-settings-minute.png" alt="Alarm Minute Setting" title="Alarm Minute Setting" width="250px">
+    <img src="/public/assets/UI/alarm-off.png" alt="Alarm OFF" title="Alarm OFF" width="250px">
+    <img src="/public/assets/UI/alarm-on-expanded.png" alt="Alarm ON" title="Alarm ON" width="250px">
+    <img src="/public/assets/UI/hour-setting.png" alt="Hour Setting" title="Hour Setting" width="250px">
 </div>
 
 ## Design Methodology
