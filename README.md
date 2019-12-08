@@ -10,9 +10,9 @@ Animations have to be performed by css when possible. Also, the javascript code 
 
 ## Folder Organization
 * **src/**
-    * **markup** - PUG source files
-    * **script** - JavaScript source files
-    * **style** - SASS source files
+    * **markup/** - PUG source files
+    * **script/** - JavaScript source files
+    * **style/** - SASS source files
 
 * **public/** - Hold all generated files
     * **assets/** - Contain all images used as referênce for the UI. Also, it keeps all icons used in the project
@@ -21,8 +21,8 @@ Animations have to be performed by css when possible. Also, the javascript code 
 The UI (extends for User Interface) have to be the closest possible to the one on Android V4.4.4.
 Thus, the final result is exepected to be like:
 
-![Alarm OFF expended](/src/assets/Clock-reference.png)
-![Alarm ON expended](/src/assets/Clock-reference-2.png)
-![Alarm ON REPEAT expended](/src/assets/Clock-reference-3.png)
-![Alarm Hour Setting](/src/assets/clock-settings-hour.png)
-![Alarm Minute Setting](/src/assets/clock-settings-minute.png)
+![Alarm OFF expended](/public/assets/Clock-reference.png)
+![Alarm ON expended](/public/assets/Clock-reference-2.png)
+![Alarm ON REPEAT expended](/public/assets/Clock-reference-3.png)
+![Alarm Hour Setting](/public/assets/clock-settings-hour.png)
+![Alarm Minute Setting](/public/assets/clock-settings-minute.png)
