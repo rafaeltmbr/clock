@@ -17,7 +17,7 @@ Is preferable for animations to be created by CSS. Also, the javascript code jus
 * **public/** - Hold all generated files
     * **assets/** - Contain all images used as referênce for the UI. Also, it keeps all icons used in the project
 
-## Expected Results
+## Expected Graphical Results
 The UI (extends for User Interface) have to be the closest possible to the one Android V4.4.4 uses.
 Thus, the final result is exepected to be like:
 
@@ -33,4 +33,4 @@ Thus, the final result is exepected to be like:
 In this project, an adaptation of MVC architectural pattern is used in the front-end. The parts are:
 * **Model** - Takes care of saving the clock settings and issue alarm events.
 * **View** - Render clocks and handle user interactions.
-* **Controler** - Controls the interaction between the *View* and *Model*. Thus, it create clocks and call the right methods when events on *View* or *Model* happen.
+* **Controler** - Controls the interaction between the *View* and *Model*. Thus, it creates clocks and call the right methods when events on *View* or *Model* happen.
