@@ -1,7 +1,7 @@
 # Alarm Clock
 This project is a reengineering of an alarm clock used on **Android version 4.4.4**.
-The goal is for it to be responsive and made without any framework, just vanilla javascript.
-Animations have to be performed by css when possible. Also, the javascript code just change some of the HTML elements attributes, then it makes possible for css to enter in action and perform whatever is has to do.
+The goal is for it to be responsive and build without any using framework, just vanilla javascript.
+Is preferable for animations to be created by CSS. Also, the javascript code just changes some of the HTML elements attributes, then it makes possible for CSS to animate and hold state.
 
 ## Tecnologies
 * **CSS** - Compiled by SASS
@@ -18,7 +18,7 @@ Animations have to be performed by css when possible. Also, the javascript code 
     * **assets/** - Contain all images used as referênce for the UI. Also, it keeps all icons used in the project
 
 ## Expected Results
-The UI (extends for User Interface) have to be the closest possible to the one on Android V4.4.4.
+The UI (extends for User Interface) have to be the closest possible to the one Android V4.4.4 uses.
 Thus, the final result is exepected to be like:
 
 <div id="images-container" style="display: flex; flex-direction: row; align-items: center; justify-content: space-between">
