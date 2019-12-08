@@ -1,7 +1,7 @@
 # Alarm Clock
 This project is an attempt to reengineer the alarm clock used in **Android version 4.4.4**.
 The goal is for it to be responsive and build without any framework, just vanilla javascript.
-Is preferable for animations to be created by CSS. Also, the javascript code changes some of the HTML elements attributes, thus it makes possible for the CSS to display and animate according to the given state. It's current version can be founded at https://rafaeltmbr.github.io/clock .
+Is preferable for animations to be created by CSS. Also, the javascript code changes some of the HTML elements attributes, thus it makes possible for the CSS to display and animate according to the given state. It's current version can be found at https://rafaeltmbr.github.io/clock .
 
 ## Tecnologies
 * **CSS** - Compiled by SASS

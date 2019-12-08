@@ -1,5 +1,6 @@
 {
   "name": "Clock",
+  "homepage": "https://rafaeltmbr.github.io/clock",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -12,6 +13,7 @@
     "eslint": "^6.6.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.18.2",
+    "gh-pages": "^2.1.1",
     "jest": "^24.9.0",
     "pug-cli": "^1.0.0-alpha6",
     "sass": "^1.23.6",
@@ -28,6 +30,8 @@
     "pug": "pug ./src/markup -o ./public -P",
     "pug-w": "pug ./src/markup/ -o ./public -P -w",
     "style": "sass ./src/style/index.sass ./public/index.css --no-source-map",
-    "style-w": "sass ./src/style/index.sass ./public/index.css --no-source-map --watch"
+    "style-w": "sass ./src/style/index.sass ./public/index.css --no-source-map --watch",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d public"
   }
 }
