@@ -21,8 +21,8 @@ Animations have to be performed by css when possible. Also, the javascript code 
 The UI (extends for User Interface) have to be the closest possible to the one on Android V4.4.4.
 Thus, the final result is exepected to be like:
 
-![Alarm OFF expended](/public/assets/Clock-reference.png | width=100)
-![Alarm ON expended](/public/assets/Clock-reference-2.png | width=100)
-![Alarm ON REPEAT expended](/public/assets/Clock-reference-3.png | width=100)
-![Alarm Hour Setting](/public/assets/clock-settings-hour.png | width=100)
-![Alarm Minute Setting](/public/assets/clock-settings-minute.png | width=100)
+<img alt="Alarm OFF expended" src="/public/assets/Clock-reference.png" width="100px">
+<img alt="Alarm ON expended" src="/public/assets/Clock-reference-2.png" width="100px">
+<img alt="Alarm ON REPEAT expended" src="/public/assets/Clock-reference-3.png" width="100px">
+<img alt="Alarm Hour Setting" src="/public/assets/clock-settings-hour.png" width="100px">
+<img alt="Alarm Minute Setting" src="/public/assets/clock-settings-minute.png" width="100px">
