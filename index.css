@@ -1664,6 +1664,9 @@ body, html {
   display: flex;
 }
 
+.clock-container {
+  overscroll-behavior: none;
+}
 .clock-container .settings-wrapper {
   z-index: 2;
   display: none;
@@ -1687,7 +1690,6 @@ body, html {
   font-family: sans-serif;
   color: white;
   box-shadow: 0 3px 5px black;
-  overscroll-behavior: none;
 }
 .clock-settings .time-container {
   font-size: 50px;
