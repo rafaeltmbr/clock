@@ -17,6 +17,43 @@ body {
   cursor: default;
 }
 
+@media (hover: hover) {
+  .clock-container[data-show=true] .always-visible .time:hover, .clock-container[data-show=max] .always-visible .time:hover {
+    background-color: #1c1e20;
+  }
+  .clock-container[data-show=true] .delete-field:hover, .clock-container[data-show=max] .delete-field:hover {
+    background-color: #1c1e20;
+  }
+
+  .clock-container[data-status=off] .hide-control .hide-subject .repeat-days .day:hover {
+    border-color: #c8c8c8;
+  }
+
+  .clock-container .always-visible .time:hover {
+    background-color: #27292a;
+  }
+  .clock-container .always-visible .on-off:hover {
+    border-color: #646464;
+  }
+  .clock-container .delete-field:hover {
+    background-color: #27292a;
+  }
+  .clock-container .hide-control[data-show=true] .hide-button:hover, .clock-container .hide-control[data-show=all] .hide-button:hover, .clock-container .hide-control[data-show=min] .hide-button:hover, .clock-container .hide-control[data-show=max] .hide-button:hover {
+    background-color: #1c1e20;
+  }
+  .clock-container .hide-control .hide-button:hover {
+    background-color: #27292a;
+  }
+  .clock-container .hide-control .hide-subject .clock-name:hover {
+    background-color: #1c1e20;
+  }
+  .clock-container .hide-control .hide-subject .repeat-days .day:hover {
+    border-color: white;
+  }
+  .clock-container .hide-control .hide-subject label:hover .checkmark {
+    border-color: #e6e6e6;
+  }
+}
 .clock-container[data-show=true], .clock-container[data-show=max] {
   background-color: #27292a;
 }
@@ -300,40 +337,27 @@ body {
 }
 
 @media (hover: hover) {
-  .clock-container[data-show=true] .always-visible .time:hover, .clock-container[data-show=max] .always-visible .time:hover {
-    background-color: #1c1e20;
+  .clock-settings[data-am-pm=pm] .disc-container .pm-button:hover {
+    background-color: #832a2a;
   }
-  .clock-container[data-show=true] .delete-field:hover, .clock-container[data-show=max] .delete-field:hover {
-    background-color: #1c1e20;
-  }
-
-  .clock-container[data-status=off] .hide-control .hide-subject .repeat-days .day:hover {
-    border-color: #c8c8c8;
+  .clock-settings[data-am-pm=pm] .disc-container .am-button:hover {
+    background-color: #2c2c2c;
   }
 
-  .clock-container .always-visible .time:hover {
-    background-color: #27292a;
+  .clock-settings .time-container .hour:hover, .clock-settings .time-container .minute:hover {
+    background-color: rgba(0, 0, 0, 0.1);
   }
-  .clock-container .always-visible .on-off:hover {
-    border-color: #646464;
+  .clock-settings .disc-container .hour-disc .hour-selector-disc:hover, .clock-settings .disc-container .hour-disc .minute-selector-disc:hover {
+    background-color: rgba(255, 23, 23, 0.4);
   }
-  .clock-container .delete-field:hover {
-    background-color: #27292a;
+  .clock-settings .disc-container .am-button:hover {
+    background-color: #832a2a;
   }
-  .clock-container .hide-control[data-show=true] .hide-button:hover, .clock-container .hide-control[data-show=all] .hide-button:hover, .clock-container .hide-control[data-show=min] .hide-button:hover, .clock-container .hide-control[data-show=max] .hide-button:hover {
-    background-color: #1c1e20;
+  .clock-settings .disc-container .pm-button:hover {
+    background-color: #2c2c2c;
   }
-  .clock-container .hide-control .hide-button:hover {
-    background-color: #27292a;
-  }
-  .clock-container .hide-control .hide-subject .clock-name:hover {
-    background-color: #1c1e20;
-  }
-  .clock-container .hide-control .hide-subject .repeat-days .day:hover {
-    border-color: white;
-  }
-  .clock-container .hide-control .hide-subject label:hover .checkmark {
-    border-color: #e6e6e6;
+  .clock-settings .done-container:hover {
+    background-color: #363636;
   }
 }
 .clock-settings[data-am-pm=pm] .time-container .pm {
@@ -1917,28 +1941,6 @@ body {
   align-items: center;
   justify-content: center;
 }
-
-@media (hover: hover) {
-  .clock-settings[data-am-pm=pm] .disc-container .pm-button:hover {
-    background-color: #832a2a;
-  }
-  .clock-settings[data-am-pm=pm] .disc-container .am-button:hover {
-    background-color: #2c2c2c;
-  }
-
-  .clock-settings .time-container .hour:hover, .clock-settings .time-container .minute:hover {
-    background-color: rgba(0, 0, 0, 0.1);
-  }
-  .clock-settings .disc-container .hour-disc .hour-selector-disc:hover, .clock-settings .disc-container .hour-disc .minute-selector-disc:hover {
-    background-color: rgba(255, 23, 23, 0.4);
-  }
-  .clock-settings .disc-container .am-button:hover {
-    background-color: #832a2a;
-  }
-  .clock-settings .disc-container .pm-button:hover {
-    background-color: #2c2c2c;
-  }
-  .clock-settings .done-container:hover {
-    background-color: #363636;
-  }
+.clock-settings .done-container:active {
+  background-color: #f53535;
 }
