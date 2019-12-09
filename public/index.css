@@ -199,7 +199,7 @@ body {
   height: 40px;
   position: relative;
   overflow: hidden;
-  transition-duration: 0.4s;
+  transition-duration: 0.5s;
 }
 .clock-container .hide-control .line-separator {
   position: absolute;
@@ -208,7 +208,7 @@ body {
   bottom: 0;
   left: 10px;
   background-color: #505050;
-  transition-duration: 0.4s;
+  transition-duration: 0.5s;
   z-index: 1;
 }
 .clock-container .hide-control .hide-button {
@@ -226,7 +226,7 @@ body {
   width: 20px;
   min-width: 20px;
   transform: rotateZ(90deg);
-  transition-duration: 0.4s;
+  transition-duration: 0.5s;
   fill: white;
   margin-left: 5px;
 }
@@ -243,7 +243,7 @@ body {
   height: 40px;
   line-height: 20px;
   overflow: hidden;
-  transition-duration: 0.4s;
+  transition-duration: 0.5s;
 }
 .clock-container .hide-control .hide-button .days-name-minimized {
   min-width: 16ch;
