@@ -1662,10 +1662,8 @@ body, html {
   display: flex;
 }
 
-.clock-container {
-  overscroll-behavior: none;
-}
 .clock-container .settings-wrapper {
+  overscroll-behavior: none;
   z-index: 2;
   display: none;
   align-items: center;
