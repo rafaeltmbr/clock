@@ -4,6 +4,10 @@ body, html {
   background-color: #8a8a8a;
 }
 
+body {
+  overscroll-behavior-y: contain;
+}
+
 * {
   box-sizing: border-box;
   -ms-user-select: none;
@@ -1663,7 +1667,6 @@ body, html {
 }
 
 .clock-container .settings-wrapper {
-  overscroll-behavior: none;
   z-index: 2;
   display: none;
   align-items: center;
