@@ -1,0 +1,33 @@
+$button-inactive-hover: rgb(44, 44, 44)
+$button-active-hover: rgb(131, 42, 42)
+$disc_selector_color_hover: rgba(255, 23, 23, 0.4)
+$dark-grey: rgb(54, 54, 54)
+
+@media (hover: hover)
+    .clock-settings[data-am-pm="pm"]
+        .disc-container
+            .pm-button:hover
+                background-color: $button-active-hover
+            
+            .am-button:hover
+                background-color: $button-inactive-hover
+
+
+    .clock-settings
+        .time-container
+            .hour:hover, .minute:hover
+                background-color: rgb(0, 0, 0, 0.1)
+
+        .disc-container
+            .hour-disc
+                .hour-selector-disc:hover, .minute-selector-disc:hover
+                    background-color: $disc_selector_color_hover
+
+            .am-button:hover
+                background-color: $button-active-hover
+
+            .pm-button:hover
+                background-color: $button-inactive-hover
+
+        .done-container:hover
+            background-color: $dark_grey

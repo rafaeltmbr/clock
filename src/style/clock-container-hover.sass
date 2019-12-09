@@ -1,0 +1,52 @@
+$color_background_hide: rgb(28, 30, 32)
+$color_background_show: rgb(39, 41, 42)
+$color_text: rgb(255, 255, 255)
+
+@media (hover: hover)
+    .clock-container[data-show="true"], .clock-container[data-show="max"]
+        .always-visible
+            .time:hover
+                background-color: $color_background_hide
+
+        .delete-field:hover
+            background-color: $color_background_hide
+
+    .clock-container[data-status="off"]
+        $color_text_off: rgb(200, 200, 200)
+
+        .hide-control
+            .hide-subject
+                .repeat-days
+                    .day:hover
+                        border-color: $color_text_off
+
+    .clock-container
+        .always-visible
+            .time:hover
+                background-color: $color_background_show
+
+            .on-off:hover
+                border-color: rgb(100, 100, 100)
+
+        .delete-field:hover
+            background-color: $color_background_show
+
+        .hide-control[data-show="true"], .hide-control[data-show="all"], .hide-control[data-show="min"], .hide-control[data-show="max"]
+            .hide-button:hover
+                background-color: $color_background_hide
+
+        .hide-control
+            .hide-button:hover
+                background-color: $color_background_show
+
+            .hide-subject
+                .clock-name:hover
+                    background-color: $color_background_hide
+                    
+                .repeat-days
+                    .day:hover
+                        border-color: $color_text
+
+                label:hover
+                    .checkmark
+                        border-color: rgb(230, 230, 230)

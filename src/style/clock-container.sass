@@ -1,0 +1,322 @@
+$color_background_show: rgb(39, 41, 42)
+$color_background_hide: rgb(28, 30, 32)
+$color_on: rgb(13, 166, 218)
+$color_show_button: rgb(147, 148, 148)
+
+.clock-container[data-show="true"], .clock-container[data-show="max"]
+    background-color: $color_background_show
+
+.clock-container[data-status="on"]
+    .always-visible
+        .on-off
+            .slider
+                margin-left: 50%
+                background-color: $color_on
+
+                .on-text
+                    display: inline
+
+                .off-text
+                    display: none
+    
+.clock-container[data-status="off"]
+    $color_text_off: rgb(200, 200, 200)
+
+    color: $color_text_off
+
+    .always-visible
+        .on-off
+            .slider
+                color: $color_text_off
+
+    .delete-field
+        svg
+            fill: $color_text_off
+
+    .hide-control
+        .hide-subject
+            .clock-name
+                color: $color_text_off
+
+            .song
+                .music
+                    svg
+                        fill: $color_text_off
+            .repeat-days
+                .day[data-selected="true"]
+                    border-color: $color_on
+
+        .hide-button
+            .show-details
+                fill: $color_show_button
+
+            .clock-name-minimized
+                color: rgb(147, 148, 148)
+
+.clock-container[data-show="true"]
+    .hide-control
+        .hide-button
+            border-bottom-color: rgba(120, 120, 120)
+
+.clock-container
+    $color_text: rgb(255, 255, 255)
+    $color_off: rgb(61, 63, 64)
+    $color_off_background: rgb(47, 47, 48)
+    $color_text_off: rgb(200, 200, 200)
+    $always_visible_line_height: 60px
+    $hide_control_height: 40px
+    $details_line_height: 40px
+    $animation_duration: 0.5s
+    $container_padding_side: 10px
+    
+    max-width: 400px
+    min-width: 320px
+    font-family: sans-serif
+    position: relative
+    background-color: $color_background_hide
+    color: $color_text
+
+    *
+        box-sizing: border-box
+        margin: 0
+        padding: 0
+
+    .always-visible
+        display: flex
+        flex-direction: row
+        align-items: center
+        justify-content: space-between
+        padding: 0 $container_padding_side
+        height: $always_visible_line_height
+
+        .time
+            font-size: 40px
+            padding: 0 $container_padding_side
+            margin-left: -$container_padding_side
+
+            .am-pm
+                font-size: 12px
+                font-weight: bold
+                padding-left: 3px
+
+        .on-off
+            $on-off-color: $color_off_background
+            width: 80px
+            height: 20px
+            border: 1px solid $on-off-color
+            background-color: $on-off-color
+
+            .slider:active
+                transition-duration: 0s
+
+            .slider
+                $slider-color: rgb(89, 89, 90)
+                height: 100%
+                width: 50%
+                display: flex
+                justify-content: center
+                border-radius: 1px
+                align-items: center
+                font-size: 12px
+                background-color: $slider-color
+                color: $color_text
+                transition-duration: 0.2s
+
+                .on-text
+                    display: none
+
+                .off-text
+                    display: inline
+
+    .delete-field
+        $trash-height: 20px
+
+        display: flex
+        align-items: center
+        justify-content: center
+        position: absolute
+        height: $hide_control_height
+        width: $hide_control_height
+        right: $container_padding_side
+        top: $always_visible_line_height
+
+        svg
+            height: 22px
+            width: 22px
+            fill: $color_text
+
+    .hide-control[data-show="true"], .hide-control[data-show="all"], .hide-control[data-show="min"], .hide-control[data-show="max"]
+        height: $details_line_height * 3 + $hide_control_height
+
+        .hide-button
+            width: 100%
+
+            .clock-name-minimized
+                opacity: 0.0
+
+        .line-separator
+            bottom: $hide_control_height
+
+
+    .hide-control[data-show="all"], .hide-control[data-show="max"]
+        height: $details_line_height * 4 + $hide_control_height
+
+        .hide-subject
+            .repeat-days
+                display: flex
+
+    .hide-control[data-show="all"], .hide-control[data-show="min"]
+        transition-duration: 0s
+
+    .hide-control[data-repeat="true"][data-show="false"]
+        .hide-button
+            .days-name-minimized
+                opacity: 1.0
+
+    .hide-control
+        $show_details_height: 20px
+        $hide_button_padding_right: $hide_control_height + $container_padding_side * 2
+
+        height: $hide_control_height
+        position: relative
+        overflow: hidden
+        transition-duration: $animation_duration
+
+        .line-separator
+            $separator-height: 1px
+            $line-separator-padding: 10px
+
+            position: absolute
+            width: calc(100% - #{$line-separator-padding * 2})
+            height: $separator-height
+            bottom: 0
+            left: $line-separator-padding
+            background-color: rgb(80, 80, 80)
+            transition-duration: $animation_duration
+            z-index: 1
+
+        .hide-button
+            position: absolute
+            display: flex
+            flex-direction: row
+            align-items: center
+            height: $hide_control_height
+            width: calc(100% - #{$hide_button_padding_right})
+            bottom: 0
+            border-bottom: 1px solid rgba(0, 0, 0, 0)
+
+            .show-details
+                height: $show_details_height
+                width: $show_details_height
+                min-width: $show_details_height
+                transform: rotateZ(90deg)
+                transition-duration: $animation_duration
+                fill: $color_text
+                margin-left: 5px
+
+            .show-details[data-rotate="true"]
+                transform: rotateZ(270deg)
+
+            .clock-name-minimized
+                bottom: ($hide_control_height - $show_details_height) / 2
+                color: $color_text_off
+
+            .clock-name-minimized, .days-name-minimized
+                padding-left: 10px
+                font-size: 14px
+                height: $hide_control_height
+                line-height: $hide_control_height / 2
+                overflow: hidden
+
+            .days-name-minimized
+                min-width: 16ch
+                opacity: 0.0
+
+        .hide-subject
+            width: 100%
+            position: absolute
+            bottom: $hide_control_height
+            padding: 0 $container_padding_side
+            font-size: 16px
+            line-height: $details_line_height
+
+            .clock-name::selection
+                background-color: rgb(200, 200, 200)
+                color: rgb(0, 0, 0)
+
+            .clock-name
+                cursor: text
+                display: block
+                background-color: transparent
+                outline: none
+                border: 0
+                height: $details_line_height
+                font-size: 18px
+                width: calc(100% - #{$hide_control_height})
+                color: $color_text
+                padding-left: $container_padding_side
+                margin-left: -$container_padding_side
+
+                -ms-user-select: text
+                -webkit-user-select: text
+                -moz-user-select: text
+                user-select: text
+                
+            .repeat-days
+                display: none
+                flex-direction: row
+                align-items: center
+                justify-content: space-between
+                height: $details_line_height
+
+                .day
+                    text-align: center
+                    width: 38px
+                    line-height: 1.4em
+                    font-weight: bold
+                    border-bottom: 2px solid $color_off
+
+                .day[data-selected="true"]
+                    border-bottom-color: $color_on
+
+            .song
+                display: flex
+                flex-direction: row
+                align-items: center
+                justify-content: space-between
+
+                .music
+                    svg
+                        height: auto
+                        width: 8px
+                        fill: $color_text_off
+
+                    span
+                        padding-left: 10px
+
+            label
+                position: relative
+
+                input
+                    opacity: 0
+                    height: 0
+                    width: 0
+
+                .checkmark
+                    display: inline-block
+                    border: 1px solid $color_show_button
+                    width: 14px
+                    height: 14px
+                    margin-right: 10px
+                    position: relative
+
+                    svg
+                        display: none
+
+                input:checked ~ .checkmark svg
+                    display: inline-block
+                    height: 15px
+                    width: 18px
+                    position: absolute
+                    top: -3px
+                    fill: $color_on

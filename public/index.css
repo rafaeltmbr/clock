@@ -178,7 +178,7 @@ body {
   width: 100%;
 }
 .clock-container .hide-control[data-show=true] .hide-button .clock-name-minimized, .clock-container .hide-control[data-show=all] .hide-button .clock-name-minimized, .clock-container .hide-control[data-show=min] .hide-button .clock-name-minimized, .clock-container .hide-control[data-show=max] .hide-button .clock-name-minimized {
-  display: none;
+  opacity: 0;
 }
 .clock-container .hide-control[data-show=true] .line-separator, .clock-container .hide-control[data-show=all] .line-separator, .clock-container .hide-control[data-show=min] .line-separator, .clock-container .hide-control[data-show=max] .line-separator {
   bottom: 40px;
@@ -193,7 +193,7 @@ body {
   transition-duration: 0s;
 }
 .clock-container .hide-control[data-repeat=true][data-show=false] .hide-button .days-name-minimized {
-  display: block;
+  opacity: 1;
 }
 .clock-container .hide-control {
   height: 40px;
@@ -243,10 +243,11 @@ body {
   height: 40px;
   line-height: 20px;
   overflow: hidden;
+  transition-duration: 0.4s;
 }
 .clock-container .hide-control .hide-button .days-name-minimized {
   min-width: 16ch;
-  display: none;
+  opacity: 0;
 }
 .clock-container .hide-control .hide-subject {
   width: 100%;
