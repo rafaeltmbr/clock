@@ -1,4 +1,6 @@
 /* eslint-disable no-param-reassign */
+import Util from './Util';
+
 export default class AlarmUserHandler {
     static showHideAlarmContent({ target }) {
         const hideControl = AlarmUserHandler.getAncestorWithClass(target, 'hide-control');
@@ -157,7 +159,7 @@ export default class AlarmUserHandler {
             AlarmUserHandler.buttonSlide(slider, eventObj);
         }
 
-        window.addEventListener('mousemove', handleSlideEvent);
+        Util.addListenerToEvents(window, ['mousemove', 'touchmove'], handleSlideEvent);
         AlarmUserHandler.removeSlideEffect.handleSlideEvent = handleSlideEvent;
 
         const parentStyle = window.getComputedStyle(slider.parentElement);
@@ -165,7 +167,7 @@ export default class AlarmUserHandler {
         const parentBorder = parseInt(parentStyle.borderRightWidth, 10);
         const sliderWidth = parseInt(window.getComputedStyle(slider).width, 10);
         slider.maxOffsetX = parentWidth - sliderWidth - 2 * parentBorder;
-        slider.startScreenX = event.screenX;
+        slider.startScreenX = typeof event.clientX === 'undefined' ? event.touches[0].clientX : event.clientX;
         slider.startOffsetX = parseInt(window.getComputedStyle(slider).marginLeft, 10) || 0;
         slider.offsetX = slider.startOffsetX;
         slider.slided = false;
@@ -173,8 +175,9 @@ export default class AlarmUserHandler {
     }
 
     static removeSlideEffect(target) {
-        window.removeEventListener('mousemove',
+        Util.removeListenerToEvents(window, ['mousemove', 'touchmove'],
             AlarmUserHandler.removeSlideEffect.handleSlideEvent);
+
         const [slider] = target.children;
 
         if (!slider || !slider.started) return;
@@ -186,7 +189,8 @@ export default class AlarmUserHandler {
     }
 
     static buttonSlide(slider, event) {
-        const offsetX = event.screenX - slider.startScreenX;
+        const { clientX } = typeof event.clientX === 'undefined' ? event.touches[0] : event;
+        const offsetX = clientX - slider.startScreenX;
         AlarmUserHandler.slide(slider, offsetX);
     }
 
@@ -222,7 +226,7 @@ export default class AlarmUserHandler {
             }
         }
 
-        window.addEventListener('mousemove', handleDiscSelectorMove);
+        Util.addListenerToEvents(window, ['mousemove', 'touchmove'], handleDiscSelectorMove);
         target.handleDiscSelectorMove = handleDiscSelectorMove;
 
         const parentBoundaries = target.parentElement.getBoundingClientRect();
@@ -234,13 +238,18 @@ export default class AlarmUserHandler {
     static removeDiscSelector(target) {
         if (!target || !target.started) return;
 
-        window.removeEventListener('mousemove', target.handleDiscSelectorMove);
+        Util.removeListenerToEvents(window, ['mousemove', 'touchmove'],
+            target.handleDiscSelectorMove);
+
         target.started = false;
     }
 
     static handleHourDiscMovement(disc, event) {
+        const { clientX } = typeof event.clientX === 'undefined' ? event.touches[0] : event;
+        const { clientY } = typeof event.clientY === 'undefined' ? event.touches[0] : event;
+
         const angle = AlarmUserHandler.getAngle(disc.parentX, disc.parentY,
-            event.clientX, event.clientY);
+            clientX, clientY);
 
         const angleFormatted = AlarmUserHandler.formatAngleToHour(angle);
 
@@ -257,8 +266,10 @@ export default class AlarmUserHandler {
     }
 
     static handleMinuteDiscMovement(disc, event) {
-        const angle = AlarmUserHandler.getAngle(disc.parentX, disc.parentY,
-            event.clientX, event.clientY);
+        const { clientX } = typeof event.clientX === 'undefined' ? event.touches[0] : event;
+        const { clientY } = typeof event.clientY === 'undefined' ? event.touches[0] : event;
+
+        const angle = AlarmUserHandler.getAngle(disc.parentX, disc.parentY, clientX, clientY);
 
         const angleFormatted = AlarmUserHandler.formatAngleToHour(angle);
 
@@ -299,7 +310,7 @@ export default class AlarmUserHandler {
     }
 
     static handleSelectorDiscClick(disc) {
-        disc.addEventListener('mousedown',
+        Util.addListenerToEvents(disc, ['mousedown', 'touchstart'],
             (event) => {
                 AlarmUserHandler.addDiscSelector(disc, event);
                 disc.parentElement.setAttribute('data-active', 'true');
@@ -308,14 +319,19 @@ export default class AlarmUserHandler {
     }
 
     static handleMouseupAfterSelectorDiscMousedown(disc) {
-        window.addEventListener('mouseup', function discMouseup() {
-            AlarmUserHandler.removeDiscSelector(disc);
-            disc.parentElement.setAttribute('data-active', 'false');
-            const clockSettings = AlarmUserHandler.getAncestorWithClass(disc, 'clock-settings');
-            clockSettings.setAttribute('data-skip-animation', 'false');
-            clockSettings.setAttribute('data-select', 'minute');
-            window.removeEventListener('mouseup', discMouseup);
-        });
+        Util.addListenerToEvents(window, ['mouseup', 'touchend'],
+            function discMouseup() {
+                AlarmUserHandler.removeDiscSelector(disc);
+                disc.parentElement.setAttribute('data-active', 'false');
+                AlarmUserHandler.enableDiscAnimation(disc);
+                Util.removeListenerToEvents(window, ['mouseup', 'touchend'], discMouseup);
+            });
+    }
+
+    static enableDiscAnimation(disc) {
+        const clockSettings = AlarmUserHandler.getAncestorWithClass(disc, 'clock-settings');
+        clockSettings.setAttribute('data-skip-animation', 'false');
+        clockSettings.setAttribute('data-select', 'minute');
     }
 
     static handleClockSettingsDone(button) {

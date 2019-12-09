@@ -1,6 +1,7 @@
 body, html
     margin: 0
     padding: 0
+    background-color: rgb(138, 138, 138)
 
 *
     box-sizing: border-box
@@ -465,9 +466,11 @@ $disc_selector_axis_minute_disappear_width: $disc_radius - $hour_font_size * 3.6
         .hour-disc
             .hour
                 opacity: 0.0
+                pointer-events: none
 
             .minute
                 opacity: 1.0
+                pointer-events: auto
 
             .hour-selector-disc, .hour-selector-axis
                 opacity: 0.0
@@ -685,6 +688,7 @@ $disc_selector_axis_minute_disappear_width: $disc_radius - $hour_font_size * 3.6
                 transition-duration: $hour_minute_switch_animation_duration
 
             .minute
+                pointer-events: none
                 opacity: 0.0
                 
             @for $i from 1 through $total_hours

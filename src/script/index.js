@@ -1,4 +1,5 @@
 import AlarmUserHandler from './AlarmUserHandler';
+import Util from './Util';
 
 const hideButtons = document.querySelectorAll('.clock-container .hide-button');
 hideButtons.forEach((button) => button.addEventListener('click',
@@ -6,13 +7,14 @@ hideButtons.forEach((button) => button.addEventListener('click',
 
 const onOffSwitchs = document.querySelectorAll('.clock-container .on-off');
 onOffSwitchs.forEach((button) => {
-    button.addEventListener('mousedown',
+    Util.addListenerToEvents(button, ['mousedown', 'touchstart'],
         (event) => {
             AlarmUserHandler.addSlideEffect(button, event);
-            window.addEventListener('mouseup', function removeEffect() {
-                AlarmUserHandler.removeSlideEffect(button);
-                window.removeEventListener('mouseup', removeEffect);
-            });
+            Util.addListenerToEvents(window, ['mouseup', 'touchend'],
+                function removeEffect() {
+                    AlarmUserHandler.removeSlideEffect(button);
+                    Util.removeListenerToEvents(window, ['mouseup', 'touchend'], removeEffect);
+                });
         });
 });
 
@@ -37,16 +39,17 @@ hourSelectorDisc.forEach(AlarmUserHandler.handleSelectorDiscClick);
 
 const minuteSelectorDisc = document.querySelectorAll('.clock-settings .minute-selector-disc');
 minuteSelectorDisc.forEach((disc) => {
-    disc.addEventListener('mousedown',
+    Util.addListenerToEvents(disc, ['mousedown', 'touchstart'],
         (event) => {
             AlarmUserHandler.addDiscSelector(disc, event);
             disc.parentElement.setAttribute('data-active', 'true');
         });
 
-    window.addEventListener('mouseup', () => {
-        AlarmUserHandler.removeDiscSelector(disc);
-        disc.parentElement.setAttribute('data-active', 'false');
-    });
+    Util.addListenerToEvents(window, ['mouseup', 'touchend'],
+        () => {
+            AlarmUserHandler.removeDiscSelector(disc);
+            disc.parentElement.setAttribute('data-active', 'false');
+        });
 });
 
 const amButtons = document.querySelectorAll('.clock-settings .disc-container .am-button');
@@ -105,17 +108,18 @@ hourButtons.forEach((button) => {
     const hour = parseInt(button.innerText, 10);
     const clockSettings = AlarmUserHandler.getAncestorWithClass(button, 'clock-settings');
 
-    button.addEventListener('mousedown', (event) => {
-        clockSettings.setAttribute('data-skip-animation', 'true');
-        AlarmUserHandler.changeHourOnClockSettings(clockSettings, hour);
+    Util.addListenerToEvents(button, ['mousedown', 'touchstart'],
+        (event) => {
+            clockSettings.setAttribute('data-skip-animation', 'true');
+            AlarmUserHandler.changeHourOnClockSettings(clockSettings, hour);
 
-        const hourDisc = AlarmUserHandler.getAncestorWithClass(button, 'hour-disc');
-        const selectorDisc = AlarmUserHandler.getChildWithClass(hourDisc, 'hour-selector-disc');
+            const hourDisc = AlarmUserHandler.getAncestorWithClass(button, 'hour-disc');
+            const selectorDisc = AlarmUserHandler.getChildWithClass(hourDisc, 'hour-selector-disc');
 
-        AlarmUserHandler.addDiscSelector(selectorDisc, event);
-        selectorDisc.parentElement.setAttribute('data-active', 'true');
-        AlarmUserHandler.handleMouseupAfterSelectorDiscMousedown(selectorDisc);
-    });
+            AlarmUserHandler.addDiscSelector(selectorDisc, event);
+            selectorDisc.parentElement.setAttribute('data-active', 'true');
+            AlarmUserHandler.handleMouseupAfterSelectorDiscMousedown(selectorDisc);
+        });
 });
 
 const minuteButtons = document.querySelectorAll('.clock-settings .hour-disc .minute');
@@ -123,15 +127,16 @@ minuteButtons.forEach((button) => {
     const minute = parseInt(button.innerText, 10);
     const clockSettings = AlarmUserHandler.getAncestorWithClass(button, 'clock-settings');
 
-    button.addEventListener('mousedown', (event) => {
-        clockSettings.setAttribute('data-skip-animation', 'true');
-        AlarmUserHandler.changeMinuteOnClockSettings(clockSettings, minute);
+    Util.addListenerToEvents(button, ['mousedown', 'touchstart'],
+        (event) => {
+            clockSettings.setAttribute('data-skip-animation', 'true');
+            AlarmUserHandler.changeMinuteOnClockSettings(clockSettings, minute);
 
-        const hourDisc = AlarmUserHandler.getAncestorWithClass(button, 'hour-disc');
-        const selectorDisc = AlarmUserHandler.getChildWithClass(hourDisc, 'minute-selector-disc');
+            const hourDisc = AlarmUserHandler.getAncestorWithClass(button, 'hour-disc');
+            const selectorDisc = AlarmUserHandler.getChildWithClass(hourDisc, 'minute-selector-disc');
 
-        AlarmUserHandler.addDiscSelector(selectorDisc, event);
-        selectorDisc.parentElement.setAttribute('data-active', 'true');
-        AlarmUserHandler.handleMouseupAfterSelectorDiscMousedown(selectorDisc);
-    });
+            AlarmUserHandler.addDiscSelector(selectorDisc, event);
+            selectorDisc.parentElement.setAttribute('data-active', 'true');
+            AlarmUserHandler.handleMouseupAfterSelectorDiscMousedown(selectorDisc);
+        });
 });
