@@ -1,6 +1,7 @@
 body, html {
   margin: 0;
   padding: 0;
+  background-color: #8a8a8a;
 }
 
 * {
@@ -1050,9 +1051,11 @@ body, html {
 }
 .clock-settings[data-select=minute] .disc-container .hour-disc .hour {
   opacity: 0;
+  pointer-events: none;
 }
 .clock-settings[data-select=minute] .disc-container .hour-disc .minute {
   opacity: 1;
+  pointer-events: auto;
 }
 .clock-settings[data-select=minute] .disc-container .hour-disc .hour-selector-disc, .clock-settings[data-select=minute] .disc-container .hour-disc .hour-selector-axis {
   opacity: 0;
@@ -1815,6 +1818,7 @@ body, html {
   transition-duration: 0.3s;
 }
 .clock-settings .disc-container .hour-disc .minute {
+  pointer-events: none;
   opacity: 0;
 }
 .clock-settings .disc-container .hour-disc .hour:nth-child(1) {
