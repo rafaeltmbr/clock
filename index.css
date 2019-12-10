@@ -1945,3 +1945,8 @@ body {
 .clock-settings .done-container:active {
   background-color: #272727;
 }
+
+body[data-show-settings=true] {
+  height: 100%;
+  overflow: hidden;
+}
