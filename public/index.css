@@ -1070,9 +1070,6 @@ body {
   width: 80.8px;
 }
 
-.clock-settings[data-select=minute] {
-  overscroll-behavior-y: none;
-}
 .clock-settings[data-select=minute] .time-container .hour {
   color: white;
 }
@@ -1952,5 +1949,4 @@ body {
 body[data-show-settings=true] {
   height: 100%;
   overflow: hidden;
-  overscroll-behavior-y: none;
 }
