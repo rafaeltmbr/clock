@@ -352,6 +352,7 @@ export default class AlarmUserHandler {
         amPm.innerText = dayPeriod.toUpperCase();
 
         clockContainer.setAttribute('data-show-settings', 'false');
+        document.body.setAttribute('data-show-settings', 'false');
         clockContainer.setAttribute('data-status', 'on');
     }
 
