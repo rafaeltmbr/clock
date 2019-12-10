@@ -1712,7 +1712,7 @@ body {
   font-family: sans-serif;
   color: white;
   box-shadow: 0 3px 5px black;
-  position: absolute;
+  position: fixed;
   left: calc( (100vw - 284px) / 2);
   bottom: 20px;
 }
