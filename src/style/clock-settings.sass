@@ -78,6 +78,8 @@ $disc_selector_axis_minute_disappear_width: $disc_radius - $hour_font_size * 3.6
                 width: $disc_selector_axis_new_width
 
 .clock-settings[data-select="minute"]
+    overscroll-behavior-y: none // TEST DANGER
+
     .time-container
         .hour
             color: $text-color
