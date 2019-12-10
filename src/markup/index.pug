@@ -4,7 +4,7 @@ html(lang="en")
         title Clock
         link(rel="stylesheet" href="./index.css")
         meta(name="viewport" content="width=device-width, initial-scale=1.0")
-    body
+    body(data-show-settings="false")
         -var c = 0
         while c++ < 3
             .clock-container(data-status="off" data-show-settings="false" data-show="false")

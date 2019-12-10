@@ -86,6 +86,7 @@ const timeButton = document.querySelectorAll('.clock-container .always-visible .
 timeButton.forEach((button) => {
     button.addEventListener('click', () => {
         button.parentElement.parentElement.setAttribute('data-show-settings', 'true');
+        document.body.setAttribute('data-show-settings', 'true');
     });
 });
 
@@ -99,6 +100,7 @@ settingsWrapper.forEach((wrapper) => {
     wrapper.addEventListener('mousedown', ({ target }) => {
         if (target.className === 'settings-wrapper') {
             wrapper.parentElement.setAttribute('data-show-settings', 'false');
+            document.body.setAttribute('data-show-settings', 'false');
         }
     });
 });
