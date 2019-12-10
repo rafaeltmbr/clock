@@ -1688,14 +1688,12 @@ body {
 }
 
 .clock-container[data-show-settings=true] .settings-wrapper {
-  display: flex;
+  display: block;
 }
 
 .clock-container .settings-wrapper {
   z-index: 2;
   display: none;
-  align-items: center;
-  justify-content: center;
   height: 100vh;
   width: 100vw;
   position: fixed;
@@ -1714,6 +1712,9 @@ body {
   font-family: sans-serif;
   color: white;
   box-shadow: 0 3px 5px black;
+  position: absolute;
+  left: calc( (100vw - 284px) / 2);
+  bottom: calc( (100vh - 376px) / 2);
 }
 .clock-settings .time-container {
   font-size: 50px;
