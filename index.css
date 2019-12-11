@@ -1715,7 +1715,7 @@ body {
   color: white;
   box-shadow: 0 3px 5px black;
   position: fixed;
-  top: calc( (100vh - 376px) / 2 );
+  bottom: calc( (100vh - 376px) / 2 );
   left: calc( (100vw - 284px) / 2 );
 }
 .clock-settings .time-container {
@@ -1952,7 +1952,7 @@ body {
 .test-container {
   width: 20px;
   height: 20px;
-  background-color: rgba(18, 145, 81, 0.8);
+  background-color: rgba(247, 70, 0, 0.8);
   position: fixed;
   bottom: 20px;
   right: 20px;
@@ -1962,10 +1962,5 @@ body {
 }
 
 body[data-show-settings=true] {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
   overflow: hidden;
 }
