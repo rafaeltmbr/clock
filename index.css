@@ -1957,8 +1957,3 @@ body {
   box-shadow: 0 0 5px black;
   z-index: 3;
 }
-
-body[data-show-settings=true] {
-  height: 100%;
-  overflow: hidden;
-}
