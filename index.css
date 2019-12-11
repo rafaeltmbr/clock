@@ -1952,12 +1952,12 @@ body {
 .test-container {
   width: 20px;
   height: 20px;
-  background-color: rgba(255, 0, 0, 0.8);
+  background-color: rgba(26, 74, 206, 0.8);
   position: fixed;
   bottom: 20px;
   right: 20px;
   border-radius: 50%;
-  box-shadow: 0 0 5px #4529e7;
+  box-shadow: 0 0 5px black;
   z-index: 3;
 }
 
