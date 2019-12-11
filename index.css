@@ -1962,5 +1962,6 @@ body {
 }
 
 body[data-show-settings=true] {
+  height: 100vh;
   overflow: hidden;
 }
