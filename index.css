@@ -1952,7 +1952,7 @@ body {
 .test-container {
   width: 20px;
   height: 20px;
-  background-color: rgba(230, 5, 136, 0.8);
+  background-color: rgba(5, 185, 230, 0.8);
   position: fixed;
   bottom: 20px;
   right: 20px;
@@ -1963,5 +1963,7 @@ body {
 
 body[data-show-settings=true] {
   height: 100vh;
+  bottom: 0;
+  position: fixed;
   overflow: hidden;
 }
