@@ -1715,7 +1715,7 @@ body {
   color: white;
   box-shadow: 0 3px 5px black;
   position: fixed;
-  bottom: calc( (100vh - 376px) / 2 );
+  bottom: 50px;
   left: calc( (100vw - 284px) / 2 );
 }
 .clock-settings .time-container {
