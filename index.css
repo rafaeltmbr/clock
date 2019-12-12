@@ -1948,3 +1948,12 @@ body {
 .clock-settings .done-container:active {
   background-color: #272727;
 }
+
+body[data-show-settings=true] {
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  position: fixed;
+  overflow: hidden;
+}
