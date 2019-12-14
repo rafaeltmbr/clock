@@ -139,7 +139,7 @@ $disc_selector_axis_minute_disappear_width: $disc_radius - $hour_font_size * 3.6
 
 .clock-container[data-show-settings="true"]
     .settings-wrapper
-        display: flex
+        display: block
 
 .clock-container
     .settings-wrapper
@@ -147,10 +147,10 @@ $disc_selector_axis_minute_disappear_width: $disc_radius - $hour_font_size * 3.6
         display: none
         align-items: center
         justify-content: center
-        height: 100vh
-        width: 100vw
         position: fixed
         top: 0
+        right: 0
+        bottom: 0
         left: 0
         background-color: rgba(0, 0, 0, 0.5)
 
@@ -171,6 +171,9 @@ $disc_selector_axis_minute_disappear_width: $disc_radius - $hour_font_size * 3.6
     font-family: sans-serif
     color: $text-color
     box-shadow: 0 3px 5px rgb(0, 0, 0)
+    position: fixed
+    bottom: calc( (100% - #{$clock_settings_computed_height}) /  2)
+    left: calc( (100vw - #{$clock_settings_width}) / 2 )
 
     .time-container
         font-size: 50px

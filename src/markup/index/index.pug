@@ -1,0 +1,16 @@
+doctype html
+html(lang="en")
+    head
+        title Clock
+        link(rel="stylesheet" href="./index.css")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    body(data-show-settings="false")
+        -var c = 0
+        while c++ < 3
+            .clock-container(data-status="off" data-show-settings="false" data-show="false")
+                include ../includes/always-visible
+                include ../includes/hide-control
+                include ../includes/delete-field
+                include ../includes/settings
+
+        script(src="bundle.js")
