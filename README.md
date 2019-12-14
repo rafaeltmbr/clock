@@ -45,7 +45,11 @@ With **Git** installed (see [how to install Git](https://git-scm.com/book/en/v2/
 
 this will download all files contained in this repository.
 
-Open the created **clock** folder `cd clock`, with **yarn** installed (see [how to install yarn](https://yarnpkg.com/lang/en/docs/install)), run following command
+Open the created **clock** folder in the terminal
+
+`cd clock`
+
+with **yarn** installed (see [how to install yarn](https://yarnpkg.com/lang/en/docs/install)), run following command
 
 `yarn install`
 
