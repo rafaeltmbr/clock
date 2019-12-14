@@ -51,7 +51,7 @@ When developing, run the following command in the terminal
 
 `yarn dev`
 
-this will run scripts to watch changes in the files located in the **./src** folder, then compiled files will be generated in the **./public** folder every time a source files is modified.
+this will execute scripts to watch changes in the files located in the **./src** folder, then compiled files will be generated in the **./public** folder every time a source files is modified.
 
 Production files can be created running the following command
 
