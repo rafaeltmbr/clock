@@ -39,22 +39,16 @@ In this project, an adaptation of MVC architectural pattern is used in the front
 * **Controler** - Controls the interaction between the *View* and *Model*. Thus, it creates clocks and call the right methods when events on *View* or *Model* happen.
 
 ## How to Develop
-With **Git** installed (see [how to install Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)), open the terminal and run the following command
-
+With **Git** installed (see [how to install Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)), open the terminal and run the following command<br>
 `git clone https://github.com/rafaeltmbr/clock`
 
-After all files are downloaded, use **yarn** to install all dependencies (see [how to install yarn](https://yarnpkg.com/lang/en/docs/install)) running the following command
-
+After all files are downloaded, use **yarn** to install all dependencies (see [how to install yarn](https://yarnpkg.com/lang/en/docs/install)) running the following command<br>
 `yarn install`
 
-When developing, run the following command in the terminal
-
+When developing, run the following command in the terminal<br>
 `yarn dev`
+<br>this will run scripts to watch changes in the files located in the **./src** folder, then compiled files will be generated in the **./public** folder.
 
-this will run scripts to watch changes in the files located in the **./src** folder, then compiled files will be generated in the **./public** folder.
-
-Production files can be generated running the following command
-
+Production files can be generated running the following command<br>
 `yarn build`
-
-this will generated minified (lightweight) files in the **./public** folder
+<br>this will generated minified (lightweight) files in the **./public** folder
