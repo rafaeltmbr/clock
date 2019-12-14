@@ -34,6 +34,51 @@ const repeatDays = document.querySelectorAll('.clock-container .day');
 repeatDays.forEach((day) => day.addEventListener('click',
     AlarmUserHandler.handleDaySelection));
 
+const musicButtons = document.querySelectorAll('.clock-container .hide-control .music');
+musicButtons.forEach((button) => button.addEventListener('click', () => {
+    const clockContainer = AlarmUserHandler.getAncestorWithClass(button, 'clock-container');
+    const ringtonesWrapper = AlarmUserHandler.getChildWithClass(clockContainer, 'ringtones-wrapper');
+    const ringtonesDiv = AlarmUserHandler.getChildWithClass(ringtonesWrapper, 'ringtones');
+    ringtonesDiv.setAttribute('data-selected-song', clockContainer.getAttribute('data-selected-song'));
+    clockContainer.setAttribute('data-show-ringtones', 'true');
+}));
+
+const ringtoneItems = document.querySelectorAll('.clock-container .ringtones .ringtone-item');
+ringtoneItems.forEach((item) => item.addEventListener('click', () => {
+    const ringtonesDiv = AlarmUserHandler.getAncestorWithClass(item, 'ringtones');
+    ringtonesDiv.setAttribute('data-selected-song', item.getAttribute('data-item-number'));
+    ringtonesDiv.setAttribute('data-selected-song-name', item.innerText);
+}));
+
+const ringtonesOkayButtons = document.querySelectorAll('.clock-container .ringtones .ok');
+ringtonesOkayButtons.forEach((button) => button.addEventListener('click', () => {
+    const clockContainer = AlarmUserHandler.getAncestorWithClass(button, 'clock-container');
+    const ringtonesDiv = AlarmUserHandler.getAncestorWithClass(button, 'ringtones');
+    clockContainer.setAttribute('data-selected-song', ringtonesDiv.getAttribute('data-selected-song'));
+    clockContainer.setAttribute('data-show-ringtones', 'false');
+
+    const hideControl = AlarmUserHandler.getChildWithClass(clockContainer, 'hide-control');
+    const hideSubject = AlarmUserHandler.getChildWithClass(hideControl, 'hide-subject');
+    const song = AlarmUserHandler.getChildWithClass(hideSubject, 'song');
+    const music = AlarmUserHandler.getChildWithClass(song, 'music');
+    const songName = AlarmUserHandler.getChildWithClass(music, 'song-name');
+    songName.innerText = ringtonesDiv.getAttribute('data-selected-song-name');
+}));
+
+const ringtonesCancelButtons = document.querySelectorAll('.clock-container .ringtones .cancel');
+ringtonesCancelButtons.forEach((button) => button.addEventListener('click', () => {
+    const clockContainer = AlarmUserHandler.getAncestorWithClass(button, 'clock-container');
+    clockContainer.setAttribute('data-show-ringtones', 'false');
+}));
+
+const ringtonesWrappers = document.querySelectorAll('.clock-container .ringtones-wrapper');
+ringtonesWrappers.forEach((wrapper) => wrapper.addEventListener('click', ({ target }) => {
+    if (target.className === 'ringtones-wrapper') {
+        const clockContainer = AlarmUserHandler.getAncestorWithClass(wrapper, 'clock-container');
+        clockContainer.setAttribute('data-show-ringtones', 'false');
+    }
+}));
+
 const hourSelectorDisc = document.querySelectorAll('.clock-settings .hour-selector-disc');
 hourSelectorDisc.forEach(AlarmUserHandler.handleSelectorDiscClick);
 

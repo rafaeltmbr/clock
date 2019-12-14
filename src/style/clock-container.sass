@@ -40,6 +40,8 @@ $color_show_button: rgb(147, 148, 148)
 
             .song
                 .music
+                    .song-name
+                        text-transform: uppercase
                     svg
                         fill: $color_text_off
             .repeat-days
@@ -287,6 +289,10 @@ $color_show_button: rgb(147, 148, 148)
                 justify-content: space-between
 
                 .music
+                    padding-right: $container_padding_side
+                    padding-left: $container_padding_side
+                    margin-left: -$container_padding_side
+
                     svg
                         height: auto
                         width: 8px

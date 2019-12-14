@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
   <body data-show-settings="false">
-    <div class="clock-container" data-status="off" data-show-settings="false" data-show="false">
+    <div class="clock-container" data-status="off" data-show-settings="false" data-show="false" data-show-ringtones="false" data-selected-song="9">
       <div class="always-visible">
         <div class="time"><span class="hour-minute">6:00</span><span class="am-pm">AM</span></div>
         <div class="on-off">
@@ -29,7 +29,7 @@
             <div class="day">SAT</div>
           </div>
           <div class="song">
-            <div class="music"><svg height="94px" id="Capa_1" style="enable-background:new 0 0 58 94;" version="1.1" viewBox="0 0 58 94" width="58px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><path d="M37.992,0h-8.021v65.358c-4.435-1.706-10.174-1.73-15.835,0.328C3.994,69.377-2.049,78.355,0.638,85.736   c2.688,7.383,13.088,10.374,23.229,6.683c8.614-3.134,14.249-10.082,14.111-16.626l0.014-53.451   c13.986,2.204,14.943,19.884,13.268,24.842c-0.636,1.879,0.484,3.286,2.598,0C68.938,23.726,37.992,13.376,37.992,0z"/></g><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/></svg><span>OXYGEN</span></div>
+            <div class="music"><svg height="94px" id="Capa_1" style="enable-background:new 0 0 58 94;" version="1.1" viewBox="0 0 58 94" width="58px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><path d="M37.992,0h-8.021v65.358c-4.435-1.706-10.174-1.73-15.835,0.328C3.994,69.377-2.049,78.355,0.638,85.736   c2.688,7.383,13.088,10.374,23.229,6.683c8.614-3.134,14.249-10.082,14.111-16.626l0.014-53.451   c13.986,2.204,14.943,19.884,13.268,24.842c-0.636,1.879,0.484,3.286,2.598,0C68.938,23.726,37.992,13.376,37.992,0z"/></g><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/></svg><span class="song-name">OXYGEN</span></div>
             <label>
               <input class="vibrate" type="checkbox" name="vibrate"><span class="checkmark"><svg height="32" id="check" viewBox="0 0 32 32" width="32" xmlns="http://www.w3.org/2000/svg"><path d="M1 14 L5 10 L13 18 L27 4 L31 8 L13 26 z"/></svg></span><span>VIBRATE</span>
             </label>
@@ -86,27 +86,99 @@
           <div class="done-container"><span>Done</span></div>
         </div>
       </div>
-      <div class="ringtones">
-        <header>Ringtones</header>
-        <ul>
-          <li>None</li>
-          <li>Argon</li>
-          <li>Carbon</li>
-          <li>Hangouts Message</li>
-          <li>Helium</li>
-          <li>Krypton</li>
-          <li>Neon</li>
-          <li>Osmium</li>
-          <li>Oxygen</li>
-          <li>Platinum</li>
-        </ul>
-        <div class="cancel-ok">
-          <div class="cancel">Cancel</div>
-          <div class="ok">OK</div>
+      <div class="ringtones-wrapper">
+        <div class="ringtones" data-selected-song="9" data-selected-song-name="Oxygen">
+          <header>Ringtones</header>
+          <ul class="ringtone-list">
+            <li class="ringtone-item" data-item-number="1">
+              <div class="song-name">None</div>
+              <div class="list-bullet">
+                <div class="bullet-around">
+                  <div class="bullet-center"></div>
+                </div>
+              </div>
+            </li>
+            <li class="ringtone-item" data-item-number="2">
+              <div class="song-name">Argon</div>
+              <div class="list-bullet">
+                <div class="bullet-around">
+                  <div class="bullet-center"></div>
+                </div>
+              </div>
+            </li>
+            <li class="ringtone-item" data-item-number="3">
+              <div class="song-name">Carbon</div>
+              <div class="list-bullet">
+                <div class="bullet-around">
+                  <div class="bullet-center"></div>
+                </div>
+              </div>
+            </li>
+            <li class="ringtone-item" data-item-number="4">
+              <div class="song-name">Hangouts Message</div>
+              <div class="list-bullet">
+                <div class="bullet-around">
+                  <div class="bullet-center"></div>
+                </div>
+              </div>
+            </li>
+            <li class="ringtone-item" data-item-number="5">
+              <div class="song-name">Helium</div>
+              <div class="list-bullet">
+                <div class="bullet-around">
+                  <div class="bullet-center"></div>
+                </div>
+              </div>
+            </li>
+            <li class="ringtone-item" data-item-number="6">
+              <div class="song-name">Krypton</div>
+              <div class="list-bullet">
+                <div class="bullet-around">
+                  <div class="bullet-center"></div>
+                </div>
+              </div>
+            </li>
+            <li class="ringtone-item" data-item-number="7">
+              <div class="song-name">Neon</div>
+              <div class="list-bullet">
+                <div class="bullet-around">
+                  <div class="bullet-center"></div>
+                </div>
+              </div>
+            </li>
+            <li class="ringtone-item" data-item-number="8">
+              <div class="song-name">Osmium</div>
+              <div class="list-bullet">
+                <div class="bullet-around">
+                  <div class="bullet-center"></div>
+                </div>
+              </div>
+            </li>
+            <li class="ringtone-item" data-item-number="9">
+              <div class="song-name">Oxygen</div>
+              <div class="list-bullet">
+                <div class="bullet-around">
+                  <div class="bullet-center"></div>
+                </div>
+              </div>
+            </li>
+            <li class="ringtone-item" data-item-number="10">
+              <div class="song-name">Platinum</div>
+              <div class="list-bullet">
+                <div class="bullet-around">
+                  <div class="bullet-center"></div>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <div class="cancel-ok">
+            <div class="cancel">Cancel</div>
+            <div class="ok">OK</div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="clock-container" data-status="off" data-show-settings="false" data-show="false">
+    <div class="clock-container" data-status="off" data-show-settings="false" data-show="false" data-show-ringtones="false" data-selected-song="9">
       <div class="always-visible">
         <div class="time"><span class="hour-minute">6:00</span><span class="am-pm">AM</span></div>
         <div class="on-off">
@@ -129,7 +201,7 @@
             <div class="day">SAT</div>
           </div>
           <div class="song">
-            <div class="music"><svg height="94px" id="Capa_1" style="enable-background:new 0 0 58 94;" version="1.1" viewBox="0 0 58 94" width="58px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><path d="M37.992,0h-8.021v65.358c-4.435-1.706-10.174-1.73-15.835,0.328C3.994,69.377-2.049,78.355,0.638,85.736   c2.688,7.383,13.088,10.374,23.229,6.683c8.614-3.134,14.249-10.082,14.111-16.626l0.014-53.451   c13.986,2.204,14.943,19.884,13.268,24.842c-0.636,1.879,0.484,3.286,2.598,0C68.938,23.726,37.992,13.376,37.992,0z"/></g><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/></svg><span>OXYGEN</span></div>
+            <div class="music"><svg height="94px" id="Capa_1" style="enable-background:new 0 0 58 94;" version="1.1" viewBox="0 0 58 94" width="58px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><path d="M37.992,0h-8.021v65.358c-4.435-1.706-10.174-1.73-15.835,0.328C3.994,69.377-2.049,78.355,0.638,85.736   c2.688,7.383,13.088,10.374,23.229,6.683c8.614-3.134,14.249-10.082,14.111-16.626l0.014-53.451   c13.986,2.204,14.943,19.884,13.268,24.842c-0.636,1.879,0.484,3.286,2.598,0C68.938,23.726,37.992,13.376,37.992,0z"/></g><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/></svg><span class="song-name">OXYGEN</span></div>
             <label>
               <input class="vibrate" type="checkbox" name="vibrate"><span class="checkmark"><svg height="32" id="check" viewBox="0 0 32 32" width="32" xmlns="http://www.w3.org/2000/svg"><path d="M1 14 L5 10 L13 18 L27 4 L31 8 L13 26 z"/></svg></span><span>VIBRATE</span>
             </label>
@@ -186,27 +258,99 @@
           <div class="done-container"><span>Done</span></div>
         </div>
       </div>
-      <div class="ringtones">
-        <header>Ringtones</header>
-        <ul>
-          <li>None</li>
-          <li>Argon</li>
-          <li>Carbon</li>
-          <li>Hangouts Message</li>
-          <li>Helium</li>
-          <li>Krypton</li>
-          <li>Neon</li>
-          <li>Osmium</li>
-          <li>Oxygen</li>
-          <li>Platinum</li>
-        </ul>
-        <div class="cancel-ok">
-          <div class="cancel">Cancel</div>
-          <div class="ok">OK</div>
+      <div class="ringtones-wrapper">
+        <div class="ringtones" data-selected-song="9" data-selected-song-name="Oxygen">
+          <header>Ringtones</header>
+          <ul class="ringtone-list">
+            <li class="ringtone-item" data-item-number="1">
+              <div class="song-name">None</div>
+              <div class="list-bullet">
+                <div class="bullet-around">
+                  <div class="bullet-center"></div>
+                </div>
+              </div>
+            </li>
+            <li class="ringtone-item" data-item-number="2">
+              <div class="song-name">Argon</div>
+              <div class="list-bullet">
+                <div class="bullet-around">
+                  <div class="bullet-center"></div>
+                </div>
+              </div>
+            </li>
+            <li class="ringtone-item" data-item-number="3">
+              <div class="song-name">Carbon</div>
+              <div class="list-bullet">
+                <div class="bullet-around">
+                  <div class="bullet-center"></div>
+                </div>
+              </div>
+            </li>
+            <li class="ringtone-item" data-item-number="4">
+              <div class="song-name">Hangouts Message</div>
+              <div class="list-bullet">
+                <div class="bullet-around">
+                  <div class="bullet-center"></div>
+                </div>
+              </div>
+            </li>
+            <li class="ringtone-item" data-item-number="5">
+              <div class="song-name">Helium</div>
+              <div class="list-bullet">
+                <div class="bullet-around">
+                  <div class="bullet-center"></div>
+                </div>
+              </div>
+            </li>
+            <li class="ringtone-item" data-item-number="6">
+              <div class="song-name">Krypton</div>
+              <div class="list-bullet">
+                <div class="bullet-around">
+                  <div class="bullet-center"></div>
+                </div>
+              </div>
+            </li>
+            <li class="ringtone-item" data-item-number="7">
+              <div class="song-name">Neon</div>
+              <div class="list-bullet">
+                <div class="bullet-around">
+                  <div class="bullet-center"></div>
+                </div>
+              </div>
+            </li>
+            <li class="ringtone-item" data-item-number="8">
+              <div class="song-name">Osmium</div>
+              <div class="list-bullet">
+                <div class="bullet-around">
+                  <div class="bullet-center"></div>
+                </div>
+              </div>
+            </li>
+            <li class="ringtone-item" data-item-number="9">
+              <div class="song-name">Oxygen</div>
+              <div class="list-bullet">
+                <div class="bullet-around">
+                  <div class="bullet-center"></div>
+                </div>
+              </div>
+            </li>
+            <li class="ringtone-item" data-item-number="10">
+              <div class="song-name">Platinum</div>
+              <div class="list-bullet">
+                <div class="bullet-around">
+                  <div class="bullet-center"></div>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <div class="cancel-ok">
+            <div class="cancel">Cancel</div>
+            <div class="ok">OK</div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="clock-container" data-status="off" data-show-settings="false" data-show="false">
+    <div class="clock-container" data-status="off" data-show-settings="false" data-show="false" data-show-ringtones="false" data-selected-song="9">
       <div class="always-visible">
         <div class="time"><span class="hour-minute">6:00</span><span class="am-pm">AM</span></div>
         <div class="on-off">
@@ -229,7 +373,7 @@
             <div class="day">SAT</div>
           </div>
           <div class="song">
-            <div class="music"><svg height="94px" id="Capa_1" style="enable-background:new 0 0 58 94;" version="1.1" viewBox="0 0 58 94" width="58px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><path d="M37.992,0h-8.021v65.358c-4.435-1.706-10.174-1.73-15.835,0.328C3.994,69.377-2.049,78.355,0.638,85.736   c2.688,7.383,13.088,10.374,23.229,6.683c8.614-3.134,14.249-10.082,14.111-16.626l0.014-53.451   c13.986,2.204,14.943,19.884,13.268,24.842c-0.636,1.879,0.484,3.286,2.598,0C68.938,23.726,37.992,13.376,37.992,0z"/></g><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/></svg><span>OXYGEN</span></div>
+            <div class="music"><svg height="94px" id="Capa_1" style="enable-background:new 0 0 58 94;" version="1.1" viewBox="0 0 58 94" width="58px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><path d="M37.992,0h-8.021v65.358c-4.435-1.706-10.174-1.73-15.835,0.328C3.994,69.377-2.049,78.355,0.638,85.736   c2.688,7.383,13.088,10.374,23.229,6.683c8.614-3.134,14.249-10.082,14.111-16.626l0.014-53.451   c13.986,2.204,14.943,19.884,13.268,24.842c-0.636,1.879,0.484,3.286,2.598,0C68.938,23.726,37.992,13.376,37.992,0z"/></g><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/></svg><span class="song-name">OXYGEN</span></div>
             <label>
               <input class="vibrate" type="checkbox" name="vibrate"><span class="checkmark"><svg height="32" id="check" viewBox="0 0 32 32" width="32" xmlns="http://www.w3.org/2000/svg"><path d="M1 14 L5 10 L13 18 L27 4 L31 8 L13 26 z"/></svg></span><span>VIBRATE</span>
             </label>
@@ -286,23 +430,95 @@
           <div class="done-container"><span>Done</span></div>
         </div>
       </div>
-      <div class="ringtones">
-        <header>Ringtones</header>
-        <ul>
-          <li>None</li>
-          <li>Argon</li>
-          <li>Carbon</li>
-          <li>Hangouts Message</li>
-          <li>Helium</li>
-          <li>Krypton</li>
-          <li>Neon</li>
-          <li>Osmium</li>
-          <li>Oxygen</li>
-          <li>Platinum</li>
-        </ul>
-        <div class="cancel-ok">
-          <div class="cancel">Cancel</div>
-          <div class="ok">OK</div>
+      <div class="ringtones-wrapper">
+        <div class="ringtones" data-selected-song="9" data-selected-song-name="Oxygen">
+          <header>Ringtones</header>
+          <ul class="ringtone-list">
+            <li class="ringtone-item" data-item-number="1">
+              <div class="song-name">None</div>
+              <div class="list-bullet">
+                <div class="bullet-around">
+                  <div class="bullet-center"></div>
+                </div>
+              </div>
+            </li>
+            <li class="ringtone-item" data-item-number="2">
+              <div class="song-name">Argon</div>
+              <div class="list-bullet">
+                <div class="bullet-around">
+                  <div class="bullet-center"></div>
+                </div>
+              </div>
+            </li>
+            <li class="ringtone-item" data-item-number="3">
+              <div class="song-name">Carbon</div>
+              <div class="list-bullet">
+                <div class="bullet-around">
+                  <div class="bullet-center"></div>
+                </div>
+              </div>
+            </li>
+            <li class="ringtone-item" data-item-number="4">
+              <div class="song-name">Hangouts Message</div>
+              <div class="list-bullet">
+                <div class="bullet-around">
+                  <div class="bullet-center"></div>
+                </div>
+              </div>
+            </li>
+            <li class="ringtone-item" data-item-number="5">
+              <div class="song-name">Helium</div>
+              <div class="list-bullet">
+                <div class="bullet-around">
+                  <div class="bullet-center"></div>
+                </div>
+              </div>
+            </li>
+            <li class="ringtone-item" data-item-number="6">
+              <div class="song-name">Krypton</div>
+              <div class="list-bullet">
+                <div class="bullet-around">
+                  <div class="bullet-center"></div>
+                </div>
+              </div>
+            </li>
+            <li class="ringtone-item" data-item-number="7">
+              <div class="song-name">Neon</div>
+              <div class="list-bullet">
+                <div class="bullet-around">
+                  <div class="bullet-center"></div>
+                </div>
+              </div>
+            </li>
+            <li class="ringtone-item" data-item-number="8">
+              <div class="song-name">Osmium</div>
+              <div class="list-bullet">
+                <div class="bullet-around">
+                  <div class="bullet-center"></div>
+                </div>
+              </div>
+            </li>
+            <li class="ringtone-item" data-item-number="9">
+              <div class="song-name">Oxygen</div>
+              <div class="list-bullet">
+                <div class="bullet-around">
+                  <div class="bullet-center"></div>
+                </div>
+              </div>
+            </li>
+            <li class="ringtone-item" data-item-number="10">
+              <div class="song-name">Platinum</div>
+              <div class="list-bullet">
+                <div class="bullet-around">
+                  <div class="bullet-center"></div>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <div class="cancel-ok">
+            <div class="cancel">Cancel</div>
+            <div class="ok">OK</div>
+          </div>
         </div>
       </div>
     </div>
