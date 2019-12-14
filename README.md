@@ -57,4 +57,7 @@ When developing, run the following command in the terminal
 `yarn dev`
 
 
+this will run scripts to watch changes in the files located in the **./src** folder, and then generating compiled files in the **./public** folder.
+
+
 this will run scripts to watch all changes in the source files and update the output files accordingly. Then the output files will be located in the **./public** folder.
