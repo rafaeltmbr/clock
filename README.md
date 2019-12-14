@@ -9,18 +9,18 @@ Is preferable for animations to be created by CSS. Also, the javascript code cha
 * **JS** - Compiled by Babel with Webpack
 
 ## Folder Organization
-**./** - The root contains all configurations files for tools like Babel, Webpack, eslint etc.<br>
-&nbsp;|-- **src**<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|-- **markup** - PUG source<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|-- **includes** - PUG includes<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|-- **index** - PUG entry file<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|-- **script** - JavaScript source<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|-- **style** - SASS source<br>
+**./** - The root contains all configurations files for tools like Babel, Webpack, eslint etc.
+&nbsp;|-- **src**
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|-- **markup** - PUG source
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|-- **includes** - PUG includes
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|-- **index** - PUG entry file
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|-- **script** - JavaScript source
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|-- **style** - SASS source
 
-&nbsp;|-- **public** - Hold all generated files<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|-- **assets** - Contain all images used as reference for the UI development. Also, it keeps all icons used in the project<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|-- **icons** - Used icons<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|-- **UI** - User Interface reference images<br>
+&nbsp;|-- **public** - Hold all generated files
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|-- **assets** - Contain all images used as reference for the UI development. Also, it keeps all icons used in the project
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|-- **icons** - Used icons
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|-- **UI** - User Interface reference images
 
 ## Expected Graphical Results
 The UI (extends for User Interface) have to be the closest possible to the one Android V4.4.4 uses.
