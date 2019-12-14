@@ -12,6 +12,8 @@ Is preferable for animations to be created by CSS. Also, the javascript code cha
 **./** - The root contains all configurations files for tools like Babel, Webpack, eslint etc.<br>
 &nbsp;|-- **src**<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|-- **markup** - PUG source<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|-- **includes** - PUG includes<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|-- **index** - PUG entry file<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|-- **script** - JavaScript source<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|-- **style** - SASS source<br>
 
