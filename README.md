@@ -51,4 +51,10 @@ After all files are downloaded, use **yarn** to install all dependencies (see [h
 `yarn install`
 
 
+When developing, run the following command in the terminal
 
+
+`yarn dev`
+
+
+this will run scripts to watch all changes in the source files and update the output files accordingly. Then the output files will be located in the ./public folder.
