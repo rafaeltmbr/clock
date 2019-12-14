@@ -53,8 +53,8 @@ When developing, run the following command in the terminal
 
 this will run scripts to watch changes in the files located in the **./src** folder, then compiled files will be generated in the **./public** folder every time a source files is modified.
 
-Production files can be generated running the following command
+Production files can be created running the following command
 
 `yarn build`
 
-this will generated minified (lightweight) files in the **./public** folder
+this will generate minified (lightweight) files in the **./public** folder
