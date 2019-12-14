@@ -84,9 +84,6 @@ body {
 .clock-container[data-status=off] .hide-control .hide-subject .clock-name {
   color: #c8c8c8;
 }
-.clock-container[data-status=off] .hide-control .hide-subject .song .music .song-name {
-  text-transform: uppercase;
-}
 .clock-container[data-status=off] .hide-control .hide-subject .song .music svg {
   fill: #c8c8c8;
 }
@@ -317,7 +314,8 @@ body {
   width: 8px;
   fill: #c8c8c8;
 }
-.clock-container .hide-control .hide-subject .song .music span {
+.clock-container .hide-control .hide-subject .song .music .song-name {
+  text-transform: uppercase;
   padding-left: 10px;
 }
 .clock-container .hide-control .hide-subject label {
@@ -2072,13 +2070,14 @@ body {
   display: flex;
 }
 
-.ringtones-wrapper .ringtones ul li:hover {
-  background-color: #222222;
+@media (hover: hover) {
+  .ringtones-wrapper .ringtones ul li:hover {
+    background-color: #222222;
+  }
+  .ringtones-wrapper .cancel-ok *:hover {
+    background-color: #222222;
+  }
 }
-.ringtones-wrapper .cancel-ok *:hover {
-  background-color: #222222;
-}
-
 body[data-show-settings=true] {
   top: 0;
   right: 0;
