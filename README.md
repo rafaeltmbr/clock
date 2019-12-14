@@ -51,7 +51,7 @@ After all files are downloaded, with **yarn** installed (see [how to install yar
 
 yarn will download all the dependencies necessary to work on the project.
 
-When developing, run the following command in the terminal
+When developing, run the following command
 
 `yarn dev`
 
