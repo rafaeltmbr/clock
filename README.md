@@ -38,8 +38,8 @@ In this project, an adaptation of MVC architectural pattern is used in the front
 * **View** - Render clocks and handle user interactions.
 * **Controler** - Controls the interaction between the *View* and *Model*. Thus, it creates clocks and call the right methods when events on *View* or *Model* happen.
 
-## How to download this project
-With **Git** installed (see [how to install Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)), open the terminal and run the following command
+## How to download
+To download, you'll need **Git** to be installed (see [how to install Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)), open the terminal and run the following command
 
 `git clone https://github.com/rafaeltmbr/clock`
 
@@ -55,7 +55,7 @@ with **yarn** installed (see [how to install yarn](https://yarnpkg.com/lang/en/d
 
 yarn will download all the dependencies necessary to work on the project.
 
-## How to develop in this project
+## How to develop
 
 When developing, open the **clock** folder in the terminal and run the following command
 
