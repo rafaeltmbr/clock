@@ -43,7 +43,7 @@ With **Git** installed (see [how to install Git](https://git-scm.com/book/en/v2/
 
 `git clone https://github.com/rafaeltmbr/clock`
 
-this will download all files contained in this repository.
+this will download all the files contained in this repository.
 
 Open the created **clock** folder in the terminal
 
