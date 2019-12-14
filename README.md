@@ -39,7 +39,7 @@ In this project, an adaptation of MVC architectural pattern is used in the front
 * **Controler** - Controls the interaction between the *View* and *Model*. Thus, it creates clocks and call the right methods when events on *View* or *Model* happen.
 
 ## How to download
-To download, you'll need **Git** to be installed (see [how to install Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)), open the terminal and run the following command
+To download, you'll need **Git** to be installed (see [how to install Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)), after that, open the terminal and run the following command
 
 `git clone https://github.com/rafaeltmbr/clock`
 
