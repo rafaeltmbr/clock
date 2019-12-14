@@ -2071,13 +2071,14 @@ body {
   display: flex;
 }
 
-.ringtones-wrapper .ringtones ul li:hover {
-  background-color: #222222;
+@media (hover: hover) {
+  .ringtones-wrapper .ringtones ul li:hover {
+    background-color: #222222;
+  }
+  .ringtones-wrapper .cancel-ok *:hover {
+    background-color: #222222;
+  }
 }
-.ringtones-wrapper .cancel-ok *:hover {
-  background-color: #222222;
-}
-
 body[data-show-settings=true] {
   top: 0;
   right: 0;

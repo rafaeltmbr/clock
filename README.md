@@ -19,6 +19,7 @@ Is preferable for animations to be created by CSS. Also, the javascript code cha
 
 &nbsp;|-- **public** - Hold all generated files<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|-- **assets** - Contain all images used as reference for the UI development. Also, it keeps all icons used in the project<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|-- **app-icons** - Application logo in many formats<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|-- **icons** - Used icons<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|-- **UI** - User Interface reference images<br>
 

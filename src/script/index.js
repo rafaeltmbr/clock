@@ -62,7 +62,8 @@ ringtonesOkayButtons.forEach((button) => button.addEventListener('click', () => 
     const song = AlarmUserHandler.getChildWithClass(hideSubject, 'song');
     const music = AlarmUserHandler.getChildWithClass(song, 'music');
     const songName = AlarmUserHandler.getChildWithClass(music, 'song-name');
-    songName.innerText = ringtonesDiv.getAttribute('data-selected-song-name');
+    const selectedSongName = ringtonesDiv.getAttribute('data-selected-song-name');
+    songName.innerText = selectedSongName.toLowerCase() === 'none' ? 'Silent' : selectedSongName;
 }));
 
 const ringtonesCancelButtons = document.querySelectorAll('.clock-container .ringtones .cancel');
