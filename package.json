@@ -1,5 +1,5 @@
 {
-  "name": "Clock",
+  "name": "clock",
   "homepage": "https://rafaeltmbr.github.io/clock",
   "version": "1.0.0",
   "main": "index.js",
