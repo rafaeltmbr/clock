@@ -55,9 +55,9 @@ with **yarn** installed (see [how to install yarn](https://yarnpkg.com/lang/en/d
 
 yarn will download all the dependencies necessary to work on the project.
 
-## how to develop this project
+## How to develop this project
 
-When developing, run the following command
+When developing, open the **clock** folder in the terminal and run the following command
 
 `yarn dev`
 
