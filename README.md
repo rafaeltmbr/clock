@@ -6,7 +6,7 @@ Is preferable for animations to be created by CSS. Also, the javascript code cha
 ## Tecnologies
 * **CSS** - Compiled by Sass (see [how to use Sass](https://sass-lang.com/guide))
 * **HTML** - Compiled by Pug (see [how to use Pug](https://pugjs.org/api/getting-started.html))
-* **JS** - Compiled by Babel with Webpack
+* **JavaScript** - Compiled by Babel with Webpack
 
 ## Folder Organization
 **./** - The root contains all configurations files for tools like Babel, Webpack, eslint etc.<br>
