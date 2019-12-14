@@ -40,15 +40,21 @@ In this project, an adaptation of MVC architectural pattern is used in the front
 
 ## How to Develop
 With **Git** installed (see [how to install Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)), open the terminal and run the following command
+
 `git clone https://github.com/rafaeltmbr/clock`
 
 After all files are downloaded, use **yarn** to install all dependencies (see [how to install yarn](https://yarnpkg.com/lang/en/docs/install)) running the following command
+
 `yarn install`
 
 When developing, run the following command in the terminal
+
 `yarn dev`
+
 this will run scripts to watch changes in the files located in the **./src** folder, then compiled files will be generated in the **./public** folder.
 
 Production files can be generated running the following command
+
 `yarn build`
+
 this will generated minified (lightweight) files in the **./public** folder
