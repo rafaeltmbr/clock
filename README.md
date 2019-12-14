@@ -4,8 +4,8 @@ The goal is for it to be responsive and build without any framework, just vanill
 Is preferable for animations to be created by CSS. Also, the javascript code changes some of the HTML elements attributes, thus it makes possible for the CSS to display and animate according to the given state. It's current version can be found at https://rafaeltmbr.github.io/clock .
 
 ## Tecnologies
-* **CSS** - Compiled by SASS
-* **HTML** - Compiled by PUG
+* **CSS** - Compiled by Sass (see [how to use Sass](https://sass-lang.com/guide))
+* **HTML** - Compiled by Pug (see [how to use Pug](https://pugjs.org/api/getting-started.html))
 * **JS** - Compiled by Babel with Webpack
 
 ## Folder Organization
@@ -43,7 +43,7 @@ With **Git** installed (see [how to install Git](https://git-scm.com/book/en/v2/
 
 `git clone https://github.com/rafaeltmbr/clock`
 
-This will download all the repository files.
+this will download all files contained in this repository.
 
 After all files are downloaded, with **yarn** installed (see [how to install yarn](https://yarnpkg.com/lang/en/docs/install)), run following command
 
