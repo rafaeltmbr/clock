@@ -62,3 +62,5 @@ Production files can be created running the following command
 `yarn build`
 
 this will generate minified (lightweight) files in the **./public** folder.
+
+Open **./public/index.html** file in the your browser, after that, every time you want to see the changes you have to refresh the page.
