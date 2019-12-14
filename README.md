@@ -43,9 +43,13 @@ With **Git** installed (see [how to install Git](https://git-scm.com/book/en/v2/
 
 `git clone https://github.com/rafaeltmbr/clock`
 
-After all files are downloaded, use **yarn** to install all dependencies (see [how to install yarn](https://yarnpkg.com/lang/en/docs/install)) running the following command
+This will download all the repository files.
+
+After all files are downloaded, with **yarn** installed (see [how to install yarn](https://yarnpkg.com/lang/en/docs/install)), run following command
 
 `yarn install`
+
+yarn will download all the dependencies necessary to work on the project.
 
 When developing, run the following command in the terminal
 
@@ -57,4 +61,4 @@ Production files can be created running the following command
 
 `yarn build`
 
-this will generate minified (lightweight) files in the **./public** folder
+this will generate minified (lightweight) files in the **./public** folder.
