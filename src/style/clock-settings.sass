@@ -366,7 +366,12 @@ $clock_settings_new_width: $clock_settings_width + $clock_settings_done_new_widt
             height: calc(100% - #{$done_container_height})
             width: $clock_settings_done_new_width
             display: flex
+            flex-direction: row
             align-items: center
+
+            .am, .pm
+                position: relative
+                top: 12px
 
         .done-container
             position: absolute
