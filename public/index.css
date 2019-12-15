@@ -1994,6 +1994,9 @@ body {
 .clock-container .ringtones-wrapper .ringtones ul li:last-child {
   border-bottom: none;
 }
+.clock-container .ringtones-wrapper .ringtones ul li:active {
+  background-color: #222222;
+}
 .clock-container .ringtones-wrapper .ringtones ul li {
   border-bottom: 1px solid #4c4c4c;
   color: white;
@@ -2037,6 +2040,9 @@ body {
   overflow: hidden;
   height: 40px;
   border-top: 1px solid #4c4c4c;
+}
+.clock-container .ringtones-wrapper .ringtones .cancel-ok *:active {
+  background-color: #222222;
 }
 .clock-container .ringtones-wrapper .ringtones .cancel-ok .cancel, .clock-container .ringtones-wrapper .ringtones .cancel-ok .ok {
   width: 50%;

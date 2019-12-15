@@ -10,6 +10,7 @@ $ringtones_total: 10
 $ringtones_min_height: 270px
 $ringtones_computed_header_height: 43px
 $ringtones_cancel_ok_height: 40px
+$ringtones_background_color_active: rgb(34, 34, 34)
 
 .clock-container[data-show-ringtones="true"]
     .ringtones-wrapper
@@ -49,6 +50,9 @@ $ringtones_cancel_ok_height: 40px
 
                 li:last-child
                     border-bottom: none
+
+                li:active
+                    background-color: $ringtones_background_color_active
 
                 li
                     border-bottom: 1px solid $ringtones_list_border_color
@@ -92,6 +96,9 @@ $ringtones_cancel_ok_height: 40px
                 overflow: hidden
                 height: $ringtones_cancel_ok_height
                 border-top: 1px solid $ringtones_list_border_color
+
+                *:active
+                    background-color: $ringtones_background_color_active
 
                 .cancel, .ok
                     width: 50%
