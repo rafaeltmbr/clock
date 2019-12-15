@@ -1973,7 +1973,7 @@ body {
 .clock-container .ringtones-wrapper .ringtones {
   width: 284px;
   max-height: calc(100% - (2 * 10px));
-  min-height: 300px;
+  min-height: 270px;
   position: fixed;
   top: calc( (100% - 485px) / 2 );
   left: calc( (100% - 284px) / 2 );
@@ -2079,12 +2079,12 @@ body {
 
 @media (max-height: 505px) {
   .clock-container .ringtones-wrapper .ringtones {
-    height: 301px;
-    top: calc( (100% - 300px) / 2);
+    height: 271px;
+    top: calc( (100% - 270px) / 2);
   }
   .clock-container .ringtones-wrapper .ringtones ul {
     overflow: auto;
-    height: 217px;
+    height: 187px;
   }
 }
 @media (hover: hover) {
