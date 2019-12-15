@@ -2,6 +2,7 @@ $button-inactive-hover: rgb(44, 44, 44)
 $button-active-hover: rgb(131, 42, 42)
 $disc_selector_color_hover: rgba(255, 23, 23, 0.4)
 $dark-grey: rgb(54, 54, 54)
+$darker-grey: rgb(44, 44, 44)
 
 @media (hover: hover)
     .clock-settings[data-am-pm="pm"]
@@ -31,3 +32,10 @@ $dark-grey: rgb(54, 54, 54)
 
         .done-container:hover
             background-color: $dark_grey
+
+$clock_settings_computed_height: 376px
+
+@media (hover: hover) and (max-height: $clock_settings_computed_height + 20px)
+    .clock-settings
+        .done-container:hover
+            background-color: $darker-grey

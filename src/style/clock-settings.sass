@@ -35,6 +35,7 @@ $minute_angle: 360 / $total_minutes
 $disc_selector_axis_new_width: $disc_selector_axis_width + $hour_selector_disc_size / 2
 $disc_selector_axis_hour_disappear_width: $disc_selector_axis_new_width + $hour_selector_disc_size
 $disc_selector_axis_minute_disappear_width: $disc_radius - $hour_font_size * 3.6
+$done_container_height: 50px
 
 @for $i from 1 through $total_hours
     .clock-settings[data-hour="#{$i}"]
@@ -159,10 +160,11 @@ $disc_selector_axis_minute_disappear_width: $disc_radius - $hour_font_size * 3.6
                 transition-duration: 0s
 
 
+$clock_settings_width: 284px
+$disc_container_height: 250px
+$dark-grey: rgb(54, 54, 54)
 .clock-settings
-    $clock_settings_width: 284px
     $clock_settings_computed_height: 376px
-    $dark-grey: rgb(54, 54, 54)
     $light-grey: rgb(64, 64, 64)
     width: $clock_settings_width
     background-color: $light-grey
@@ -208,7 +210,7 @@ $disc_selector_axis_minute_disappear_width: $disc_radius - $hour_font_size * 3.6
         $am-pm-top-offset: 105px
         $offset-top: -12px
 
-        height: 250px
+        height: $disc_container_height
         display: flex
         flex-direction: row
         align-items: center
@@ -336,7 +338,7 @@ $disc_selector_axis_minute_disappear_width: $disc_radius - $hour_font_size * 3.6
     .done-container
         border-top: 2px solid rgb(89, 89, 89)
         text-align: center
-        height: 50px
+        height: $done_container_height
         font-size: 14px
         display: flex
         align-items: center
@@ -344,4 +346,39 @@ $disc_selector_axis_minute_disappear_width: $disc_radius - $hour_font_size * 3.6
 
     .done-container:active
         background-color: $done_container_active_color
+
+$clock_settings_computed_height: 376px
+$clock_settings_done_new_width: 200px
+$clock_settings_new_width: $clock_settings_width + $clock_settings_done_new_width
+
+@media (max-height: $clock_settings_computed_height + 20px)
+    .clock-settings
+        height: $disc_container_height
+        width: $clock_settings_new_width
+        position: absolute
+        left: calc( (100% - #{$clock_settings_new_width}) / 2)
+        bottom: calc( (100% - #{$disc_container_height}) / 2)
+
+        .time-container
+            position: absolute
+            top: 0
+            left: 0
+            height: calc(100% - #{$done_container_height})
+            width: $clock_settings_done_new_width
+            display: flex
+            align-items: center
+
+        .done-container
+            position: absolute
+            bottom: 0
+            left: 0
+            height: $done_container_height
+            width: $clock_settings_done_new_width
+            background-color: $dark-grey
+
+        .disc-container
+            position: absolute
+            top: 0
+            right: 0
+            width: $clock_settings_width
 
