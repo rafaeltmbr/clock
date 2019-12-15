@@ -1,5 +1,5 @@
 $ringtones_width: 284px
-$ringtones_computed_height: 482px
+$ringtones_computed_height: 485px
 $ringtones_background_color: rgb(40, 40, 40)
 $ringtones_header_color: rgb(51, 181, 229)
 $ringtones_list_border_color: rgb(76, 76, 76)
@@ -7,6 +7,9 @@ $ringtones_padding_left: 15px
 $ringtones_padding_top: 10px
 $ringtones_list_bullet_width: 18px
 $ringtones_total: 10
+$ringtones_min_height: 300px
+$ringtones_computed_header_height: 43px
+$ringtones_cancel_ok_height: 40px
 
 .clock-container[data-show-ringtones="true"]
     .ringtones-wrapper
@@ -25,7 +28,8 @@ $ringtones_total: 10
     
         .ringtones
             width: $ringtones_width
-            height: $ringtones_computed_height
+            max-height: calc(100% - (2 * #{$ringtones_padding_top}))
+            min-height: $ringtones_min_height
             position: fixed
             top: calc( (100% - #{$ringtones_computed_height}) / 2 )
             left: calc( (100% - #{$ringtones_width}) / 2 )
@@ -43,6 +47,9 @@ $ringtones_total: 10
             ul
                 list-style: none
 
+                li:last-child
+                    border-bottom: none
+
                 li
                     border-bottom: 1px solid $ringtones_list_border_color
                     color: white
@@ -51,7 +58,6 @@ $ringtones_total: 10
                     flex-direction: row
                     align-items: center
                     justify-content: space-between
-                    height: 40px
 
                     .list-bullet
                         width: $ringtones_list_bullet_width
@@ -83,6 +89,9 @@ $ringtones_total: 10
                 flex-direction: row
                 color: white
                 display: flex
+                overflow: hidden
+                height: $ringtones_cancel_ok_height
+                border-top: 1px solid $ringtones_list_border_color
 
                 .cancel, .ok
                     width: 50%
@@ -100,3 +109,14 @@ $ringtones_total: 10
                     .list-bullet
                         .bullet-around
                             display: flex
+
+@media (max-height: #{$ringtones_computed_height + 2 * $ringtones_padding_top})
+    .clock-container
+        .ringtones-wrapper
+            .ringtones
+                height: $ringtones_min_height + 1
+                top: calc( (100% - #{$ringtones_min_height}) / 2)
+
+                ul
+                    overflow: auto
+                    height: $ringtones_min_height - $ringtones_computed_header_height - $ringtones_cancel_ok_height

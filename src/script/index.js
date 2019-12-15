@@ -41,6 +41,7 @@ musicButtons.forEach((button) => button.addEventListener('click', () => {
     const ringtonesDiv = AlarmUserHandler.getChildWithClass(ringtonesWrapper, 'ringtones');
     ringtonesDiv.setAttribute('data-selected-song', clockContainer.getAttribute('data-selected-song'));
     clockContainer.setAttribute('data-show-ringtones', 'true');
+    document.body.setAttribute('data-setting', 'true');
 }));
 
 const ringtoneItems = document.querySelectorAll('.clock-container .ringtones .ringtone-item');
@@ -56,6 +57,7 @@ ringtonesOkayButtons.forEach((button) => button.addEventListener('click', () => 
     const ringtonesDiv = AlarmUserHandler.getAncestorWithClass(button, 'ringtones');
     clockContainer.setAttribute('data-selected-song', ringtonesDiv.getAttribute('data-selected-song'));
     clockContainer.setAttribute('data-show-ringtones', 'false');
+    document.body.setAttribute('data-setting', 'false');
 
     const hideControl = AlarmUserHandler.getChildWithClass(clockContainer, 'hide-control');
     const hideSubject = AlarmUserHandler.getChildWithClass(hideControl, 'hide-subject');
@@ -70,6 +72,7 @@ const ringtonesCancelButtons = document.querySelectorAll('.clock-container .ring
 ringtonesCancelButtons.forEach((button) => button.addEventListener('click', () => {
     const clockContainer = AlarmUserHandler.getAncestorWithClass(button, 'clock-container');
     clockContainer.setAttribute('data-show-ringtones', 'false');
+    document.body.setAttribute('data-setting', 'false');
 }));
 
 const ringtonesWrappers = document.querySelectorAll('.clock-container .ringtones-wrapper');
@@ -77,6 +80,7 @@ ringtonesWrappers.forEach((wrapper) => wrapper.addEventListener('click', ({ targ
     if (target.className === 'ringtones-wrapper') {
         const clockContainer = AlarmUserHandler.getAncestorWithClass(wrapper, 'clock-container');
         clockContainer.setAttribute('data-show-ringtones', 'false');
+        document.body.setAttribute('data-setting', 'false');
     }
 }));
 
@@ -132,7 +136,7 @@ const timeButton = document.querySelectorAll('.clock-container .always-visible .
 timeButton.forEach((button) => {
     button.addEventListener('click', () => {
         button.parentElement.parentElement.setAttribute('data-show-settings', 'true');
-        document.body.setAttribute('data-show-settings', 'true');
+        document.body.setAttribute('data-setting', 'true');
     });
 });
 
@@ -146,7 +150,7 @@ settingsWrapper.forEach((wrapper) => {
     wrapper.addEventListener('mousedown', ({ target }) => {
         if (target.className === 'settings-wrapper') {
             wrapper.parentElement.setAttribute('data-show-settings', 'false');
-            document.body.setAttribute('data-show-settings', 'false');
+            document.body.setAttribute('data-setting', 'false');
         }
     });
 });

@@ -1972,9 +1972,10 @@ body {
 }
 .clock-container .ringtones-wrapper .ringtones {
   width: 284px;
-  height: 482px;
+  max-height: calc(100% - (2 * 10px));
+  min-height: 300px;
   position: fixed;
-  top: calc( (100% - 482px) / 2 );
+  top: calc( (100% - 485px) / 2 );
   left: calc( (100% - 284px) / 2 );
   background-color: #282828;
   border-top: 1px solid #4c4c4c;
@@ -1990,6 +1991,9 @@ body {
 .clock-container .ringtones-wrapper .ringtones ul {
   list-style: none;
 }
+.clock-container .ringtones-wrapper .ringtones ul li:last-child {
+  border-bottom: none;
+}
 .clock-container .ringtones-wrapper .ringtones ul li {
   border-bottom: 1px solid #4c4c4c;
   color: white;
@@ -1998,7 +2002,6 @@ body {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  height: 40px;
 }
 .clock-container .ringtones-wrapper .ringtones ul li .list-bullet {
   width: 18px;
@@ -2031,6 +2034,9 @@ body {
   flex-direction: row;
   color: white;
   display: flex;
+  overflow: hidden;
+  height: 40px;
+  border-top: 1px solid #4c4c4c;
 }
 .clock-container .ringtones-wrapper .ringtones .cancel-ok .cancel, .clock-container .ringtones-wrapper .ringtones .cancel-ok .ok {
   width: 50%;
@@ -2071,6 +2077,16 @@ body {
   display: flex;
 }
 
+@media (max-height: 505px) {
+  .clock-container .ringtones-wrapper .ringtones {
+    height: 301px;
+    top: calc( (100% - 300px) / 2);
+  }
+  .clock-container .ringtones-wrapper .ringtones ul {
+    overflow: auto;
+    height: 217px;
+  }
+}
 @media (hover: hover) {
   .ringtones-wrapper .ringtones ul li:hover {
     background-color: #222222;
@@ -2079,7 +2095,7 @@ body {
     background-color: #222222;
   }
 }
-body[data-show-settings=true] {
+body[data-setting=true] {
   top: 0;
   right: 0;
   left: 0;
