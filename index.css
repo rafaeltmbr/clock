@@ -370,6 +370,11 @@ body {
     background-color: #363636;
   }
 }
+@media (hover: hover) and (max-height: 396px) {
+  .clock-settings .done-container:hover {
+    background-color: #2c2c2c;
+  }
+}
 .clock-settings[data-am-pm=pm] .time-container .pm {
   display: inline;
 }
@@ -1956,6 +1961,38 @@ body {
   background-color: #272727;
 }
 
+@media (max-height: 396px) {
+  .clock-settings {
+    height: 250px;
+    width: 484px;
+    position: absolute;
+    left: calc( (100% - 484px) / 2);
+    bottom: calc( (100% - 250px) / 2);
+  }
+  .clock-settings .time-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: calc(100% - 50px);
+    width: 200px;
+    display: flex;
+    align-items: center;
+  }
+  .clock-settings .done-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 50px;
+    width: 200px;
+    background-color: #363636;
+  }
+  .clock-settings .disc-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 284px;
+  }
+}
 .clock-container[data-show-ringtones=true] .ringtones-wrapper {
   display: block;
 }
