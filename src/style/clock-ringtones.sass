@@ -1,5 +1,4 @@
 $ringtones_width: 284px
-$ringtones_computed_height: 485px
 $ringtones_background_color: rgb(40, 40, 40)
 $ringtones_header_color: rgb(51, 181, 229)
 $ringtones_list_border_color: rgb(76, 76, 76)
@@ -11,13 +10,17 @@ $ringtones_min_height: 270px
 $ringtones_computed_header_height: 43px
 $ringtones_cancel_ok_height: 40px
 $ringtones_background_color_active: rgb(34, 34, 34)
+$ringtones_min_margin: 10px
+$ringtones_list_item_height: 40px
 
 .clock-container[data-show-ringtones="true"]
     .ringtones-wrapper
-        display: block
+        display: flex
 
 .clock-container
     .ringtones-wrapper
+        align-items: center
+        justify-content: center
         z-index: 2
         display: none
         position: fixed
@@ -29,11 +32,8 @@ $ringtones_background_color_active: rgb(34, 34, 34)
     
         .ringtones
             width: $ringtones_width
-            max-height: calc(100% - (2 * #{$ringtones_padding_top}))
-            min-height: $ringtones_min_height
-            position: fixed
-            top: calc( (100% - #{$ringtones_computed_height}) / 2 )
-            left: calc( (100% - #{$ringtones_width}) / 2 )
+            height: calc(#{$ringtones_computed_header_height + $ringtones_cancel_ok_height + $ringtones_total * $ringtones_list_item_height + 1px})
+            max-height: calc(100% - #{$ringtones_min_margin})
             background-color: $ringtones_background_color
             border-top: 1px solid $ringtones_list_border_color
             border-radius: 3px
@@ -47,6 +47,8 @@ $ringtones_background_color_active: rgb(34, 34, 34)
 
             ul
                 list-style: none
+                max-height: calc(100% - #{$ringtones_computed_header_height + $ringtones_cancel_ok_height})
+                overflow: auto
 
                 li:last-child
                     border-bottom: none
@@ -58,6 +60,7 @@ $ringtones_background_color_active: rgb(34, 34, 34)
                     border-bottom: 1px solid $ringtones_list_border_color
                     color: white
                     padding: $ringtones_padding_top $ringtones_padding_left
+                    height: $ringtones_list_item_height
                     display: flex
                     flex-direction: row
                     align-items: center
@@ -117,13 +120,13 @@ $ringtones_background_color_active: rgb(34, 34, 34)
                         .bullet-around
                             display: flex
 
-@media (max-height: #{$ringtones_computed_height + 2 * $ringtones_padding_top})
-    .clock-container
-        .ringtones-wrapper
-            .ringtones
-                height: $ringtones_min_height + 1
-                top: calc( (100% - #{$ringtones_min_height}) / 2)
-
-                ul
-                    overflow: auto
-                    height: $ringtones_min_height - $ringtones_computed_header_height - $ringtones_cancel_ok_height
+//@media (max-height: #{$ringtones_computed_height + 2 * $ringtones_padding_top})
+//    .clock-container
+//        .ringtones-wrapper
+//            .ringtones
+//                height: $ringtones_min_height + 1
+//                top: calc( (100% - #{$ringtones_min_height}) / 2)
+//
+//                ul
+//                    overflow: auto
+//                    height: $ringtones_min_height - $ringtones_computed_header_height - $ringtones_cancel_ok_height
