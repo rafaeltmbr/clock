@@ -1976,7 +1976,12 @@ body {
     height: calc(100% - 50px);
     width: 200px;
     display: flex;
+    flex-direction: row;
     align-items: center;
+  }
+  .clock-settings .time-container .am, .clock-settings .time-container .pm {
+    position: relative;
+    top: 12px;
   }
   .clock-settings .done-container {
     position: absolute;
