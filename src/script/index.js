@@ -192,3 +192,6 @@ minuteButtons.forEach((button) => {
             AlarmUserHandler.handleMouseupAfterSelectorDiscMousedown(selectorDisc);
         });
 });
+
+
+window.addEventListener('load', () => document.body.style.height = `${window.innerHeight}px`);
