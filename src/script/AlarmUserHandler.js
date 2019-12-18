@@ -393,6 +393,9 @@ export default class AlarmUserHandler {
         if (currentSong) currentSong.pause();
 
         AlarmUserHandler.playSong.playingElement = audioElement;
+
+        // reload to avoid playing nothing if the song has been previously played
+        audioElement.load();
         audioElement.play();
     }
 
