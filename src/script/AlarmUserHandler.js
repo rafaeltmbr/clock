@@ -159,7 +159,7 @@ export default class AlarmUserHandler {
             AlarmUserHandler.buttonSlide(slider, eventObj);
         }
 
-        Util.addListenerToEvents(window, ['mousemove', 'touchmove'], handleSlideEvent);
+        Util.addListenerToEvents(window, ['mousemove', 'touchmove'], handleSlideEvent, { passive: true });
         AlarmUserHandler.removeSlideEffect.handleSlideEvent = handleSlideEvent;
 
         const parentStyle = window.getComputedStyle(slider.parentElement);
@@ -176,7 +176,7 @@ export default class AlarmUserHandler {
 
     static removeSlideEffect(target) {
         Util.removeListenerToEvents(window, ['mousemove', 'touchmove'],
-            AlarmUserHandler.removeSlideEffect.handleSlideEvent);
+            AlarmUserHandler.removeSlideEffect.handleSlideEvent, { passive: true });
 
         const [slider] = target.children;
 
