@@ -156,7 +156,6 @@ export default class AlarmUserHandler {
         if (!slider || slider.className !== 'slider') return;
 
         function handleSlideEvent(eventObj) {
-            eventObj.preventDefault();
             AlarmUserHandler.buttonSlide(slider, eventObj);
         }
 
