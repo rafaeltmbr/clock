@@ -409,7 +409,7 @@ export default class AlarmUserHandler {
 
     static addListScrollEffect(list, event) {
         const { clientY } = typeof event.clientY === 'undefined' ? event.touches[0] : event;
-        list.startY = clientY;
+        list.startY = clientY + list.scrollTop;
 
         function scrollHandler(e) {
             AlarmUserHandler.handleListScroll(list, e);
