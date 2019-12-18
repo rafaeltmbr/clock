@@ -425,7 +425,7 @@ export default class AlarmUserHandler {
 
     static handleListScroll(list, event) {
         const { clientY } = typeof event.clientY === 'undefined' ? event.touches[0] : event;
-        const offsetY = clientY - list.startY;
+        const offsetY = list.startY - clientY;
 
         list.scrollTo(0, offsetY);
     }
