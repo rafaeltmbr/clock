@@ -1,6 +1,16 @@
 import AlarmUserHandler from './AlarmUserHandler';
 import Util from './Util';
 
+function disableScrolling() {
+    const x = window.scrollX;
+    const y = window.scrollY;
+    window.onscroll = () => window.scrollTo(x, y);
+}
+
+function enableScrolling() {
+    window.onscroll = () => {};
+}
+
 const hideButtons = document.querySelectorAll('.clock-container .hide-button');
 hideButtons.forEach((button) => button.addEventListener('click',
     AlarmUserHandler.showHideAlarmContent));
@@ -135,6 +145,7 @@ minuteDisplay.forEach((minute) => {
 const timeButton = document.querySelectorAll('.clock-container .always-visible .time');
 timeButton.forEach((button) => {
     button.addEventListener('click', () => {
+        disableScrolling();
         button.parentElement.parentElement.setAttribute('data-show-settings', 'true');
         document.body.setAttribute('data-setting', 'true');
     });
@@ -149,6 +160,7 @@ const settingsWrapper = document.querySelectorAll('.settings-wrapper');
 settingsWrapper.forEach((wrapper) => {
     wrapper.addEventListener('mousedown', ({ target }) => {
         if (target.className === 'settings-wrapper') {
+            enableScrolling();
             wrapper.parentElement.setAttribute('data-show-settings', 'false');
             document.body.setAttribute('data-setting', 'false');
         }

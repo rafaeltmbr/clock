@@ -156,10 +156,6 @@ export default class AlarmUserHandler {
         if (!slider || slider.className !== 'slider') return;
 
         function handleSlideEvent(eventObj) {
-            const x = window.scrollX;
-            const y = window.scrollY;
-            window.onscroll = () => window.scrollTo(x, y);
-
             AlarmUserHandler.buttonSlide(slider, eventObj);
         }
 
@@ -179,8 +175,6 @@ export default class AlarmUserHandler {
     }
 
     static removeSlideEffect(target) {
-        window.onscroll = () => {};
-
         Util.removeListenerToEvents(window, ['mousemove', 'touchmove'],
             AlarmUserHandler.removeSlideEffect.handleSlideEvent);
 
