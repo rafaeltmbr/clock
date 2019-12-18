@@ -385,4 +385,22 @@ export default class AlarmUserHandler {
 
         minuteElement.innerText = minuteInteger < 10 ? `0${minuteInteger}` : `${minuteInteger}`;
     }
+
+    static playSong(audioElement) {
+        if (!audioElement) return;
+
+        const currentSong = AlarmUserHandler.playSong.playingElement;
+        if (currentSong) currentSong.pause();
+
+        AlarmUserHandler.playSong.playingElement = audioElement;
+        audioElement.play();
+    }
+
+    static pauseSong() {
+        const currentSong = AlarmUserHandler.playSong.playingElement;
+        if (currentSong) {
+            currentSong.pause();
+            AlarmUserHandler.playSong.playingElement = null;
+        }
+    }
 }

@@ -49,9 +49,23 @@ musicButtons.forEach((button) => button.addEventListener('click', () => {
     document.body.setAttribute('data-setting', 'true');
 }));
 
+function getSongElement(songNameDiv) {
+    const songName = songNameDiv.innerText;
+    const songClass = songName.toLowerCase().split(' ').join('-').concat('-alarm');
+    return document.querySelector(`.${songClass}`);
+}
+
 const ringtoneItems = document.querySelectorAll('.clock-container .ringtones .ringtone-item');
 ringtoneItems.forEach((item) => item.addEventListener('click', () => {
     const ringtonesDiv = AlarmUserHandler.getAncestorWithClass(item, 'ringtones');
+
+    const song = getSongElement(AlarmUserHandler.getChildWithClass(item, 'song-name'));
+    if (song) {
+        AlarmUserHandler.playSong(song);
+    } else {
+        AlarmUserHandler.pauseSong();
+    }
+
     ringtonesDiv.setAttribute('data-selected-song', item.getAttribute('data-item-number'));
     ringtonesDiv.setAttribute('data-selected-song-name', item.innerText);
 }));
@@ -64,6 +78,7 @@ ringtonesOkayButtons.forEach((button) => button.addEventListener('click', () => 
     clockContainer.setAttribute('data-selected-song', ringtonesDiv.getAttribute('data-selected-song'));
     clockContainer.setAttribute('data-show-ringtones', 'false');
     document.body.setAttribute('data-setting', 'false');
+    AlarmUserHandler.pauseSong();
 
     const hideControl = AlarmUserHandler.getChildWithClass(clockContainer, 'hide-control');
     const hideSubject = AlarmUserHandler.getChildWithClass(hideControl, 'hide-subject');
@@ -80,6 +95,7 @@ ringtonesCancelButtons.forEach((button) => button.addEventListener('click', () =
     document.body.removeEventListener('touchmove', preventDefault, { passive: false });
     clockContainer.setAttribute('data-show-ringtones', 'false');
     document.body.setAttribute('data-setting', 'false');
+    AlarmUserHandler.pauseSong();
 }));
 
 const ringtonesWrappers = document.querySelectorAll('.clock-container .ringtones-wrapper');
@@ -89,6 +105,7 @@ ringtonesWrappers.forEach((wrapper) => wrapper.addEventListener('click', ({ targ
         document.body.removeEventListener('touchmove', preventDefault, { passive: false });
         clockContainer.setAttribute('data-show-ringtones', 'false');
         document.body.setAttribute('data-setting', 'false');
+        AlarmUserHandler.pauseSong();
     }
 }));
 
