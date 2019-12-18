@@ -1,16 +1,6 @@
 import AlarmUserHandler from './AlarmUserHandler';
 import Util from './Util';
 
-function disableScrolling() {
-    const x = window.scrollX;
-    const y = window.scrollY;
-    window.onscroll = () => window.scrollTo(x, y);
-}
-
-function enableScrolling() {
-    window.onscroll = () => {};
-}
-
 const hideButtons = document.querySelectorAll('.clock-container .hide-button');
 hideButtons.forEach((button) => button.addEventListener('click',
     AlarmUserHandler.showHideAlarmContent));
@@ -142,10 +132,14 @@ minuteDisplay.forEach((minute) => {
     });
 });
 
+function preventDefault(event) {
+    event.preventDefault();
+}
+
 const timeButton = document.querySelectorAll('.clock-container .always-visible .time');
 timeButton.forEach((button) => {
     button.addEventListener('click', () => {
-        disableScrolling();
+        document.body.addEventListener('touchmove', preventDefault, { passive: false });
         button.parentElement.parentElement.setAttribute('data-show-settings', 'true');
         document.body.setAttribute('data-setting', 'true');
     });
@@ -153,15 +147,18 @@ timeButton.forEach((button) => {
 
 const doneSettingsButton = document.querySelectorAll('.settings-wrapper .clock-settings .done-container');
 doneSettingsButton.forEach((button) => {
-    button.addEventListener('click', () => AlarmUserHandler.handleClockSettingsDone(button));
+    button.addEventListener('click', () => {
+        document.body.removeEventListener('touchmove', preventDefault, { passive: false });
+        AlarmUserHandler.handleClockSettingsDone(button);
+    });
 });
 
 const settingsWrapper = document.querySelectorAll('.settings-wrapper');
 settingsWrapper.forEach((wrapper) => {
     wrapper.addEventListener('mousedown', ({ target }) => {
         if (target.className === 'settings-wrapper') {
-            enableScrolling();
             wrapper.parentElement.setAttribute('data-show-settings', 'false');
+            document.body.removeEventListener('touchmove', preventDefault, { passive: false });
             document.body.setAttribute('data-setting', 'false');
         }
     });
