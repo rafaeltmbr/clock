@@ -406,4 +406,25 @@ export default class AlarmUserHandler {
             AlarmUserHandler.playSong.playingElement = null;
         }
     }
+
+    static addListScrollEffect(list, event) {
+        list.startY = event.screenY;
+
+        function scrollHandler(e) {
+            AlarmUserHandler.handleListScroll(list, e);
+        }
+
+        Util.addListenerToEvents(window, ['mousemove', 'touchmove'], scrollHandler);
+
+        Util.addListenerToEvents(window, ['mouseup', 'touchend'], function windowMouseUp() {
+            Util.removeListenerToEvents(window, ['mousemove', 'touchmove'], scrollHandler);
+            Util.removeListenerToEvents(window, ['mouseup', 'touchend'], windowMouseUp);
+        });
+    }
+
+    static handleListScroll(list, event) {
+        const offsetY = event.screenY - list.startY;
+
+        list.scrollTo(0, offsetY);
+    }
 }

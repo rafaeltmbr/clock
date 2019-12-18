@@ -38,6 +38,12 @@ const repeatDays = document.querySelectorAll('.clock-container .day');
 repeatDays.forEach((day) => day.addEventListener('click',
     AlarmUserHandler.handleDaySelection));
 
+const ringtoneLists = document.querySelectorAll('.clock-container .ringtone-list');
+ringtoneLists.forEach((list) => {
+    Util.addListenerToEvents(list, ['mousedown', 'touchstart'],
+        (event) => AlarmUserHandler.addListScrollEffect(list, event));
+});
+
 const musicButtons = document.querySelectorAll('.clock-container .hide-control .music');
 musicButtons.forEach((button) => button.addEventListener('click', () => {
     const clockContainer = AlarmUserHandler.getAncestorWithClass(button, 'clock-container');
