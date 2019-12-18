@@ -245,6 +245,8 @@ export default class AlarmUserHandler {
     }
 
     static handleHourDiscMovement(disc, event) {
+        event.preventDefault();
+        console.log('hour default event prevented');
         const { clientX } = typeof event.clientX === 'undefined' ? event.touches[0] : event;
         const { clientY } = typeof event.clientY === 'undefined' ? event.touches[0] : event;
 
@@ -266,6 +268,8 @@ export default class AlarmUserHandler {
     }
 
     static handleMinuteDiscMovement(disc, event) {
+        event.preventDefault();
+        console.log('hour default event prevented');
         const { clientX } = typeof event.clientX === 'undefined' ? event.touches[0] : event;
         const { clientY } = typeof event.clientY === 'undefined' ? event.touches[0] : event;
 
