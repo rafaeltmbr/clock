@@ -159,6 +159,7 @@ export default class AlarmUserHandler {
             AlarmUserHandler.buttonSlide(slider, eventObj);
         }
 
+        Util.addListenerToEvents(window, ['mousemove', 'touchmove'], AlarmUserHandler.preventDefault);
         Util.addListenerToEvents(window, ['mousemove', 'touchmove'], handleSlideEvent);
         AlarmUserHandler.removeSlideEffect.handleSlideEvent = handleSlideEvent;
 
@@ -175,6 +176,7 @@ export default class AlarmUserHandler {
     }
 
     static removeSlideEffect(target) {
+        Util.removeListenerToEvents(window, ['mousemove', 'touchmove'], AlarmUserHandler.preventDefault);
         Util.removeListenerToEvents(window, ['mousemove', 'touchmove'],
             AlarmUserHandler.removeSlideEffect.handleSlideEvent);
 
@@ -226,6 +228,7 @@ export default class AlarmUserHandler {
             }
         }
 
+        Util.addListenerToEvents(window, ['mousemove', 'touchmove'], AlarmUserHandler.preventDefault);
         Util.addListenerToEvents(window, ['mousemove', 'touchmove'], handleDiscSelectorMove);
         target.handleDiscSelectorMove = handleDiscSelectorMove;
 
@@ -238,6 +241,7 @@ export default class AlarmUserHandler {
     static removeDiscSelector(target) {
         if (!target || !target.started) return;
 
+        Util.removeListenerToEvents(window, ['mousemove', 'touchmove'], AlarmUserHandler.preventDefault);
         Util.removeListenerToEvents(window, ['mousemove', 'touchmove'],
             target.handleDiscSelectorMove);
 
@@ -384,5 +388,9 @@ export default class AlarmUserHandler {
         if (!minuteElement) return;
 
         minuteElement.innerText = minuteInteger < 10 ? `0${minuteInteger}` : `${minuteInteger}`;
+    }
+
+    static preventDefault(event) {
+        event.preventDefault();
     }
 }
