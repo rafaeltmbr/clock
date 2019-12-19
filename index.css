@@ -1,7 +1,6 @@
 body, html {
   margin: 0;
   padding: 0;
-  background-color: #8a8a8a;
 }
 
 body {
@@ -15,6 +14,51 @@ body {
   -webkit-user-select: none;
   user-select: none;
   cursor: default;
+}
+
+body {
+  background-color: #8a8a8a;
+}
+body .clock-container {
+  margin: 0 auto;
+}
+
+body[data-layout=desktop] {
+  background-color: #e6e6e6;
+  margin-top: -15px;
+  padding: 15px 0;
+  display: grid;
+  column-gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+}
+body[data-layout=desktop] .clock-container:hover {
+  background-color: #272727;
+}
+body[data-layout=desktop] .clock-container {
+  box-shadow: 0 5px 10px black;
+  width: 400px;
+  margin: 15px auto;
+  background-color: #1d1d1d;
+  transition-duration: 400ms;
+}
+body[data-layout=desktop] .clock-container .hide-control {
+  height: 135px;
+}
+body[data-layout=desktop] .clock-container .hide-control .hide-subject {
+  bottom: 0;
+  margin-bottom: 15px;
+}
+body[data-layout=desktop] .clock-container .hide-control .hide-subject .repeat-check {
+  display: none;
+}
+body[data-layout=desktop] .clock-container .hide-control .hide-subject .repeat-days {
+  display: flex;
+}
+body[data-layout=desktop] .clock-container .hide-control .hide-button {
+  display: none;
+}
+body[data-layout=desktop] .clock-container .hide-control .line-separator {
+  display: none;
 }
 
 @media (hover: hover) {
@@ -55,6 +99,13 @@ body {
   }
   .clock-container .hide-control .hide-subject label:hover .checkmark {
     border-color: #e6e6e6;
+  }
+
+  body[data-layout=desktop] .clock-container .always-visible .time:hover {
+    background-color: #1c1e20;
+  }
+  body[data-layout=desktop] .clock-container .delete-field:hover {
+    background-color: #1c1e20;
   }
 }
 .clock-container[data-show=true], .clock-container[data-show=max] {
