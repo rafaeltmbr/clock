@@ -159,6 +159,7 @@ body[data-layout=desktop] .clock-container .hide-control .line-separator {
   position: relative;
   background-color: #1c1e20;
   color: white;
+  transition-duration: 400ms;
 }
 .clock-container * {
   box-sizing: border-box;
