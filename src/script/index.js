@@ -240,7 +240,7 @@ clockNameInputs.forEach((name) => {
         }
         window.addEventListener('keydown', lookForEnterInputThenBlur);
         name.addEventListener('blur', () => {
-            window.removeEventListener('keydown', lookForEnterInputThenBlur)
+            window.removeEventListener('keydown', lookForEnterInputThenBlur);
         });
     });
 });
