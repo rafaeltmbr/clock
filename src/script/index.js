@@ -246,7 +246,7 @@ clockNameInputs.forEach((name) => {
 });
 
 function setLayoutBasedOnWindowWidth() {
-    document.body.setAttribute('data-layout', window.innerWidth >= 850 ? 'desktop' : 'phone');
+    document.body.setAttribute('data-layout', window.innerWidth >= 800 ? 'desktop' : 'phone');
 }
 
 window.addEventListener('resize', setLayoutBasedOnWindowWidth);
