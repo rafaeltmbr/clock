@@ -156,7 +156,6 @@ body[data-layout=desktop] .clock-container .hide-control .line-separator {
   max-width: 500px;
   min-width: 320px;
   font-family: sans-serif;
-  position: relative;
   background-color: #1c1e20;
   color: white;
   transition-duration: 400ms;
@@ -1754,13 +1753,16 @@ body[data-layout=desktop] .clock-container .hide-control .line-separator {
 }
 
 .clock-container[data-show-settings=true] .settings-wrapper {
-  display: block;
+  display: flex;
 }
 
 .clock-container .settings-wrapper {
   z-index: 2;
   display: none;
+  align-items: center;
   position: fixed;
+  align-items: center;
+  justify-content: center;
   top: 0;
   right: 0;
   bottom: 0;
@@ -1778,9 +1780,6 @@ body[data-layout=desktop] .clock-container .hide-control .line-separator {
   font-family: sans-serif;
   color: white;
   box-shadow: 0 3px 5px black;
-  position: fixed;
-  bottom: calc( (100% - 376px) / 2);
-  left: calc( (100vw - 284px) / 2 );
 }
 .clock-settings .time-container {
   font-size: 50px;
