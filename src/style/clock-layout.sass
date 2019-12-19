@@ -4,6 +4,7 @@ $hide-subject-margin-bottom: 15px
 $clock-container-margin: 15px
 $color_background: rgb(29, 29, 29)
 $color_background_hover: rgb(39, 39, 39)
+$clock-container-transition-duration: 400ms
 
 body
     background-color: rgb(138, 138, 138)
@@ -26,7 +27,7 @@ body[data-layout="desktop"]
         width: 400px
         margin: $clock-container-margin auto
         background-color: $color-background
-        transition-duration: 400ms
+        transition-duration: $clock-container-transition-duration
 
         .hide-control
             height: $details_line_height * 3 + $hide-subject-margin-bottom
