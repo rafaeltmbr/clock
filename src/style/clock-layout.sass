@@ -1,0 +1,49 @@
+$hide_control_height: 40px
+$details_line_height: 40px
+$hide-subject-margin-bottom: 15px
+$clock-container-margin: 15px
+$color_background: rgb(29, 29, 29)
+$color_background_hover: rgb(39, 39, 39)
+
+body
+    background-color: rgb(138, 138, 138)
+    .clock-container
+        margin: 0 auto
+
+body[data-layout="desktop"]
+    background-color: rgb(230, 230, 230)
+    margin-top: - $clock-container-margin
+    padding: $clock-container-margin 0
+    display: grid
+    column-gap: 10px
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr))
+
+    .clock-container:hover
+        background-color: $color_background_hover
+
+    .clock-container
+        box-shadow: 0 5px 10px rgb(0, 0, 0)
+        width: 400px
+        margin: $clock-container-margin auto
+        background-color: $color-background
+        transition-duration: 400ms
+
+        .hide-control
+            height: $details_line_height * 3 + $hide-subject-margin-bottom
+
+            .hide-subject
+                bottom: 0
+                margin-bottom: $hide-subject-margin-bottom
+
+                .repeat-check
+                    display: none
+
+                .repeat-days
+                    display: flex
+
+            .hide-button
+                display: none
+
+            .line-separator
+                display: none
+

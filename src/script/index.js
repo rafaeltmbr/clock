@@ -228,3 +228,10 @@ minuteButtons.forEach((button) => {
             AlarmUserHandler.handleMouseupAfterSelectorDiscMousedown(selectorDisc);
         });
 });
+
+function setLayoutBasedOnWindowWidth() {
+    document.body.setAttribute('data-layout', window.innerWidth >= 850 ? 'desktop' : 'phone');
+}
+
+window.addEventListener('resize', setLayoutBasedOnWindowWidth);
+setLayoutBasedOnWindowWidth();
