@@ -24,7 +24,7 @@ body .clock-container {
 }
 
 body[data-layout=desktop] {
-  background-color: gainsboro;
+  background-color: #c9c9c9;
   margin-top: -15px;
   padding: 15px 0;
   display: grid;

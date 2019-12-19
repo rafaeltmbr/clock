@@ -427,6 +427,6 @@ export default class AlarmUserHandler {
         const { clientY } = typeof event.clientY === 'undefined' ? event.touches[0] : event;
         const offsetY = list.startY - clientY;
 
-        list.scrollTo(0, offsetY);
+        list.scrollTop = offsetY;
     }
 }
