@@ -231,7 +231,18 @@ minuteButtons.forEach((button) => {
 
 const clockNameInputs = document.querySelectorAll('.clock-container .hide-subject .clock-name');
 clockNameInputs.forEach((name) => {
-    name.addEventListener('change', () => name.blur());
+    name.addEventListener('focus', () => {
+        function lookForEnterInputThenBlur({ key, keyCode }) {
+            if (key === 'Enter' || keyCode === 13) {
+                name.blur();
+                window.removeEventListener('keydown', lookForEnterInputThenBlur);
+            }
+        }
+        window.addEventListener('keydown', lookForEnterInputThenBlur);
+        name.addEventListener('blur', () => {
+            window.removeEventListener('keydown', lookForEnterInputThenBlur)
+        });
+    });
 });
 
 function setLayoutBasedOnWindowWidth() {
