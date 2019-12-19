@@ -229,6 +229,11 @@ minuteButtons.forEach((button) => {
         });
 });
 
+const clockNameInputs = document.querySelectorAll('.clock-container .hide-subject .clock-name');
+clockNameInputs.forEach((name) => {
+    name.addEventListener('change', () => name.blur());
+});
+
 function setLayoutBasedOnWindowWidth() {
     document.body.setAttribute('data-layout', window.innerWidth >= 850 ? 'desktop' : 'phone');
 }
