@@ -140,13 +140,16 @@ $done_container_height: 50px
 
 .clock-container[data-show-settings="true"]
     .settings-wrapper
-        display: block
+        display: flex
 
 .clock-container
     .settings-wrapper
         z-index: 2
         display: none
+        align-items: center
         position: fixed
+        align-items: center
+        justify-content: center
         top: 0
         right: 0
         bottom: 0
@@ -171,9 +174,6 @@ $dark-grey: rgb(54, 54, 54)
     font-family: sans-serif
     color: $text-color
     box-shadow: 0 3px 5px rgb(0, 0, 0)
-    position: fixed
-    bottom: calc( (100% - #{$clock_settings_computed_height}) /  2)
-    left: calc( (100vw - #{$clock_settings_width}) / 2 )
 
     .time-container
         font-size: 50px
