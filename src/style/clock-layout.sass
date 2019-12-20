@@ -48,3 +48,9 @@ body[data-layout="desktop"]
             .line-separator
                 display: none
 
+@media (min-width: 730px) and (max-width: 840px)
+    body[data-layout="desktop"]
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr))
+
+        .clock-container
+            width: 350px

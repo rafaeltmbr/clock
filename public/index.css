@@ -61,6 +61,14 @@ body[data-layout=desktop] .clock-container .hide-control .line-separator {
   display: none;
 }
 
+@media (min-width: 730px) and (max-width: 840px) {
+  body[data-layout=desktop] {
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  }
+  body[data-layout=desktop] .clock-container {
+    width: 350px;
+  }
+}
 @media (hover: hover) {
   .clock-container[data-show=true] .always-visible .time:hover, .clock-container[data-show=max] .always-visible .time:hover {
     background-color: #1c1e20;
