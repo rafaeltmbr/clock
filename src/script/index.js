@@ -46,9 +46,8 @@ ringtoneLists.forEach((list) => {
 
 const musicButtons = document.querySelectorAll('.clock-container .hide-control .music');
 musicButtons.forEach((button) => button.addEventListener('click', () => {
-    const clockContainer = AlarmUserHandler.getAncestorWithClass(button, 'clock-container');
-    const ringtonesWrapper = AlarmUserHandler.getChildWithClass(clockContainer, 'ringtones-wrapper');
-    const ringtonesDiv = AlarmUserHandler.getChildWithClass(ringtonesWrapper, 'ringtones');
+    const clockContainer = Util.filterAncestors(button, document.querySelectorAll('.clock-container'))[0];
+    const ringtonesDiv = Util.filterDescendants(clockContainer, document.querySelectorAll('.ringtones'))[0];
     document.body.addEventListener('touchmove', preventDefault, { passive: false });
     ringtonesDiv.setAttribute('data-selected-song', clockContainer.getAttribute('data-selected-song'));
     clockContainer.setAttribute('data-show-ringtones', 'true');
@@ -63,9 +62,9 @@ function getSongElement(songNameDiv) {
 
 const ringtoneItems = document.querySelectorAll('.clock-container .ringtones .ringtone-item');
 ringtoneItems.forEach((item) => item.addEventListener('click', () => {
-    const ringtonesDiv = AlarmUserHandler.getAncestorWithClass(item, 'ringtones');
+    const ringtonesDiv = Util.filterAncestors(item, document.querySelectorAll('.ringtones'))[0];
 
-    const song = getSongElement(AlarmUserHandler.getChildWithClass(item, 'song-name'));
+    const song = getSongElement(Util.filterDescendants(item, document.querySelectorAll('.song-name'))[0]);
     if (song) {
         AlarmUserHandler.playSong(song);
     } else {
@@ -78,26 +77,22 @@ ringtoneItems.forEach((item) => item.addEventListener('click', () => {
 
 const ringtonesOkayButtons = document.querySelectorAll('.clock-container .ringtones .ok');
 ringtonesOkayButtons.forEach((button) => button.addEventListener('click', () => {
-    const clockContainer = AlarmUserHandler.getAncestorWithClass(button, 'clock-container');
-    const ringtonesDiv = AlarmUserHandler.getAncestorWithClass(button, 'ringtones');
+    const clockContainer = Util.filterAncestors(button, document.querySelectorAll('.clock-container'))[0];
+    const ringtonesDiv = Util.filterAncestors(button, document.querySelectorAll('.ringtones'))[0];
     document.body.removeEventListener('touchmove', preventDefault, { passive: false });
     clockContainer.setAttribute('data-selected-song', ringtonesDiv.getAttribute('data-selected-song'));
     clockContainer.setAttribute('data-show-ringtones', 'false');
     document.body.setAttribute('data-setting', 'false');
     AlarmUserHandler.pauseSong();
 
-    const hideControl = AlarmUserHandler.getChildWithClass(clockContainer, 'hide-control');
-    const hideSubject = AlarmUserHandler.getChildWithClass(hideControl, 'hide-subject');
-    const song = AlarmUserHandler.getChildWithClass(hideSubject, 'song');
-    const music = AlarmUserHandler.getChildWithClass(song, 'music');
-    const songName = AlarmUserHandler.getChildWithClass(music, 'song-name');
+    const songName = Util.filterDescendants(clockContainer, document.querySelectorAll('.song-name'))[0];
     const selectedSongName = ringtonesDiv.getAttribute('data-selected-song-name');
     songName.innerText = selectedSongName.toLowerCase() === 'none' ? 'Silent' : selectedSongName;
 }));
 
 const ringtonesCancelButtons = document.querySelectorAll('.clock-container .ringtones .cancel');
 ringtonesCancelButtons.forEach((button) => button.addEventListener('click', () => {
-    const clockContainer = AlarmUserHandler.getAncestorWithClass(button, 'clock-container');
+    const clockContainer = Util.filterAncestors(button, document.querySelectorAll('.clock-container'))[0];
     document.body.removeEventListener('touchmove', preventDefault, { passive: false });
     clockContainer.setAttribute('data-show-ringtones', 'false');
     document.body.setAttribute('data-setting', 'false');
@@ -107,7 +102,7 @@ ringtonesCancelButtons.forEach((button) => button.addEventListener('click', () =
 const ringtonesWrappers = document.querySelectorAll('.clock-container .ringtones-wrapper');
 ringtonesWrappers.forEach((wrapper) => wrapper.addEventListener('click', ({ target }) => {
     if (target.className === 'ringtones-wrapper') {
-        const clockContainer = AlarmUserHandler.getAncestorWithClass(wrapper, 'clock-container');
+        const clockContainer = Util.filterAncestors(wrapper, document.querySelectorAll('.clock-container'))[0];
         document.body.removeEventListener('touchmove', preventDefault, { passive: false });
         clockContainer.setAttribute('data-show-ringtones', 'false');
         document.body.setAttribute('data-setting', 'false');
@@ -148,7 +143,7 @@ pmButtons.forEach((button) => {
 const hourDisplay = document.querySelectorAll('.clock-settings .time-container .hour');
 hourDisplay.forEach((hour) => {
     hour.addEventListener('click', () => {
-        const clockSettings = AlarmUserHandler.getAncestorWithClass(hour, 'clock-settings');
+        const clockSettings = Util.filterAncestors(hour, document.querySelectorAll('.clock-settings'))[0];
         clockSettings.setAttribute('data-select', 'hour');
         clockSettings.setAttribute('data-skip-animation', 'false');
     });
@@ -157,7 +152,7 @@ hourDisplay.forEach((hour) => {
 const minuteDisplay = document.querySelectorAll('.clock-settings .time-container .minute');
 minuteDisplay.forEach((minute) => {
     minute.addEventListener('click', () => {
-        const clockSettings = AlarmUserHandler.getAncestorWithClass(minute, 'clock-settings');
+        const clockSettings = Util.filterAncestors(minute, document.querySelectorAll('.clock-settings'))[0];
         clockSettings.setAttribute('data-select', 'minute');
         clockSettings.setAttribute('data-skip-animation', 'false');
     });
@@ -194,15 +189,15 @@ settingsWrapper.forEach((wrapper) => {
 const hourButtons = document.querySelectorAll('.clock-settings .hour-disc .hour');
 hourButtons.forEach((button) => {
     const hour = parseInt(button.innerText, 10);
-    const clockSettings = AlarmUserHandler.getAncestorWithClass(button, 'clock-settings');
+    const clockSettings = Util.filterAncestors(button, document.querySelectorAll('.clock-settings'))[0];
 
     Util.addListenerToEvents(button, ['mousedown', 'touchstart'],
         (event) => {
             clockSettings.setAttribute('data-skip-animation', 'true');
             AlarmUserHandler.changeHourOnClockSettings(clockSettings, hour);
 
-            const hourDisc = AlarmUserHandler.getAncestorWithClass(button, 'hour-disc');
-            const selectorDisc = AlarmUserHandler.getChildWithClass(hourDisc, 'hour-selector-disc');
+            const hourDisc = Util.filterAncestors(button, document.querySelectorAll('.hour-disc'))[0];
+            const selectorDisc = Util.filterDescendants(hourDisc, document.querySelectorAll('.hour-selector-disc'))[0];
 
             AlarmUserHandler.addDiscSelector(selectorDisc, event);
             selectorDisc.parentElement.setAttribute('data-active', 'true');
@@ -213,15 +208,15 @@ hourButtons.forEach((button) => {
 const minuteButtons = document.querySelectorAll('.clock-settings .hour-disc .minute');
 minuteButtons.forEach((button) => {
     const minute = parseInt(button.innerText, 10);
-    const clockSettings = AlarmUserHandler.getAncestorWithClass(button, 'clock-settings');
+    const clockSettings = Util.filterAncestors(button, document.querySelectorAll('.clock-settings'))[0];
 
     Util.addListenerToEvents(button, ['mousedown', 'touchstart'],
         (event) => {
             clockSettings.setAttribute('data-skip-animation', 'true');
             AlarmUserHandler.changeMinuteOnClockSettings(clockSettings, minute);
 
-            const hourDisc = AlarmUserHandler.getAncestorWithClass(button, 'hour-disc');
-            const selectorDisc = AlarmUserHandler.getChildWithClass(hourDisc, 'minute-selector-disc');
+            const hourDisc = Util.filterAncestors(button, document.querySelectorAll('.hour-disc'))[0];
+            const selectorDisc = Util.filterDescendants(hourDisc, document.querySelectorAll('.minute-selector-disc'))[0];
 
             AlarmUserHandler.addDiscSelector(selectorDisc, event);
             selectorDisc.parentElement.setAttribute('data-active', 'true');

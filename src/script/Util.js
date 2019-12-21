@@ -18,19 +18,21 @@ export default class Util {
         return false;
     }
 
+    static nodeListToArray(nodeList) {
+        if (!nodeList || !(nodeList.length > 0)) return [];
+
+        return Object.keys(nodeList).map((k) => nodeList[k]);
+    }
+
     static isDescendant(descendant, element) {
         return Util.isAncestor(element, descendant);
     }
 
-    static selectAncestors(element, elementsList) {
-        if (!elementsList || !elementsList.filter) return [];
-
-        return elementsList.filter((e) => Util.isAncestor(e, element));
+    static filterAncestors(element, nodeList) {
+        return Util.nodeListToArray(nodeList).filter((e) => Util.isAncestor(e, element));
     }
 
-    static selectDescendants(element, elementsList) {
-        if (!elementsList || !elementsList.filter) return [];
-
-        return elementsList.filter((e) => Util.isDescendant(e, element));
+    static filterDescendants(element, nodeList) {
+        return Util.nodeListToArray(nodeList).filter((e) => Util.isDescendant(e, element));
     }
 }

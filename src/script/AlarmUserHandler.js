@@ -3,7 +3,7 @@ import Util from './Util';
 
 export default class AlarmUserHandler {
     static showHideAlarmContent({ target }) {
-        const hideControl = AlarmUserHandler.getAncestorWithClass(target, 'hide-control');
+        const hideControl = Util.filterAncestors(target, document.querySelectorAll('.hide-control'))[0];
         if (!hideControl) return;
         hideControl.show = !hideControl.show;
         hideControl.setAttribute('data-show',
@@ -12,7 +12,7 @@ export default class AlarmUserHandler {
                 ? (hideControl.show ? 'max' : 'false')
                 : (hideControl.show ? 'true' : 'false'));
 
-        const clockContainer = AlarmUserHandler.getAncestorWithClass(hideControl, 'clock-container');
+        const clockContainer = Util.filterAncestors(hideControl, document.querySelectorAll('.clock-container'))[0];
         if (!clockContainer) return;
         clockContainer.setAttribute('data-show', hideControl.show ? 'true' : 'false');
 
@@ -21,46 +21,14 @@ export default class AlarmUserHandler {
         showDetails.setAttribute('data-rotate', hideControl.show ? 'true' : 'false');
     }
 
-    static getAncestorWithClass(descendent, className) {
-        if (!descendent || !descendent.tagName || !descendent.className
-            || !descendent.parentElement) return null;
-
-        while (descendent.tagName.toLowerCase() !== 'body') {
-            if (descendent.className === className) {
-                return descendent;
-            }
-            descendent = descendent.parentElement;
-        }
-        return null;
-    }
-
     static getShowDetailsFromGrandParent(grandParent) {
-        const child = AlarmUserHandler.getChildWithClass(grandParent, 'hide-button');
-        if (!child) return null;
-
-        const grandChild = AlarmUserHandler.getChildWithClass(child, 'show-details');
-        return grandChild;
-    }
-
-    static getChildWithClass(parent, childClass) {
-        if (!parent || !parent.children) return null;
-
-        const { children } = parent;
-        const keys = Object.keys(children);
-
-        for (let i = 0; i < keys.length; i += 1) {
-            const { className } = children[keys[i]];
-            if (className === childClass || (className && className.baseVal === childClass)) {
-                return children[keys[i]];
-            }
-        }
-        return null;
+        return Util.filterDescendants(grandParent, document.querySelectorAll('.show-details'))[0];
     }
 
     static onOffSwitch({ target }) {
         const onOffButton = target.className === 'on-off'
             ? target
-            : AlarmUserHandler.getAncestorWithClass(target, 'on-off');
+            : Util.filterAncestors(target, document.querySelectorAll('.on-off'))[0];
         if (!onOffButton) return;
         onOffButton.on = !onOffButton.on;
 
@@ -76,7 +44,7 @@ export default class AlarmUserHandler {
     }
 
     static deleteAlarm({ target }) {
-        const alarm = AlarmUserHandler.getAncestorWithClass(target, 'clock-container');
+        const alarm = Util.filterAncestors(target, document.querySelectorAll('.clock-container'))[0];
         if (!alarm) return;
 
         /* eslint-disable-next-line no-alert */
@@ -86,7 +54,7 @@ export default class AlarmUserHandler {
     }
 
     static updateClockName({ target }) {
-        const hideControl = AlarmUserHandler.getAncestorWithClass(target, 'hide-control');
+        const hideControl = Util.filterAncestors(target, document.querySelectorAll('.hide-control'))[0];
         if (!hideControl) return;
 
         const clockName = AlarmUserHandler.getClockNameFromAncestor(hideControl);
@@ -96,15 +64,11 @@ export default class AlarmUserHandler {
     }
 
     static getClockNameFromAncestor(ancestor) {
-        const child = AlarmUserHandler.getChildWithClass(ancestor, 'hide-button');
-        if (!child) return null;
-
-        const grandChild = AlarmUserHandler.getChildWithClass(child, 'clock-name-minimized');
-        return grandChild;
+        return Util.filterDescendants(ancestor, document.querySelectorAll('.clock-name-minimized'))[0];
     }
 
     static handleRepeatSelection({ target }) {
-        const hideControl = AlarmUserHandler.getAncestorWithClass(target, 'hide-control');
+        const hideControl = Util.filterAncestors(target, document.querySelectorAll('.hide-control'))[0];
         if (!hideControl) return;
         hideControl.repeat = !hideControl.repeat;
         hideControl.setAttribute('data-repeat', hideControl.repeat ? 'true' : 'false');
@@ -142,13 +106,10 @@ export default class AlarmUserHandler {
     }
 
     static getDaysNameMinimizedElement(target) {
-        const hideControl = AlarmUserHandler.getAncestorWithClass(target, 'hide-control');
+        const hideControl = Util.filterAncestors(target, document.querySelectorAll('.hide-control'))[0];
         if (!hideControl) return null;
 
-        const hideButton = AlarmUserHandler.getChildWithClass(hideControl, 'hide-button');
-        if (!hideButton) return null;
-
-        return AlarmUserHandler.getChildWithClass(hideButton, 'days-name-minimized');
+        return Util.filterDescendants(hideControl, document.querySelectorAll('.days-name-minimized'))[0];
     }
 
     static addSlideEffect(target, event) {
@@ -260,8 +221,7 @@ export default class AlarmUserHandler {
         const clockSettings = disc.parentElement.parentElement.parentElement;
         clockSettings.setAttribute('data-hour', hourFormatted);
 
-        const timeContainer = AlarmUserHandler.getChildWithClass(clockSettings, 'time-container');
-        const hourElement = AlarmUserHandler.getChildWithClass(timeContainer, 'hour');
+        const hourElement = Util.filterDescendants(clockSettings, document.querySelectorAll('.hour'))[0];
         hourElement.innerText = hourFormatted;
     }
 
@@ -280,8 +240,7 @@ export default class AlarmUserHandler {
         const clockSettings = disc.parentElement.parentElement.parentElement;
         clockSettings.setAttribute('data-minute', minuteFormatted);
 
-        const timeContainer = AlarmUserHandler.getChildWithClass(clockSettings, 'time-container');
-        const minuteElement = AlarmUserHandler.getChildWithClass(timeContainer, 'minute');
+        const minuteElement = Util.filterDescendants(clockSettings, document.querySelectorAll('.minute'))[0];
         minuteElement.innerText = minuteFormatted < 10 ? `0${minuteFormatted}` : minuteFormatted;
     }
 
@@ -329,26 +288,25 @@ export default class AlarmUserHandler {
     }
 
     static enableDiscAnimation(disc) {
-        const clockSettings = AlarmUserHandler.getAncestorWithClass(disc, 'clock-settings');
+        const clockSettings = Util.filterAncestors(disc, document.querySelectorAll('.clock-settings'))[0];
         clockSettings.setAttribute('data-skip-animation', 'false');
         clockSettings.setAttribute('data-select', 'minute');
     }
 
     static handleClockSettingsDone(button) {
-        const clockSettings = AlarmUserHandler.getAncestorWithClass(button, 'clock-settings');
+        const clockSettings = Util.filterAncestors(button, document.querySelectorAll('.clock-settings'))[0];
         clockSettings.setAttribute('data-select', 'hour');
         const hour = clockSettings.getAttribute('data-hour');
         const minute = clockSettings.getAttribute('data-minute');
         const dayPeriod = clockSettings.getAttribute('data-am-pm');
         const timeFormatted = `${hour}:${minute < 10 ? `0${minute}` : minute}`;
 
-        const clockContainer = AlarmUserHandler.getAncestorWithClass(button, 'clock-container');
-        const alwaysVisible = AlarmUserHandler.getChildWithClass(clockContainer, 'always-visible');
-        const time = AlarmUserHandler.getChildWithClass(alwaysVisible, 'time');
-        const hourMinute = AlarmUserHandler.getChildWithClass(time, 'hour-minute');
+        const clockContainer = Util.filterAncestors(button, document.querySelectorAll('.clock-container'))[0];
+        const time = Util.filterDescendants(clockContainer, document.querySelectorAll('.time'))[0];
+        const hourMinute = Util.filterDescendants(time, document.querySelectorAll('.hour-minute'))[0];
         hourMinute.innerText = timeFormatted;
 
-        const amPm = AlarmUserHandler.getChildWithClass(time, 'am-pm');
+        const amPm = Util.filterDescendants(time, document.querySelectorAll('.am-pm'))[0];
         amPm.innerText = dayPeriod.toUpperCase();
 
         clockContainer.setAttribute('data-show-settings', 'false');
@@ -362,10 +320,7 @@ export default class AlarmUserHandler {
         const hourInteger = parseInt(hour, 10);
         clockSettings.setAttribute('data-hour', `${hour}`);
 
-        const timeContainer = AlarmUserHandler.getChildWithClass(clockSettings, 'time-container');
-        if (!timeContainer) return;
-
-        const hourElement = AlarmUserHandler.getChildWithClass(timeContainer, 'hour');
+        const hourElement = Util.filterDescendants(clockSettings, document.querySelectorAll('.hour'))[0];
         if (!hourElement) return;
 
         hourElement.innerText = `${hourInteger}`;
@@ -377,10 +332,7 @@ export default class AlarmUserHandler {
         const minuteInteger = parseInt(minute, 10);
         clockSettings.setAttribute('data-minute', `${minute}`);
 
-        const timeContainer = AlarmUserHandler.getChildWithClass(clockSettings, 'time-container');
-        if (!timeContainer) return;
-
-        const minuteElement = AlarmUserHandler.getChildWithClass(timeContainer, 'minute');
+        const minuteElement = Util.filterDescendants(clockSettings, document.querySelectorAll('.minute'))[0];
         if (!minuteElement) return;
 
         minuteElement.innerText = minuteInteger < 10 ? `0${minuteInteger}` : `${minuteInteger}`;
