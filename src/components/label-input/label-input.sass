@@ -1,0 +1,95 @@
+$text-color: rgb(255, 255, 255)
+$input-container-background-color: rgb(40, 40, 40)
+$label-input-background-color: rgba(0, 0, 0, 0.5)
+$division-line-color: rgb(74, 74, 74)
+$label-bottom-border-color: rgb(0, 153, 204)
+$button-hover-color: rgb(34, 34, 34)
+
+.label-input
+    background-color: $label-input-background-color
+    position: fixed
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+    display: flex
+    align-items: center
+    justify-content: center
+
+    *
+        margin: 0
+        padding: 0
+        outline: none
+        box-sizing: border-box
+
+    .label-container
+        width: 90%
+        max-width: 450px
+        min-width: 300px
+        background-color: $input-container-background-color
+        border-radius: 3px
+        border-top: 1px solid $division-line-color
+        box-shadow: 0 3px 5px rgb(0, 0, 0)
+
+        .input-container
+            height: 4em
+            display: flex
+            flex-direction: row
+            align-items: center
+            padding: 0 15px
+
+            .vertical-border
+                position: relative
+
+                .short-border
+                    background-color: $label-bottom-border-color
+                    height: 5px
+                    position: absolute
+                    bottom: 0
+
+            .vertical-border, .short-border
+                width: 1px
+
+            .label
+                width: 100%
+                background-color: transparent
+                border: none
+                color: $text-color
+                border-bottom: 1px solid $label-bottom-border-color
+                flex: 1
+                padding: 0 2px
+
+            .label::selection
+                background-color: rgb(200, 200, 200)
+                color: rgb(0, 0, 0)
+
+            .label, .vertical-border
+                font-size: 1.2em
+                height: 1.5em
+
+        .cancel-okay-container
+            display: flex
+            flex-direction: row
+            align-items: center
+            justify-content: space-between
+            border-top: 1px solid $division-line-color
+
+            .vertical-division
+                background-color: $division-line-color
+                width: 1px
+                height: 2em
+
+            .cancel, .ok
+                flex: 1
+                background-color: transparent
+                border: none
+                color: $text-color
+                height: 3em
+                font-size: 1em
+
+@media (hover: hover)
+    .label-input
+        .label-container
+            .cancel-okay-container
+                .cancel:hover, .ok:hover
+                    background-color: $button-hover-color

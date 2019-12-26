@@ -1,0 +1,88 @@
+.label-input {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.label-input * {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  box-sizing: border-box;
+}
+.label-input .label-container {
+  width: 90%;
+  max-width: 450px;
+  min-width: 300px;
+  background-color: #282828;
+  border-radius: 3px;
+  border-top: 1px solid #4a4a4a;
+  box-shadow: 0 3px 5px black;
+}
+.label-input .label-container .input-container {
+  height: 4em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 15px;
+}
+.label-input .label-container .input-container .vertical-border {
+  position: relative;
+}
+.label-input .label-container .input-container .vertical-border .short-border {
+  background-color: #0099cc;
+  height: 5px;
+  position: absolute;
+  bottom: 0;
+}
+.label-input .label-container .input-container .vertical-border, .label-input .label-container .input-container .short-border {
+  width: 1px;
+}
+.label-input .label-container .input-container .label {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  color: white;
+  border-bottom: 1px solid #0099cc;
+  flex: 1;
+  padding: 0 2px;
+}
+.label-input .label-container .input-container .label::selection {
+  background-color: #c8c8c8;
+  color: black;
+}
+.label-input .label-container .input-container .label, .label-input .label-container .input-container .vertical-border {
+  font-size: 1.2em;
+  height: 1.5em;
+}
+.label-input .label-container .cancel-okay-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #4a4a4a;
+}
+.label-input .label-container .cancel-okay-container .vertical-division {
+  background-color: #4a4a4a;
+  width: 1px;
+  height: 2em;
+}
+.label-input .label-container .cancel-okay-container .cancel, .label-input .label-container .cancel-okay-container .ok {
+  flex: 1;
+  background-color: transparent;
+  border: none;
+  color: white;
+  height: 3em;
+  font-size: 1em;
+}
+
+@media (hover: hover) {
+  .label-input .label-container .cancel-okay-container .cancel:hover, .label-input .label-container .cancel-okay-container .ok:hover {
+    background-color: #222222;
+  }
+}
