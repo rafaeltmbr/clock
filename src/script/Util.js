@@ -35,4 +35,10 @@ export default class Util {
     static filterDescendants(element, nodeList) {
         return Util.nodeListToArray(nodeList).filter((e) => Util.isDescendant(e, element));
     }
+
+    static createNodeElement(html, documentElement) {
+        const node = documentElement.createElement('div');
+        node.innerHTML = html;
+        return node.children.length === 1 ? node.children[0] : node.children;
+    }
 }

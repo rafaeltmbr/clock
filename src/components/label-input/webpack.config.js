@@ -1,5 +1,5 @@
 module.exports = {
-    entry: __dirname + '/label-input.js',
+    entry: __dirname + '/index.js',
     output: {
         path: __dirname + '/build',
         filename: 'bundle.js'
@@ -8,7 +8,8 @@ module.exports = {
         rules: [
             {
                 test: /\.js/,
-                use: 'babel-loader'
+                use: 'babel-loader',
+                exclude: '/node_modules/'
             }
         ]
     }

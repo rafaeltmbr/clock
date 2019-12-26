@@ -1,3 +1,7 @@
+.label-input[data-display-status=show] {
+  display: flex;
+}
+
 .label-input {
   background-color: rgba(0, 0, 0, 0.5);
   position: fixed;
@@ -5,7 +9,7 @@
   right: 0;
   bottom: 0;
   left: 0;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
 }
