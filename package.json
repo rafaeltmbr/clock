@@ -24,9 +24,9 @@
   "scripts": {
     "lint": "eslint ./src/script --fix",
     "test": "jest",
-    "dev:label-input:pug": "pug ./src/components/label-input/index.pug -o ./src/components/label-input/build --watch --pretty",
+    "dev:label-input:pug": "pug ./src/components/label-input/dev/index.pug -o ./src/components/label-input/build --watch --pretty",
     "dev:label-input:sass": "sass ./src/components/label-input/label-input.sass ./src/components/label-input/build/style.css --watch --no-source-map",
-    "dev:label-input:webpack": "webpack --mode=development --config ./src/components/label-input/webpack.config.js -w",
+    "dev:label-input:webpack": "webpack --mode=development --config ./src/components/label-input/dev/webpack.config.js -w",
     "dev:label-input": "concurrently \"yarn dev:label-input:pug\" \"yarn dev:label-input:sass\" \"yarn dev:label-input:webpack\"",
     "webpack": "webpack --mode=production",
     "webpack-w": "webpack --mode=development -w",
