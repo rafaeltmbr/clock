@@ -8,6 +8,20 @@ send it to anyone who is interested. The following screenshots (from Android v4.
     <img src="./screenshot/label-input-named-keyboard-screenshot.png" alt="label-input named keyboard screenshot" width=" 250px">
 </div>
 
+## Methods
+There are eleven methods that can be called directly (public). They are:
+* getName
+* setName
+* show
+* hide
+* getNodeElement
+* addLabelCancelListener
+* addLabelChangeListener
+* addLabelDoneListener
+* removeLabelCancelListener
+* removeLabelChangeListener
+* removeLabelDoneListener
+
 ## Events
 The label-input element handles three types of event. They are label-change, label-done and label-cancel.
 Every event gives back a object containing the follwing properties:<br>
