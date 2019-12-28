@@ -11,9 +11,9 @@ send it to anyone who is interested. The following screenshots (from Android v4.
 ## Events
 Every event gives back a object containing the follwing properties:<br>
 <pre>
-    label:  current label name
-    target: LabelInput object
-    event:  event name
+label:  current label name
+target: LabelInput object
+event:  event name
 </pre>
 
 ### label-change
