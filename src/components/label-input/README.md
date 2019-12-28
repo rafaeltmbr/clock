@@ -10,17 +10,17 @@ send it to anyone who is interested. The following screenshots (from Android v4.
 
 ## Methods
 There are eleven methods that can be called directly (public). They are:
-* <b>getName</b> - get the current label value
-* <b>setName</b> - set the current label value
-* <b>show</b> - display the label-input element
-* <b>hide</b> - hides the label-input element
-* <b>getNodeElement</b> - get the DOM node with class .label-input
-* <b>addLabelCancelListener</b> - register a callback function to the label-cancel event
-* <b>addLabelChangeListener</b> - register a callback function to the label-change event
-* <b>addLabelDoneListener</b> - register a callback function to the label-done event
-* <b>removeLabelCancelListener</b> - unregister the given callback function from label-cancel event
-* <b>removeLabelChangeListener</b> - unregister the given callback function from label-change event
-* <b>removeLabelDoneListener</b> - unregister the given callback function from label-done event
+* **getName** - get the current label value
+* **setName** - set the current label value
+* **show** - display the label-input element
+* **hide** - hides the label-input element
+* **getNodeElement** - get the DOM node with class .label-input
+* **addLabelCancelListener** - register a callback function to the label-cancel event
+* **addLabelChangeListener** - register a callback function to the label-change event
+* **addLabelDoneListener** - register a callback function to the label-done event
+* **removeLabelCancelListener** - unregister the given callback function from label-cancel event
+* **removeLabelChangeListener** - unregister the given callback function from label-change event
+* **removeLabelDoneListener** - unregister the given callback function from label-done event
 
 Every other method starting with an underscore is private. Thus, is shouldn't be called
 outside the class, otherwise, it may crash the component.
@@ -69,3 +69,4 @@ hits Enter or click OK.
 ### label-done
 The label-change event is fired every time the user hits Enter or click OK.
 
+## Folder organization
