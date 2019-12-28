@@ -9,6 +9,7 @@ send it to anyone who is interested. The following screenshots (from Android v4.
 </div>
 
 ## Events
+The label-input element handles three types of event. They are label-change, label-done and label-cancel.
 Every event gives back a object containing the follwing properties:<br>
 <pre>
 label:  current label name
