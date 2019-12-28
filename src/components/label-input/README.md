@@ -42,7 +42,7 @@ labelInput.addLabelDoneListener(printLabelAndEventName);   // label-done
 
 ### label-cancel
 The label-cancel event is fired every time the user hits Esc, click outside the
-label-container or click Csancel.
+label-container or click Cancel.
 
 ### label-change
 The label-change event happens when the user enters a new label that is different
