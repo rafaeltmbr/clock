@@ -47,7 +47,7 @@ label-container or click Cancel.
 ### label-change
 The label-change event happens when the user enters a new label that is different
 from the previews one. This event is fired only if the label is changed and the user
-hit Enter or click OK.
+hits Enter or click OK.
 
 ### label-done
 The label-change event is fired every time the user hits Enter or click OK.
