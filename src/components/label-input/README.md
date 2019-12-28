@@ -76,8 +76,8 @@ The label-change event is fired every time the user hits Enter or click OK.
  |-- label-input.js   - label-input JavaScript class
  |-- label-input.sass - label-input style in Sass formmat
  |-- README.md - This file
- |-- build/ - Contain a standalone version of this component
- |-- dev/   - Contain a standalone source code to run this component
- |-- screenshot/ - Screenshots used as a graphic reference when build this user interface
- |-- test/ - Keep the test file used to validate the label-input JavaScript class
+ |-- **build/** - Contain a standalone version of this component
+ |-- **dev/**   - Contain a standalone source code to run this component
+ |-- **screenshot/** - Screenshots used as a graphic reference when build this user interface
+ |-- **test/** - Keep the test file used to validate the label-input JavaScript class
 </pre>
