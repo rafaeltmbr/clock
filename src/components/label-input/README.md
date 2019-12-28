@@ -22,6 +22,9 @@ There are eleven methods that can be called directly (public). They are:
 * removeLabelChangeListener
 * removeLabelDoneListener
 
+Every other method starting with an underscored are private. Thus, is shouldn't be called
+outside the class.
+
 ## Events
 The label-input element handles three types of event. They are label-change, label-done and label-cancel.
 Every event gives back a object containing the follwing properties:<br>
