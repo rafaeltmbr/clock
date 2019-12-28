@@ -17,7 +17,9 @@ target: LabelInput object
 event:  event name
 </pre>
 
-The code below shows an use case of event handling:
+The code below shows an use case of event handling. It creates the label-input object, append the DOM element to the body of the document and display it. Then, every event type
+is handled by the same function (printLabelAndEventName). Once the event is fired, the
+handler logs its event and label name in the console.
 ```javascript
 // *********************** Boilerplate code ***********************
 
