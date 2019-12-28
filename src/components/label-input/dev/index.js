@@ -31,9 +31,9 @@ document.body.appendChild(labelInput.getNodeElement());
 
 labelInput.show();
 
-function printEventName(event) {
-    console.log(event.event);
+function printLabelNameAndHide(event) {
+    console.log(event.label);
     labelInput.hide();
 }
 
-labelInput.addLabelChangeListener(printEventName);
+labelInput.addLabelChangeListener(printLabelNameAndHide);
