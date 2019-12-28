@@ -71,11 +71,11 @@ The label-change event is fired every time the user hits Enter or click OK.
 
 ## Folder organization
 <pre>
-<b>label-input/</b>        - Contain the whole label-input module
-    |-- <b>build/</b>      - Contain a standalone version of this component
-    |-- <b>dev/</b>        - Contain a standalone source code to run this component
-    |-- <b>screenshot/</b> - Contain screenshots used as a graphical reference when build this    user interface
-    |-- <b>test/</b>       - Contain the test file used to validate the LabelInput JavaScript    class
+<b>\label-input</b>        - Contain the whole label-input module
+    \-- <b>build</b>      - Contain a standalone version of this component
+    \-- <b>dev</b>        - Contain a standalone source code to run this component
+    \-- <b>screenshot</b> - Contain screenshots used as a graphical reference when build this    user interface
+    \-- <b>test</b>       - Contain the test file used to validate the LabelInput JavaScript    class
     |-- label-input.html  - HTML code that can be included in other components
     |-- label-input.js    - JavaScript class with methods and event handlers
     |-- label-input.sass  - Style file in Sass formmat
