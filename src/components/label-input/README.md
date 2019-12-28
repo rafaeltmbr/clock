@@ -9,11 +9,11 @@ send it to anyone who is interested. The following screenshots (from Android v4.
 </div>
 
 ## Events
-Every event gives back a object container the follwing information:<br>
+Every event gives back a object containing the follwing properties:<br>
 <pre>
-    label: current label name
+    label:  current label name
     target: LabelInput object
-    event: 'label-cancel'
+    event:  event name
 </pre>
 
 ### label-change
