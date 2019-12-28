@@ -2,7 +2,7 @@
 
 import LabelInput from '../label-input';
 
-const label1 = new LabelInput();
+const label1 = new LabelInput(document);
 
 document.body.appendChild(label1.getNodeElement());
 

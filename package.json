@@ -16,6 +16,7 @@
     "eslint-plugin-import": "^2.18.2",
     "gh-pages": "^2.1.1",
     "jest": "^24.9.0",
+    "jsdoc": "^3.6.3",
     "pug-cli": "^1.0.0-alpha6",
     "sass": "^1.23.6",
     "webpack": "^4.41.2",
@@ -24,6 +25,7 @@
   "scripts": {
     "lint": "eslint ./src/script --fix",
     "test": "jest",
+    "doc": "jsdoc -r ./src/components -d ./doc",
     "dev:label-input:pug": "pug ./src/components/label-input/dev/index.pug -o ./src/components/label-input/build --watch --pretty",
     "dev:label-input:sass": "sass ./src/components/label-input/label-input.sass ./src/components/label-input/build/style.css --watch --no-source-map",
     "dev:label-input:webpack": "webpack --mode=development --config ./src/components/label-input/dev/webpack.config.js -w",

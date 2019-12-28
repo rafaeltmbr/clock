@@ -1,19 +1,19 @@
 import Util from '../../script/Util';
 
 export default class LabelInput {
-    constructor() {
+    constructor(documentElement) {
         this.label = '';
         this.labelChangeCallbackList = [];
         this.labelDoneCallbackList = [];
         this.labelCancelCallbackList = [];
 
-        this.createLabelElement();
+        this.createLabelElement(documentElement);
         this.registerEventListeners();
     }
 
-    createLabelElement() {
+    createLabelElement(documentElement) {
         this.nodeElement = Util.createNodeElement(
-            '<div class="label-input" data-display-status="show">'
+            '<div class="label-input" data-display-status="hide">'
                 + '<div class="label-container">'
                     + '<div class="input-container">'
                         + '<div class="vertical-border">'
@@ -31,7 +31,7 @@ export default class LabelInput {
                     + '</div>'
                 + '</div>'
             + '</div>',
-            document,
+            documentElement,
         );
 
         this.createMostFrenquentlyUsedElementsShortcuts();
