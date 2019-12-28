@@ -1,6 +1,7 @@
 # label-input
 The label-input component is used to receive an user text input and
-send it to anyone who is interested.
+send it to anyone who is interested. The following screenshot (from Android v4.4.4 alarm clock) shows the expected graphical results:
+![label-input view](/screenshot/label-input-screenshot.jpg)
 
 ## Events
 
