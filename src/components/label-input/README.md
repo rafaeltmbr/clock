@@ -1,6 +1,6 @@
 # label-input
 The label-input component is used to receive an user text input and
-send it to anyone who is interested. The following screenshot (from Android v4.4.4 alarm clock) shows the expected graphical results:
+send it to anyone who is interested. The following screenshots (from Android v4.4.4 alarm clock) show the expected graphical results:
 
 <div id="images-container" style="display: flex; flex-direction: row; align-items: center; justify-content: space-between">
     <img src="./screenshot/label-input-screenshot.png" alt="label-input screenshot" width=" 250px">
@@ -17,7 +17,9 @@ hit Enter or click OK. Code example:
 ```javascript
 const labelInput = new LabelInput(document);
 
-labelInput.addLabelChangeEventListener((event) => {
-    console.log(event.event); // prints the event name in the console every time the label changes
-});
+function printEventName(event) {
+    console.log(event.name);
+}
+
+labelInput.addLabelChangeEventListener(printEventName);
 ```
