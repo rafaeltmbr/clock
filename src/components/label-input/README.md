@@ -13,6 +13,6 @@ hit Enter or click OK. Code example:
 const labelInput = new LabelInput(document);
 
 labelInput.addLabelChangeEventListener((event) => {
-    console.log(event.event); // prints the event name every time the label changes
+    console.log(event.event); // prints the event name in the console every time the label changes
 });
 ```
