@@ -9,6 +9,12 @@ send it to anyone who is interested. The following screenshots (from Android v4.
 </div>
 
 ## Events
+Every event gives back a object container the follwing information:<br>
+<pre>
+    label: current label name
+    target: LabelInput object
+    event: 'label-cancel'
+</pre>
 
 ### label-change
 The label-change event happens when the user enters a new label that is different
