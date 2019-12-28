@@ -35,12 +35,20 @@ function printLabelAndEventName(event) {
     console.log(event.event, event.label);
 }
 
-labelInput.addLabelChangeListener(printLabelAndEventName); // label-change
 labelInput.addLabelCancelListener(printLabelAndEventName); // label-cancel
+labelInput.addLabelChangeListener(printLabelAndEventName); // label-change
 labelInput.addLabelDoneListener(printLabelAndEventName);   // label-done
 ```
+
+### label-cancel
+The label-cancel event is fired every time the user hits Esc, click outside the
+label-container or click Csancel.
 
 ### label-change
 The label-change event happens when the user enters a new label that is different
 from the previews one. This event is fired only if the label is changed and the user
 hit Enter or click OK.
+
+### label-done
+The label-change event is fired every time the user hits Enter or click OK.
+
