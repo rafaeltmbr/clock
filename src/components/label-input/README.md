@@ -21,7 +21,8 @@ The label-change event happens when the user enters a new label that is differen
 from the previews one. This event is fired only if the label is changed and the user
 hit Enter or click OK. The code below shows an use case of label-chage event:
 ```javascript
-/*                  Boilerplate code                  */
+/*********************** Boilerplate code ***********************/
+
 const labelInput = new LabelInput(document);
 
 document.body.appendChild(labelInput.getNodeElement());
@@ -29,7 +30,8 @@ document.body.appendChild(labelInput.getNodeElement());
 labelInput.show();
 
 
-/*              Actual event handler              */
+/*********************** Actual event handler ***********************/
+
 function printLabelNameAndHide(event) {
     console.log(event.label);
     labelInput.hide();
