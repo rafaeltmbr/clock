@@ -35,9 +35,9 @@ function printLabelAndEventName(event) {
     console.log(event.event, event.label);
 }
 
-labelInput.addLabelChangeListener(printLabelAndEventName);
-labelInput.addLabelCancelListener(printLabelAndEventName);
-labelInput.addLabelDoneListener(printLabelAndEventName);
+labelInput.addLabelChangeListener(printLabelAndEventName); // label-change
+labelInput.addLabelCancelListener(printLabelAndEventName); // label-cancel
+labelInput.addLabelDoneListener(printLabelAndEventName);   // label-done
 ```
 
 ### label-change
