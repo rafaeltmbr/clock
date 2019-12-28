@@ -1,4 +1,5 @@
 /* eslint-disable no-undef */
+/* eslint-disable no-underscore-dangle */
 
 import LabelInput from '../label-input';
 
@@ -34,20 +35,20 @@ describe('label-input methods', () => {
 describe('label-change events', () => {
     it('should add unique event handlers', () => {
         const label = new LabelInput(document);
-        expect(label.labelChangeCallbackList.length).toBe(0);
+        expect(label._labelChangeCallbackList.length).toBe(0);
 
         const changeCallback = () => {};
         label.addLabelChangeListener(changeCallback);
-        expect(label.labelChangeCallbackList.length).toBe(1);
-        expect(label.labelChangeCallbackList[0]).toBe(changeCallback);
+        expect(label._labelChangeCallbackList.length).toBe(1);
+        expect(label._labelChangeCallbackList[0]).toBe(changeCallback);
 
         label.addLabelChangeListener(changeCallback);
-        expect(label.labelChangeCallbackList.length).toBe(1);
+        expect(label._labelChangeCallbackList.length).toBe(1);
 
         label.addLabelChangeListener(() => {});
-        expect(label.labelChangeCallbackList.length).toBe(2);
+        expect(label._labelChangeCallbackList.length).toBe(2);
 
-        expect(label.labelChangeCallbackList[0]).toBe(changeCallback);
+        expect(label._labelChangeCallbackList[0]).toBe(changeCallback);
     });
 
     it('should remove event handlers', () => {
@@ -57,22 +58,22 @@ describe('label-change events', () => {
 
         label.addLabelChangeListener(changeCallback);
         label.addLabelChangeListener(changeCallback2);
-        expect(label.labelChangeCallbackList.length).toBe(2);
+        expect(label._labelChangeCallbackList.length).toBe(2);
 
         label.removeLabelChangeListener(() => {});
-        expect(label.labelChangeCallbackList.length).toBe(2);
+        expect(label._labelChangeCallbackList.length).toBe(2);
 
         label.removeLabelChangeListener(changeCallback);
-        expect(label.labelChangeCallbackList.length).toBe(1);
+        expect(label._labelChangeCallbackList.length).toBe(1);
 
         label.removeLabelChangeListener(changeCallback);
-        expect(label.labelChangeCallbackList.length).toBe(1);
+        expect(label._labelChangeCallbackList.length).toBe(1);
 
         label.removeLabelChangeListener(changeCallback2);
-        expect(label.labelChangeCallbackList.length).toBe(0);
+        expect(label._labelChangeCallbackList.length).toBe(0);
 
         label.removeLabelChangeListener(changeCallback2);
-        expect(label.labelChangeCallbackList.length).toBe(0);
+        expect(label._labelChangeCallbackList.length).toBe(0);
     });
 
     it('should call all event handlers', () => {
@@ -85,7 +86,7 @@ describe('label-change events', () => {
         label.addLabelChangeListener(() => { j += 5; });
         label.addLabelChangeListener(() => { j += 7; });
 
-        label.callChangeListeners();
+        label._callChangeListeners();
 
         expect(i).toBe(1);
         expect(j).toBe(22);
@@ -95,20 +96,20 @@ describe('label-change events', () => {
 describe('label-cancel events', () => {
     it('should add unique event handlers', () => {
         const label = new LabelInput(document);
-        expect(label.labelCancelCallbackList.length).toBe(0);
+        expect(label._labelCancelCallbackList.length).toBe(0);
 
         const cancelCallback = () => {};
         label.addLabelCancelListener(cancelCallback);
-        expect(label.labelCancelCallbackList.length).toBe(1);
-        expect(label.labelCancelCallbackList[0]).toBe(cancelCallback);
+        expect(label._labelCancelCallbackList.length).toBe(1);
+        expect(label._labelCancelCallbackList[0]).toBe(cancelCallback);
 
         label.addLabelCancelListener(cancelCallback);
-        expect(label.labelCancelCallbackList.length).toBe(1);
+        expect(label._labelCancelCallbackList.length).toBe(1);
 
         label.addLabelCancelListener(() => {});
-        expect(label.labelCancelCallbackList.length).toBe(2);
+        expect(label._labelCancelCallbackList.length).toBe(2);
 
-        expect(label.labelCancelCallbackList[0]).toBe(cancelCallback);
+        expect(label._labelCancelCallbackList[0]).toBe(cancelCallback);
     });
 
     it('should remove event handlers', () => {
@@ -118,22 +119,22 @@ describe('label-cancel events', () => {
 
         label.addLabelCancelListener(cancelCallback);
         label.addLabelCancelListener(cancelCallback2);
-        expect(label.labelCancelCallbackList.length).toBe(2);
+        expect(label._labelCancelCallbackList.length).toBe(2);
 
         label.removeLabelCancelListener(() => {});
-        expect(label.labelCancelCallbackList.length).toBe(2);
+        expect(label._labelCancelCallbackList.length).toBe(2);
 
         label.removeLabelCancelListener(cancelCallback);
-        expect(label.labelCancelCallbackList.length).toBe(1);
+        expect(label._labelCancelCallbackList.length).toBe(1);
 
         label.removeLabelCancelListener(cancelCallback);
-        expect(label.labelCancelCallbackList.length).toBe(1);
+        expect(label._labelCancelCallbackList.length).toBe(1);
 
         label.removeLabelCancelListener(cancelCallback2);
-        expect(label.labelCancelCallbackList.length).toBe(0);
+        expect(label._labelCancelCallbackList.length).toBe(0);
 
         label.removeLabelCancelListener(cancelCallback2);
-        expect(label.labelCancelCallbackList.length).toBe(0);
+        expect(label._labelCancelCallbackList.length).toBe(0);
     });
 
     it('should call all event handlers', () => {
@@ -146,7 +147,7 @@ describe('label-cancel events', () => {
         label.addLabelCancelListener(() => { j += 5; });
         label.addLabelCancelListener(() => { j += 7; });
 
-        label.callCancelListeners();
+        label._callCancelListeners();
 
         expect(i).toBe(1);
         expect(j).toBe(22);
@@ -156,20 +157,20 @@ describe('label-cancel events', () => {
 describe('label-done events', () => {
     it('should add unique event handlers', () => {
         const label = new LabelInput(document);
-        expect(label.labelDoneCallbackList.length).toBe(0);
+        expect(label._labelDoneCallbackList.length).toBe(0);
 
         const doneCallback = () => {};
         label.addLabelDoneListener(doneCallback);
-        expect(label.labelDoneCallbackList.length).toBe(1);
-        expect(label.labelDoneCallbackList[0]).toBe(doneCallback);
+        expect(label._labelDoneCallbackList.length).toBe(1);
+        expect(label._labelDoneCallbackList[0]).toBe(doneCallback);
 
         label.addLabelDoneListener(doneCallback);
-        expect(label.labelDoneCallbackList.length).toBe(1);
+        expect(label._labelDoneCallbackList.length).toBe(1);
 
         label.addLabelDoneListener(() => {});
-        expect(label.labelDoneCallbackList.length).toBe(2);
+        expect(label._labelDoneCallbackList.length).toBe(2);
 
-        expect(label.labelDoneCallbackList[0]).toBe(doneCallback);
+        expect(label._labelDoneCallbackList[0]).toBe(doneCallback);
     });
 
     it('should remove event handlers', () => {
@@ -179,22 +180,22 @@ describe('label-done events', () => {
 
         label.addLabelDoneListener(doneCallback);
         label.addLabelDoneListener(doneCallback2);
-        expect(label.labelDoneCallbackList.length).toBe(2);
+        expect(label._labelDoneCallbackList.length).toBe(2);
 
         label.removeLabelDoneListener(() => {});
-        expect(label.labelDoneCallbackList.length).toBe(2);
+        expect(label._labelDoneCallbackList.length).toBe(2);
 
         label.removeLabelDoneListener(doneCallback);
-        expect(label.labelDoneCallbackList.length).toBe(1);
+        expect(label._labelDoneCallbackList.length).toBe(1);
 
         label.removeLabelDoneListener(doneCallback);
-        expect(label.labelDoneCallbackList.length).toBe(1);
+        expect(label._labelDoneCallbackList.length).toBe(1);
 
         label.removeLabelDoneListener(doneCallback2);
-        expect(label.labelDoneCallbackList.length).toBe(0);
+        expect(label._labelDoneCallbackList.length).toBe(0);
 
         label.removeLabelDoneListener(doneCallback2);
-        expect(label.labelDoneCallbackList.length).toBe(0);
+        expect(label._labelDoneCallbackList.length).toBe(0);
     });
 
     it('should call all event handlers', () => {
@@ -207,7 +208,7 @@ describe('label-done events', () => {
         label.addLabelDoneListener(() => { j += 5; });
         label.addLabelDoneListener(() => { j += 7; });
 
-        label.callDoneListeners();
+        label._callDoneListeners();
 
         expect(i).toBe(1);
         expect(j).toBe(22);
