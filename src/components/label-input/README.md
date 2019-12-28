@@ -13,13 +13,18 @@ send it to anyone who is interested. The following screenshots (from Android v4.
 ### label-change
 The label-change event happens when the user enters a new label that is different
 from the previews one. This event is fired only if the label is changed and the user
-hit Enter or click OK. Code example:
+hit Enter or click OK. The code below shows an use case of label-chage event:
 ```javascript
 const labelInput = new LabelInput(document);
 
+document.body.appendChild(labelInput.getNodeElement());
+
+labelInput.show();
+
 function printEventName(event) {
     console.log(event.event);
+    labelInput.hide();
 }
 
-labelInput.addLabelChangeEventListener(printEventName);
+labelInput.addLabelChangeListener(printEventName);
 ```
