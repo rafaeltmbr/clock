@@ -1,7 +1,12 @@
 # label-input
 The label-input component is used to receive an user text input and
 send it to anyone who is interested. The following screenshot (from Android v4.4.4 alarm clock) shows the expected graphical results:
-<img src="./screenshot/label-input-screenshot.png" alt="label-input screenshot" width=" 300px">
+
+<div id="images-container" style="display: flex; flex-direction: row; align-items: center; justify-content: space-between">
+    <img src="./screenshot/label-input-screenshot.png" alt="label-input screenshot" width=" 250px">
+    <img src="./screenshot/label-input-nameed-screenshot.png" alt="label-input named screenshot" width=" 250px">
+    <img src="./screenshot/label-input-nameed-keyboard-screenshot.png" alt="label-input named keyboard screenshot" width=" 250px">
+</div>
 
 ## Events
 
