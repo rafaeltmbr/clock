@@ -71,7 +71,7 @@ The label-change event is fired every time the user hits Enter or click OK.
 
 ## Folder organization
 <pre>
-/label-input
+<b>label-input/</b>
     |-- <b>build/</b>      - Contain a standalone version of this component
     |-- <b>dev/</b>        - Contain a standalone source code to run this component
     |-- <b>screenshot/</b> - Contain screenshots used as a graphical reference when build this    user interface
