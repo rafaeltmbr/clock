@@ -18,7 +18,7 @@ hit Enter or click OK. Code example:
 const labelInput = new LabelInput(document);
 
 function printEventName(event) {
-    console.log(event.name);
+    console.log(event.event);
 }
 
 labelInput.addLabelChangeEventListener(printEventName);
