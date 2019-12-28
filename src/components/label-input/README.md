@@ -22,7 +22,7 @@ There are eleven methods that can be called directly (public). They are:
 * removeLabelChangeListener
 * removeLabelDoneListener
 
-Every other method starting with an underscore are private. Thus, is shouldn't be called
+Every other method starting with an underscore is private. Thus, is shouldn't be called
 outside the class.
 
 ## Events
