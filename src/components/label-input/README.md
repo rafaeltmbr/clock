@@ -77,7 +77,7 @@ The label-change event is fired every time the user hits Enter or click OK.
     \-- <b>screenshot</b> - Contain screenshots used as a graphical reference when build this user interface
     \-- <b>test</b>       - Contain the test file used to validate the LabelInput JavaScript class
     |-- label-input.html  - HTML code that can be included in other components
-    |-- label-input.js    - JavaScript class with methods and event handlers
+    |-- label-input.js    - JavaScript class with methods and events
     |-- label-input.sass  - Style file in Sass formmat
     |-- README.md         - This README file
 </pre>
