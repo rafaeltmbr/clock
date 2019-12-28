@@ -4,8 +4,8 @@ send it to anyone who is interested. The following screenshot (from Android v4.4
 
 <div id="images-container" style="display: flex; flex-direction: row; align-items: center; justify-content: space-between">
     <img src="./screenshot/label-input-screenshot.png" alt="label-input screenshot" width=" 250px">
-    <img src="./screenshot/label-input-nameed-screenshot.png" alt="label-input named screenshot" width=" 250px">
-    <img src="./screenshot/label-input-nameed-keyboard-screenshot.png" alt="label-input named keyboard screenshot" width=" 250px">
+    <img src="./screenshot/label-input-named-screenshot.png" alt="label-input named screenshot" width=" 250px">
+    <img src="./screenshot/label-input-named-keyboard-screenshot.png" alt="label-input named keyboard screenshot" width=" 250px">
 </div>
 
 ## Events
