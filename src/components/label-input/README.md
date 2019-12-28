@@ -10,17 +10,17 @@ send it to anyone who is interested. The following screenshots (from Android v4.
 
 ## Methods
 There are eleven methods that can be called directly (public). They are:
-* getName
-* setName
-* show
-* hide
-* getNodeElement
-* addLabelCancelListener
-* addLabelChangeListener
-* addLabelDoneListener
-* removeLabelCancelListener
-* removeLabelChangeListener
-* removeLabelDoneListener
+* <b>getName</b> - get the current label value
+* <b>setName</b> - set the current label value
+* <b>show</b> - display the label-input element
+* <b>hide</b> - hides the label-input element
+* <b>getNodeElement</b> - get the DOM node with class .label-input
+* <b>addLabelCancelListener</b> - 
+* <b>addLabelChangeListener</b> - 
+* <b>addLabelDoneListener</b> - 
+* <b>removeLabelCancelListener</b> - 
+* <b>removeLabelChangeListener</b> - 
+* <b>removeLabelDoneListener</b> - 
 
 Every other method starting with an underscore is private. Thus, is shouldn't be called
 outside the class, otherwise, it may crash the component.
