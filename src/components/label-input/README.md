@@ -23,7 +23,7 @@ There are eleven methods that can be called directly (public). They are:
 * removeLabelDoneListener
 
 Every other method starting with an underscore is private. Thus, is shouldn't be called
-outside the class.
+outside the class, otherwise, it may crash the component.
 
 ## Events
 The label-input element handles three types of event. They are label-change, label-done and label-cancel.
