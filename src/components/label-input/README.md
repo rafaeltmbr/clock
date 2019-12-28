@@ -15,12 +15,12 @@ There are eleven methods that can be called directly (public). They are:
 * <b>show</b> - display the label-input element
 * <b>hide</b> - hides the label-input element
 * <b>getNodeElement</b> - get the DOM node with class .label-input
-* <b>addLabelCancelListener</b> - 
-* <b>addLabelChangeListener</b> - 
-* <b>addLabelDoneListener</b> - 
-* <b>removeLabelCancelListener</b> - 
-* <b>removeLabelChangeListener</b> - 
-* <b>removeLabelDoneListener</b> - 
+* <b>addLabelCancelListener</b> - register a callback function to the label-cancel event
+* <b>addLabelChangeListener</b> - register a callback function to the label-change event
+* <b>addLabelDoneListener</b> - register a callback function to the label-done event
+* <b>removeLabelCancelListener</b> - unregister the given callback function from label-cancel event
+* <b>removeLabelChangeListener</b> - unregister the given callback function from label-change event
+* <b>removeLabelDoneListener</b> - unregister the given callback function from label-done event
 
 Every other method starting with an underscore is private. Thus, is shouldn't be called
 outside the class, otherwise, it may crash the component.
