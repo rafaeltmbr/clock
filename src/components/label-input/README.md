@@ -16,12 +16,9 @@ target: LabelInput object
 event:  event name
 </pre>
 
-### label-change
-The label-change event happens when the user enters a new label that is different
-from the previews one. This event is fired only if the label is changed and the user
-hit Enter or click OK. The code below shows an use case of label-chage event:
+The code below shows an use case of event handling:
 ```javascript
-/*********************** Boilerplate code ***********************/
+// *********************** Boilerplate code ***********************
 
 const labelInput = new LabelInput(document);
 
@@ -30,12 +27,18 @@ document.body.appendChild(labelInput.getNodeElement());
 labelInput.show();
 
 
-/*********************** Actual event handler ***********************/
+// *********************** Actual event handling ***********************
 
-function printLabelNameAndHide(event) {
-    console.log(event.label);
-    labelInput.hide();
+function printLabelAndEventName(event) {
+    console.log(event.event, event.label);
 }
 
-labelInput.addLabelChangeListener(printLabelNameAndHide);
+labelInput.addLabelChangeListener(printLabelAndEventName);
+labelInput.addLabelCancelListener(printLabelAndEventName);
+labelInput.addLabelDoneListener(printLabelAndEventName);
 ```
+
+### label-change
+The label-change event happens when the user enters a new label that is different
+from the previews one. This event is fired only if the label is changed and the user
+hit Enter or click OK.
