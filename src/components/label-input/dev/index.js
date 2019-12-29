@@ -10,6 +10,10 @@ label1.setName('Alarm 1');
 
 label1.show();
 
+console.log('default placeholder:', label1.getPlaceholder());
+
+label1.setPlaceholder('Label name');
+
 label1.addLabelDoneListener((event) => {
     event.target.hide();
     setTimeout(() => event.target.show(), 1000);

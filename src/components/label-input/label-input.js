@@ -153,6 +153,22 @@ class LabelInput {
     }
 
     /**
+     * Returns the text input place holder.
+     * @return {String} The placeholder current value.
+     */
+    getPlaceholder() {
+        return this._labelElement.placeholder;
+    }
+
+    /**
+     * Change the placeholder name.
+     * @param {String} placeholder - The new placeholder name.
+     */
+    setPlaceholder(placeholder) {
+        this._labelElement.placeholder = placeholder;
+    }
+
+    /**
      * Change the .label-input data-display-status attribute to <b>show</b> in order to make
      * the label-input element visible in the window.
      */

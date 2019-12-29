@@ -10,6 +10,15 @@ describe('label-input methods', () => {
         expect(label.getNodeElement() instanceof Element).toBe(true);
     });
 
+    it('should set and get the placeholder value', () => {
+        const label = new LabelInput(document);
+
+        const newPlaceholder = 'Label name';
+        label.setPlaceholder(newPlaceholder);
+
+        expect(label.getPlaceholder()).toBe(newPlaceholder);
+    });
+
     it('should set and get a label name', () => {
         const label = new LabelInput(document);
         const name = `Alarm ${Math.round(Math.random() * 1000)}`;
