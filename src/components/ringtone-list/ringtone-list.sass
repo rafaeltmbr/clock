@@ -13,8 +13,11 @@ $ringtones_background_color_active: rgb(34, 34, 34)
 $ringtones_min_margin: 10px
 $ringtones_list_item_height: 40px
 $ringtones_background_color_hover: rgb(34, 34, 34)
+$ringtones_scrollbar_background_color: rgb(40, 40, 40)
+$ringtones_scrollbar_thumb_color: rgba(70, 70, 70)
+$ringtones_scrollbar_thumb_width: 8px
 
-.ringtones-wrapper[stat-display-status="show"]
+.ringtones-wrapper[data-display-status="show"]
     display: flex
 
 .ringtones-wrapper
@@ -28,6 +31,13 @@ $ringtones_background_color_hover: rgb(34, 34, 34)
     bottom: 0
     left: 0
     background-color: rgba(0, 0, 0, 0.5)
+    font-family: sans-serif
+
+    *
+        margin: 0
+        padding: 0
+        outline: none
+        box-sizing: border-box
 
     .ringtones
         width: $ringtones_width
@@ -44,18 +54,18 @@ $ringtones_background_color_hover: rgb(34, 34, 34)
             padding: $ringtones_padding_top $ringtones_padding_left
             font-size: 18px
 
-        ul
+        ul.ringtone-list
             list-style: none
             max-height: calc(100% - #{$ringtones_computed_header_height + $ringtones_cancel_ok_height})
             overflow: auto
 
-            li:last-child
+            li.ringtone-item:last-child
                 border-bottom: none
 
-            li:active
+            li.ringtone-item:active
                 background-color: $ringtones_background_color_active
 
-            li
+            li.ringtone-item
                 border-bottom: 1px solid $ringtones_list_border_color
                 color: white
                 padding: $ringtones_padding_top $ringtones_padding_left
@@ -122,9 +132,17 @@ $ringtones_background_color_hover: rgb(34, 34, 34)
 @media (hover: hover)
     .ringtones-wrapper
         .ringtones
-            ul
+            ul.ringtone-list
                 li:hover
                     background-color: $ringtones_background_color_hover
+
+            ul.ringtone-list::-webkit-scrollbar
+                background-color: $ringtones_scrollbar_background_color
+                width: $ringtones_scrollbar_thumb_width
+
+            ul.ringtone-list::-webkit-scrollbar-thumb
+                width: $ringtones_scrollbar_thumb_width
+                background-color: $ringtones_scrollbar_thumb_color
 
         .cancel-ok
             *:hover

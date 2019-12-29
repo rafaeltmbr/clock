@@ -5,7 +5,7 @@
 .ringtones-wrapper {
   align-items: center;
   justify-content: center;
-  z-index: 10;
+  z-index: 2;
   display: none;
   position: fixed;
   top: 0;
@@ -13,6 +13,13 @@
   bottom: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.5);
+  font-family: sans-serif;
+}
+.ringtones-wrapper * {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  box-sizing: border-box;
 }
 .ringtones-wrapper .ringtones {
   width: 284px;
@@ -29,18 +36,18 @@
   padding: 10px 15px;
   font-size: 18px;
 }
-.ringtones-wrapper .ringtones ul {
+.ringtones-wrapper .ringtones ul.ringtone-list {
   list-style: none;
   max-height: calc(100% - 83px);
   overflow: auto;
 }
-.ringtones-wrapper .ringtones ul li:last-child {
+.ringtones-wrapper .ringtones ul.ringtone-list li.ringtone-item:last-child {
   border-bottom: none;
 }
-.ringtones-wrapper .ringtones ul li:active {
+.ringtones-wrapper .ringtones ul.ringtone-list li.ringtone-item:active {
   background-color: #222222;
 }
-.ringtones-wrapper .ringtones ul li {
+.ringtones-wrapper .ringtones ul.ringtone-list li.ringtone-item {
   border-bottom: 1px solid #4c4c4c;
   color: white;
   padding: 10px 15px;
@@ -50,7 +57,7 @@
   align-items: center;
   justify-content: space-between;
 }
-.ringtones-wrapper .ringtones ul li .list-bullet {
+.ringtones-wrapper .ringtones ul.ringtone-list li.ringtone-item .list-bullet {
   width: 18px;
   height: 18px;
   border: 1px solid #4c4c4c;
@@ -59,7 +66,7 @@
   align-items: center;
   justify-content: center;
 }
-.ringtones-wrapper .ringtones ul li .list-bullet * {
+.ringtones-wrapper .ringtones ul.ringtone-list li.ringtone-item .list-bullet * {
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -67,12 +74,12 @@
   width: calc(100% - 4px);
   height: calc(100% - 4px);
 }
-.ringtones-wrapper .ringtones ul li .list-bullet .bullet-around {
+.ringtones-wrapper .ringtones ul.ringtone-list li.ringtone-item .list-bullet .bullet-around {
   background-color: rgba(51, 181, 229, 0.3);
   box-shadow: 0 0 4px rgba(51, 181, 229, 0.4);
   display: none;
 }
-.ringtones-wrapper .ringtones ul li .list-bullet .bullet-around .bullet-center {
+.ringtones-wrapper .ringtones ul.ringtone-list li.ringtone-item .list-bullet .bullet-around .bullet-center {
   background-color: #33b5e5;
   border-top: 1px solid rgba(255, 255, 255, 0.3);
 }
@@ -138,8 +145,16 @@
 }
 
 @media (hover: hover) {
-  .ringtones-wrapper .ringtones ul li:hover {
+  .ringtones-wrapper .ringtones ul.ringtone-list li:hover {
     background-color: #222222;
+  }
+  .ringtones-wrapper .ringtones ul.ringtone-list::-webkit-scrollbar {
+    background-color: #282828;
+    width: 8px;
+  }
+  .ringtones-wrapper .ringtones ul.ringtone-list::-webkit-scrollbar-thumb {
+    width: 8px;
+    background-color: #464646;
   }
   .ringtones-wrapper .cancel-ok *:hover {
     background-color: #222222;
