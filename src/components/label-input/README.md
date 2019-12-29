@@ -11,11 +11,11 @@ spotlight (please, disconsider the mobile keyboard and background elements):
 
 ## Methods
 There are thirteen methods that can be called directly (public access). They are:
-* **getName** - get the current label name
-* **setName** - set the current label name
+* **getLabel** - get the current label
+* **setLabel** - set the current label
 * **getPlaceholder** - get the current placeholder value
 * **setPlaceholder** - set the current placeholder value
-* **show** - display the label-input element
+* **show** - display the label-input element above the others (z-index: 1000)
 * **hide** - hides the label-input element
 * **getNodeElement** - get the DOM node with class .label-input
 * **addLabelCancelListener** - register a callback function to the label-cancel event
@@ -34,7 +34,7 @@ Every event gives back an object containing the following properties:<br>
 <pre>
 label:  current label name
 target: LabelInput object
-event:  event name
+eventName:  event name (label-cancel, label-change ou label-done)
 </pre>
 
 The code below shows a use case of event handling. It creates the label-input object, append the DOM element to the body of the document and displays it. Then, every kind of event is handled by the same function (printLabelAndEventName). Once the event is fired,
