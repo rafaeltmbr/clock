@@ -4,10 +4,12 @@
 import LabelInput from '../label-input';
 
 describe('label-input methods', () => {
-    it('should create a DOM element', () => {
+    it('should create a DOM element with className of .label-input', () => {
         const label = new LabelInput(document);
 
-        expect(label.getNodeElement() instanceof Element).toBe(true);
+        const element = label.getNodeElement();
+        expect(element instanceof Element).toBe(true);
+        expect(element.className).toBe('label-input');
     });
 
     it('should set and get the placeholder value', () => {
@@ -22,10 +24,10 @@ describe('label-input methods', () => {
     it('should set and get a label name', () => {
         const label = new LabelInput(document);
         const name = `Alarm ${Math.round(Math.random() * 1000)}`;
-        expect(label.getName()).toBe('');
+        expect(label.getLabel()).toBe('');
 
-        label.setName(name);
-        expect(label.getName()).toBe(name);
+        label.setLabel(name);
+        expect(label.getLabel()).toBe(name);
     });
 
     it('should change the data-display-status attribute', () => {

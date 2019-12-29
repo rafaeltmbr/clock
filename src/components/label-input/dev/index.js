@@ -6,7 +6,7 @@ const label1 = new LabelInput(document);
 
 document.body.appendChild(label1.getNodeElement());
 
-label1.setName('Alarm 1');
+label1.setLabel('Alarm 1');
 
 label1.show();
 

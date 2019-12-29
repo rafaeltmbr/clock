@@ -134,21 +134,21 @@ class LabelInput {
     }
 
     /**
-     * Returns the current value in the label name.
+     * Returns the current value in the label.
      * @return {String} label name.
      */
-    getName() {
+    getLabel() {
         return this._label;
     }
 
     /**
      * Set the new label name.
-     * @param {String} newLabel - The new label name.
+     * @param {String} label - The new label.
      */
-    setName(newLabel) {
-        if (typeof newLabel === 'string' && newLabel.length <= 64) {
-            this._label = newLabel;
-            this._labelElement.value = newLabel;
+    setLabel(label) {
+        if (typeof label === 'string' && label.length <= 64) {
+            this._label = label;
+            this._labelElement.value = label;
         }
     }
 

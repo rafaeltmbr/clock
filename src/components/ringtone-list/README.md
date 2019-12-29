@@ -4,16 +4,17 @@ The ringtone-list component displays a list a ringtones that the user can select
 <img src="./screenshot/ringtone-list-screenshot.png" alt="ringtone list screenshot" width="300px">
 
 ## Methods
-There are twelve methods in total that can be call outside the RingtoneList class (public methods). They are:
+There are thirteen methods in total that can be call outside the RingtoneList class (public methods). They are:
 * **getRingtone** - get the current ringtone name
 * **setRingtone** - set the current ringtone name
 * **enableSound** - enable sound to play when the user select a ringtone
 * **disableSound** - disable sound to play when the user select a ringtone
 * **show** - display the ringtone-list element above the others (z-index: 1000)
 * **hide** - hide the ringtone-list element
+* **getNodeElement** - get the DOM node with class .ringtone-list
 * **addRingtoneCancelListener** - register a callback function to the ringtone-cancel event
-* **addRingtoneDoneListener** - register a callback function to the ringtone-done event
 * **addRingtoneChangeListener** - register a callback function to the ringtone-change event
+* **addRingtoneDoneListener** - register a callback function to the ringtone-done event
 * **removeRingtoneCancelListener** - unregister the given callback function from ringtone-cancel event
 * **removeRingtoneChangelListener** - unregister the given callback function from ringtone-change event
 * **removeRingtoneDoneListener** - unregister the given callback function from ringtone-done event
