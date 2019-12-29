@@ -10,7 +10,7 @@ There are thirteen methods in total that can be call outside the RingtoneList cl
 * **setRingtone** - set the current ringtone name
 * **enableSound** - enable sound to play when the user select a ringtone
 * **disableSound** - disable sound to play when the user select a ringtone
-* **show** - display the ringtone-list element above the others (z-index: 1000)
+* **show** - display the ringtone-list element and place it above the others (z-index: 1000)
 * **hide** - hide the ringtone-list element
 * **getNodeElement** - get the DOM node with class .ringtone-list
 * **addRingtoneCancelListener** - register a callback function to the ringtone-cancel event
@@ -28,11 +28,11 @@ The ringtone-list element handles three types of events. They are ringtone-chang
 Every event gives back an object containing the following properties:<br>
 <pre>
 ringtone:  current ringtone name
-target: ringtoneList object
-eventName:  event name (ringtone-cancel, ringtone-change or ringtone-done)
+target:    ringtoneList object
+eventName: event name (ringtone-cancel, ringtone-change or ringtone-done)
 </pre>
 
-The code below shows a use case of event handling. It creates the ringtone-list object, append the DOM element to the body of the document and displays it. Then, every kind of event is handled by the same function (printRingtoneAndEventName). Once the event is fired,
+The code below shows a use case of event handling. It creates the ringtone-list object, append the DOM element to the body of the document and displays it. Then, every kind of event is handled by the same function (printEventNameAndRingtone). Once the event is fired,
 the handler logs its event and ringtone name in the console.
 ```javascript
 // *********************** Boilerplate code ***********************
@@ -46,13 +46,13 @@ ringtoneList.show();
 
 // *********************** Actual event handling ***********************
 
-function printRingtoneAndEventName(event) {
+function printEventNameAndRingtone(event) {
     console.log(event.eventName, event.ringtone);
 }
 
-ringtoneList.addRingtoneCancelListener(printRingtoneAndEventName); // ringtone-cancel
-ringtoneList.addRingtoneChangeListener(printRingtoneAndEventName); // ringtone-change
-ringtoneList.addRingtoneDoneListener(printRingtoneAndEventName);   // ringtone-done
+ringtoneList.addRingtoneCancelListener(printEventNameAndRingtone); // ringtone-cancel
+ringtoneList.addRingtoneChangeListener(printEventNameAndRingtone); // ringtone-change
+ringtoneList.addRingtoneDoneListener(printEventNameAndRingtone);   // ringtone-done
 ```
 
 ### ringtone-cancel

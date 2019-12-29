@@ -15,7 +15,7 @@ There are thirteen methods that can be called directly (public access). They are
 * **setLabel** - set the current label
 * **getPlaceholder** - get the current placeholder value
 * **setPlaceholder** - set the current placeholder value
-* **show** - display the label-input element above the others (z-index: 1000)
+* **show** - display the label-input element and place it above the others (z-index: 1000)
 * **hide** - hides the label-input element
 * **getNodeElement** - get the DOM node with class .label-input
 * **addLabelCancelListener** - register a callback function to the label-cancel event
@@ -32,12 +32,12 @@ outside the class, otherwise, it may crash the component.
 The label-input element handles three types of events. They are label-change, label-done and label-cancel.
 Every event gives back an object containing the following properties:<br>
 <pre>
-label:  current label name
-target: LabelInput object
+label:      current label name
+target:     LabelInput object
 eventName:  event name (label-cancel, label-change or label-done)
 </pre>
 
-The code below shows a use case of event handling. It creates the label-input object, append the DOM element to the body of the document and displays it. Then, every kind of event is handled by the same function (printLabelAndEventName). Once the event is fired,
+The code below shows a use case of event handling. It creates the label-input object, append the DOM element to the body of the document and displays it. Then, every kind of event is handled by the same function (printEventNameAndLabel). Once the event is fired,
 the handler logs its event and label name in the console.
 ```javascript
 // *********************** Boilerplate code ***********************
@@ -51,13 +51,13 @@ labelInput.show();
 
 // *********************** Actual event handling ***********************
 
-function printLabelAndEventName(event) {
+function printEventNameAndLabel(event) {
     console.log(event.eventName, event.label);
 }
 
-labelInput.addLabelCancelListener(printLabelAndEventName); // label-cancel
-labelInput.addLabelChangeListener(printLabelAndEventName); // label-change
-labelInput.addLabelDoneListener(printLabelAndEventName);   // label-done
+labelInput.addLabelCancelListener(printEventNameAndLabel); // label-cancel
+labelInput.addLabelChangeListener(printEventNameAndLabel); // label-change
+labelInput.addLabelDoneListener(printEventNameAndLabel);   // label-done
 ```
 
 ### label-cancel
