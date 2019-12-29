@@ -1,6 +1,6 @@
 # label-input
 The label-input component is used to receive a user text input and
-send it to anyone who is interested. The following screenshots (from Android v4.4.4 alarm clock) show the expected graphical results with the label-input element being in the
+send it to anyone who is interested. This component is instantiated from the LabelInput class found in the label-input.js file. The following screenshots (from Android v4.4.4 alarm clock) show the expected graphical results with the label-input element being in the
 spotlight (please, disconsider the mobile keyboard and background elements):
 
 <div id="images-container" style="display: flex; flex-direction: row; align-items: center; justify-content: space-between">
@@ -74,11 +74,11 @@ The label-change event is fired every time the user hits Enter or click OK.
 
 ## Folder organization
 <pre>
-\-- <b>label-input</b>    - Folder containing the whole label-input module.
-    \-- <b>build</b>      - Folder containing the standalone generated code to run this component individually.
-    \-- <b>dev</b>        - Folder containing the standalone source code to run this component individually.
-    \-- <b>screenshot</b> - Folder containing the screenshots used as a reference to the GUI.
-    \-- <b>test</b>       - Folder containing the test file used to validate the LabelInput JavaScript class.
+\-- <b>label-input</b>           - Folder containing the whole label-input module.
+    \-- <b>build</b>             - Folder containing the generated code to run this component standalone.
+    \-- <b>dev</b>               - Folder containing the source code to run this component standalone.
+    \-- <b>screenshot</b>        - Folder containing the screenshots used as a reference to build the GUI.
+    \-- <b>test</b>              - Folder containing the test file used to validate the LabelInput JavaScript class.
     |-- label-input.html  - HTML code that is generated once the component is instantiated.
     |-- label-input.js    - JavaScript class with methods and events.
     |-- label-input.sass  - Style file in Sass format.

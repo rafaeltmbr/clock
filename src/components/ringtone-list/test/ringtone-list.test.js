@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-/*
+
 import RingtoneList from '../ringtone-list';
 
 describe('ringtone-list methods', () => {
@@ -11,4 +11,3 @@ describe('ringtone-list methods', () => {
         expect(element.className).toBe('ringtone-list');
     });
 });
-*/
