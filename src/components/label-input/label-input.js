@@ -9,7 +9,7 @@ class LabelInput {
     /**
      * Create a label-input object.
      * @constructor
-     * @param {Object} documentElement - The document DOM element available in the plataform.
+     * @param {Object} documentElement - The document DOM element available in the platform.
      * @returns {Object} LabelInput - Interface used to control/listen to the label input
      *  DOM element.
      */
@@ -134,7 +134,7 @@ class LabelInput {
     }
 
     /**
-     * Returns the curren value in the label name.
+     * Returns the current value in the label name.
      * @return {String} label name.
      */
     getName() {
@@ -186,7 +186,7 @@ class LabelInput {
     }
 
     /**
-     * Retuns the actual .label-input DOM element being manipulated.
+     * Returns the actual .label-input DOM element being manipulated.
      * @return {Object} .label-input DOM element.
      */
     getNodeElement() {
