@@ -1,0 +1,131 @@
+$ringtones_width: 284px
+$ringtones_background_color: rgb(40, 40, 40)
+$ringtones_header_color: rgb(51, 181, 229)
+$ringtones_list_border_color: rgb(76, 76, 76)
+$ringtones_padding_left: 15px
+$ringtones_padding_top: 10px
+$ringtones_list_bullet_width: 18px
+$ringtones_total: 10
+$ringtones_min_height: 270px
+$ringtones_computed_header_height: 43px
+$ringtones_cancel_ok_height: 40px
+$ringtones_background_color_active: rgb(34, 34, 34)
+$ringtones_min_margin: 10px
+$ringtones_list_item_height: 40px
+$ringtones_background_color_hover: rgb(34, 34, 34)
+
+.ringtones-wrapper[stat-display-status="show"]
+    display: flex
+
+.ringtones-wrapper
+    align-items: center
+    justify-content: center
+    z-index: 2
+    display: none
+    position: fixed
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+    background-color: rgba(0, 0, 0, 0.5)
+
+    .ringtones
+        width: $ringtones_width
+        height: calc(#{$ringtones_computed_header_height + $ringtones_cancel_ok_height + $ringtones_total * $ringtones_list_item_height + 1px})
+        max-height: calc(100% - #{$ringtones_min_margin})
+        background-color: $ringtones_background_color
+        border-top: 1px solid $ringtones_list_border_color
+        border-radius: 3px
+        box-shadow: 0 3px 5px rgb(0, 0, 0)
+
+        header
+            color: $ringtones_header_color
+            border-bottom: 2px solid $ringtones_header_color
+            padding: $ringtones_padding_top $ringtones_padding_left
+            font-size: 18px
+
+        ul
+            list-style: none
+            max-height: calc(100% - #{$ringtones_computed_header_height + $ringtones_cancel_ok_height})
+            overflow: auto
+
+            li:last-child
+                border-bottom: none
+
+            li:active
+                background-color: $ringtones_background_color_active
+
+            li
+                border-bottom: 1px solid $ringtones_list_border_color
+                color: white
+                padding: $ringtones_padding_top $ringtones_padding_left
+                height: $ringtones_list_item_height
+                display: flex
+                flex-direction: row
+                align-items: center
+                justify-content: space-between
+
+                .list-bullet
+                    width: $ringtones_list_bullet_width
+                    height: $ringtones_list_bullet_width
+                    border: 1px solid $ringtones_list_border_color
+                    border-radius: 50%
+                    display: flex
+                    align-items: center
+                    justify-content: center
+
+                    *
+                        border-radius: 50%
+                        display: flex
+                        align-items: center
+                        justify-content: center
+                        width: calc(100% - 4px)
+                        height: calc(100% - 4px)
+
+                    .bullet-around
+                        background-color: rgba(51, 181, 229, 0.3)
+                        box-shadow: 0 0 4px rgba(51, 181, 229, 0.4)
+                        display: none
+
+                        .bullet-center
+                            background-color: $ringtones_header_color
+                            border-top: 1px solid rgba(255, 255, 255, 0.3)
+        .cancel-ok
+            display: flex
+            flex-direction: row
+            color: white
+            display: flex
+            overflow: hidden
+            height: $ringtones_cancel_ok_height
+            border-top: 1px solid $ringtones_list_border_color
+
+            *:active
+                background-color: $ringtones_background_color_active
+
+            .cancel, .ok
+                width: 50%
+                padding: $ringtones_padding_top 0
+                text-align: center
+
+            .ok
+                border-left: 1px solid $ringtones_list_border_color
+
+
+@for $i from 1 through $ringtones_total
+    .ringtones[data-selected-song="#{$i}"]
+        ul
+            li:nth-child(#{$i})
+                .list-bullet
+                    .bullet-around
+                        display: flex
+
+@media (hover: hover)
+    .ringtones-wrapper
+        .ringtones
+            ul
+                li:hover
+                    background-color: $ringtones_background_color_hover
+
+        .cancel-ok
+            *:hover
+                background-color: $ringtones_background_color_hover

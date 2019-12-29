@@ -26,10 +26,17 @@
     "lint": "eslint ./src/script --fix",
     "test": "jest",
     "doc": "jsdoc -r ./src/components -d ./doc",
+
     "dev:label-input:pug": "pug ./src/components/label-input/dev/index.pug -o ./src/components/label-input/build --watch --pretty",
     "dev:label-input:sass": "sass ./src/components/label-input/label-input.sass ./src/components/label-input/build/style.css --watch --no-source-map",
     "dev:label-input:webpack": "webpack --mode=development --config ./src/components/label-input/dev/webpack.config.js -w",
     "dev:label-input": "concurrently \"yarn dev:label-input:pug\" \"yarn dev:label-input:sass\" \"yarn dev:label-input:webpack\"",
+
+    "dev:ringtone-list:pug": "pug ./src/components/ringtone-list/dev/index.pug -o ./src/components/ringtone-list/build --watch --pretty",
+    "dev:ringtone-list:sass": "sass ./src/components/ringtone-list/ringtone-list.sass ./src/components/ringtone-list/build/style.css --watch --no-source-map",
+    "dev:ringtone-list:webpack": "webpack --mode=development --config ./src/components/ringtone-list/dev/webpack.config.js -w",
+    "dev:ringtone-list": "concurrently \"yarn dev:ringtone-list:pug\" \"yarn dev:ringtone-list:sass\" \"yarn dev:ringtone-list:webpack\"",
+
     "webpack": "webpack --mode=production",
     "webpack-w": "webpack --mode=development -w",
     "pug": "pug ./src/markup/index -o ./public",
