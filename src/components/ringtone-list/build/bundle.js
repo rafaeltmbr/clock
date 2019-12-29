@@ -90,10 +90,23 @@
 /*!***************************************************!*\
   !*** ./src/components/ringtone-list/dev/index.js ***!
   \***************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-eval("\n\n//# sourceURL=webpack:///./src/components/ringtone-list/dev/index.js?");
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _ringtone_list__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../ringtone-list */ \"./src/components/ringtone-list/ringtone-list.js\");\n\nvar ringtone = new _ringtone_list__WEBPACK_IMPORTED_MODULE_0__[\"default\"](document);\n\n//# sourceURL=webpack:///./src/components/ringtone-list/dev/index.js?");
+
+/***/ }),
+
+/***/ "./src/components/ringtone-list/ringtone-list.js":
+/*!*******************************************************!*\
+  !*** ./src/components/ringtone-list/ringtone-list.js ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nvar RingtoneList = function RingtoneList() {\n  _classCallCheck(this, RingtoneList);\n};\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (RingtoneList);\n\n//# sourceURL=webpack:///./src/components/ringtone-list/ringtone-list.js?");
 
 /***/ })
 
