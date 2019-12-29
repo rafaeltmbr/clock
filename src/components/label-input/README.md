@@ -29,12 +29,12 @@ Every other method starting with an underscore is private. Thus, is shouldn't be
 outside the class, otherwise, it may crash the component.
 
 ## Events
-The label-input element handles three types of event. They are label-change, label-done and label-cancel.
+The label-input element handles three types of events. They are label-change, label-done and label-cancel.
 Every event gives back an object containing the following properties:<br>
 <pre>
 label:  current label name
 target: LabelInput object
-eventName:  event name (label-cancel, label-change ou label-done)
+eventName:  event name (label-cancel, label-change or label-done)
 </pre>
 
 The code below shows a use case of event handling. It creates the label-input object, append the DOM element to the body of the document and displays it. Then, every kind of event is handled by the same function (printLabelAndEventName). Once the event is fired,
@@ -52,7 +52,7 @@ labelInput.show();
 // *********************** Actual event handling ***********************
 
 function printLabelAndEventName(event) {
-    console.log(event.event, event.label);
+    console.log(event.eventName, event.label);
 }
 
 labelInput.addLabelCancelListener(printLabelAndEventName); // label-cancel

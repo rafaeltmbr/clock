@@ -296,7 +296,7 @@ class LabelInput {
         this._labelCancelCallbackList.forEach((callback) => callback({
             label: this._label,
             target: this,
-            event: 'label-cancel',
+            eventName: 'label-cancel',
         }));
     }
 
@@ -307,7 +307,7 @@ class LabelInput {
         this._labelDoneCallbackList.forEach((callback) => callback({
             label: this._label,
             target: this,
-            event: 'label-done',
+            eventName: 'label-done',
         }));
     }
 
@@ -318,7 +318,7 @@ class LabelInput {
         this._labelChangeCallbackList.forEach((callback) => callback({
             label: this._label,
             target: this,
-            event: 'label-change',
+            eventName: 'label-change',
         }));
     }
 }

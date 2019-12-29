@@ -1,7 +1,8 @@
 # ringtone-list
-The ringtone-list component displays a list a ringtones that the user can select and preview. These songs are extracted from the list a ringtones available on Android v4.4.4 alarm clock. This component is instantiated from the RingtoneList class found in ringtone-list.js. The following screenshot shows the components (in the spotlight) expected graphic results (please, disconsider the background elements):
-<br>
-<img src="./screenshot/ringtone-list-screenshot.png" alt="ringtone list screenshot" width="300px">
+The ringtone-list component displays a list a ringtones that the user can select and preview. These songs are extracted from the list a ringtones available on Android v4.4.4 alarm clock. This component is instantiated from the RingtoneList class found in ringtone-list.js file. The following screenshot shows the components (in the spotlight) expected graphic results (please, disconsider the background elements):
+<div style="display: flex; align-items: center; justify-content: center">
+    <img src="./screenshot/ringtone-list-screenshot.png" alt="ringtone list screenshot" width="300px">
+</div>
 
 ## Methods
 There are thirteen methods in total that can be call outside the RingtoneList class (public methods). They are:
@@ -23,12 +24,12 @@ Every other method starting with an underscore is private. Thus, is shouldn't be
 outside the class, otherwise, it may crash the component.
 
 ## Events
-The ringtone-list element handles three types of event. They are ringtone-change, ringtone-done and ringtone-cancel.
+The ringtone-list element handles three types of events. They are ringtone-change, ringtone-done and ringtone-cancel.
 Every event gives back an object containing the following properties:<br>
 <pre>
 ringtone:  current ringtone name
 target: ringtoneList object
-eventName:  event name (ringtone-cancel, ringtone-change ou ringtone-done)
+eventName:  event name (ringtone-cancel, ringtone-change or ringtone-done)
 </pre>
 
 The code below shows a use case of event handling. It creates the ringtone-list object, append the DOM element to the body of the document and displays it. Then, every kind of event is handled by the same function (printRingtoneAndEventName). Once the event is fired,
