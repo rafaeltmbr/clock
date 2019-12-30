@@ -95,12 +95,12 @@ describe('label-change events', () => {
 
         let j = 10;
         label.addLabelChangeListener(() => { j += 5; });
-        label.addLabelChangeListener(() => { j += 7; });
+        label.addLabelChangeListener(() => { j *= 2; });
 
         label._callChangeListeners();
 
         expect(i).toBe(1);
-        expect(j).toBe(22);
+        expect(j).toBe(30);
     });
 });
 

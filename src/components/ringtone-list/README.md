@@ -5,9 +5,10 @@ The ringtone-list component displays a list a ringtones that the user can select
 </div>
 
 ## Methods
-There are thirteen methods in total that can be call outside the RingtoneList class (public methods). They are:
-* **getRingtone** - get the current ringtone name
-* **setRingtone** - set the current ringtone name
+There are fourteen methods in total that can be call outside the RingtoneList class (public methods). They are:
+* **getRingtone** - get the current ringtone in the format {id, name}
+* **setRingtone** - set the current ringtone by name or id
+* **getRingtones** - get the list of all available ringtones
 * **enableSound** - enable sound to play when the user select a ringtone
 * **disableSound** - disable sound to play when the user select a ringtone
 * **show** - display the ringtone-list element and place it above the others (z-index: 1000)
