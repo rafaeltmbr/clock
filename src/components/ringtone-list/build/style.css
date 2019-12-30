@@ -1,11 +1,11 @@
-.ringtones-wrapper[data-display-status=show] {
+.ringtone-list[data-display-status=show] {
   display: flex;
 }
 
-.ringtones-wrapper {
+.ringtone-list {
   align-items: center;
   justify-content: center;
-  z-index: 2;
+  z-index: 1000;
   display: none;
   position: fixed;
   top: 0;
@@ -15,13 +15,13 @@
   background-color: rgba(0, 0, 0, 0.5);
   font-family: sans-serif;
 }
-.ringtones-wrapper * {
+.ringtone-list * {
   margin: 0;
   padding: 0;
   outline: none;
   box-sizing: border-box;
 }
-.ringtones-wrapper .ringtones {
+.ringtone-list .ringtones {
   width: 284px;
   height: calc(484px);
   max-height: calc(100% - 10px);
@@ -30,24 +30,24 @@
   border-radius: 3px;
   box-shadow: 0 3px 5px black;
 }
-.ringtones-wrapper .ringtones header {
+.ringtone-list .ringtones header {
   color: #33b5e5;
   border-bottom: 2px solid #33b5e5;
   padding: 10px 15px;
   font-size: 18px;
 }
-.ringtones-wrapper .ringtones ul.ringtone-list {
+.ringtone-list .ringtones ul.list {
   list-style: none;
   max-height: calc(100% - 83px);
   overflow: auto;
 }
-.ringtones-wrapper .ringtones ul.ringtone-list li.ringtone-item:last-child {
+.ringtone-list .ringtones ul.list li.ringtone-item:last-child {
   border-bottom: none;
 }
-.ringtones-wrapper .ringtones ul.ringtone-list li.ringtone-item:active {
+.ringtone-list .ringtones ul.list li.ringtone-item:active {
   background-color: #222222;
 }
-.ringtones-wrapper .ringtones ul.ringtone-list li.ringtone-item {
+.ringtone-list .ringtones ul.list li.ringtone-item {
   border-bottom: 1px solid #4c4c4c;
   color: white;
   padding: 10px 15px;
@@ -57,7 +57,7 @@
   align-items: center;
   justify-content: space-between;
 }
-.ringtones-wrapper .ringtones ul.ringtone-list li.ringtone-item .list-bullet {
+.ringtone-list .ringtones ul.list li.ringtone-item .list-bullet {
   width: 18px;
   height: 18px;
   border: 1px solid #4c4c4c;
@@ -66,7 +66,7 @@
   align-items: center;
   justify-content: center;
 }
-.ringtones-wrapper .ringtones ul.ringtone-list li.ringtone-item .list-bullet * {
+.ringtone-list .ringtones ul.list li.ringtone-item .list-bullet * {
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -74,16 +74,16 @@
   width: calc(100% - 4px);
   height: calc(100% - 4px);
 }
-.ringtones-wrapper .ringtones ul.ringtone-list li.ringtone-item .list-bullet .bullet-around {
+.ringtone-list .ringtones ul.list li.ringtone-item .list-bullet .bullet-around {
   background-color: rgba(51, 181, 229, 0.3);
   box-shadow: 0 0 4px rgba(51, 181, 229, 0.4);
   display: none;
 }
-.ringtones-wrapper .ringtones ul.ringtone-list li.ringtone-item .list-bullet .bullet-around .bullet-center {
+.ringtone-list .ringtones ul.list li.ringtone-item .list-bullet .bullet-around .bullet-center {
   background-color: #33b5e5;
   border-top: 1px solid rgba(255, 255, 255, 0.3);
 }
-.ringtones-wrapper .ringtones .cancel-ok {
+.ringtone-list .ringtones .cancel-ok {
   display: flex;
   flex-direction: row;
   color: white;
@@ -92,71 +92,71 @@
   height: 40px;
   border-top: 1px solid #4c4c4c;
 }
-.ringtones-wrapper .ringtones .cancel-ok *:active {
+.ringtone-list .ringtones .cancel-ok *:active {
   background-color: #222222;
 }
-.ringtones-wrapper .ringtones .cancel-ok .cancel, .ringtones-wrapper .ringtones .cancel-ok .ok {
+.ringtone-list .ringtones .cancel-ok .cancel, .ringtone-list .ringtones .cancel-ok .ok {
   width: 50%;
   padding: 10px 0;
   text-align: center;
 }
-.ringtones-wrapper .ringtones .cancel-ok .ok {
+.ringtone-list .ringtones .cancel-ok .ok {
   border-left: 1px solid #4c4c4c;
 }
 
-.ringtones[data-selected-song="1"] ul li:nth-child(1) .list-bullet .bullet-around {
+.ringtone-list .ringtones[data-selected-song="1"] ul li:nth-child(1) .list-bullet .bullet-around {
   display: flex;
 }
 
-.ringtones[data-selected-song="2"] ul li:nth-child(2) .list-bullet .bullet-around {
+.ringtone-list .ringtones[data-selected-song="2"] ul li:nth-child(2) .list-bullet .bullet-around {
   display: flex;
 }
 
-.ringtones[data-selected-song="3"] ul li:nth-child(3) .list-bullet .bullet-around {
+.ringtone-list .ringtones[data-selected-song="3"] ul li:nth-child(3) .list-bullet .bullet-around {
   display: flex;
 }
 
-.ringtones[data-selected-song="4"] ul li:nth-child(4) .list-bullet .bullet-around {
+.ringtone-list .ringtones[data-selected-song="4"] ul li:nth-child(4) .list-bullet .bullet-around {
   display: flex;
 }
 
-.ringtones[data-selected-song="5"] ul li:nth-child(5) .list-bullet .bullet-around {
+.ringtone-list .ringtones[data-selected-song="5"] ul li:nth-child(5) .list-bullet .bullet-around {
   display: flex;
 }
 
-.ringtones[data-selected-song="6"] ul li:nth-child(6) .list-bullet .bullet-around {
+.ringtone-list .ringtones[data-selected-song="6"] ul li:nth-child(6) .list-bullet .bullet-around {
   display: flex;
 }
 
-.ringtones[data-selected-song="7"] ul li:nth-child(7) .list-bullet .bullet-around {
+.ringtone-list .ringtones[data-selected-song="7"] ul li:nth-child(7) .list-bullet .bullet-around {
   display: flex;
 }
 
-.ringtones[data-selected-song="8"] ul li:nth-child(8) .list-bullet .bullet-around {
+.ringtone-list .ringtones[data-selected-song="8"] ul li:nth-child(8) .list-bullet .bullet-around {
   display: flex;
 }
 
-.ringtones[data-selected-song="9"] ul li:nth-child(9) .list-bullet .bullet-around {
+.ringtone-list .ringtones[data-selected-song="9"] ul li:nth-child(9) .list-bullet .bullet-around {
   display: flex;
 }
 
-.ringtones[data-selected-song="10"] ul li:nth-child(10) .list-bullet .bullet-around {
+.ringtone-list .ringtones[data-selected-song="10"] ul li:nth-child(10) .list-bullet .bullet-around {
   display: flex;
 }
 
 @media (hover: hover) {
-  .ringtones-wrapper .ringtones ul.ringtone-list li:hover {
+  .ringtone-list .ringtones ul.list li:hover {
     background-color: #222222;
   }
-  .ringtones-wrapper .ringtones ul.ringtone-list::-webkit-scrollbar {
+  .ringtone-list .ringtones ul.list::-webkit-scrollbar {
     background-color: #282828;
     width: 8px;
   }
-  .ringtones-wrapper .ringtones ul.ringtone-list::-webkit-scrollbar-thumb {
+  .ringtone-list .ringtones ul.list::-webkit-scrollbar-thumb {
     width: 8px;
     background-color: #464646;
   }
-  .ringtones-wrapper .cancel-ok *:hover {
+  .ringtone-list .cancel-ok *:hover {
     background-color: #222222;
   }
 }

@@ -27,7 +27,7 @@ class RingtoneList {
 
         this._createRingtoneList();
         this._createKeydownHandlers();
-        // this._registerDOMEventHandlers();
+        this._registerDOMEventHandlers();
     }
 
     /**
@@ -145,14 +145,14 @@ class RingtoneList {
         this._ringtoneListElement = this.nodeElement.children[0].children[1];
 
         // eslint-disable-next-line prefer-destructuring
-        this.okButton = this.nodeElement.children[0].children[2].children[1];
+        this._okButton = this.nodeElement.children[0].children[2].children[1];
 
         // eslint-disable-next-line prefer-destructuring
-        this.cancelButton = this.nodeElement.children[0].children[2].children[0];
+        this._cancelButton = this.nodeElement.children[0].children[2].children[0];
     }
 
     /**
-     * Create a list of event handler form keydown events.
+     * Create a list of event handler from keydown events.
      */
     _createKeydownHandlers() {
         this._keydownHandlers = {
@@ -164,19 +164,23 @@ class RingtoneList {
                 }
                 this._callDoneListeners();
             },
-            ArrowUp: () => {
-                const index = this._getRingtoneIndexById(this._ringtone.id) + 1;
-                if (index && this._ringtones.length < index) {
-                    this._setRingtoneById(this._ringtones[index]);
-                }
-            },
             ArrowDown: () => {
-                const index = this._getRingtoneIndexById(this._ringtone.id) - 1;
-                if (index >= 0) {
-                    this._setRingtoneById(this._ringtones[index]);
+                const dataSelectedSong = parseInt(this._ringtonesElement.getAttribute('data-selected-song'), 10);
+                const index = this._getRingtoneIndexById(dataSelectedSong) + 1;
+                if (index && index < this._ringtones.length) {
+                    const ringtone = this._ringtones[index];
+                    this._changeCurrentRingtoneAttribute(ringtone);
                 }
             },
-            Esc: () => {
+            ArrowUp: () => {
+                const dataSelectedSong = parseInt(this._ringtonesElement.getAttribute('data-selected-song'), 10);
+                const index = this._getRingtoneIndexById(dataSelectedSong) - 1;
+                if (index >= 0) {
+                    const ringtone = this._ringtones[index];
+                    this._changeCurrentRingtoneAttribute(ringtone);
+                }
+            },
+            Escape: () => {
                 const currentId = parseInt(this._ringtonesElement.getAttribute('data-selected-song'), 10);
                 if (this._ringtone.id !== currentId) {
                     this._restorePreviewRingtoneSelection();
@@ -191,9 +195,9 @@ class RingtoneList {
      * @param {Number} id  - ringtone id
      */
     _getRingtoneIndexById(id) {
-        for(let i=0; i < this._ringtones.length; i += 1) {
-            if (id === this._ringtones[i]) {
-                return id;
+        for (let i = 0; i < this._ringtones.length; i += 1) {
+            if (id === this._ringtones[i].id) {
+                return i;
             }
         }
         return -1;
@@ -240,7 +244,7 @@ class RingtoneList {
 
     /**
      * Select the ringtone by name.
-     * @param {String} name - ringtone name (case sensitive)
+     * @param {String} name - ringtone name (case-sensitive)
      */
     _setRingtoneByName(name) {
         const ringtone = this._getRingtoneByName(name);
@@ -261,7 +265,7 @@ class RingtoneList {
     }
 
     /**
-     * Get the ringtone by it's id.
+     * Get the ringtone by its id.
      * @param {Number} id - ringtone id (data-item-number)
      */
     _getRingtoneById(id) {
@@ -269,7 +273,7 @@ class RingtoneList {
     }
 
     /**
-     * Get the ringtone by it's name.
+     * Get the ringtone by its name.
      * @param {Number} name - ringtone name (song-name.innerHTML)
      */
     _getRingtoneByName(name) {
@@ -283,6 +287,14 @@ class RingtoneList {
      */
     _replaceCurrentRingtone(ringtone) {
         this._ringtone = ringtone;
+        this._changeCurrentRingtoneAttribute(ringtone);
+    }
+
+    /**
+     * Change the .documents DOM element attributes.
+     * @param {Object} ringtone - ringtone in the format {id, name}
+     */
+    _changeCurrentRingtoneAttribute(ringtone) {
         this._ringtonesElement.setAttribute('data-selected-song', ringtone.id);
         this._ringtonesElement.setAttribute('data-selected-song-name', ringtone.name);
     }
@@ -302,7 +314,7 @@ class RingtoneList {
     }
 
     /**
-     * Disale sound to be played when the user select a ringtone from the list.
+     * Disable sound to be played when the user select a ringtone from the list.
      */
     disableSound() {
         this._playSound = false;
@@ -320,7 +332,7 @@ class RingtoneList {
 
     /**
      * Enable the ringtone-list component screen visibility by setting
-     * it's data-display-status attribute to show.
+     * its data-display-status attribute to show.
      */
     show() {
         this.nodeElement.setAttribute('data-display-status', 'show');
@@ -328,7 +340,7 @@ class RingtoneList {
 
     /**
      * Disable the ringtone-list component screen visibility by setting
-     * it's data-display-status attribute to hide.
+     * its data-display-status attribute to hide.
      */
     hide() {
         this.nodeElement.setAttribute('data-display-status', 'hide');
@@ -348,10 +360,17 @@ class RingtoneList {
      * Then, on each click the listeners registered to the ringtone-cancel event are called.
      */
     _registerDOMEventHandlers() {
-        this.nodeElement.addEventListener('keydown', this._handleKeydownEvent.bind(this));
-        this.okButton.addEventListener('click', this._handleOkButtonClickEvent.bind(this));
-        this.cancelButton.addEventListener('click', this._handleCancelButtonClickEvent.bind(this));
+        this._document.body.addEventListener('keydown', this._handleKeydownEvent.bind(this));
+        this._okButton.addEventListener('click', this._handleOkButtonClickEvent.bind(this));
+        this._cancelButton.addEventListener('click', this._handleCancelButtonClickEvent.bind(this));
         this.nodeElement.addEventListener('click', this._handleOutsideRingtoneContainerClickEvent.bind(this));
+
+        const li = this._ringtoneListElement.children;
+        Object.keys(li).forEach((k) => li[k].addEventListener('click', () => {
+            const id = parseInt(li[k].getAttribute('data-item-number'), 10);
+            const name = li[k].children[0].innerHTML;
+            this._changeCurrentRingtoneAttribute({ id, name });
+        }));
     }
 
     /*
@@ -369,7 +388,7 @@ class RingtoneList {
 
     /**
      * Handles ok button click event and call the right method according to
-     * the rigntone current selection. For example, if the selected ringtone was modified, then
+     * the ringtone current selection. For example, if the selected ringtone was modified, then
      * this._callChangeListeners() is called, otherwise just this._callDoneListeners()
      * will be executed.
      */
@@ -381,7 +400,7 @@ class RingtoneList {
      * Handles cancel button click event and call this._callCancelListeners().
      */
     _handleCancelButtonClickEvent() {
-        this._keydownHandlers.Esc();
+        this._keydownHandlers.Escape();
     }
 
     /**
@@ -390,7 +409,7 @@ class RingtoneList {
      */
     _handleOutsideRingtoneContainerClickEvent({ target }) {
         if (target.className === 'ringtone-list') {
-            this._keydownHandlers.Esc();
+            this._keydownHandlers.Escape();
         }
     }
 
@@ -443,7 +462,7 @@ class RingtoneList {
     event: 'ringtone-cancel'
      </pre>
      * @param {Function} callback - Function to be called every time the new ringtone
-     * selection is canceled, either by typing Esc, hitting Cancel or clicking outsied the list.
+     * selection is canceled, either by typing Esc, hitting Cancel or clicking outside the list.
      */
     addRingtoneCancelListener(callback) {
         const sameCallbacks = this._ringtoneCancelCallbackList.filter((c) => c === callback);

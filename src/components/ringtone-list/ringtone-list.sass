@@ -17,10 +17,10 @@ $ringtones_scrollbar_background_color: rgb(40, 40, 40)
 $ringtones_scrollbar_thumb_color: rgba(70, 70, 70)
 $ringtones_scrollbar_thumb_width: 8px
 
-.ringtones-list[data-display-status="show"]
+.ringtone-list[data-display-status="show"]
     display: flex
 
-.ringtones-list
+.ringtone-list
     align-items: center
     justify-content: center
     z-index: 1000
@@ -122,15 +122,16 @@ $ringtones_scrollbar_thumb_width: 8px
 
 
 @for $i from 1 through $ringtones_total
-    .ringtones[data-selected-song="#{$i}"]
-        ul
-            li:nth-child(#{$i})
-                .list-bullet
-                    .bullet-around
-                        display: flex
+    .ringtone-list
+        .ringtones[data-selected-song="#{$i}"]
+            ul
+                li:nth-child(#{$i})
+                    .list-bullet
+                        .bullet-around
+                            display: flex
 
 @media (hover: hover)
-    .ringtones-list
+    .ringtone-list
         .ringtones
             ul.list
                 li:hover
