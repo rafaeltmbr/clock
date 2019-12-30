@@ -37,8 +37,6 @@ describe('ringtone-list methods', () => {
     it('should get an array of all available ringtones with {id, name} exclusively', () => {
         const ringtoneList = new RingtoneList(document);
 
-        debugger;
-
         const list = ringtoneList.getRingtones();
         expect(typeof list === 'object' && list.length > 0).toBe(true);
 
@@ -140,7 +138,6 @@ describe('ringtone-list methods', () => {
     });
 });
 
-/*
 describe('ringtone-change events', () => {
     it('should add unique event handlers', () => {
         const ringtoneList = new RingtoneList(document);
@@ -323,4 +320,3 @@ describe('ringtone-done events', () => {
         expect(j).toBe(30);
     });
 });
-*/
