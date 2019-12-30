@@ -196,7 +196,7 @@ class LabelInput {
     /**
      * Register a new label-change event listener.<br>
      * When a label-change event happens, the callback functions will be called
-     * receiving as a parameter an object with the following properties:<br>
+     * receiving as a parameter an object with the following properties:
      <pre>
     label: current label name
     target: LabelInput object
@@ -228,7 +228,7 @@ class LabelInput {
     /**
      * Register a new label-done event listener.<br>
      * When a label-done event happens, the callback functions will be called
-     * receiving as a parameter an object with the following properties:<br>
+     * receiving as a parameter an object with the following properties:
      <pre>
     label: current label name
     target: LabelInput object
@@ -260,7 +260,7 @@ class LabelInput {
     /**
      * Register a new label-cancel event listener.<br>
      * When a label-cancel event happens, the callback functions will be called
-     * receiving as a parameter an object with the following properties:<br>
+     * receiving as a parameter an object with the following properties:
      <pre>
     label: current label name
     target: LabelInput object

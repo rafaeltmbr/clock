@@ -54,6 +54,7 @@ class RingtoneList {
         };
 
         this._createRingtoneList();
+        this._createKeydownHandlers();
         // this._registerDOMEventHandlers();
     }
 
@@ -179,6 +180,54 @@ class RingtoneList {
     }
 
     /**
+     * Create a list of event handler form keydown events.
+     */
+    _createKeydownHandlers() {
+        this._keydownHandlers = {
+            Enter: () => {
+                const currentId = parseInt(this._ringtonesElement.getAttribute('data-selected-song'), 10);
+                if (this._ringtone.id !== currentId) {
+                    this._setRingtoneById(currentId);
+                    this._callChangeListeners();
+                }
+                this._callDoneListeners();
+            },
+            ArrowUp: () => {
+                const index = this._getRingtoneIndexById(this._ringtone.id) + 1;
+                if (index &amp;&amp; this._ringtones.length &lt; index) {
+                    this._setRingtoneById(this._ringtones[index]);
+                }
+            },
+            ArrowDown: () => {
+                const index = this._getRingtoneIndexById(this._ringtone.id) - 1;
+                if (index >= 0) {
+                    this._setRingtoneById(this._ringtones[index]);
+                }
+            },
+            Esc: () => {
+                const currentId = parseInt(this._ringtonesElement.getAttribute('data-selected-song'), 10);
+                if (this._ringtone.id !== currentId) {
+                    this._restorePreviewRingtoneSelection();
+                }
+                this._callCancelListeners();
+            },
+        };
+    }
+
+    /**
+     * Return the ringtone position in the this._ringtones array.
+     * @param {Number} id  - ringtone id
+     */
+    _getRingtoneIndexById(id) {
+        for(let i=0; i &lt; this._ringtones.length; i += 1) {
+            if (id === this._ringtones[i]) {
+                return id;
+            }
+        }
+        return -1;
+    }
+
+    /**
      * Create an array of ringtones in the format {id, name}.
      */
     _createRingtoneList() {
@@ -211,9 +260,9 @@ class RingtoneList {
      */
     setRingtone(data) {
         if (typeof data === 'string') {
-            this._setRingtoneName(data);
+            this._setRingtoneByName(data);
         } else if (typeof data === 'number') {
-            this._setRingtoneId(data);
+            this._setRingtoneById(data);
         }
     }
 
@@ -221,10 +270,8 @@ class RingtoneList {
      * Select the ringtone by name.
      * @param {String} name - ringtone name (case sensitive)
      */
-    _setRingtoneName(name) {
-        if (name === '') return;
-
-        const ringtone = this._ringtones.find((r) => r.name === name);
+    _setRingtoneByName(name) {
+        const ringtone = this._getRingtoneByName(name);
         if (ringtone) {
             this._replaceCurrentRingtone(ringtone);
         }
@@ -234,13 +281,27 @@ class RingtoneList {
      * Select the ringtone by id.
      * @param {Number} id - ringtone id (data-item-number)
      */
-    _setRingtoneId(id) {
-        if (id &lt;= 0 || id >= this._ringtones.length) return;
-
-        const ringtone = this._ringtones.find((r) => r.id === id);
+    _setRingtoneById(id) {
+        const ringtone = this._getRingtoneById(id);
         if (ringtone) {
             this._replaceCurrentRingtone(ringtone);
         }
+    }
+
+    /**
+     * Get the ringtone by it's id.
+     * @param {Number} id - ringtone id (data-item-number)
+     */
+    _getRingtoneById(id) {
+        return this._ringtones.find((r) => r.id === id);
+    }
+
+    /**
+     * Get the ringtone by it's name.
+     * @param {Number} name - ringtone name (song-name.innerHTML)
+     */
+    _getRingtoneByName(name) {
+        return this._ringtones.find((r) => r.name === name);
     }
 
     /**
@@ -302,15 +363,23 @@ class RingtoneList {
     }
 
     /**
+     * Returns the DOM element for the entire component.
+     * @returns {Object} element - ringtone-list DOM element
+     */
+    getNodeElement() {
+        return this.nodeElement;
+    }
+
+    /**
      * Register the proper event handler to the according DOM element click.
      * For example, it registers the click event on the cancel button.
      * Then, on each click the listeners registered to the ringtone-cancel event are called.
      */
     _registerDOMEventHandlers() {
-        this._labelElement.addEventListener('keydown', this._handleKeydownEvent.bind(this));
+        this.nodeElement.addEventListener('keydown', this._handleKeydownEvent.bind(this));
         this.okButton.addEventListener('click', this._handleOkButtonClickEvent.bind(this));
         this.cancelButton.addEventListener('click', this._handleCancelButtonClickEvent.bind(this));
-        this.nodeElement.addEventListener('click', this._handleOutsideLabelContainerClickEvent.bind(this));
+        this.nodeElement.addEventListener('click', this._handleOutsideRingtoneContainerClickEvent.bind(this));
     }
 
     /*
@@ -320,53 +389,182 @@ class RingtoneList {
     * @param {Object} event - the event generated by a DOM element receiving a key down.
     */
     _handleKeydownEvent({ key }) {
-        if (key === 'Enter') {
-            if (this._ringtone !== this._labelElement.value) {
-                this._label = this._labelElement.value;
-                this._callChangeListeners();
-            }
-            this._callDoneListeners();
-        } else if (key === 'Escape') {
-            this._labelElement.value = this._label;
-            this._callCancelListeners();
+        const handler = this._keydownHandlers[key];
+        if (handler) {
+            handler();
         }
     }
 
     /**
      * Handles ok button click event and call the right method according to
-     * the label current value. For example, if the label was modified, then
+     * the rigntone current selection. For example, if the selected ringtone was modified, then
      * this._callChangeListeners() is called, otherwise just this._callDoneListeners()
      * will be executed.
      */
     _handleOkButtonClickEvent() {
-        if (this._label !== this._labelElement.value) {
-            this._label = this._labelElement.value;
-            this._callChangeListeners();
-        }
-        this._callDoneListeners();
+        this._keydownHandlers.Enter();
     }
 
     /**
      * Handles cancel button click event and call this._callCancelListeners().
      */
     _handleCancelButtonClickEvent() {
-        this._labelElement.value = this._label;
-        this._callCancelListeners();
+        this._keydownHandlers.Esc();
     }
 
     /**
-     * Handles a click outside the .label-container element.
+     * Handles a click outside the .ringtone-container element.
      * @params {Object} event - the event generated by a DOM element receiving a click.
      */
-    _handleOutsideLabelContainerClickEvent({ target }) {
-        if (target.className === 'label-input') {
-            this._labelElement.value = this._label;
-            this._callCancelListeners();
+    _handleOutsideRingtoneContainerClickEvent({ target }) {
+        if (target.className === 'ringtone-list') {
+            this._keydownHandlers.Esc();
         }
     }
 
-    getNodeElement() {
-        return this.nodeElement;
+    /**
+     * Restore the preview ringtone selection.
+     */
+    _restorePreviewRingtoneSelection() {
+        this._replaceCurrentRingtone(this._ringtone);
+    }
+
+    /**
+     * Register a new ringtone-change event listener.&lt;br>
+     * When a ringtone-change event happens, the callback functions will be called
+     * receiving as a parameter an object with the following properties:
+     &lt;pre>
+    ringtone: current ringtone {id, name}
+    target: RingtoneList object
+    event: 'ringtone-change'
+     &lt;/pre>
+     * @param {Function} callback - Function to be called every time the selected ringtone
+     * changes, either by pressing Enter or click on OK.
+     */
+    addRingtoneChangeListener(callback) {
+        const sameCallbacks = this._ringtoneChangeCallbackList.filter((c) => c === callback);
+        if (sameCallbacks.length) return;
+
+        this._ringtoneChangeCallbackList.push(callback);
+    }
+
+    /**
+     * Remove a previously added ringtone-change event listener.
+     * @param {Function} callback - Function registered as a ringtone-change event listener
+     * that's going to be removed.
+     */
+    removeRingtoneChangeListener(callback) {
+        for (let i = this._ringtoneChangeCallbackList.length - 1; i >= 0; i -= 1) {
+            if (this._ringtoneChangeCallbackList[i] === callback) {
+                this._ringtoneChangeCallbackList.splice(i, 1);
+            }
+        }
+    }
+
+    /**
+     * Register a new ringtone-cancel event listener.&lt;br>
+     * When a ringtone-cancel event happens, the callback functions will be called
+     * receiving as a parameter an object with the following properties:
+     &lt;pre>
+    ringtone: current ringtone {id, name}
+    target: RingtoneList object
+    event: 'ringtone-cancel'
+     &lt;/pre>
+     * @param {Function} callback - Function to be called every time the new ringtone
+     * selection is canceled, either by typing Esc, hitting Cancel or clicking outsied the list.
+     */
+    addRingtoneCancelListener(callback) {
+        const sameCallbacks = this._ringtoneCancelCallbackList.filter((c) => c === callback);
+        if (sameCallbacks.length) return;
+
+        this._ringtoneCancelCallbackList.push(callback);
+    }
+
+    /**
+     * Remove a previously added ringtone-cancel event listener.
+     * @param {Function} callback - Function registered as a ringtone-cancel event listener
+     * that's going to be removed.
+     */
+    removeRingtoneCancelListener(callback) {
+        for (let i = this._ringtoneCancelCallbackList.length - 1; i >= 0; i -= 1) {
+            if (this._ringtoneCancelCallbackList[i] === callback) {
+                this._ringtoneCancelCallbackList.splice(i, 1);
+            }
+        }
+    }
+
+    /**
+     * Register a new ringtone-done event listener.&lt;br>
+     * When a ringtone-done event happens, the callback functions will be called
+     * receiving as a parameter an object with the following properties:
+     &lt;pre>
+    ringtone: current ringtone {id, name}
+    target: RingtoneList object
+    event: 'ringtone-done'
+     &lt;/pre>
+     * @param {Function} callback - Function to be called every time the ringtone
+     * selection is still the same and the user press Enter or hit the OK button.
+     */
+    addRingtoneDoneListener(callback) {
+        const sameCallbacks = this._ringtoneDoneCallbackList.filter((c) => c === callback);
+        if (sameCallbacks.length) return;
+
+        this._ringtoneDoneCallbackList.push(callback);
+    }
+
+    /**
+     * Remove a previously added ringtone-done event listener.
+     * @param {Function} callback - Function registered as a ringtone-done event listener
+     * that's going to be removed.
+     */
+    removeRingtoneDoneListener(callback) {
+        for (let i = this._ringtoneDoneCallbackList.length - 1; i >= 0; i -= 1) {
+            if (this._ringtoneDoneCallbackList[i] === callback) {
+                this._ringtoneDoneCallbackList.splice(i, 1);
+            }
+        }
+    }
+
+    /**
+     * Call every listener registered for ringtone-cancel event.
+     */
+    _callCancelListeners() {
+        this._ringtoneCancelCallbackList.forEach((callback) => callback({
+            ringtone: {
+                id: this._ringtone.id,
+                name: this._ringtone.name,
+            },
+            target: this,
+            eventName: 'ringtone-cancel',
+        }));
+    }
+
+    /**
+     * Call every listener registered for ringtone-done event.
+     */
+    _callDoneListeners() {
+        this._ringtoneDoneCallbackList.forEach((callback) => callback({
+            ringtone: {
+                id: this._ringtone.id,
+                name: this._ringtone.name,
+            },
+            target: this,
+            eventName: 'ringtone-done',
+        }));
+    }
+
+    /**
+     * Call every listener registered for ringtone-change event.
+     */
+    _callChangeListeners() {
+        this._ringtoneChangeCallbackList.forEach((callback) => callback({
+            ringtone: {
+                id: this._ringtone.id,
+                name: this._ringtone.name,
+            },
+            target: this,
+            eventName: 'ringtone-change',
+        }));
     }
 }
 
@@ -387,7 +585,7 @@ export default RingtoneList;
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Mon Dec 30 2019 14:54:18 GMT-0300 (Brasilia Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Mon Dec 30 2019 16:14:28 GMT-0300 (Brasilia Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>
