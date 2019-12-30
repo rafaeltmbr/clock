@@ -170,6 +170,7 @@ class RingtoneList {
                 if (index && index < this._ringtones.length) {
                     const ringtone = this._ringtones[index];
                     this._changeCurrentRingtoneAttribute(ringtone);
+                    this._ringtoneListElement.children[index].scrollIntoView(false);
                 }
             },
             ArrowUp: () => {
@@ -178,6 +179,7 @@ class RingtoneList {
                 if (index >= 0) {
                     const ringtone = this._ringtones[index];
                     this._changeCurrentRingtoneAttribute(ringtone);
+                    this._ringtoneListElement.children[index].scrollIntoView(false);
                 }
             },
             Escape: () => {
@@ -240,6 +242,7 @@ class RingtoneList {
         } else if (typeof data === 'number') {
             this._setRingtoneById(data);
         }
+        this._putCurrentlySelectedRingtoneIntoView();
     }
 
     /**
@@ -336,6 +339,16 @@ class RingtoneList {
      */
     show() {
         this.nodeElement.setAttribute('data-display-status', 'show');
+        this._putCurrentlySelectedRingtoneIntoView();
+    }
+
+    /**
+     * Put the currently selected ringtone into the scroll view.
+     */
+    _putCurrentlySelectedRingtoneIntoView() {
+        const dataSelectedSong = parseInt(this._ringtonesElement.getAttribute('data-selected-song'), 10);
+        const index = this._getRingtoneIndexById(dataSelectedSong);
+        this._ringtoneListElement.children[index].scrollIntoView(false);
     }
 
     /**
@@ -360,15 +373,17 @@ class RingtoneList {
      * Then, on each click the listeners registered to the ringtone-cancel event are called.
      */
     _registerDOMEventHandlers() {
-        this._document.body.addEventListener('keydown', this._handleKeydownEvent.bind(this));
+        this._document.addEventListener('keydown', this._handleKeydownEvent.bind(this));
         this._okButton.addEventListener('click', this._handleOkButtonClickEvent.bind(this));
         this._cancelButton.addEventListener('click', this._handleCancelButtonClickEvent.bind(this));
         this.nodeElement.addEventListener('click', this._handleOutsideRingtoneContainerClickEvent.bind(this));
 
-        const li = this._ringtoneListElement.children;
-        Object.keys(li).forEach((k) => li[k].addEventListener('click', () => {
-            const id = parseInt(li[k].getAttribute('data-item-number'), 10);
-            const name = li[k].children[0].innerHTML;
+        const liElements = Object.keys(this._ringtoneListElement.children)
+            .map((k) => this._ringtoneListElement.children[k]);
+
+        liElements.forEach((li) => li.addEventListener('click', () => {
+            const id = parseInt(li.getAttribute('data-item-number'), 10);
+            const name = li.children[0].innerHTML;
             this._changeCurrentRingtoneAttribute({ id, name });
         }));
     }

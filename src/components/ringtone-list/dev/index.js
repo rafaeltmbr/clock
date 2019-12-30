@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+
 import RingtoneList from '../ringtone-list';
 
 const ringtoneList = new RingtoneList(document);
@@ -21,3 +23,5 @@ ringtoneList.addRingtoneCancelListener((event) => {
 ringtoneList.addRingtoneChangeListener((e) => console.log(e.eventName, e.ringtone.name));
 ringtoneList.addRingtoneDoneListener(({ eventName }) => console.log(eventName));
 ringtoneList.addRingtoneCancelListener(({ eventName }) => console.log(eventName));
+
+window.ringtoneList = ringtoneList;
