@@ -24,6 +24,6 @@ label1.addLabelCancelListener((event) => {
     setTimeout(() => event.target.show(), 1000);
 });
 
-label1.addLabelChangeListener(({ label }) => console.log(`LABEL: ${label}`));
+label1.addLabelChangeListener((e) => console.log(e.eventName, e.label));
 label1.addLabelDoneListener(({ eventName }) => console.log(eventName));
 label1.addLabelCancelListener(({ eventName }) => console.log(eventName));
