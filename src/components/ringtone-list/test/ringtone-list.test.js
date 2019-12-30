@@ -11,6 +11,9 @@ function arrayMax(array) {
     return max;
 }
 
+// jsdom doesn't implement Element.scrollIntoView()
+window.HTMLElement.prototype.scrollIntoView = () => {};
+
 describe('ringtone-list methods', () => {
     it('should create a DOM element with className of .ringtone-list and get the element', () => {
         const ringtoneList = new RingtoneList(document);

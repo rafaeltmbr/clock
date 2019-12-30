@@ -46,6 +46,7 @@ class RingtoneList {
         this._ringtoneDoneCallbackList = [];
         this._ringtoneCancelCallbackList = [];
         this._playSound = true;
+        this._ringtonePlaying = null;
 
         this._createRingtoneListElement(documentElement);
         this._ringtone = {
@@ -55,7 +56,7 @@ class RingtoneList {
 
         this._createRingtoneList();
         this._createKeydownHandlers();
-        // this._registerDOMEventHandlers();
+        this._registerDOMEventHandlers();
     }
 
     /**
@@ -173,10 +174,10 @@ class RingtoneList {
         this._ringtoneListElement = this.nodeElement.children[0].children[1];
 
         // eslint-disable-next-line prefer-destructuring
-        this.okButton = this.nodeElement.children[0].children[2].children[1];
+        this._okButton = this.nodeElement.children[0].children[2].children[1];
 
         // eslint-disable-next-line prefer-destructuring
-        this.cancelButton = this.nodeElement.children[0].children[2].children[0];
+        this._cancelButton = this.nodeElement.children[0].children[2].children[0];
     }
 
     /**
@@ -191,25 +192,35 @@ class RingtoneList {
                     this._callChangeListeners();
                 }
                 this._callDoneListeners();
-            },
-            ArrowUp: () => {
-                const index = this._getRingtoneIndexById(this._ringtone.id) + 1;
-                if (index &amp;&amp; this._ringtones.length &lt; index) {
-                    this._setRingtoneById(this._ringtones[index]);
-                }
+                this._pauseCurrentRingtone();
             },
             ArrowDown: () => {
-                const index = this._getRingtoneIndexById(this._ringtone.id) - 1;
-                if (index >= 0) {
-                    this._setRingtoneById(this._ringtones[index]);
+                const dataSelectedSong = parseInt(this._ringtonesElement.getAttribute('data-selected-song'), 10);
+                const index = this._getRingtoneIndexById(dataSelectedSong) + 1;
+                if (index &amp;&amp; index &lt; this._ringtones.length) {
+                    const ringtone = this._ringtones[index];
+                    this._changeCurrentRingtoneAttribute(ringtone);
+                    this._ringtoneListElement.children[index].scrollIntoView(false);
+                    this._playCurrentRingtone();
                 }
             },
-            Esc: () => {
+            ArrowUp: () => {
+                const dataSelectedSong = parseInt(this._ringtonesElement.getAttribute('data-selected-song'), 10);
+                const index = this._getRingtoneIndexById(dataSelectedSong) - 1;
+                if (index >= 0) {
+                    const ringtone = this._ringtones[index];
+                    this._changeCurrentRingtoneAttribute(ringtone);
+                    this._ringtoneListElement.children[index].scrollIntoView(false);
+                    this._playCurrentRingtone();
+                }
+            },
+            Escape: () => {
                 const currentId = parseInt(this._ringtonesElement.getAttribute('data-selected-song'), 10);
                 if (this._ringtone.id !== currentId) {
                     this._restorePreviewRingtoneSelection();
                 }
                 this._callCancelListeners();
+                this._pauseCurrentRingtone();
             },
         };
     }
@@ -219,9 +230,9 @@ class RingtoneList {
      * @param {Number} id  - ringtone id
      */
     _getRingtoneIndexById(id) {
-        for(let i=0; i &lt; this._ringtones.length; i += 1) {
-            if (id === this._ringtones[i]) {
-                return id;
+        for (let i = 0; i &lt; this._ringtones.length; i += 1) {
+            if (id === this._ringtones[i].id) {
+                return i;
             }
         }
         return -1;
@@ -264,6 +275,7 @@ class RingtoneList {
         } else if (typeof data === 'number') {
             this._setRingtoneById(data);
         }
+        this._putCurrentlySelectedRingtoneIntoView();
     }
 
     /**
@@ -311,6 +323,14 @@ class RingtoneList {
      */
     _replaceCurrentRingtone(ringtone) {
         this._ringtone = ringtone;
+        this._changeCurrentRingtoneAttribute(ringtone);
+    }
+
+    /**
+     * Change the .documents DOM element attributes.
+     * @param {Object} ringtone - ringtone in the format {id, name}
+     */
+    _changeCurrentRingtoneAttribute(ringtone) {
         this._ringtonesElement.setAttribute('data-selected-song', ringtone.id);
         this._ringtonesElement.setAttribute('data-selected-song-name', ringtone.name);
     }
@@ -334,16 +354,57 @@ class RingtoneList {
      */
     disableSound() {
         this._playSound = false;
-        this._stopPlayingSound();
+        this._pauseCurrentRingtone();
     }
 
     /**
-     * Stop the sound being played if any.
+     * Play the currently selected ringtone.
      */
-    // eslint-disable-next-line class-methods-use-this
-    _stopPlayingSound() {
-        // eslint-disable-next-line no-trailing-spaces
+    _playCurrentRingtone() {
+        if (!this._playSound) return;
 
+        const ringtone = this._getCurrentlySelectedRingtone();
+        if (!ringtone) {
+            this._pauseCurrentRingtone();
+            return;
+        }
+
+        this._playRingtone(ringtone);
+    }
+
+    /**
+     * Plays the DOM &amp;lt;audio&amp;gt; element passed as a parameter.
+     * @param {Object} ringtone - the DOM &amp;lt;audio&amp;gt; element.
+     */
+    _playRingtone(ringtone) {
+        if (this._ringtonePlaying === ringtone) return;
+
+        ringtone.load();
+        ringtone.play().then(() => {
+            if (this._ringtonePlaying) {
+                this._pauseCurrentRingtone();
+            }
+            this._ringtonePlaying = ringtone;
+        });
+    }
+
+    /**
+     * Get the currently selected ringtone.
+     */
+    _getCurrentlySelectedRingtone() {
+        let name = this._ringtonesElement.getAttribute('data-selected-song-name');
+        name = name.concat(' alarm').split(' ').join('-').toLocaleLowerCase();
+        return this._document.querySelector(`.${name}`);
+    }
+
+    /**
+     * Pause the currently playing.
+     */
+    _pauseCurrentRingtone() {
+        if (this._ringtonePlaying) {
+            this._ringtonePlaying.pause();
+            this._ringtonePlaying = null;
+        }
     }
 
     /**
@@ -352,6 +413,16 @@ class RingtoneList {
      */
     show() {
         this.nodeElement.setAttribute('data-display-status', 'show');
+        this._putCurrentlySelectedRingtoneIntoView();
+    }
+
+    /**
+     * Put the currently selected ringtone into the scroll view.
+     */
+    _putCurrentlySelectedRingtoneIntoView() {
+        const dataSelectedSong = parseInt(this._ringtonesElement.getAttribute('data-selected-song'), 10);
+        const index = this._getRingtoneIndexById(dataSelectedSong);
+        this._ringtoneListElement.children[index].scrollIntoView(false);
     }
 
     /**
@@ -360,6 +431,7 @@ class RingtoneList {
      */
     hide() {
         this.nodeElement.setAttribute('data-display-status', 'hide');
+        this._pauseCurrentRingtone();
     }
 
     /**
@@ -376,10 +448,20 @@ class RingtoneList {
      * Then, on each click the listeners registered to the ringtone-cancel event are called.
      */
     _registerDOMEventHandlers() {
-        this.nodeElement.addEventListener('keydown', this._handleKeydownEvent.bind(this));
-        this.okButton.addEventListener('click', this._handleOkButtonClickEvent.bind(this));
-        this.cancelButton.addEventListener('click', this._handleCancelButtonClickEvent.bind(this));
+        this._document.addEventListener('keydown', this._handleKeydownEvent.bind(this));
+        this._okButton.addEventListener('click', this._handleOkButtonClickEvent.bind(this));
+        this._cancelButton.addEventListener('click', this._handleCancelButtonClickEvent.bind(this));
         this.nodeElement.addEventListener('click', this._handleOutsideRingtoneContainerClickEvent.bind(this));
+
+        const liElements = Object.keys(this._ringtoneListElement.children)
+            .map((k) => this._ringtoneListElement.children[k]);
+
+        liElements.forEach((li) => li.addEventListener('click', () => {
+            const id = parseInt(li.getAttribute('data-item-number'), 10);
+            const name = li.children[0].innerHTML;
+            this._changeCurrentRingtoneAttribute({ id, name });
+            this._playCurrentRingtone();
+        }));
     }
 
     /*
@@ -409,7 +491,7 @@ class RingtoneList {
      * Handles cancel button click event and call this._callCancelListeners().
      */
     _handleCancelButtonClickEvent() {
-        this._keydownHandlers.Esc();
+        this._keydownHandlers.Escape();
     }
 
     /**
@@ -418,7 +500,7 @@ class RingtoneList {
      */
     _handleOutsideRingtoneContainerClickEvent({ target }) {
         if (target.className === 'ringtone-list') {
-            this._keydownHandlers.Esc();
+            this._keydownHandlers.Escape();
         }
     }
 
@@ -585,7 +667,7 @@ export default RingtoneList;
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Mon Dec 30 2019 16:19:33 GMT-0300 (Brasilia Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Mon Dec 30 2019 20:38:29 GMT-0300 (Brasilia Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>
