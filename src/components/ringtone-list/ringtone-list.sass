@@ -17,10 +17,10 @@ $ringtones_scrollbar_background_color: rgb(40, 40, 40)
 $ringtones_scrollbar_thumb_color: rgba(70, 70, 70)
 $ringtones_scrollbar_thumb_width: 8px
 
-.ringtones-wrapper[data-display-status="show"]
+.ringtones-list[data-display-status="show"]
     display: flex
 
-.ringtones-wrapper
+.ringtones-list
     align-items: center
     justify-content: center
     z-index: 1000
@@ -54,7 +54,7 @@ $ringtones_scrollbar_thumb_width: 8px
             padding: $ringtones_padding_top $ringtones_padding_left
             font-size: 18px
 
-        ul.ringtone-list
+        ul.list
             list-style: none
             max-height: calc(100% - #{$ringtones_computed_header_height + $ringtones_cancel_ok_height})
             overflow: auto
@@ -130,17 +130,17 @@ $ringtones_scrollbar_thumb_width: 8px
                         display: flex
 
 @media (hover: hover)
-    .ringtones-wrapper
+    .ringtones-list
         .ringtones
-            ul.ringtone-list
+            ul.list
                 li:hover
                     background-color: $ringtones_background_color_hover
 
-            ul.ringtone-list::-webkit-scrollbar
+            ul.list::-webkit-scrollbar
                 background-color: $ringtones_scrollbar_background_color
                 width: $ringtones_scrollbar_thumb_width
 
-            ul.ringtone-list::-webkit-scrollbar-thumb
+            ul.list::-webkit-scrollbar-thumb
                 width: $ringtones_scrollbar_thumb_width
                 background-color: $ringtones_scrollbar_thumb_color
 

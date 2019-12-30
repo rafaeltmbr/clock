@@ -26,6 +26,7 @@
     "lint": "eslint ./src/script --fix",
     "test": "jest",
     "doc": "jsdoc -r ./src/components -d ./doc",
+    "jest-debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand",
 
     "dev:label-input:pug": "pug ./src/components/label-input/dev/index.pug -o ./src/components/label-input/build --watch --pretty",
     "dev:label-input:sass": "sass ./src/components/label-input/label-input.sass ./src/components/label-input/build/style.css --watch --no-source-map",
