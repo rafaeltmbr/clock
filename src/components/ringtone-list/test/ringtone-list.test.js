@@ -310,7 +310,7 @@ describe('ringtone-done events', () => {
 
         let j = 10;
         ringtone.addRingtoneDoneListener(() => { j += 5; });
-        ringtone.addRingtoneChangeListener(() => { j *= 2; });
+        ringtone.addRingtoneDoneListener(() => { j *= 2; });
 
         ringtone._callDoneListeners();
 
