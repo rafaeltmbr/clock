@@ -66,7 +66,7 @@ from the previews one. This event is fired only if the ringtone is changed and t
 hits Enter or click OK.
 
 ### ringtone-done
-The ringtone-change event is fired every time the user hits Enter or click OK.
+The ringtone-done event is fired every time the user hits Enter or click OK.
 
 ## Folder organization
 <pre>

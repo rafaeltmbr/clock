@@ -31,3 +31,51 @@ time:      current time in the { hour, minute, meridiem } format
 target:    TimeSetting object
 eventName: event name (time-cancel, time-change or time-done)
 </pre>
+
+The code below shows a use case of event handling. It creates the time-setting object, append the DOM element to the body of the document and displays it. Then, every kind of event is handled by the same function (printEventNameAndTime). Once the event is fired,
+the handler logs its event and time in the console.
+```javascript
+// *********************** Boilerplate code ***********************
+
+const timeSetting = new TimeSetting(document);
+
+document.body.appendChild(timeSetting.getNodeElement());
+
+timeSetting.show();
+
+
+// *********************** Actual event handling ***********************
+
+function printEventNameAndTime(event) {
+    console.log(event.eventName, event.time);
+}
+
+timeSetting.addTimeCancelListener(printEventNameAndTime); // time-cancel
+timeSetting.addTimeChangeListener(printEventNameAndTime); // time-change
+timeSetting.addTimeDoneListener(printEventNameAndTime);   // time-done
+```
+
+### time-cancel
+The time-cancel event is fired every time the user hits Esc, click outside the
+time-container class or click Cancel.
+
+### time-change
+The time-change event happens when the user select a time setting that is different
+from the previews one. This event is fired only if the time setting is changed and the user
+hits Enter or click OK.
+
+### time-done
+The time-done event is fired every time the user hits Enter or click OK.
+
+## Folder organization
+<pre>
+\-- <b>time-setting</b>            - Folder containing the whole time-setting module.
+    \-- <b>build</b>               - Folder containing the generated code to run this component standalone.
+    \-- <b>dev</b>                 - Folder containing the source code to run this component standalone.
+    \-- <b>screenshot</b>          - Folder containing the screenshots used as a reference to build the GUI.
+    \-- <b>test</b>                - Folder containing the test file used to validate the ringtoneList JavaScript class.
+    |-- time-setting.html   - HTML code that is generated once the component is instantiated.
+    |-- time-setting.js     - JavaScript class with methods and events.
+    |-- time-setting.sass   - Style file in Sass format.
+    |-- README.md           - This README file.
+</pre>
