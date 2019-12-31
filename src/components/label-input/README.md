@@ -26,7 +26,7 @@ There are thirteen methods that can be called directly (public access). They are
 * **removeLabelDoneListener** - unregister the given callback function from label-done event
 
 Every other method starting with an underscore is private. Thus, is shouldn't be called
-outside the class, otherwise, it may crash the component.
+outside the class, otherwise, it may crush the component.
 
 ## Events
 The label-input element handles three types of events. They are label-change, label-done and label-cancel.

@@ -1,5 +1,5 @@
 # ringtone-list
-The ringtone-list component displays a list a ringtones that the user can select and preview. These songs are extracted from the list a ringtones available on Android v4.4.4 alarm clock. This component is instantiated from the RingtoneList class found in the ringtone-list.js file. The following screenshot shows the components (in the spotlight) expected graphic results (please, disconsider the background elements):
+The ringtone-list component displays a list a ringtones that the user can select and preview. These songs are extracted from the list a ringtones available on Android v4.4.4 alarm clock. This component is instantiated from the RingtoneList class found in the ringtone-list.js file. The following screenshots show the components (in the spotlight) expected graphic results (please, disconsider the background elements):
 <div style="display: flex; align-items: center; justify-content: center">
     <img src="./screenshot/ringtone-list-screenshot.png" alt="ringtone list screenshot" width="300px">
 </div>
@@ -22,7 +22,7 @@ There are fourteen methods in total that can be call outside the RingtoneList cl
 * **removeRingtoneDoneListener** - unregister the given callback function from ringtone-done event
 
 Every other method starting with an underscore is private. Thus, is shouldn't be called
-outside the class, otherwise, it may crash the component.
+outside the class, otherwise, it may crush the component.
 
 ## Events
 The ringtone-list element handles three types of events. They are ringtone-change, ringtone-done and ringtone-cancel.
