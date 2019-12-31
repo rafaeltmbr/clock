@@ -1,431 +1,446 @@
-$button-inactive: rgb(54, 54, 54)
-$button-active: rgb(140, 58, 58)
+$time-button-inactive: rgb(54, 54, 54)
+$time-button-active: rgb(140, 58, 58)
 
-.clock-settings[data-am-pm="pm"]
-    .time-container
-        .pm
-            display: inline
-        .am
-            display: none
+.time-setting
+    .setting-container[data-am-pm="pm"]
+        .time-container
+            .pm
+                display: inline
+            .am
+                display: none
 
-    .disc-container
-        .pm-button
-            background-color: $button-active
-
-        .am-button
-            background-color: $button-inactive
-
-$total_hours: 12
-$hour_angle: 360 / $total_hours
-$angle_offset: -90
-$minute_angle_offset: $angle_offset - 30
-$disc_radius: 100px
-$hour_font_size: 16px
-$hour_selector_disc_size: 32px
-$disc_selector_axis_width: $disc-radius - $hour_font_size * 1.2 - $hour_selector_disc_size / 2
-$disc_selector_dot_color: rgb(200, 0, 0)
-$disc_selector_color: rgba(248, 64, 64, 0.4)
-$disc_selector_color_hover: rgba(255, 23, 23, 0.4)
-$text-color: rgb(255, 255, 255)
-$hour_minute_selected_color: rgb(245, 53, 53)
-$done_container_active_color: rgb(39, 39, 39)
-$hour_minute_switch_animation_duration: 0.3s
-$total_minutes: 60
-$minute_angle: 360 / $total_minutes
-$disc_selector_axis_new_width: $disc_selector_axis_width + $hour_selector_disc_size / 2
-$disc_selector_axis_hour_disappear_width: $disc_selector_axis_new_width + $hour_selector_disc_size
-$disc_selector_axis_minute_disappear_width: $disc_radius - $hour_font_size * 3.6
-$done_container_height: 50px
-
-@for $i from 1 through $total_hours
-    .clock-settings[data-hour="#{$i}"]
         .disc-container
-            .hour-disc
-                .hour-selector-disc
-                    transform: rotate(#{$i * $hour_angle + $angle_offset}deg) translate($disc_radius - $hour_font_size * 1.2) rotate(#{-$i * $hour_angle - $angle_offset}deg)
-                
+            .pm-button
+                background-color: $time-button-active
+
+            .am-button
+                background-color: $time-button-inactive
+
+$time-total_hours: 12
+$time-hour_angle: 360 / $time-total_hours
+$time-angle_offset: -90
+$time-minute_angle_offset: $time-angle_offset - 30
+$time-disc_radius: 100px
+$time-hour_font_size: 16px
+$time-hour_selector_disc_size: 32px
+$time-disc_selector_axis_width: $time-disc-radius - $time-hour_font_size * 1.2 - $time-hour_selector_disc_size / 2
+$time-disc_selector_dot_color: rgb(200, 0, 0)
+$time-disc_selector_color: rgba(248, 64, 64, 0.4)
+$time-disc_selector_color_hover: rgba(255, 23, 23, 0.4)
+$time-text-color: rgb(255, 255, 255)
+$time-hour_minute_selected_color: rgb(245, 53, 53)
+$time-done_container_active_color: rgb(39, 39, 39)
+$time-hour_minute_switch_animation_duration: 0.3s
+$time-total_minutes: 60
+$time-minute_angle: 360 / $time-total_minutes
+$time-disc_selector_axis_new_width: $time-disc_selector_axis_width + $time-hour_selector_disc_size / 2
+$time-disc_selector_axis_hour_disappear_width: $time-disc_selector_axis_new_width + $time-hour_selector_disc_size
+$time-disc_selector_axis_minute_disappear_width: $time-disc_radius - $time-hour_font_size * 3.6
+$time-done_container_height: 50px
+
+@for $time-i from 1 through $time-total_hours
+    .time-setting
+        .setting-container[data-hour="#{$time-i}"]
+            .disc-container
+                .hour-disc
+                    .hour-selector-disc
+                        transform: rotate(#{$time-i * $time-hour_angle + $time-angle_offset}deg) translate($time-disc_radius - $time-hour_font_size * 1.2) rotate(#{-$time-i * $time-hour_angle - $time-angle_offset}deg)
+                    
+                    .hour-selector-axis
+                        transform: translate(#{$time-disc_selector_axis_width / -2}) rotate(#{$time-i * $time-hour_angle - 90}deg) translate(#{$time-disc_selector_axis_width / 2})
+
+@for $time-i from 0 through ($time-total_minutes - 1)
+    .time-setting
+        .setting-container[data-minute="#{$time-i}"]
+            .disc-container
+                .hour-disc
+                    .minute-selector-disc
+                        transform: rotate(#{$time-i * $time-minute_angle + $time-angle_offset}deg) translate($time-disc_selector_axis_minute_disappear_width) rotate(#{-$time-i * $time-minute_angle - $time-angle_offset}deg)
+
+                    .minute-selector-axis
+                        transform: translate(#{$time-disc_selector_axis_minute_disappear_width / -2}) rotate(#{$time-i * $time-minute_angle - 90}deg) translate(#{$time-disc_selector_axis_minute_disappear_width / 2})
+
+@for $time-i from 0 through ($time-total_hours - 1)
+    $time-minute: $time-i * 5
+    .time-setting
+        .setting-container[data-select="minute"][data-minute="#{$time-minute}"],
+        .setting-container[data-select="hour"][data-minute="#{$time-minute}"]   // ensure priority
+            .disc-container
+                .hour-disc[data-active="false"]
+                    .minute-selector-disc
+                        .dot
+                            display: none
+                    .minute-selector-axis
+                        background-color: $time-disc_selector_color
+                        width: $time-disc_selector_axis_width
+                        transform: translate(#{$time-disc_selector_axis_width / -2}) rotate(#{$time-minute * $time-minute_angle - 90}deg) translate(#{$time-disc_selector_axis_width / 2})
+
+@for $time-i from 1 through $time-total_hours
+    .time-setting
+        .setting-container[data-hour="#{$time-i}"]
+            .hour-disc[data-active="true"]
                 .hour-selector-axis
-                    transform: translate(#{$disc_selector_axis_width / -2}) rotate(#{$i * $hour_angle - 90}deg) translate(#{$disc_selector_axis_width / 2})
+                    transform: translate(#{$time-disc_selector_axis_new_width / -2}) rotate(#{$time-i * $time-hour_angle - 90}deg) translate(#{$time-disc_selector_axis_new_width / 2})
+                    width: $time-disc_selector_axis_new_width
 
-@for $i from 0 through ($total_minutes - 1)
-    .clock-settings[data-minute="#{$i}"]
-        .disc-container
-            .hour-disc
-                .minute-selector-disc
-                    transform: rotate(#{$i * $minute_angle + $angle_offset}deg) translate($disc_selector_axis_minute_disappear_width) rotate(#{-$i * $minute_angle - $angle_offset}deg)
+.time-setting
+    *
+        box-sizing: border-box
 
-                .minute-selector-axis
-                    transform: translate(#{$disc_selector_axis_minute_disappear_width / -2}) rotate(#{$i * $minute_angle - 90}deg) translate(#{$disc_selector_axis_minute_disappear_width / 2})
-
-@for $i from 0 through ($total_hours - 1)
-    $minute: $i * 5
-    .clock-settings[data-select="minute"][data-minute="#{$minute}"],
-    .clock-settings[data-select="hour"][data-minute="#{$minute}"]   // ensure priority
-        .disc-container
-            .hour-disc[data-active="false"]
-                .minute-selector-disc
-                    .dot
-                        display: none
-                .minute-selector-axis
-                    background-color: $disc_selector_color
-                    width: $disc_selector_axis_width
-                    transform: translate(#{$disc_selector_axis_width / -2}) rotate(#{$minute * $minute_angle - 90}deg) translate(#{$disc_selector_axis_width / 2})
-
-@for $i from 1 through $total_hours
-    .clock-settings[data-hour="#{$i}"]
-        .hour-disc[data-active="true"]
-            .hour-selector-axis
-                transform: translate(#{$disc_selector_axis_new_width / -2}) rotate(#{$i * $hour_angle - 90}deg) translate(#{$disc_selector_axis_new_width / 2})
-                width: $disc_selector_axis_new_width
-
-.clock-settings[data-select="minute"]
-    .time-container
-        .hour
-            color: $text-color
-        .minute
-            color: $hour_minute_selected_color
-    .disc-container
-        .hour-disc
+    .setting-container[data-select="minute"]
+        .time-container
             .hour
-                opacity: 0.0
-                pointer-events: none
-
+                color: $time-text-color
             .minute
-                opacity: 1.0
-                pointer-events: auto
-
-            .hour-selector-disc, .hour-selector-axis
-                opacity: 0.0
-                pointer-events: none
-
-            .hour-selector-axis
-                width: $disc_selector_axis_hour_disappear_width
-            
-            .minute-selector-axis
-                width: $disc_selector_axis_new_width
-
-            .minute-selector-disc, .minute-selector-axis
-                opacity: 1.0
-                pointer-events: auto
-
-@for $i from 1 through $total_hours
-    .clock-settings[data-select="minute"]
+                color: $time-hour_minute_selected_color
         .disc-container
             .hour-disc
-                .hour:nth-child(#{$i})
-                    transform: rotate(#{$i * $hour_angle + $angle_offset}deg) translate($disc_radius + $hour_font_size * 1.2) rotate(#{-$i * $hour_angle - $angle_offset}deg)
+                .hour
+                    opacity: 0.0
+                    pointer-events: none
 
-                .minute:nth-child(#{$total_hours + $i})
-                    transform: rotate(#{$i * $hour_angle + $minute_angle_offset}deg) translate($disc_radius - $hour_font_size * 1.2) rotate(#{-$i * $hour_angle - $minute_angle_offset}deg)
+                .minute
+                    opacity: 1.0
+                    pointer-events: auto
 
-@for $i from 1 through $total_hours
-    .clock-settings[data-select="minute"][data-hour="#{$i}"]
-        .disc-container
-            .hour-disc
-                .hour-selector-disc
-                    transform: rotate(#{$i * $hour_angle + $angle_offset}deg) translate($disc_radius + $hour_font_size * 1.2) rotate(#{-$i * $hour_angle - $angle_offset}deg)
+                .hour-selector-disc, .hour-selector-axis
+                    opacity: 0.0
+                    pointer-events: none
 
                 .hour-selector-axis
-                    transform: translate(#{$disc_selector_axis_hour_disappear_width / -2}) rotate(#{$i * $hour_angle - 90}deg) translate(#{$disc_selector_axis_hour_disappear_width / 2})
+                    width: $time-disc_selector_axis_hour_disappear_width
+                
+                .minute-selector-axis
+                    width: $time-disc_selector_axis_new_width
 
-@for $i from 0 through ($total_minutes - 1)
-    .clock-settings[data-select="minute"][data-minute="#{$i}"]
+                .minute-selector-disc, .minute-selector-axis
+                    opacity: 1.0
+                    pointer-events: auto
+
+@for $time-i from 1 through $time-total_hours
+    .time-setting
+        .setting-container[data-select="minute"]
+            .disc-container
+                .hour-disc
+                    .hour:nth-child(#{$time-i})
+                        transform: rotate(#{$time-i * $time-hour_angle + $time-angle_offset}deg) translate($time-disc_radius + $time-hour_font_size * 1.2) rotate(#{-$time-i * $time-hour_angle - $time-angle_offset}deg)
+
+                    .minute:nth-child(#{$time-total_hours + $time-i})
+                        transform: rotate(#{$time-i * $time-hour_angle + $time-minute_angle_offset}deg) translate($time-disc_radius - $time-hour_font_size * 1.2) rotate(#{-$time-i * $time-hour_angle - $time-minute_angle_offset}deg)
+
+@for $time-i from 1 through $time-total_hours
+    .time-setting
+        .setting-container[data-select="minute"][data-hour="#{$time-i}"]
+            .disc-container
+                .hour-disc
+                    .hour-selector-disc
+                        transform: rotate(#{$time-i * $time-hour_angle + $time-angle_offset}deg) translate($time-disc_radius + $time-hour_font_size * 1.2) rotate(#{-$time-i * $time-hour_angle - $time-angle_offset}deg)
+
+                    .hour-selector-axis
+                        transform: translate(#{$time-disc_selector_axis_hour_disappear_width / -2}) rotate(#{$time-i * $time-hour_angle - 90}deg) translate(#{$time-disc_selector_axis_hour_disappear_width / 2})
+
+@for $time-i from 0 through ($time-total_minutes - 1)
+    .time-setting
+        .setting-container[data-select="minute"][data-minute="#{$time-i}"]
+            .disc-container
+                .hour-disc
+                    .minute-selector-disc
+                        transform: rotate(#{$time-i * $time-minute_angle + $time-angle_offset}deg) translate($time-disc_radius - $time-hour_font_size * 1.2) rotate(#{-$time-i * $time-minute_angle - $time-angle_offset}deg)
+
+                    .minute-selector-axis
+                        transform: translate(#{$time-disc_selector_axis_new_width / -2}) rotate(#{$time-i * $time-minute_angle - 90}deg) translate(#{$time-disc_selector_axis_new_width / 2})
+
+.time-setting[data-display-status="show"]
+    display: flex
+
+.time-setting
+    z-index: 2
+    display: none
+    align-items: center
+    position: fixed
+    align-items: center
+    justify-content: center
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+    background-color: rgba(0, 0, 0, 0.5)
+
+.time-setting
+    .setting-container[data-skip-animation="true"]
         .disc-container
             .hour-disc
-                .minute-selector-disc
-                    transform: rotate(#{$i * $minute_angle + $angle_offset}deg) translate($disc_radius - $hour_font_size * 1.2) rotate(#{-$i * $minute_angle - $angle_offset}deg)
-
-                .minute-selector-axis
-                    transform: translate(#{$disc_selector_axis_new_width / -2}) rotate(#{$i * $minute_angle - 90}deg) translate(#{$disc_selector_axis_new_width / 2})
-
-.clock-container[data-show-settings="true"]
-    .settings-wrapper
-        display: flex
-
-.clock-container
-    .settings-wrapper
-        z-index: 2
-        display: none
-        align-items: center
-        position: fixed
-        align-items: center
-        justify-content: center
-        top: 0
-        right: 0
-        bottom: 0
-        left: 0
-        background-color: rgba(0, 0, 0, 0.5)
-
-.clock-settings[data-skip-animation="true"]
-    .disc-container
-        .hour-disc
-            .hour-selector-axis, .minute-selector-axis, .hour-selector-disc, .minute-selector-disc
-                transition-duration: 0s
+                .hour-selector-axis, .minute-selector-axis, .hour-selector-disc, .minute-selector-disc
+                    transition-duration: 0s
 
 
-$clock_settings_width: 284px
-$disc_container_height: 250px
-$dark-grey: rgb(54, 54, 54)
-.clock-settings
-    $clock_settings_computed_height: 376px
-    $light-grey: rgb(64, 64, 64)
-    width: $clock_settings_width
-    background-color: $light-grey
-    font-family: sans-serif
-    color: $text-color
-    box-shadow: 0 3px 5px rgb(0, 0, 0)
-
-    .time-container
-        font-size: 50px
-        height: 76px
-        padding: 10px
-        background-color: $dark-grey
-        width: 100%
-        text-align: center
-
-        .hour, .separator, .minute
-            display: inline-block
-            position: relative
-            left: 12px
-            color: $text-color
-
-        .hour, .minute
-            box-sizing: content-box
-            text-align: right
-            width: 2ch
-            padding: 0 3px
-
-        .hour
-            color: $hour_minute_selected_color
-
-        .pm
-            display: none
-
-        .am, .pm
-            font-size: 16px
-            position: relative
-            left: 17px
-
-    .disc-container
-        $am-pm-top-offset: 105px
-        $offset-top: -12px
-
-        height: $disc_container_height
-        display: flex
-        flex-direction: row
-        align-items: center
-        justify-content: space-between
-
-
-        > *
-            position: relative
-
-        .hour-disc[data-active="true"]
-            .hour-selector-disc, .minute-selector-disc
-                background-color: $disc_selector_color_hover
-                transition-duration: 0s
-                .dot
-                    display: block
-
-            .hour-selector-axis, .minute-selector-axis
-                transition-duration: 0s
-
-            .hour-selector-axis
-                background-color: $disc_selector_dot_color
-
-        .hour-disc
-            width: $disc_radius * 2
-            height: $disc_radius * 2
-            border-radius: 50%
-            background-color: $dark-grey
-            top: $offset-top
-            position: relative
-
-            .hour, .minute
-                $hour_minute_size: $hour_selector_disc_size
-                display: flex
-                align-items: center
-                justify-content: center
-                position: absolute
-                top: 50%
-                left: 50%
-                font-size: $hour_font_size
-                margin-left: $hour_minute_size / -2
-                margin-top: $hour_minute_size / -2
-                width: $hour_minute_size
-                height: $hour_minute_size
-
-            .hour-selector-disc, .minute-selector-disc
-                width: $hour_selector_disc_size
-                height: $hour_selector_disc_size
-                border-radius: 50%
-                background-color: $disc_selector_color
-                position: absolute
-                top: 50%
-                left: 50%
-                margin-top: $hour_selector_disc_size / -2
-                margin-left: $hour_selector_disc_size / -2
-                transition-duration: $hour_minute_switch_animation_duration
-
-                .dot
-                    $dot-width: 8px
-                    display: none
-                    border-radius: 50%
-                    position: absolute
-                    top: 50%
-                    left: 50%
-                    width: $dot-width
-                    height: $dot-width
-                    margin-left: $dot-width / -2
-                    margin-top: $dot-width / -2
-                    background-color: $disc_selector_dot_color
-
-            .hour-selector-axis, .minute-selector-axis
-                width: $disc_selector_axis_width
-                height: 1px
-                background-color: $disc_selector_color
-                position: absolute
-                top: 50%
-                left: 50%
-                transition-duration: $hour_minute_switch_animation_duration
-
-            .minute-selector-axis
-                background-color: $disc_selector_dot_color
-                width: $disc_selector_axis_minute_disappear_width
-
-            .minute-selector-disc
-                .dot
-                    display: block
-
-            .minute-selector-disc, .minute-selector-axis
-                opacity: 0.0
-                pointer-events: none
-                transition-duration: $hour_minute_switch_animation_duration
-
-            .hour, .minute
-                transition-duration: $hour_minute_switch_animation_duration
-
-            .minute
-                pointer-events: none
-                opacity: 0.0
-                
-            @for $i from 1 through $total_hours
-                .hour:nth-child(#{$i})
-                    transform: rotate(#{$i * $hour_angle + $angle_offset}deg) translate($disc_radius - $hour_font_size * 1.2) rotate(#{-$i * $hour_angle - $angle_offset}deg)
-
-                .minute:nth-child(#{$total_hours + $i})
-                    transform: rotate(#{$i * $hour_angle + $minute_angle_offset}deg) translate($disc_radius - $hour_font_size * 3.6) rotate(#{-$i * $hour_angle - $minute_angle_offset}deg)
-
-        .am-button, .pm-button
-            display: flex
-            align-items: center
-            justify-content: center
-            width: 40px
-            height: 40px
-            border-radius: 50%
-            top: $am-pm-top-offset + $offset-top
-
-        .am-button
-            background-color: $button-active
-
-        .am-button
-            left: 45px
-
-        .pm-button
-            background-color: $button-inactive
-            right: 45px
-
-    .done-container
-        border-top: 2px solid rgb(89, 89, 89)
-        text-align: center
-        height: $done_container_height
-        font-size: 14px
-        display: flex
-        align-items: center
-        justify-content: center
-
-    .done-container:active
-        background-color: $done_container_active_color
-
-$clock_settings_computed_height: 376px
-$clock_settings_done_new_width: 200px
-$clock_settings_new_width: $clock_settings_width + $clock_settings_done_new_width
-
-@media (max-height: $clock_settings_computed_height + 20px)
-    .clock-settings
-        height: $disc_container_height
-        width: $clock_settings_new_width
-        position: absolute
-        left: calc( (100% - #{$clock_settings_new_width}) / 2)
-        bottom: calc( (100% - #{$disc_container_height}) / 2)
+$time-clock_settings_width: 284px
+$time-disc_container_height: 250px
+$time-dark-grey: rgb(54, 54, 54)
+.time-setting
+    .setting-container
+        $time-clock_settings_computed_height: 376px
+        $time-light-grey: rgb(64, 64, 64)
+        width: $time-clock_settings_width
+        background-color: $time-light-grey
+        font-family: sans-serif
+        color: $time-text-color
+        box-shadow: 0 3px 5px rgb(0, 0, 0)
 
         .time-container
-            position: absolute
-            top: 0
-            left: 0
-            height: calc(100% - #{$done_container_height})
-            width: $clock_settings_done_new_width
+            font-size: 50px
+            height: 76px
+            padding: 10px
+            background-color: $time-dark-grey
+            width: 100%
+            text-align: center
+
+            .hour, .separator, .minute
+                display: inline-block
+                position: relative
+                left: 12px
+                color: $time-text-color
+
+            .hour, .minute
+                box-sizing: content-box
+                text-align: right
+                width: 2ch
+                padding: 0 3px
+
+            .hour
+                color: $time-hour_minute_selected_color
+
+            .pm
+                display: none
+
+            .am, .pm
+                font-size: 16px
+                position: relative
+                left: 17px
+
+        .disc-container
+            $time-am-pm-top-offset: 105px
+            $time-offset-top: -12px
+
+            height: $time-disc_container_height
             display: flex
             flex-direction: row
             align-items: center
+            justify-content: space-between
 
-            .am, .pm
+
+            > *
                 position: relative
-                top: 12px
+
+            .hour-disc[data-active="true"]
+                .hour-selector-disc, .minute-selector-disc
+                    background-color: $time-disc_selector_color_hover
+                    transition-duration: 0s
+                    .dot
+                        display: block
+
+                .hour-selector-axis, .minute-selector-axis
+                    transition-duration: 0s
+
+                .hour-selector-axis
+                    background-color: $time-disc_selector_dot_color
+
+            .hour-disc
+                width: $time-disc_radius * 2
+                height: $time-disc_radius * 2
+                border-radius: 50%
+                background-color: $time-dark-grey
+                top: $time-offset-top
+                position: relative
+
+                .hour, .minute
+                    $time-hour_minute_size: $time-hour_selector_disc_size
+                    display: flex
+                    align-items: center
+                    justify-content: center
+                    position: absolute
+                    top: 50%
+                    left: 50%
+                    font-size: $time-hour_font_size
+                    margin-left: $time-hour_minute_size / -2
+                    margin-top: $time-hour_minute_size / -2
+                    width: $time-hour_minute_size
+                    height: $time-hour_minute_size
+
+                .hour-selector-disc, .minute-selector-disc
+                    width: $time-hour_selector_disc_size
+                    height: $time-hour_selector_disc_size
+                    border-radius: 50%
+                    background-color: $time-disc_selector_color
+                    position: absolute
+                    top: 50%
+                    left: 50%
+                    margin-top: $time-hour_selector_disc_size / -2
+                    margin-left: $time-hour_selector_disc_size / -2
+                    transition-duration: $time-hour_minute_switch_animation_duration
+
+                    .dot
+                        $time-dot-width: 8px
+                        display: none
+                        border-radius: 50%
+                        position: absolute
+                        top: 50%
+                        left: 50%
+                        width: $time-dot-width
+                        height: $time-dot-width
+                        margin-left: $time-dot-width / -2
+                        margin-top: $time-dot-width / -2
+                        background-color: $time-disc_selector_dot_color
+
+                .hour-selector-axis, .minute-selector-axis
+                    width: $time-disc_selector_axis_width
+                    height: 1px
+                    background-color: $time-disc_selector_color
+                    position: absolute
+                    top: 50%
+                    left: 50%
+                    transition-duration: $time-hour_minute_switch_animation_duration
+
+                .minute-selector-axis
+                    background-color: $time-disc_selector_dot_color
+                    width: $time-disc_selector_axis_minute_disappear_width
+
+                .minute-selector-disc
+                    .dot
+                        display: block
+
+                .minute-selector-disc, .minute-selector-axis
+                    opacity: 0.0
+                    pointer-events: none
+                    transition-duration: $time-hour_minute_switch_animation_duration
+
+                .hour, .minute
+                    transition-duration: $time-hour_minute_switch_animation_duration
+
+                .minute
+                    pointer-events: none
+                    opacity: 0.0
+                    
+                @for $time-i from 1 through $time-total_hours
+                    .hour:nth-child(#{$time-i})
+                        transform: rotate(#{$time-i * $time-hour_angle + $time-angle_offset}deg) translate($time-disc_radius - $time-hour_font_size * 1.2) rotate(#{-$time-i * $time-hour_angle - $time-angle_offset}deg)
+
+                    .minute:nth-child(#{$time-total_hours + $time-i})
+                        transform: rotate(#{$time-i * $time-hour_angle + $time-minute_angle_offset}deg) translate($time-disc_radius - $time-hour_font_size * 3.6) rotate(#{-$time-i * $time-hour_angle - $time-minute_angle_offset}deg)
+
+            .am-button, .pm-button
+                display: flex
+                align-items: center
+                justify-content: center
+                width: 40px
+                height: 40px
+                border-radius: 50%
+                top: $time-am-pm-top-offset + $time-offset-top
+
+            .am-button
+                background-color: $time-button-active
+
+            .am-button
+                left: 45px
+
+            .pm-button
+                background-color: $time-button-inactive
+                right: 45px
 
         .done-container
+            border-top: 2px solid rgb(89, 89, 89)
+            text-align: center
+            height: $time-done_container_height
+            font-size: 14px
+            display: flex
+            align-items: center
+            justify-content: center
+
+        .done-container:active
+            background-color: $time-done_container_active_color
+
+$time-clock_settings_computed_height: 376px
+$time-clock_settings_done_new_width: 200px
+$time-clock_settings_new_width: $time-clock_settings_width + $time-clock_settings_done_new_width
+
+@media (max-height: $time-clock_settings_computed_height + 20px)
+    .time-setting
+        .setting-container
+            height: $time-disc_container_height
+            width: $time-clock_settings_new_width
             position: absolute
-            bottom: 0
-            left: 0
-            height: $done_container_height
-            width: $clock_settings_done_new_width
-            background-color: $dark-grey
+            left: calc( (100% - #{$time-clock_settings_new_width}) / 2)
+            bottom: calc( (100% - #{$time-disc_container_height}) / 2)
 
-        .disc-container
-            position: absolute
-            top: 0
-            right: 0
-            width: $clock_settings_width
+            .time-container
+                position: absolute
+                top: 0
+                left: 0
+                height: calc(100% - #{$time-done_container_height})
+                width: $time-clock_settings_done_new_width
+                display: flex
+                flex-direction: row
+                align-items: center
+
+                .am, .pm
+                    position: relative
+                    top: 12px
+
+            .done-container
+                position: absolute
+                bottom: 0
+                left: 0
+                height: $time-done_container_height
+                width: $time-clock_settings_done_new_width
+                background-color: $time-dark-grey
+
+            .disc-container
+                position: absolute
+                top: 0
+                right: 0
+                width: $time-clock_settings_width
 
 
-$button-inactive-hover: rgb(44, 44, 44)
-$button-active-hover: rgb(131, 42, 42)
-$disc_selector_color_hover: rgba(255, 23, 23, 0.4)
-$dark-grey: rgb(54, 54, 54)
-$darker-grey: rgb(44, 44, 44)
+$time-button-inactive-hover: rgb(44, 44, 44)
+$time-button-active-hover: rgb(131, 42, 42)
+$time-disc_selector_color_hover: rgba(255, 23, 23, 0.4)
+$time-dark-grey: rgb(54, 54, 54)
+$time-darker-grey: rgb(44, 44, 44)
 
 @media (hover: hover)
-    .clock-settings[data-am-pm="pm"]
-        .disc-container
-            .pm-button:hover
-                background-color: $button-active-hover
-            
-            .am-button:hover
-                background-color: $button-inactive-hover
+    .time-setting
+        .setting-container[data-am-pm="pm"]
+            .disc-container
+                .pm-button:hover
+                    background-color: $time-button-active-hover
+                
+                .am-button:hover
+                    background-color: $time-button-inactive-hover
 
 
-    .clock-settings
-        .time-container
-            .hour:hover, .minute:hover
-                background-color: rgb(0, 0, 0, 0.1)
+        .setting-container
+            .time-container
+                .hour:hover, .minute:hover
+                    background-color: rgb(0, 0, 0, 0.1)
 
-        .disc-container
-            .hour-disc
-                .hour-selector-disc:hover, .minute-selector-disc:hover
-                    background-color: $disc_selector_color_hover
+            .disc-container
+                .hour-disc
+                    .hour-selector-disc:hover, .minute-selector-disc:hover
+                        background-color: $time-disc_selector_color_hover
 
-            .am-button:hover
-                background-color: $button-active-hover
+                .am-button:hover
+                    background-color: $time-button-active-hover
 
-            .pm-button:hover
-                background-color: $button-inactive-hover
+                .pm-button:hover
+                    background-color: $time-button-inactive-hover
 
-        .done-container:hover
-            background-color: $dark_grey
+            .done-container:hover
+                background-color: $time-dark_grey
 
-$clock_settings_computed_height: 376px
+$time-clock_settings_computed_height: 376px
 
-@media (hover: hover) and (max-height: $clock_settings_computed_height + 20px)
-    .clock-settings
-        .done-container:hover
-            background-color: $darker-grey
+@media (hover: hover) and (max-height: $time-clock_settings_computed_height + 20px)
+    .time-setting
+        .setting-container
+            .done-container:hover
+                background-color: $time-darker-grey

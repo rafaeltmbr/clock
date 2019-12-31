@@ -57,7 +57,7 @@ timeSetting.addTimeDoneListener(printEventNameAndTime);   // time-done
 
 ### time-cancel
 The time-cancel event is fired every time the user hits Esc, click outside the
-time-container class or click Cancel.
+setting-container class or click Cancel.
 
 ### time-change
 The time-change event happens when the user select a time setting that is different
