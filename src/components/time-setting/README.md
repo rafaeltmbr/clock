@@ -1,9 +1,12 @@
 # time-setting
 The time-setting component displays a hour/minute wheel with a pointer that can be dragged into the desired value. This time-setting design was copied from Android v4.4.4 alarm clock. The time-setting component can be created from a instance of the TimeSetting class. The following screenshots show the components (in the spotlight) expected graphic results (please, disconsider the background elements):
-<div class="img-container" style="display: flex; flex-direction: row; align-items: center; justify-content: space-between">
+<div style="display: flex; flex-direction: row; align-items: center; justify-content: space-between">
     <img src="./screenshot/time-setting-vertical-930.png" width="250px">
     <img src="./screenshot/time-setting-vertical-912.png" width="250px">
-    <img src="./screenshot/time-setting-horizontal-920.png" width="300px">
+    <div style="height: 400px; display: flex; flex-direction: column; align-item: center; justify-content: space-between">
+        <img src="./screenshot/time-setting-horizontal-920.png" width="300px">
+        <img src="./screenshot/time-setting-horizontal-930.png" width="300px">
+    </div>
 </div>
 
 ## Methods
