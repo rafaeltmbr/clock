@@ -102,11 +102,11 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _tim
 /*!*****************************************************!*\
   !*** ./src/components/time-setting/time-setting.js ***!
   \*****************************************************/
-/*! no exports provided */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _script_Util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../script/Util */ \"./src/script/Util.js\");\n\n\n//# sourceURL=webpack:///./src/components/time-setting/time-setting.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _script_Util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../script/Util */ \"./src/script/Util.js\");\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }\n\nfunction _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }\n\n/* eslint-disable no-underscore-dangle */\n\n\nvar TimeSetting =\n/*#__PURE__*/\nfunction () {\n  function TimeSetting(document) {\n    _classCallCheck(this, TimeSetting);\n\n    if (!document) {\n      throw new Error('Expect the document DOM element as a parameter.' + 'Exemple: const ts = new TimeSetting(document);');\n    }\n\n    this._document = document;\n\n    this._createTimeSettingElement();\n  }\n\n  _createClass(TimeSetting, [{\n    key: \"_createTimeSettingElement\",\n    value: function _createTimeSettingElement() {\n      this.nodeElement = _script_Util__WEBPACK_IMPORTED_MODULE_0__[\"default\"].createNodeElement();\n    }\n  }]);\n\n  return TimeSetting;\n}();\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (TimeSetting);\n\n//# sourceURL=webpack:///./src/components/time-setting/time-setting.js?");
 
 /***/ }),
 

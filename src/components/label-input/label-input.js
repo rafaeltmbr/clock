@@ -14,6 +14,11 @@ class LabelInput {
      *  DOM element.
      */
     constructor(documentElement) {
+        if (!documentElement) {
+            throw new Error('Expect the document DOM element as a parameter.'
+                + 'Exemple: const li = new LabelInput(document);');
+        }
+
         this._label = '';
         this._document = documentElement;
         this._labelChangeCallbackList = [];

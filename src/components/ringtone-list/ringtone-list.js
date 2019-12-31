@@ -13,6 +13,11 @@ class RingtoneList {
     *  DOM element.
     */
     constructor(documentElement) {
+        if (!documentElement) {
+            throw new Error('Expect the document DOM element as a parameter.'
+                + 'Exemple: const rl = new RingtoneList(document);');
+        }
+
         this._document = documentElement;
         this._ringtoneChangeCallbackList = [];
         this._ringtoneDoneCallbackList = [];
