@@ -29,7 +29,7 @@ The ringtone-list element handles three types of events. They are ringtone-chang
 Every event gives back an object containing the following properties:<br>
 <pre>
 ringtone:  current ringtone name
-target:    ringtoneList object
+target:    RingtoneList object
 eventName: event name (ringtone-cancel, ringtone-change or ringtone-done)
 </pre>
 

@@ -8,8 +8,8 @@ The time-setting component displays a hour/minute wheel with a pointer that can 
 
 ## Methods
 There are fourteen methods in total that can be call outside the TimeSetting class (public methods). They are:
-* **getTime** - get the current time in the { hour, minute } format
-* **setTime** - set the current ringtone by a object with the { hour, minut } properties
+* **getTime** - get the current time in the { hour, minute, meridiem } format
+* **setTime** - set the current ringtone by a object with the { hour, minute, meridiem } properties
 * **show** - display the time-setting element and place it above the others (z-index: 1000)
 * **hide** - hide the time-setting element
 * **getNodeElement** - get the DOM node with class .time-setting
@@ -22,3 +22,12 @@ There are fourteen methods in total that can be call outside the TimeSetting cla
 
 Every other method starting with an underscore is private. Thus, is shouldn't be called
 outside the class, otherwise, it may crush the component.
+
+## Events
+The time-list element handles three types of events. They are time-change, time-done and time-cancel.
+Every event gives back an object containing the following properties:<br>
+<pre>
+time:      current time in the { hour, minute, meridiem } format
+target:    TimeSetting object
+eventName: event name (time-cancel, time-change or time-done)
+</pre>
