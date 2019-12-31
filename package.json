@@ -38,6 +38,11 @@
     "dev:ringtone-list:webpack": "webpack --mode=development --config ./src/components/ringtone-list/dev/webpack.config.js -w",
     "dev:ringtone-list": "concurrently \"yarn dev:ringtone-list:pug\" \"yarn dev:ringtone-list:sass\" \"yarn dev:ringtone-list:webpack\"",
 
+    "dev:time-setting:pug": "pug ./src/components/time-setting/dev/index.pug -o ./src/components/time-setting/build --watch --pretty",
+    "dev:time-setting:sass": "sass ./src/components/time-setting/time-setting.sass ./src/components/time-setting/build/style.css --watch --no-source-map",
+    "dev:time-setting:webpack": "webpack --mode=development --config ./src/components/time-setting/dev/webpack.config.js -w",
+    "dev:time-setting": "concurrently \"yarn dev:time-setting:pug\" \"yarn dev:time-setting:sass\" \"yarn dev:time-setting:webpack\"",
+
     "webpack": "webpack --mode=production",
     "webpack-w": "webpack --mode=development -w",
     "pug": "pug ./src/markup/index -o ./public",
