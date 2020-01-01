@@ -26,6 +26,7 @@ class RingtoneList {
         this._ringtonePlaying = null;
 
         this._createRingtoneListElement(documentElement);
+        this._createMostFrequentlyUsedElementsShortcuts();
         this._ringtone = {
             id: parseInt(this.nodeElement.children[0].getAttribute('data-selected-song'), 10),
             name: this.nodeElement.children[0].getAttribute('data-selected-song-name'),
@@ -135,8 +136,6 @@ class RingtoneList {
             + '</div>',
             this._document,
         );
-
-        this._createMostFrequentlyUsedElementsShortcuts();
     }
 
     /**

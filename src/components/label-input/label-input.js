@@ -26,6 +26,7 @@ class LabelInput {
         this._labelCancelCallbackList = [];
 
         this._createLabelElement(documentElement);
+        this._createMostFrequentlyUsedElementsShortcuts();
         this._registerDOMEventHandlers();
     }
 
@@ -55,8 +56,6 @@ class LabelInput {
             + '</div>',
             this._document,
         );
-
-        this._createMostFrequentlyUsedElementsShortcuts();
     }
 
     /**

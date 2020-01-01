@@ -10,6 +10,7 @@ class TimeSetting {
 
         this._document = documentElements;
         this._createTimeSettingElement();
+        this._createMostFrequentlyUsedElementsShortcuts();
 
         this._time = {
             hour: 6,
@@ -68,8 +69,6 @@ class TimeSetting {
             + '</div>',
             document,
         );
-
-        this._createMostFrequentlyUsedElementsShortcuts();
     }
 
     _createMostFrequentlyUsedElementsShortcuts() {
