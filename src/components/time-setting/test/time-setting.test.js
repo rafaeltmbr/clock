@@ -10,6 +10,20 @@ describe('Time Setting Methods', () => {
         expect(element.className).toBe('time-setting');
     });
 
+    it('should show and hide the DOM element', () => {
+        const timeSetting = new TimeSetting(document);
+
+        const element = timeSetting.getNodeElement();
+        timeSetting.hide();
+        expect(element.getAttribute('data-display-status')).toBe('hide');
+
+        timeSetting.show();
+        expect(element.getAttribute('data-display-status')).toBe('show');
+
+        timeSetting.hide();
+        expect(element.getAttribute('data-display-status')).toBe('hide');
+    });
+
     it('should get time in the {hour, minute, meridium} format', () => {
         const timeSetting = new TimeSetting(document);
         const { hour, minute, meridium } = timeSetting.getTime();
@@ -48,17 +62,56 @@ describe('Time Setting Methods', () => {
         expect(timeSetting.getTime().hour).toBe(hour);
     });
 
-    it('should show and hide the DOM element', () => {
+    it('should set minute correctly', () => {
         const timeSetting = new TimeSetting(document);
 
-        const element = timeSetting.getNodeElement();
-        timeSetting.hide();
-        expect(element.getAttribute('data-display-status')).toBe('hide');
+        const previousTime = timeSetting.getTime();
 
-        timeSetting.show();
-        expect(element.getAttribute('data-display-status')).toBe('show');
+        let minute = -1;
+        const hour = 8;
+        const meridium = 'AM';
+        timeSetting.setTime({ hour, minute, meridium });
 
-        timeSetting.hide();
-        expect(element.getAttribute('data-display-status')).toBe('hide');
+        expect(timeSetting.getTime().minute).toBe(previousTime.minute);
+
+        minute = 60;
+        timeSetting.setTime({ hour, minute, meridium });
+        expect(timeSetting.getTime().minute).toBe(previousTime.minute);
+
+        do {
+            minute = Math.floor(Math.random() * 60);
+        } while (hour === previousTime.hour);
+
+        timeSetting.setTime({ hour, minute, meridium });
+        expect(timeSetting.getTime().minute).toBe(minute);
+    });
+
+    it('should set meridium correctly', () => {
+        const timeSetting = new TimeSetting(document);
+
+        const previousTime = timeSetting.getTime();
+
+        let meridium = '';
+        const hour = 8;
+        const minute = 30;
+        timeSetting.setTime({ hour, minute, meridium });
+
+        expect(timeSetting.getTime().meridium).toBe(previousTime.meridium);
+
+        meridium = 'am ';
+        timeSetting.setTime({ hour, minute, meridium });
+        expect(timeSetting.getTime().meridium).toBe(previousTime.meridium);
+
+        meridium = 'apm ';
+        timeSetting.setTime({ hour, minute, meridium });
+        expect(timeSetting.getTime().meridium).toBe(previousTime.meridium);
+
+        meridium = 'am';
+        timeSetting.setTime({ hour, minute, meridium });
+        expect(timeSetting.getTime().meridium).toBe(meridium);
+
+        meridium = 'pm';
+        timeSetting.setTime({ hour, minute, meridium });
+        expect(timeSetting.getTime().meridium).toBe(meridium);
     });
 });

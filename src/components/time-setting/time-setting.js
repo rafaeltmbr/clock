@@ -21,7 +21,7 @@ class TimeSetting {
     _createTimeSettingElement() {
         this.nodeElement = Util.createNodeElement(
             '<div class="time-setting" data-display-status="hide">'
-            + '<div class="setting-container" data-am-pm="am" data-hour="6" data-minute="0" data-select="hour"'
+            + '<div class="setting-container" data-meridium="am" data-hour="6" data-minute="0" data-select="hour"'
             + 'data-skip-animation="false">'
             + '<div class="time-container"><span class="hour">6</span><span class="separator">:</span><span '
             + 'class="minute">00</span><span class="am">AM</span><span class="pm">PM</span></div>'
@@ -75,6 +75,12 @@ class TimeSetting {
     _createMostFrequentlyUsedElementsShortcuts() {
         // eslint-disable-next-line prefer-destructuring
         this._settingContainer = this.nodeElement.children[0];
+
+        // eslint-disable-next-line prefer-destructuring
+        this._hourElement = this.nodeElement.children[0].children[0].children[0];
+
+        // eslint-disable-next-line prefer-destructuring
+        this._minuteElement = this.nodeElement.children[0].children[0].children[2];
     }
 
     getNodeElement() {
@@ -99,12 +105,27 @@ class TimeSetting {
         if (typeof hour === 'number' && hour >= 0 && hour <= 12) {
             this._time.hour = hour;
             this._settingContainer.setAttribute('data-hour', hour || 12);
+            this._hourElement.innerText = hour;
         }
     }
 
-    _validateAndSetMinute(minute) {}
+    _validateAndSetMinute(minute) {
+        if (typeof minute === 'number' && minute >= 0 && minute < 60) {
+            this._time.minute = minute;
+            this._settingContainer.setAttribute('data-minute', minute);
+            this._minuteElement.innerText = minute;
+        }
+    }
 
-    _validateAndSetMeridium(meridium) {}
+    _validateAndSetMeridium(meridium) {
+        if (typeof meridium !== 'string') return;
+
+        const lowerCaseMeridium = meridium.toLocaleLowerCase();
+        if (lowerCaseMeridium === 'am' || lowerCaseMeridium === 'pm') {
+            this._time.meridium = meridium;
+            this._settingContainer.setAttribute('data-meridium', lowerCaseMeridium);
+        }
+    }
 
     show() {
         this.nodeElement.setAttribute('data-display-status', 'show');

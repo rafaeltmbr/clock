@@ -2,7 +2,7 @@ $time-button-inactive: rgb(54, 54, 54)
 $time-button-active: rgb(140, 58, 58)
 
 .time-setting
-    .setting-container[data-am-pm="pm"]
+    .setting-container[data-meridium="pm"]
         .time-container
             .pm
                 display: inline
@@ -84,6 +84,11 @@ $time-done_container_height: 50px
                     width: $time-disc_selector_axis_new_width
 
 .time-setting
+    -ms-user-select: none
+    -moz-user-select: none
+    -webkit-user-select: none
+    user-select: none
+
     *
         box-sizing: border-box
 
@@ -219,7 +224,7 @@ $time-dark-grey: rgb(54, 54, 54)
                 left: 17px
 
         .disc-container
-            $time-am-pm-top-offset: 105px
+            $time-meridium-top-offset: 105px
             $time-offset-top: -12px
 
             height: $time-disc_container_height
@@ -335,7 +340,7 @@ $time-dark-grey: rgb(54, 54, 54)
                 width: 40px
                 height: 40px
                 border-radius: 50%
-                top: $time-am-pm-top-offset + $time-offset-top
+                top: $time-meridium-top-offset + $time-offset-top
 
             .am-button
                 background-color: $time-button-active
@@ -409,7 +414,7 @@ $time-darker-grey: rgb(44, 44, 44)
 
 @media (hover: hover)
     .time-setting
-        .setting-container[data-am-pm="pm"]
+        .setting-container[data-meridium="pm"]
             .disc-container
                 .pm-button:hover
                     background-color: $time-button-active-hover
