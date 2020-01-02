@@ -8,15 +8,16 @@ class TimeSetting {
                 + 'Exemple: const ts = new TimeSetting(document);');
         }
 
-        this._document = documentElements;
-        this._createTimeSettingElement();
-        this._createMostFrequentlyUsedElementsShortcuts();
-
         this._time = {
             hour: 6,
             minute: 0,
             meridium: 'AM',
         };
+
+        this._document = documentElements;
+        this._createTimeSettingElement();
+        this._createMostFrequentlyUsedElementsShortcuts();
+        this._addEventListenerToDiscSelector();
     }
 
     _createTimeSettingElement() {
@@ -80,6 +81,17 @@ class TimeSetting {
 
         // eslint-disable-next-line prefer-destructuring
         this._minuteElement = this.nodeElement.children[0].children[0].children[2];
+
+        // eslint-disable-next-line prefer-destructuring
+        this._hourDisc = this.nodeElement.children[0].children[1].children[1];
+
+        // eslint-disable-next-line prefer-destructuring
+        this._hourSelectorDisc = this.nodeElement.children[0]
+            .children[1].children[1].children[24];
+
+        // eslint-disable-next-line prefer-destructuring
+        this._minuteSelectorDisc = this.nodeElement.children[0]
+            .children[1].children[1].children[26];
     }
 
     getNodeElement() {
@@ -124,6 +136,69 @@ class TimeSetting {
             this._time.meridium = meridium;
             this._settingContainer.setAttribute('data-meridium', lowerCaseMeridium);
         }
+    }
+
+    _addEventListenerToDiscSelector() {
+        this._hourSelectorDisc.addEventListener('mousedown', (event) => {
+            this._enableHourDiscMovent(event);
+            this._settingContainer.setAttribute('data-skip-animation', 'true');
+        });
+    }
+
+    _enableHourDiscMovent() {
+        const handleHourDiscMovement = this._handleHourDiscMovement.bind(this);
+        window.addEventListener('mousemove', handleHourDiscMovement);
+
+        const handleWindowMouseUp = () => {
+            window.removeEventListener('mouseup', handleWindowMouseUp);
+            window.removeEventListener('mousemove', handleHourDiscMovement);
+            this._settingContainer.setAttribute('data-skip-animation', 'false');
+        };
+
+        window.addEventListener('mouseup', handleWindowMouseUp);
+    }
+
+    _handleHourDiscMovement(event) {
+        const angle = this._getSelectorAngle(event);
+        const hour = (12 - Math.round(angle / (360 / 12)) + 3) % 12;
+        this._hourElement.innerText = hour || 12;
+        this._settingContainer.setAttribute('data-hour', hour || 12);
+
+        window.removeEventListener('mousemove', this._handleHourDiscMovement);
+    }
+
+    // eslint-disable-next-line class-methods-use-this
+    _getSelectorAngle({ clientX: endX, clientY: endY }) {
+        const { x: startX, y: startY } = this._getHourDiscCenter();
+        const deltaX = endX - startX;
+        const deltaY = startY - endY;
+        const RAD_TO_DEG = 360 / (2 * Math.PI);
+        const angleDeg = Math.atan(Math.abs(deltaY) / Math.abs(deltaX)) * RAD_TO_DEG;
+
+        const angleComplete = (
+            // eslint-disable-next-line no-nested-ternary
+            deltaX >= 0 && deltaY >= 0
+                ? angleDeg
+                // eslint-disable-next-line no-nested-ternary
+                : deltaX <= 0 && deltaY >= 0
+                    ? 90 - angleDeg + 90
+                    : deltaX <= 0 && deltaY <= 0
+                        ? angleDeg + 180
+                        : 90 - angleDeg + 270);
+
+        return Math.round(angleComplete);
+    }
+
+    _getHourDiscCenter() {
+        const { x, y } = this._hourDisc.getBoundingClientRect();
+        const { width, height } = getComputedStyle(this._hourDisc);
+        const w = parseInt(width, 10);
+        const h = parseInt(height, 10);
+
+        return {
+            x: x + (w / 2),
+            y: y + (h / 2),
+        };
     }
 
     show() {
