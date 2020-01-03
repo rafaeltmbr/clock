@@ -145,17 +145,22 @@ class TimeSetting {
     }
 
     _addEventListenerToDiscSelectors() {
-        this._hourSelectorDisc.addEventListener('mousedown', () => {
+        const hourMousedownHandler = () => {
             this._enableDiscMovement('hour');
             this._settingContainer.setAttribute('data-skip-animation', 'true');
             this._hourDisc.setAttribute('data-active', 'true');
-        });
+        };
 
-        this._minuteSelectorDisc.addEventListener('mousedown', () => {
+        const minuteMousedownHandler = () => {
             this._enableDiscMovement('minute');
             this._settingContainer.setAttribute('data-skip-animation', 'true');
             this._hourDisc.setAttribute('data-active', 'true');
-        });
+        };
+
+        this._hourSelectorDisc.addEventListener('mousedown', hourMousedownHandler);
+        this._hourSelectorDisc.addEventListener('touchstart', hourMousedownHandler);
+        this._minuteSelectorDisc.addEventListener('mousedown', minuteMousedownHandler);
+        this._minuteSelectorDisc.addEventListener('touchstart', minuteMousedownHandler);
     }
 
     _addEventListenerToHour() {
@@ -164,6 +169,11 @@ class TimeSetting {
 
         hourKeys.forEach((k) => {
             hourDiscChildren[k].addEventListener('mousedown', (event) => {
+                this._handleHourClick(event);
+                this._hourDisc.setAttribute('data-active', 'true');
+            });
+
+            hourDiscChildren[k].addEventListener('touchstart', (event) => {
                 this._handleHourClick(event);
                 this._hourDisc.setAttribute('data-active', 'true');
             });
@@ -180,6 +190,11 @@ class TimeSetting {
 
         minuteKeys.forEach((k) => {
             hourDiscChildren[k].addEventListener('mousedown', (event) => {
+                this._handleMinuteClick(event);
+                this._hourDisc.setAttribute('data-active', 'true');
+            });
+
+            hourDiscChildren[k].addEventListener('touchstart', (event) => {
                 this._handleMinuteClick(event);
                 this._hourDisc.setAttribute('data-active', 'true');
             });
@@ -200,41 +215,60 @@ class TimeSetting {
     }
 
     _enableDiscMovement(type) {
-        const handleDiscMovementMethod = (
-            type === 'hour'
-                ? this._handleHourDiscMovement.bind(this)
-                : this._handleMinuteDiscMovement.bind(this)
-        );
+        const movementHandler = this._handleDiscMovementMethod(type);
 
-        window.addEventListener('mousemove', handleDiscMovementMethod);
+        window.addEventListener('mousemove', movementHandler);
+        window.addEventListener('touchmove', movementHandler);
 
-        const handleWindowMouseUp = () => {
-            window.removeEventListener('mouseup', handleWindowMouseUp);
-            window.removeEventListener('mousemove', handleDiscMovementMethod);
-            this._settingContainer.setAttribute('data-skip-animation', 'false');
-            this._settingContainer.setAttribute('data-select', 'minute');
-            this._hourDisc.setAttribute('data-active', 'false');
+        const handleMouseup = () => {
+            this._handleWindowMouseup();
+            window.removeEventListener('mousemove', movementHandler);
+            window.removeEventListener('mouseup', handleMouseup);
         };
 
-        window.addEventListener('mouseup', handleWindowMouseUp);
+        const handleTouchend = () => {
+            this._handleWindowTouchend();
+            window.removeEventListener('touchmove', movementHandler);
+            window.removeEventListener('touchend', handleTouchend);
+        };
+
+        window.addEventListener('mouseup', handleMouseup);
+        window.addEventListener('touchend', handleTouchend);
+    }
+
+    _handleWindowMouseup() {
+        this._settingContainer.setAttribute('data-skip-animation', 'false');
+        this._settingContainer.setAttribute('data-select', 'minute');
+        this._hourDisc.setAttribute('data-active', 'false');
+    }
+
+    _handleWindowTouchend() {
+        this._settingContainer.setAttribute('data-skip-animation', 'false');
+        this._settingContainer.setAttribute('data-select', 'minute');
+        this._hourDisc.setAttribute('data-active', 'false');
+    }
+
+    _handleDiscMovementMethod(type) {
+        return (type === 'hour'
+            ? this._handleHourDiscMovement.bind(this)
+            : this._handleMinuteDiscMovement.bind(this)
+        );
     }
 
     _handleHourDiscMovement(event) {
-        const angle = this._getSelectorAngle(event);
+        const coordinates = event.touches ? event.touches[0] : event;
+        const angle = this._getSelectorAngle(coordinates);
         const hour = (12 - Math.round(angle / (360 / 12)) + 3) % 12;
         this._hourElement.innerText = hour || 12;
         this._settingContainer.setAttribute('data-hour', hour || 12);
-
-        window.removeEventListener('mousemove', this._handleHourDiscMovement);
     }
 
     _handleMinuteDiscMovement(event) {
-        const angle = this._getSelectorAngle(event);
+        const coordinates = event.touches ? event.touches[0] : event;
+        const angle = this._getSelectorAngle(coordinates);
         const minute = (60 - Math.round(angle / (360 / 60)) + 15) % 60;
         this._minuteElement.innerText = minute < 10 ? `0${minute}` : minute;
         this._settingContainer.setAttribute('data-minute', minute);
-
-        window.removeEventListener('mousemove', this._handleHourDiscMovement);
     }
 
     // eslint-disable-next-line class-methods-use-this
