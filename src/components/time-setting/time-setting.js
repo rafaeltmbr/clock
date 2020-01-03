@@ -17,7 +17,7 @@ class TimeSetting {
         this._document = documentElements;
         this._createTimeSettingElement();
         this._createMostFrequentlyUsedElementsShortcuts();
-        this._addEventListenerToDiscSelector();
+        this._addEventListenerToElements();
     }
 
     _createTimeSettingElement() {
@@ -86,12 +86,25 @@ class TimeSetting {
         this._hourDisc = this.nodeElement.children[0].children[1].children[1];
 
         // eslint-disable-next-line prefer-destructuring
+        this._amButton = this.nodeElement.children[0].children[1].children[0];
+
+        // eslint-disable-next-line prefer-destructuring
+        this._pmButton = this.nodeElement.children[0].children[1].children[2];
+
+        // eslint-disable-next-line prefer-destructuring
         this._hourSelectorDisc = this.nodeElement.children[0]
             .children[1].children[1].children[24];
 
         // eslint-disable-next-line prefer-destructuring
         this._minuteSelectorDisc = this.nodeElement.children[0]
             .children[1].children[1].children[26];
+    }
+
+    _addEventListenerToElements() {
+        this._addEventListenerToDiscSelectors();
+        this._addEventListenerToHour();
+        this._addEventListenerToMinute();
+        this._addEventListenerToMeridiumButtons();
     }
 
     getNodeElement() {
@@ -138,21 +151,76 @@ class TimeSetting {
         }
     }
 
-    _addEventListenerToDiscSelector() {
-        this._hourSelectorDisc.addEventListener('mousedown', (event) => {
-            this._enableHourDiscMovent(event);
+    _addEventListenerToDiscSelectors() {
+        this._hourSelectorDisc.addEventListener('mousedown', () => {
+            this._enableDiscMovement('hour');
             this._settingContainer.setAttribute('data-skip-animation', 'true');
+            this._hourDisc.setAttribute('data-active', 'true');
+        });
+
+        this._minuteSelectorDisc.addEventListener('mousedown', () => {
+            this._enableDiscMovement('minute');
+            this._settingContainer.setAttribute('data-skip-animation', 'true');
+            this._hourDisc.setAttribute('data-active', 'true');
         });
     }
 
-    _enableHourDiscMovent() {
-        const handleHourDiscMovement = this._handleHourDiscMovement.bind(this);
-        window.addEventListener('mousemove', handleHourDiscMovement);
+    _addEventListenerToHour() {
+        const hourDiscChildren = this._hourDisc.children;
+        const hourKeys = Object.keys(hourDiscChildren).filter((k) => hourDiscChildren[k].className === 'hour');
+
+        hourKeys.forEach((k) => {
+            hourDiscChildren[k].addEventListener('mousedown', (event) => {
+                this._handleHourClick(event);
+                this._hourDisc.setAttribute('data-active', 'true');
+            });
+        });
+
+        this._hourElement.addEventListener('click', () => {
+            this._settingContainer.setAttribute('data-select', 'hour');
+        });
+    }
+
+    _addEventListenerToMinute() {
+        const hourDiscChildren = this._hourDisc.children;
+        const minuteKeys = Object.keys(hourDiscChildren).filter((k) => hourDiscChildren[k].className === 'minute');
+
+        minuteKeys.forEach((k) => {
+            hourDiscChildren[k].addEventListener('mousedown', (event) => {
+                this._handleMinuteClick(event);
+                this._hourDisc.setAttribute('data-active', 'true');
+            });
+        });
+
+        this._minuteElement.addEventListener('click', () => {
+            this._settingContainer.setAttribute('data-select', 'minute');
+        });
+    }
+
+    _addEventListenerToMeridiumButtons() {
+        this._amButton.addEventListener('click', () => {
+            this._settingContainer.setAttribute('data-meridium', 'am');
+        });
+        this._pmButton.addEventListener('click', () => {
+            this._settingContainer.setAttribute('data-meridium', 'pm');
+        });
+    }
+
+    _enableDiscMovement(type) {
+        const handleDiscMovementMethod = (
+            type === 'hour'
+                ? this._handleHourDiscMovement.bind(this)
+                : this._handleMinuteDiscMovement.bind(this)
+        );
+
+        window.addEventListener('mousemove', handleDiscMovementMethod);
 
         const handleWindowMouseUp = () => {
             window.removeEventListener('mouseup', handleWindowMouseUp);
-            window.removeEventListener('mousemove', handleHourDiscMovement);
+            window.removeEventListener('mousemove', handleDiscMovementMethod);
             this._settingContainer.setAttribute('data-skip-animation', 'false');
+            this._settingContainer.setAttribute('data-select', 'minute');
+            this._hourDisc.setAttribute('data-active', 'false');
         };
 
         window.addEventListener('mouseup', handleWindowMouseUp);
@@ -165,6 +233,33 @@ class TimeSetting {
         this._settingContainer.setAttribute('data-hour', hour || 12);
 
         window.removeEventListener('mousemove', this._handleHourDiscMovement);
+    }
+
+    _handleMinuteDiscMovement(event) {
+        const angle = this._getSelectorAngle(event);
+        const minute = (60 - Math.round(angle / (360 / 60)) + 15) % 60;
+        this._minuteElement.innerText = minute < 10 ? `0${minute}` : minute;
+        this._settingContainer.setAttribute('data-minute', minute);
+
+        window.removeEventListener('mousemove', this._handleHourDiscMovement);
+    }
+
+    // eslint-disable-next-line class-methods-use-this
+    _handleHourClick(event) {
+        const hour = event.target.innerText;
+        this._settingContainer.setAttribute('data-skip-animation', 'true');
+        this._settingContainer.setAttribute('data-hour', hour);
+        this._hourElement.innerText = hour;
+        this._enableDiscMovement('hour');
+    }
+
+    // eslint-disable-next-line class-methods-use-this
+    _handleMinuteClick(event) {
+        const minute = parseInt(event.target.innerText, 10);
+        this._settingContainer.setAttribute('data-skip-animation', 'true');
+        this._settingContainer.setAttribute('data-minute', `${minute}`);
+        this._minuteElement.innerText = minute < 10 ? `0${minute}` : minute;
+        this._enableDiscMovement('minute');
     }
 
     // eslint-disable-next-line class-methods-use-this
