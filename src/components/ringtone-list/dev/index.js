@@ -2,7 +2,7 @@
 
 import RingtoneList from '../ringtone-list';
 
-const ringtoneList = new RingtoneList(document);
+const ringtoneList = new RingtoneList();
 
 document.body.appendChild(ringtoneList.getNodeElement());
 

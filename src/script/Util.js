@@ -36,8 +36,8 @@ export default class Util {
         return Util.nodeListToArray(nodeList).filter((e) => Util.isDescendant(e, element));
     }
 
-    static createNodeElement(html, documentElement) {
-        const node = documentElement.createElement('div');
+    static createNodeElement(html) {
+        const node = document.createElement('div');
         node.innerHTML = html;
         return node.children.length === 1 ? node.children[0] : node.children;
     }

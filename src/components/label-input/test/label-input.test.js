@@ -5,7 +5,7 @@ import LabelInput from '../label-input';
 
 describe('label-input methods', () => {
     it('should create a DOM element with className of .label-input', () => {
-        const label = new LabelInput(document);
+        const label = new LabelInput();
 
         const element = label.getNodeElement();
         expect(element instanceof Element).toBe(true);
@@ -13,7 +13,7 @@ describe('label-input methods', () => {
     });
 
     it('should set and get the placeholder value', () => {
-        const label = new LabelInput(document);
+        const label = new LabelInput();
 
         const newPlaceholder = 'Label name';
         label.setPlaceholder(newPlaceholder);
@@ -22,7 +22,7 @@ describe('label-input methods', () => {
     });
 
     it('should set and get a label name', () => {
-        const label = new LabelInput(document);
+        const label = new LabelInput();
         const name = `Alarm ${Math.round(Math.random() * 1000)}`;
         expect(label.getLabel()).toBe('');
 
@@ -31,7 +31,7 @@ describe('label-input methods', () => {
     });
 
     it('should change the data-display-status attribute', () => {
-        const label = new LabelInput(document);
+        const label = new LabelInput();
         const initialStatus = label.nodeElement.getAttribute('data-display-status');
         expect(initialStatus).toBe('hide');
 
@@ -45,7 +45,7 @@ describe('label-input methods', () => {
 
 describe('label-change events', () => {
     it('should add unique event handlers', () => {
-        const label = new LabelInput(document);
+        const label = new LabelInput();
         expect(label._labelChangeCallbackList.length).toBe(0);
 
         const changeCallback = () => {};
@@ -63,7 +63,7 @@ describe('label-change events', () => {
     });
 
     it('should remove event handlers', () => {
-        const label = new LabelInput(document);
+        const label = new LabelInput();
         const changeCallback = () => {};
         const changeCallback2 = () => {};
 
@@ -88,7 +88,7 @@ describe('label-change events', () => {
     });
 
     it('should call all event handlers', () => {
-        const label = new LabelInput(document);
+        const label = new LabelInput();
 
         let i = 0;
         label.addLabelChangeListener(() => { i += 1; });
@@ -106,7 +106,7 @@ describe('label-change events', () => {
 
 describe('label-cancel events', () => {
     it('should add unique event handlers', () => {
-        const label = new LabelInput(document);
+        const label = new LabelInput();
         expect(label._labelCancelCallbackList.length).toBe(0);
 
         const cancelCallback = () => {};
@@ -124,7 +124,7 @@ describe('label-cancel events', () => {
     });
 
     it('should remove event handlers', () => {
-        const label = new LabelInput(document);
+        const label = new LabelInput();
         const cancelCallback = () => {};
         const cancelCallback2 = () => {};
 
@@ -149,7 +149,7 @@ describe('label-cancel events', () => {
     });
 
     it('should call all event handlers', () => {
-        const label = new LabelInput(document);
+        const label = new LabelInput();
 
         let i = 0;
         label.addLabelCancelListener(() => { i += 1; });
@@ -167,7 +167,7 @@ describe('label-cancel events', () => {
 
 describe('label-done events', () => {
     it('should add unique event handlers', () => {
-        const label = new LabelInput(document);
+        const label = new LabelInput();
         expect(label._labelDoneCallbackList.length).toBe(0);
 
         const doneCallback = () => {};
@@ -185,7 +185,7 @@ describe('label-done events', () => {
     });
 
     it('should remove event handlers', () => {
-        const label = new LabelInput(document);
+        const label = new LabelInput();
         const doneCallback = () => {};
         const doneCallback2 = () => {};
 
@@ -210,7 +210,7 @@ describe('label-done events', () => {
     });
 
     it('should call all event handlers', () => {
-        const label = new LabelInput(document);
+        const label = new LabelInput();
 
         let i = 0;
         label.addLabelDoneListener(() => { i += 1; });

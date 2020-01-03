@@ -2,19 +2,13 @@
 import Util from '../../script/Util';
 
 class TimeSetting {
-    constructor(documentElements) {
-        if (!documentElements) {
-            throw new Error('Expect the document DOM element as a parameter.'
-                + 'Exemple: const ts = new TimeSetting(document);');
-        }
-
+    constructor() {
         this._time = {
             hour: 6,
             minute: 0,
             meridium: 'AM',
         };
 
-        this._document = documentElements;
         this._createTimeSettingElement();
         this._createMostFrequentlyUsedElementsShortcuts();
         this._addEventListenerToElements();
@@ -68,7 +62,6 @@ class TimeSetting {
             + '<div class="done-container"><span>Done</span></div>'
             + '</div>'
             + '</div>',
-            document,
         );
     }
 

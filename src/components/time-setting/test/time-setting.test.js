@@ -3,7 +3,7 @@ import TimeSetting from '../time-setting';
 /* eslint-disable no-undef */
 describe('Time Setting Methods', () => {
     it('should create the node element', () => {
-        const timeSetting = new TimeSetting(document);
+        const timeSetting = new TimeSetting();
         const element = timeSetting.getNodeElement();
 
         expect(element instanceof Element).toBe(true);
@@ -11,7 +11,7 @@ describe('Time Setting Methods', () => {
     });
 
     it('should show and hide the DOM element', () => {
-        const timeSetting = new TimeSetting(document);
+        const timeSetting = new TimeSetting();
 
         const element = timeSetting.getNodeElement();
         timeSetting.hide();
@@ -25,7 +25,7 @@ describe('Time Setting Methods', () => {
     });
 
     it('should get time in the {hour, minute, meridium} format', () => {
-        const timeSetting = new TimeSetting(document);
+        const timeSetting = new TimeSetting();
         const { hour, minute, meridium } = timeSetting.getTime();
 
         expect(typeof hour).toBe('number');
@@ -39,7 +39,7 @@ describe('Time Setting Methods', () => {
     });
 
     it('should set hour correctly', () => {
-        const timeSetting = new TimeSetting(document);
+        const timeSetting = new TimeSetting();
 
         const previousTime = timeSetting.getTime();
 
@@ -63,7 +63,7 @@ describe('Time Setting Methods', () => {
     });
 
     it('should set minute correctly', () => {
-        const timeSetting = new TimeSetting(document);
+        const timeSetting = new TimeSetting();
 
         const previousTime = timeSetting.getTime();
 
@@ -87,7 +87,7 @@ describe('Time Setting Methods', () => {
     });
 
     it('should set meridium correctly', () => {
-        const timeSetting = new TimeSetting(document);
+        const timeSetting = new TimeSetting();
 
         const previousTime = timeSetting.getTime();
 

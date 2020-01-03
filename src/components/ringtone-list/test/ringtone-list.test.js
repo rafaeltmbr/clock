@@ -16,7 +16,7 @@ window.HTMLElement.prototype.scrollIntoView = () => {};
 
 describe('ringtone-list methods', () => {
     it('should create a DOM element with className of .ringtone-list and get the element', () => {
-        const ringtoneList = new RingtoneList(document);
+        const ringtoneList = new RingtoneList();
 
         const element = ringtoneList.getNodeElement();
         expect(element instanceof Element).toBe(true);
@@ -24,7 +24,7 @@ describe('ringtone-list methods', () => {
     });
 
     it('shoud be able to get the current ringtone {name, id}', () => {
-        const ringtoneList = new RingtoneList(document);
+        const ringtoneList = new RingtoneList();
 
         const ringtone = ringtoneList.getRingtone();
         expect(typeof ringtone.name === 'string' && ringtone.name !== '').toBe(true);
@@ -32,13 +32,13 @@ describe('ringtone-list methods', () => {
     });
 
     it('should give a new ringtone list every time a getRingtones() is called', () => {
-        const ringtoneList = new RingtoneList(document);
+        const ringtoneList = new RingtoneList();
 
         expect(ringtoneList.getRingtones()).not.toBe(ringtoneList.getRingtones());
     });
 
     it('should get an array of all available ringtones with {id, name} exclusively', () => {
-        const ringtoneList = new RingtoneList(document);
+        const ringtoneList = new RingtoneList();
 
         const list = ringtoneList.getRingtones();
         expect(typeof list === 'object' && list.length > 0).toBe(true);
@@ -62,7 +62,7 @@ describe('ringtone-list methods', () => {
     });
 
     it('should be able to set a ringtone by name and id', () => {
-        const ringtoneList = new RingtoneList(document);
+        const ringtoneList = new RingtoneList();
 
         const list = ringtoneList.getRingtones();
         let ringtone = list.pop();
@@ -82,7 +82,7 @@ describe('ringtone-list methods', () => {
     });
 
     it('should not set the ringtone by an invalid id', () => {
-        const ringtoneList = new RingtoneList(document);
+        const ringtoneList = new RingtoneList();
 
         const ringtone = ringtoneList.getRingtone();
         const list = ringtoneList.getRingtones();
@@ -98,7 +98,7 @@ describe('ringtone-list methods', () => {
     });
 
     it('should not set the ringtone by an invalid name', () => {
-        const ringtoneList = new RingtoneList(document);
+        const ringtoneList = new RingtoneList();
 
         const ringtone = ringtoneList.getRingtone();
 
@@ -111,7 +111,7 @@ describe('ringtone-list methods', () => {
     });
 
     it('should be able to disable and enable the sound through the RingtoneList._playSound property', () => {
-        const ringtoneList = new RingtoneList(document);
+        const ringtoneList = new RingtoneList();
 
         expect(typeof ringtoneList._playSound).toBe('boolean');
 
@@ -126,7 +126,7 @@ describe('ringtone-list methods', () => {
     });
 
     it('should be able to show and hide', () => {
-        const ringtoneList = new RingtoneList(document);
+        const ringtoneList = new RingtoneList();
 
         const element = ringtoneList.getNodeElement();
 
@@ -143,7 +143,7 @@ describe('ringtone-list methods', () => {
 
 describe('ringtone-change events', () => {
     it('should add unique event handlers', () => {
-        const ringtoneList = new RingtoneList(document);
+        const ringtoneList = new RingtoneList();
         expect(ringtoneList._ringtoneChangeCallbackList.length).toBe(0);
 
         const changeCallback = () => {};
@@ -161,7 +161,7 @@ describe('ringtone-change events', () => {
     });
 
     it('should remove event handlers', () => {
-        const ringtoneList = new RingtoneList(document);
+        const ringtoneList = new RingtoneList();
         const changeCallback = () => {};
         const changeCallback2 = () => {};
 
@@ -186,7 +186,7 @@ describe('ringtone-change events', () => {
     });
 
     it('should call all event handlers', () => {
-        const ringtone = new RingtoneList(document);
+        const ringtone = new RingtoneList();
 
         let i = 0;
         ringtone.addRingtoneChangeListener(() => { i += 1; });
@@ -204,7 +204,7 @@ describe('ringtone-change events', () => {
 
 describe('ringtone-cancel events', () => {
     it('should add unique event handlers', () => {
-        const ringtoneList = new RingtoneList(document);
+        const ringtoneList = new RingtoneList();
         expect(ringtoneList._ringtoneCancelCallbackList.length).toBe(0);
 
         const cancelCallback = () => {};
@@ -222,7 +222,7 @@ describe('ringtone-cancel events', () => {
     });
 
     it('should remove event handlers', () => {
-        const ringtoneList = new RingtoneList(document);
+        const ringtoneList = new RingtoneList();
         const cancelCallback = () => {};
         const cancelCallback2 = () => {};
 
@@ -247,7 +247,7 @@ describe('ringtone-cancel events', () => {
     });
 
     it('should call all event handlers', () => {
-        const ringtone = new RingtoneList(document);
+        const ringtone = new RingtoneList();
 
         let i = 0;
         ringtone.addRingtoneCancelListener(() => { i += 1; });
@@ -265,7 +265,7 @@ describe('ringtone-cancel events', () => {
 
 describe('ringtone-done events', () => {
     it('should add unique event handlers', () => {
-        const ringtoneList = new RingtoneList(document);
+        const ringtoneList = new RingtoneList();
         expect(ringtoneList._ringtoneDoneCallbackList.length).toBe(0);
 
         const doneCallback = () => {};
@@ -283,7 +283,7 @@ describe('ringtone-done events', () => {
     });
 
     it('should remove event handlers', () => {
-        const ringtoneList = new RingtoneList(document);
+        const ringtoneList = new RingtoneList();
         const doneCallback = () => {};
         const doneCallback2 = () => {};
 
@@ -308,7 +308,7 @@ describe('ringtone-done events', () => {
     });
 
     it('should call all event handlers', () => {
-        const ringtone = new RingtoneList(document);
+        const ringtone = new RingtoneList();
 
         let i = 0;
         ringtone.addRingtoneDoneListener(() => { i += 1; });

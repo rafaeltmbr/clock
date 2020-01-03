@@ -9,30 +9,23 @@ class LabelInput {
     /**
      * Create a label-input object.
      * @constructor
-     * @param {Object} documentElement - The document DOM element available in the platform.
      * @returns {Object} LabelInput - Interface used to control/listen to the label input
      *  DOM element.
      */
-    constructor(documentElement) {
-        if (!documentElement) {
-            throw new Error('Expect the document DOM element as a parameter.'
-                + 'Exemple: const li = new LabelInput(document);');
-        }
-
+    constructor() {
         this._label = '';
-        this._document = documentElement;
         this._labelChangeCallbackList = [];
         this._labelDoneCallbackList = [];
         this._labelCancelCallbackList = [];
 
-        this._createLabelElement(documentElement);
+        this._createLabelElement();
         this._createMostFrequentlyUsedElementsShortcuts();
         this._registerDOMEventHandlers();
     }
 
     /**
-     * Create the actual DOM element using the document object passed to the constructor.
-     * Then create references to the most frequently used DOM elements.
+     * Create the actual DOM element.
+     * Then make references to the most frequently used DOM elements.
      */
     _createLabelElement() {
         this.nodeElement = Util.createNodeElement(
@@ -54,7 +47,6 @@ class LabelInput {
                     + '</div>'
                 + '</div>'
             + '</div>',
-            this._document,
         );
     }
 

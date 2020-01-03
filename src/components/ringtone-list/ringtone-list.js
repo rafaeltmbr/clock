@@ -8,24 +8,17 @@ class RingtoneList {
     /**
     * Create a RingtoneList object.
     * @constructor
-    * @param {Object} documentElement - The document DOM element available in the platform.
     * @returns {Object} RingtoneList - Interface used to control/listen to the ringtone list
     *  DOM element.
     */
-    constructor(documentElement) {
-        if (!documentElement) {
-            throw new Error('Expect the document DOM element as a parameter.'
-                + 'Exemple: const rl = new RingtoneList(document);');
-        }
-
-        this._document = documentElement;
+    constructor() {
         this._ringtoneChangeCallbackList = [];
         this._ringtoneDoneCallbackList = [];
         this._ringtoneCancelCallbackList = [];
         this._playSound = true;
         this._ringtonePlaying = null;
 
-        this._createRingtoneListElement(documentElement);
+        this._createRingtoneListElement();
         this._createMostFrequentlyUsedElementsShortcuts();
         this._ringtone = {
             id: parseInt(this.nodeElement.children[0].getAttribute('data-selected-song'), 10),
@@ -134,7 +127,6 @@ class RingtoneList {
             + '</div>'
             + '</div>'
             + '</div>',
-            this._document,
         );
     }
 
@@ -370,7 +362,7 @@ class RingtoneList {
     _getCurrentlySelectedRingtone() {
         let name = this._ringtonesElement.getAttribute('data-selected-song-name');
         name = name.concat(' alarm').split(' ').join('-').toLocaleLowerCase();
-        return this._document.querySelector(`.${name}`);
+        return document.querySelector(`.${name}`);
     }
 
     /**
@@ -424,7 +416,7 @@ class RingtoneList {
      * Then, on each click the listeners registered to the ringtone-cancel event are called.
      */
     _registerDOMEventHandlers() {
-        this._document.addEventListener('keydown', this._handleKeydownEvent.bind(this));
+        document.addEventListener('keydown', this._handleKeydownEvent.bind(this));
         this._okButton.addEventListener('click', this._handleOkButtonClickEvent.bind(this));
         this._cancelButton.addEventListener('click', this._handleCancelButtonClickEvent.bind(this));
         this.nodeElement.addEventListener('click', this._handleOutsideRingtoneContainerClickEvent.bind(this));
