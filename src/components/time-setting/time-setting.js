@@ -8,6 +8,7 @@ class TimeSetting {
             minute: 0,
             meridium: 'AM',
         };
+        this._isTouch = Util.isTouch();
 
         this._createTimeSettingElement();
         this._createMostFrequentlyUsedElementsShortcuts();
@@ -157,23 +158,18 @@ class TimeSetting {
             this._hourDisc.setAttribute('data-active', 'true');
         };
 
-        this._hourSelectorDisc.addEventListener('mousedown', hourMousedownHandler);
-        this._hourSelectorDisc.addEventListener('touchstart', hourMousedownHandler);
-        this._minuteSelectorDisc.addEventListener('mousedown', minuteMousedownHandler);
-        this._minuteSelectorDisc.addEventListener('touchstart', minuteMousedownHandler);
+        const startEvent = (this._isTouch ? 'touchstart' : 'mousedown');
+        this._hourSelectorDisc.addEventListener(startEvent, hourMousedownHandler);
+        this._minuteSelectorDisc.addEventListener(startEvent, minuteMousedownHandler);
     }
 
     _addEventListenerToHour() {
         const hourDiscChildren = this._hourDisc.children;
         const hourKeys = Object.keys(hourDiscChildren).filter((k) => hourDiscChildren[k].className === 'hour');
 
+        const startEvent = (this._isTouch ? 'touchstart' : 'mousedown');
         hourKeys.forEach((k) => {
-            hourDiscChildren[k].addEventListener('mousedown', (event) => {
-                this._handleHourClick(event);
-                this._hourDisc.setAttribute('data-active', 'true');
-            });
-
-            hourDiscChildren[k].addEventListener('touchstart', (event) => {
+            hourDiscChildren[k].addEventListener(startEvent, (event) => {
                 this._handleHourClick(event);
                 this._hourDisc.setAttribute('data-active', 'true');
             });
@@ -188,13 +184,9 @@ class TimeSetting {
         const hourDiscChildren = this._hourDisc.children;
         const minuteKeys = Object.keys(hourDiscChildren).filter((k) => hourDiscChildren[k].className === 'minute');
 
+        const startEvent = (this._isTouch ? 'touchstart' : 'mousedown');
         minuteKeys.forEach((k) => {
-            hourDiscChildren[k].addEventListener('mousedown', (event) => {
-                this._handleMinuteClick(event);
-                this._hourDisc.setAttribute('data-active', 'true');
-            });
-
-            hourDiscChildren[k].addEventListener('touchstart', (event) => {
+            hourDiscChildren[k].addEventListener(startEvent, (event) => {
                 this._handleMinuteClick(event);
                 this._hourDisc.setAttribute('data-active', 'true');
             });
@@ -216,9 +208,9 @@ class TimeSetting {
 
     _enableDiscMovement(type) {
         const movementHandler = this._handleDiscMovementMethod(type);
+        const moveEvent = this._isTouch ? 'touchmove' : 'mousemove';
 
-        window.addEventListener('mousemove', movementHandler);
-        window.addEventListener('touchmove', movementHandler);
+        window.addEventListener(moveEvent, movementHandler);
 
         const handleMouseup = () => {
             this._handleWindowMouseup();
@@ -232,8 +224,11 @@ class TimeSetting {
             window.removeEventListener('touchend', handleTouchend);
         };
 
-        window.addEventListener('mouseup', handleMouseup);
-        window.addEventListener('touchend', handleTouchend);
+        if (this._isTouch) {
+            window.addEventListener('touchend', handleTouchend);
+        } else {
+            window.addEventListener('mouseup', handleMouseup);
+        }
     }
 
     _handleWindowMouseup() {
