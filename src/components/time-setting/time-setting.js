@@ -3,7 +3,7 @@ import Util from '../../script/Util';
 
 /**
  * time-setting component used on Android v4.4.4 Alarm Clock
- * @requires Util object from '../../script/Util'
+ * @requires Util
  */
 class TimeSetting {
     /**
