@@ -136,7 +136,7 @@ class TimeSetting {
 
     /**
      * Change the current time. Also, if any invalid data is passed, this
-     * method will igonore it and will change only the right properties.
+     * method will ignore it and will change only the right properties.
      * @param {Object} - the new time in the { hour, minute, meridium } format
      */
     setTime({ hour, minute, meridium }) {
@@ -159,7 +159,7 @@ class TimeSetting {
 
     /**
      * If the minute argument is ranging from 0 to 59, then the current
-     * minute setting will be changed. Note: 60 will not be accpected.
+     * minute setting will be changed. Note: 60 will not be accepted.
      * @param {Number} minute - the new minute ranging from 0 to 59.
      */
     _validateAndSetMinute(minute) {
@@ -392,7 +392,7 @@ class TimeSetting {
 
     /**
      * Get the hour-disc element current center coordinates.
-     * @returns {Object} hour-disc cetner coordinates {x, y}
+     * @returns {Object} hour-disc center coordinates {x, y}
      */
     _getHourDiscCenter() {
         const { x, y } = this._hourDisc.getBoundingClientRect();
