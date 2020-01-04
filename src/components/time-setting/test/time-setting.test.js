@@ -2,6 +2,8 @@ import TimeSetting from '../time-setting';
 
 /* eslint-disable no-undef */
 describe('Time Setting Methods', () => {
+    window.matchMedia = window.matchMedia || (() => ({ matches: [] }));
+
     it('should create the node element', () => {
         const timeSetting = new TimeSetting();
         const element = timeSetting.getNodeElement();
@@ -98,19 +100,19 @@ describe('Time Setting Methods', () => {
 
         expect(timeSetting.getTime().meridium).toBe(previousTime.meridium);
 
-        meridium = 'am ';
+        meridium = 'AM ';
         timeSetting.setTime({ hour, minute, meridium });
         expect(timeSetting.getTime().meridium).toBe(previousTime.meridium);
 
-        meridium = 'apm ';
+        meridium = 'APM ';
         timeSetting.setTime({ hour, minute, meridium });
         expect(timeSetting.getTime().meridium).toBe(previousTime.meridium);
 
         meridium = 'am';
         timeSetting.setTime({ hour, minute, meridium });
-        expect(timeSetting.getTime().meridium).toBe(meridium);
+        expect(timeSetting.getTime().meridium).toBe('AM');
 
-        meridium = 'pm';
+        meridium = 'PM';
         timeSetting.setTime({ hour, minute, meridium });
         expect(timeSetting.getTime().meridium).toBe(meridium);
     });

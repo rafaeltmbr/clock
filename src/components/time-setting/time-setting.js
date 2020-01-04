@@ -128,9 +128,9 @@ class TimeSetting {
      */
     getTime() {
         return {
-            hour: this._time.hour,
-            minute: this._time.minute,
-            meridium: this._time.meridium,
+            hour: parseInt(this._settingContainer.getAttribute('data-hour'), 10),
+            minute: parseInt(this._settingContainer.getAttribute('data-minute'), 10),
+            meridium: this._settingContainer.getAttribute('data-meridium').toLocaleUpperCase(),
         };
     }
 
@@ -164,7 +164,6 @@ class TimeSetting {
      */
     _validateAndSetMinute(minute) {
         if (typeof minute === 'number' && minute >= 0 && minute < 60) {
-            this._time.minute = minute;
             this._settingContainer.setAttribute('data-minute', minute);
             this._minuteElement.innerText = minute;
         }
@@ -180,7 +179,6 @@ class TimeSetting {
 
         const lowerCaseMeridium = meridium.toLocaleLowerCase();
         if (lowerCaseMeridium === 'am' || lowerCaseMeridium === 'pm') {
-            this._time.meridium = meridium;
             this._settingContainer.setAttribute('data-meridium', lowerCaseMeridium);
         }
     }
