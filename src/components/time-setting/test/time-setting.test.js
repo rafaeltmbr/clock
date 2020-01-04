@@ -39,6 +39,7 @@ describe('Time Setting Methods', () => {
         expect(minute >= 0 && minute < 12).toBe(true);
 
         expect(typeof meridium).toBe('string');
+        expect(meridium).toBe('AM');
         expect(meridium === 'AM' || meridium === 'PM').toBe(true);
     });
 
@@ -66,6 +67,22 @@ describe('Time Setting Methods', () => {
         expect(timeSetting.getTime().hour).toBe(hour);
     });
 
+    it('shoud round floating point hour', () => {
+        const timeSetting = new TimeSetting();
+
+        let hour = 12;
+        timeSetting.setTime({ hour });
+        expect(timeSetting.getTime().hour).toBe(hour);
+
+        hour = 5.20;
+        timeSetting.setTime({ hour });
+        expect(timeSetting.getTime().hour).toBe(Math.round(hour));
+
+        hour = 5.80;
+        timeSetting.setTime({ hour });
+        expect(timeSetting.getTime().hour).toBe(Math.round(hour));
+    });
+
     it('should set minute correctly', () => {
         const timeSetting = new TimeSetting();
 
@@ -88,6 +105,22 @@ describe('Time Setting Methods', () => {
 
         timeSetting.setTime({ hour, minute, meridium });
         expect(timeSetting.getTime().minute).toBe(minute);
+    });
+
+    it('shoud round floating point minute', () => {
+        const timeSetting = new TimeSetting();
+
+        let minute = 0;
+        timeSetting.setTime({ minute });
+        expect(timeSetting.getTime().minute).toBe(minute);
+
+        minute = 20.25;
+        timeSetting.setTime({ minute });
+        expect(timeSetting.getTime().minute).toBe(Math.round(minute));
+
+        minute = 20.75;
+        timeSetting.setTime({ minute });
+        expect(timeSetting.getTime().minute).toBe(Math.round(minute));
     });
 
     it('should set meridium correctly', () => {
@@ -123,20 +156,20 @@ describe('Time Setting Methods', () => {
 describe('time-setting change events', () => {
     it('should add unique event handlers', () => {
         const timeSetting = new TimeSetting();
-        expect(timeSetting._timeSettingChangeCallbackList.length).toBe(0);
+        expect(timeSetting._timeChangeCallbackList.length).toBe(0);
 
         const changeCallback = () => {};
-        timeSetting.addTimeSettingChangeListener(changeCallback);
-        expect(timeSetting._timeSettingChangeCallbackList.length).toBe(1);
-        expect(timeSetting._timeSettingChangeCallbackList[0]).toBe(changeCallback);
+        timeSetting.addTimeChangeListener(changeCallback);
+        expect(timeSetting._timeChangeCallbackList.length).toBe(1);
+        expect(timeSetting._timeChangeCallbackList[0]).toBe(changeCallback);
 
-        timeSetting.addTimeSettingChangeListener(changeCallback);
-        expect(timeSetting._timeSettingChangeCallbackList.length).toBe(1);
+        timeSetting.addTimeChangeListener(changeCallback);
+        expect(timeSetting._timeChangeCallbackList.length).toBe(1);
 
-        timeSetting.addTimeSettingChangeListener(() => {});
-        expect(timeSetting._timeSettingChangeCallbackList.length).toBe(2);
+        timeSetting.addTimeChangeListener(() => {});
+        expect(timeSetting._timeChangeCallbackList.length).toBe(2);
 
-        expect(timeSetting._timeSettingChangeCallbackList[0]).toBe(changeCallback);
+        expect(timeSetting._timeChangeCallbackList[0]).toBe(changeCallback);
     });
 
     it('should remove event handlers', () => {
@@ -144,35 +177,35 @@ describe('time-setting change events', () => {
         const changeCallback = () => {};
         const changeCallback2 = () => {};
 
-        timeSetting.addTimeSettingChangeListener(changeCallback);
-        timeSetting.addTimeSettingChangeListener(changeCallback2);
-        expect(timeSetting._timeSettingChangeCallbackList.length).toBe(2);
+        timeSetting.addTimeChangeListener(changeCallback);
+        timeSetting.addTimeChangeListener(changeCallback2);
+        expect(timeSetting._timeChangeCallbackList.length).toBe(2);
 
-        timeSetting.removeTimeSettingChangeListener(() => {});
-        expect(timeSetting._timeSettingChangeCallbackList.length).toBe(2);
+        timeSetting.removeTimeChangeListener(() => {});
+        expect(timeSetting._timeChangeCallbackList.length).toBe(2);
 
-        timeSetting.removeTimeSettingChangeListener(changeCallback);
-        expect(timeSetting._timeSettingChangeCallbackList.length).toBe(1);
+        timeSetting.removeTimeChangeListener(changeCallback);
+        expect(timeSetting._timeChangeCallbackList.length).toBe(1);
 
-        timeSetting.removeTimeSettingChangeListener(changeCallback);
-        expect(timeSetting._timeSettingChangeCallbackList.length).toBe(1);
+        timeSetting.removeTimeChangeListener(changeCallback);
+        expect(timeSetting._timeChangeCallbackList.length).toBe(1);
 
-        timeSetting.removeTimeSettingChangeListener(changeCallback2);
-        expect(timeSetting._timeSettingChangeCallbackList.length).toBe(0);
+        timeSetting.removeTimeChangeListener(changeCallback2);
+        expect(timeSetting._timeChangeCallbackList.length).toBe(0);
 
-        timeSetting.removeTimeSettingChangeListener(changeCallback2);
-        expect(timeSetting._timeSettingChangeCallbackList.length).toBe(0);
+        timeSetting.removeTimeChangeListener(changeCallback2);
+        expect(timeSetting._timeChangeCallbackList.length).toBe(0);
     });
 
     it('should call all event handlers', () => {
         const timeSetting = new TimeSetting();
 
         let i = 0;
-        timeSetting.addTimeSettingChangeListener(() => { i += 1; });
+        timeSetting.addTimeChangeListener(() => { i += 1; });
 
         let j = 10;
-        timeSetting.addTimeSettingChangeListener(() => { j += 5; });
-        timeSetting.addTimeSettingChangeListener(() => { j *= 2; });
+        timeSetting.addTimeChangeListener(() => { j += 5; });
+        timeSetting.addTimeChangeListener(() => { j *= 2; });
 
         timeSetting._callChangeListeners();
 

@@ -1,13 +1,13 @@
-.time-setting .setting-container[data-meridium=pm] .time-container .pm {
+.time-setting .setting-container[data-meridium=PM] .time-container .pm {
   display: inline;
 }
-.time-setting .setting-container[data-meridium=pm] .time-container .am {
+.time-setting .setting-container[data-meridium=PM] .time-container .am {
   display: none;
 }
-.time-setting .setting-container[data-meridium=pm] .disc-container .pm-button {
+.time-setting .setting-container[data-meridium=PM] .disc-container .pm-button {
   background-color: #8c3a3a;
 }
-.time-setting .setting-container[data-meridium=pm] .disc-container .am-button {
+.time-setting .setting-container[data-meridium=PM] .disc-container .am-button {
   background-color: #363636;
 }
 
@@ -1631,10 +1631,10 @@
   }
 }
 @media (hover: hover) {
-  .time-setting .setting-container[data-meridium=pm] .disc-container .pm-button:hover {
+  .time-setting .setting-container[data-meridium=PM] .disc-container .pm-button:hover {
     background-color: #832a2a;
   }
-  .time-setting .setting-container[data-meridium=pm] .disc-container .am-button:hover {
+  .time-setting .setting-container[data-meridium=PM] .disc-container .am-button:hover {
     background-color: #2c2c2c;
   }
   .time-setting .setting-container .time-container .hour:hover, .time-setting .setting-container .time-container .minute:hover {
