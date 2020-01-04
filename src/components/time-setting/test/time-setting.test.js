@@ -1,6 +1,8 @@
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable no-undef */
+
 import TimeSetting from '../time-setting';
 
-/* eslint-disable no-undef */
 describe('Time Setting Methods', () => {
     window.matchMedia = window.matchMedia || (() => ({ matches: false }));
 
@@ -115,5 +117,66 @@ describe('Time Setting Methods', () => {
         meridium = 'PM';
         timeSetting.setTime({ hour, minute, meridium });
         expect(timeSetting.getTime().meridium).toBe(meridium);
+    });
+});
+
+describe('time-setting change events', () => {
+    it('should add unique event handlers', () => {
+        const timeSetting = new TimeSetting();
+        expect(timeSetting._timeSettingChangeCallbackList.length).toBe(0);
+
+        const changeCallback = () => {};
+        timeSetting.addTimeSettingChangeListener(changeCallback);
+        expect(timeSetting._timeSettingChangeCallbackList.length).toBe(1);
+        expect(timeSetting._timeSettingChangeCallbackList[0]).toBe(changeCallback);
+
+        timeSetting.addTimeSettingChangeListener(changeCallback);
+        expect(timeSetting._timeSettingChangeCallbackList.length).toBe(1);
+
+        timeSetting.addTimeSettingChangeListener(() => {});
+        expect(timeSetting._timeSettingChangeCallbackList.length).toBe(2);
+
+        expect(timeSetting._timeSettingChangeCallbackList[0]).toBe(changeCallback);
+    });
+
+    it('should remove event handlers', () => {
+        const timeSetting = new TimeSetting();
+        const changeCallback = () => {};
+        const changeCallback2 = () => {};
+
+        timeSetting.addTimeSettingChangeListener(changeCallback);
+        timeSetting.addTimeSettingChangeListener(changeCallback2);
+        expect(timeSetting._timeSettingChangeCallbackList.length).toBe(2);
+
+        timeSetting.removeTimeSettingChangeListener(() => {});
+        expect(timeSetting._timeSettingChangeCallbackList.length).toBe(2);
+
+        timeSetting.removeTimeSettingChangeListener(changeCallback);
+        expect(timeSetting._timeSettingChangeCallbackList.length).toBe(1);
+
+        timeSetting.removeTimeSettingChangeListener(changeCallback);
+        expect(timeSetting._timeSettingChangeCallbackList.length).toBe(1);
+
+        timeSetting.removeTimeSettingChangeListener(changeCallback2);
+        expect(timeSetting._timeSettingChangeCallbackList.length).toBe(0);
+
+        timeSetting.removeTimeSettingChangeListener(changeCallback2);
+        expect(timeSetting._timeSettingChangeCallbackList.length).toBe(0);
+    });
+
+    it('should call all event handlers', () => {
+        const timeSetting = new TimeSetting();
+
+        let i = 0;
+        timeSetting.addTimeSettingChangeListener(() => { i += 1; });
+
+        let j = 10;
+        timeSetting.addTimeSettingChangeListener(() => { j += 5; });
+        timeSetting.addTimeSettingChangeListener(() => { j *= 2; });
+
+        timeSetting._callChangeListeners();
+
+        expect(i).toBe(1);
+        expect(j).toBe(30);
     });
 });
