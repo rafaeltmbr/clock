@@ -2,7 +2,7 @@ import TimeSetting from '../time-setting';
 
 /* eslint-disable no-undef */
 describe('Time Setting Methods', () => {
-    window.matchMedia = window.matchMedia || (() => ({ matches: [] }));
+    window.matchMedia = window.matchMedia || (() => ({ matches: false }));
 
     it('should create the node element', () => {
         const timeSetting = new TimeSetting();
