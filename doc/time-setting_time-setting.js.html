@@ -56,52 +56,7 @@ class TimeSetting {
      */
     _createTimeSettingElement() {
         this.nodeElement = Util.createNodeElement(
-            '&lt;div class="time-setting" data-display-status="hide">'
-            + `&lt;div class="setting-container" data-meridium="${this._time.meridium}" data-hour="${this._time.hour}" data-minute="${this._time.minute}" data-select="hour"`
-            + 'data-skip-animation="false">'
-            + '&lt;div class="time-container">&lt;span class="hour">6&lt;/span>&lt;span class="separator">:&lt;/span>&lt;span '
-            + 'class="minute">00&lt;/span>&lt;span class="am">AM&lt;/span>&lt;span class="pm">PM&lt;/span>&lt;/div>'
-            + '&lt;div class="disc-container">'
-            + '&lt;div class="am-button">AM&lt;/div>'
-            + '&lt;div class="hour-disc" data-active="false">'
-            + '&lt;div class="hour">1&lt;/div>'
-            + '&lt;div class="hour">2&lt;/div>'
-            + '&lt;div class="hour">3&lt;/div>'
-            + '&lt;div class="hour">4&lt;/div>'
-            + '&lt;div class="hour">5&lt;/div>'
-            + '&lt;div class="hour">6&lt;/div>'
-            + '&lt;div class="hour">7&lt;/div>'
-            + '&lt;div class="hour">8&lt;/div>'
-            + '&lt;div class="hour">9&lt;/div>'
-            + '&lt;div class="hour">10&lt;/div>'
-            + '&lt;div class="hour">11&lt;/div>'
-            + '&lt;div class="hour">12&lt;/div>'
-            + '&lt;div class="minute">00&lt;/div>'
-            + '&lt;div class="minute">05&lt;/div>'
-            + '&lt;div class="minute">10&lt;/div>'
-            + '&lt;div class="minute">15&lt;/div>'
-            + '&lt;div class="minute">20&lt;/div>'
-            + '&lt;div class="minute">25&lt;/div>'
-            + '&lt;div class="minute">30&lt;/div>'
-            + '&lt;div class="minute">35&lt;/div>'
-            + '&lt;div class="minute">40&lt;/div>'
-            + '&lt;div class="minute">45&lt;/div>'
-            + '&lt;div class="minute">50&lt;/div>'
-            + '&lt;div class="minute">55&lt;/div>'
-            + '&lt;div class="hour-selector-disc">'
-            + '&lt;div class="dot">&lt;/div>'
-            + '&lt;/div>'
-            + '&lt;div class="hour-selector-axis">&lt;/div>'
-            + '&lt;div class="minute-selector-disc">'
-            + '&lt;div class="dot">&lt;/div>'
-            + '&lt;/div>'
-            + '&lt;div class="minute-selector-axis">&lt;/div>'
-            + '&lt;/div>'
-            + '&lt;div class="pm-button">PM&lt;/div>'
-            + '&lt;/div>'
-            + '&lt;div class="done-container">&lt;span>Done&lt;/span>&lt;/div>'
-            + '&lt;/div>'
-            + '&lt;/div>',
+            `&lt;div class="time-setting" data-display-status="hide">&lt;div class="setting-container" data-meridium="${this._time.meridium}" data-hour="${this._time.hour}" data-minute="${this._time.minute}" data-select="hour" data-skip-animation="false">&lt;div class="time-container">&lt;span class="hour">${this._time.hour}&lt;/span>&lt;span class="separator">:&lt;/span>&lt;span class="minute">${this._time.minute &lt; 10 ? `0${this._time.minute}` : this._time.minute}&lt;/span>&lt;span class="am">AM&lt;/span>&lt;span class="pm">PM&lt;/span>&lt;/div>&lt;div class="disc-container">&lt;div class="am-button">AM&lt;/div>&lt;div class="hour-disc" data-active="false">&lt;div class="hour">1&lt;/div>&lt;div class="hour">2&lt;/div>&lt;div class="hour">3&lt;/div>&lt;div class="hour">4&lt;/div>&lt;div class="hour">5&lt;/div>&lt;div class="hour">6&lt;/div>&lt;div class="hour">7&lt;/div>&lt;div class="hour">8&lt;/div>&lt;div class="hour">9&lt;/div>&lt;div class="hour">10&lt;/div>&lt;div class="hour">11&lt;/div>&lt;div class="hour">12&lt;/div>&lt;div class="minute">00&lt;/div>&lt;div class="minute">05&lt;/div>&lt;div class="minute">10&lt;/div>&lt;div class="minute">15&lt;/div>&lt;div class="minute">20&lt;/div>&lt;div class="minute">25&lt;/div>&lt;div class="minute">30&lt;/div>&lt;div class="minute">35&lt;/div>&lt;div class="minute">40&lt;/div>&lt;div class="minute">45&lt;/div>&lt;div class="minute">50&lt;/div>&lt;div class="minute">55&lt;/div>&lt;div class="hour-selector-disc">&lt;div class="dot">&lt;/div>&lt;/div>&lt;div class="hour-selector-axis">&lt;/div>&lt;div class="minute-selector-disc">&lt;div class="dot">&lt;/div>&lt;/div>&lt;div class="minute-selector-axis">&lt;/div>&lt;/div>&lt;div class="pm-button">PM&lt;/div>&lt;/div>&lt;div class="done-container">&lt;span>Done&lt;/span>&lt;/div>&lt;/div>&lt;/div>`,
         );
     }
 
@@ -185,7 +140,7 @@ class TimeSetting {
     }
 
     /**
-     * Get the current time setted in the attributes.
+     * Get the current time set in the attributes.
      * @returns {Object} time in { hour, minute, meridium } format.
      */
     _getAttributesTime() {
@@ -248,7 +203,7 @@ class TimeSetting {
     /**
      * If the meridium argument is in the accepted form, which is 'AM'
      * or 'PM' case-insensitive, the current meridium value will be changed.
-     * @param {String} meridium - the new meridum value ('AM' or 'PM').
+     * @param {String} meridium - the new meridium value ('AM' or 'PM').
      */
     _validateAndSetMeridium(meridium) {
         if (typeof meridium !== 'string') return;
@@ -327,10 +282,10 @@ class TimeSetting {
      */
     _addEventListenerToMeridiumButtons() {
         this._amButton.addEventListener('click', () => {
-            this._setMeridiumAttributeAndHandleTimeChange('AM');
+            this._setMeridiumAttribute('AM');
         });
         this._pmButton.addEventListener('click', () => {
-            this._setMeridiumAttributeAndHandleTimeChange('PM');
+            this._setMeridiumAttribute('PM');
         });
     }
 
@@ -347,7 +302,7 @@ class TimeSetting {
     }
 
     /**
-     * Add keydown lister to window and call the right method from
+     * Add keydown listener to window and call the right method from
      * this._keyboardEventHandler object on each event.
      */
     _addEventListenerToKeyboard() {
@@ -370,15 +325,22 @@ class TimeSetting {
     }
 
     /**
-     * Update the current time setting and call the time-done event listeners.
+     * Update the current time setting and call the time-change and time-done event listeners.
      */
     _handleDoneEvent() {
         const time = this._getAttributesTime();
+        const timeChanged = (time.hour !== this._time.hour || time.minute !== this._time.minute
+            || time.meridium !== this._time.meridium);
+
         this._validateAndSetHour(time.hour);
         this._validateAndSetMinute(time.minute);
         this._validateAndSetMeridium(time.meridium);
         this._settingContainer.setAttribute('data-select', 'hour');
         this._settingContainer.setAttribute('data-skip-animation', false);
+
+        if (timeChanged) {
+            this._callChangeListeners();
+        }
         this._callDoneListeners();
     }
 
@@ -472,7 +434,7 @@ class TimeSetting {
         const coordinates = event.touches ? event.touches[0] : event;
         const angle = this._getSelectorAngle(coordinates);
         const hour = (12 - Math.round(angle / (360 / 12)) + 3) % 12;
-        this._setHourAttributeAndHandleTimeChange(hour);
+        this._setHourAttribute(hour);
     }
 
     /**
@@ -484,17 +446,17 @@ class TimeSetting {
         const coordinates = event.touches ? event.touches[0] : event;
         const angle = this._getSelectorAngle(coordinates);
         const minute = (60 - Math.round(angle / (360 / 60)) + 15) % 60;
-        this._setMinuteAttributeAndHandleTimeChange(minute);
+        this._setMinuteAttribute(minute);
     }
 
     /**
-     * Handle a hour click event by changing the hour setting to the target hour.
+     * Handle an hour click event by changing the hour setting to the target hour.
      * @param {Object} event - DOM event.
      */
     _handleHourClick(event) {
         const hour = parseInt(event.target.innerText, 10);
         this._settingContainer.setAttribute('data-skip-animation', 'true');
-        this._setHourAttributeAndHandleTimeChange(hour);
+        this._setHourAttribute(hour);
         this._enableDiscMovement('hour');
     }
 
@@ -505,53 +467,35 @@ class TimeSetting {
     _handleMinuteClick(event) {
         const minute = parseInt(event.target.innerText, 10);
         this._settingContainer.setAttribute('data-skip-animation', 'true');
-        this._setMinuteAttributeAndHandleTimeChange(minute);
+        this._setMinuteAttribute(minute);
         this._enableDiscMovement('minute');
     }
 
     /**
-     * Set the current data-hour attribute value and call the
-     * time-change event listeners if the hour was changed.
+     * Set the current data-hour attribute value.
      * @param {Number} hour - the new hour value
      */
-    _setHourAttributeAndHandleTimeChange(hour) {
+    _setHourAttribute(hour) {
         const hourFormatted = hour || 12;
         this._settingContainer.setAttribute('data-hour', hourFormatted);
         this._hourElement.innerText = hourFormatted;
-
-        if (hourFormatted !== this._setHourAttributeAndHandleTimeChange.previousHour) {
-            this._setHourAttributeAndHandleTimeChange.previousHour = hourFormatted;
-            this._callChangeListeners();
-        }
     }
 
     /**
-     * Set the current data-minute attribute value and call the
-     * time-change event listeners if the minute was changed.
+     * Set the current data-minute attribute value
      * @param {Number} minute - the new minute value
      */
-    _setMinuteAttributeAndHandleTimeChange(minute) {
+    _setMinuteAttribute(minute) {
         this._settingContainer.setAttribute('data-minute', `${minute}`);
         this._minuteElement.innerText = minute &lt; 10 ? `0${minute}` : minute;
-
-        if (minute !== this._setMinuteAttributeAndHandleTimeChange.previousMinute) {
-            this._setMinuteAttributeAndHandleTimeChange.previousMinute = minute;
-            this._callChangeListeners();
-        }
     }
 
     /**
-     * Set the current data-meridium attribute value and call the
-     * time-change event listeners if the meridium was changed.
+     * Set the current data-meridium attribute value
      * @param {String} meridium - the new meridium value
      */
-    _setMeridiumAttributeAndHandleTimeChange(meridium) {
+    _setMeridiumAttribute(meridium) {
         this._settingContainer.setAttribute('data-meridium', meridium);
-
-        if (meridium !== this._setMeridiumAttributeAndHandleTimeChange.previousMeridium) {
-            this._setMeridiumAttributeAndHandleTimeChange.previousMeridium = meridium;
-            this._callChangeListeners();
-        }
     }
 
     /**
@@ -664,7 +608,7 @@ class TimeSetting {
     target: TimeSetting object
     event: 'time-cancel'
      &lt;/pre>
-     * @param {Function} callback - Function to be called whe the time setting is
+     * @param {Function} callback - Function to be called when the time setting is
      * canceled.
      */
     addTimeCancelListener(callback) {
@@ -707,7 +651,7 @@ class TimeSetting {
     target: TimeSetting object
     event: 'time-done'
      &lt;/pre>
-     * @param {Function} callback - Function to be called whe the time setting is
+     * @param {Function} callback - Function to be called when the time setting is
      * done.
      */
     addTimeDoneListener(callback) {
@@ -759,7 +703,7 @@ export default TimeSetting;
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Sun Jan 05 2020 10:05:38 GMT-0300 (Brasilia Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Sun Jan 05 2020 18:38:21 GMT-0300 (Brasilia Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

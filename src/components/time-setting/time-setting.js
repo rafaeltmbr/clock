@@ -13,7 +13,6 @@ class TimeSetting {
      */
     constructor() {
         this._time = { hour: 6, minute: 0, meridium: 'AM' };
-        this._previous = { hour: 6, minute: 0, meridium: 'AM' };
         this._timeChangeCallbackList = [];
         this._timeCancelCallbackList = [];
         this._timeDoneCallbackList = [];
@@ -155,7 +154,6 @@ class TimeSetting {
             this._settingContainer.setAttribute('data-hour', hourFormatted);
             this._hourElement.innerText = hourFormatted;
             this._time.hour = hourFormatted;
-            this._previous.hour = hourFormatted;
         }
     }
 
@@ -171,7 +169,6 @@ class TimeSetting {
             this._minuteElement.innerText = (
                 minuteFormmated < 10 ? `0${minuteFormmated}` : minuteFormmated);
             this._time.minute = minuteFormmated;
-            this._previous.minute = minuteFormmated;
         }
     }
 
@@ -187,7 +184,6 @@ class TimeSetting {
         if (meridiumFormatted === 'AM' || meridiumFormatted === 'PM') {
             this._settingContainer.setAttribute('data-meridium', meridiumFormatted);
             this._time.meridium = meridiumFormatted;
-            this._previous.meridium = meridiumFormatted;
         }
     }
 
@@ -258,10 +254,10 @@ class TimeSetting {
      */
     _addEventListenerToMeridiumButtons() {
         this._amButton.addEventListener('click', () => {
-            this._setMeridiumAttributeAndHandleTimeChange('AM');
+            this._setMeridiumAttribute('AM');
         });
         this._pmButton.addEventListener('click', () => {
-            this._setMeridiumAttributeAndHandleTimeChange('PM');
+            this._setMeridiumAttribute('PM');
         });
     }
 
@@ -301,15 +297,22 @@ class TimeSetting {
     }
 
     /**
-     * Update the current time setting and call the time-done event listeners.
+     * Update the current time setting and call the time-change and time-done event listeners.
      */
     _handleDoneEvent() {
         const time = this._getAttributesTime();
+        const timeChanged = (time.hour !== this._time.hour || time.minute !== this._time.minute
+            || time.meridium !== this._time.meridium);
+
         this._validateAndSetHour(time.hour);
         this._validateAndSetMinute(time.minute);
         this._validateAndSetMeridium(time.meridium);
         this._settingContainer.setAttribute('data-select', 'hour');
         this._settingContainer.setAttribute('data-skip-animation', false);
+
+        if (timeChanged) {
+            this._callChangeListeners();
+        }
         this._callDoneListeners();
     }
 
@@ -403,7 +406,7 @@ class TimeSetting {
         const coordinates = event.touches ? event.touches[0] : event;
         const angle = this._getSelectorAngle(coordinates);
         const hour = (12 - Math.round(angle / (360 / 12)) + 3) % 12;
-        this._setHourAttributeAndHandleTimeChange(hour);
+        this._setHourAttribute(hour);
     }
 
     /**
@@ -415,7 +418,7 @@ class TimeSetting {
         const coordinates = event.touches ? event.touches[0] : event;
         const angle = this._getSelectorAngle(coordinates);
         const minute = (60 - Math.round(angle / (360 / 60)) + 15) % 60;
-        this._setMinuteAttributeAndHandleTimeChange(minute);
+        this._setMinuteAttribute(minute);
     }
 
     /**
@@ -425,7 +428,7 @@ class TimeSetting {
     _handleHourClick(event) {
         const hour = parseInt(event.target.innerText, 10);
         this._settingContainer.setAttribute('data-skip-animation', 'true');
-        this._setHourAttributeAndHandleTimeChange(hour);
+        this._setHourAttribute(hour);
         this._enableDiscMovement('hour');
     }
 
@@ -436,53 +439,35 @@ class TimeSetting {
     _handleMinuteClick(event) {
         const minute = parseInt(event.target.innerText, 10);
         this._settingContainer.setAttribute('data-skip-animation', 'true');
-        this._setMinuteAttributeAndHandleTimeChange(minute);
+        this._setMinuteAttribute(minute);
         this._enableDiscMovement('minute');
     }
 
     /**
-     * Set the current data-hour attribute value and call the
-     * time-change event listeners if the hour was changed.
+     * Set the current data-hour attribute value.
      * @param {Number} hour - the new hour value
      */
-    _setHourAttributeAndHandleTimeChange(hour) {
+    _setHourAttribute(hour) {
         const hourFormatted = hour || 12;
         this._settingContainer.setAttribute('data-hour', hourFormatted);
         this._hourElement.innerText = hourFormatted;
-
-        if (hourFormatted !== this._previous.hour) {
-            this._previous.hour = hourFormatted;
-            this._callChangeListeners();
-        }
     }
 
     /**
-     * Set the current data-minute attribute value and call the
-     * time-change event listeners if the minute was changed.
+     * Set the current data-minute attribute value
      * @param {Number} minute - the new minute value
      */
-    _setMinuteAttributeAndHandleTimeChange(minute) {
+    _setMinuteAttribute(minute) {
         this._settingContainer.setAttribute('data-minute', `${minute}`);
         this._minuteElement.innerText = minute < 10 ? `0${minute}` : minute;
-
-        if (minute !== this._previous.minute) {
-            this._previous.minute = minute;
-            this._callChangeListeners();
-        }
     }
 
     /**
-     * Set the current data-meridium attribute value and call the
-     * time-change event listeners if the meridium was changed.
+     * Set the current data-meridium attribute value
      * @param {String} meridium - the new meridium value
      */
-    _setMeridiumAttributeAndHandleTimeChange(meridium) {
+    _setMeridiumAttribute(meridium) {
         this._settingContainer.setAttribute('data-meridium', meridium);
-
-        if (meridium !== this._previous.meridium) {
-            this._previous.meridium = meridium;
-            this._callChangeListeners();
-        }
     }
 
     /**
