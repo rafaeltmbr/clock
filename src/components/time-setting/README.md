@@ -1,5 +1,5 @@
 # time-setting
-The time-setting component displays a hour/minute wheel with a pointer that can be dragged into the desired value. This time-setting design was copied from Android v4.4.4 alarm clock. The time-setting component can be created from a instance of the TimeSetting class. The following screenshots show the components (in the spotlight) expected graphic results (please, disconsider the background elements):
+The time-setting component displays an hour/minute wheel with a pointer that can be dragged into the desired value. This time-setting design was copied from Android v4.4.4 alarm clock. The time-setting component can be created from an instance of the TimeSetting class. The following screenshots show the components (in the spotlight) expected graphic results (please, disconsider the background elements):
 <div style="display: flex; flex-direction: row; align-items: center; justify-content: space-between">
     <img src="./screenshot/time-setting-vertical-930.png" width="250px">
     <img src="./screenshot/time-setting-vertical-912.png" width="250px">
@@ -11,8 +11,8 @@ The time-setting component displays a hour/minute wheel with a pointer that can 
 
 ## Methods
 There are fourteen methods in total that can be call outside the TimeSetting class (public methods). They are:
-* **getTime** - get the current time in the { hour, minute, meridiem } format
-* **setTime** - set the current ringtone by a object with the { hour, minute, meridiem } properties
+* **getTime** - get the current time in the { hour, minute, meridium } format
+* **setTime** - set the current time by an object with the { hour, minute, meridium } properties
 * **show** - display the time-setting element and place it above the others (z-index: 1000)
 * **hide** - hide the time-setting element
 * **getNodeElement** - get the DOM node with class .time-setting
@@ -30,7 +30,7 @@ outside the class, otherwise, it may crush the component.
 The time-list element handles three types of events. They are time-change, time-done and time-cancel.
 Every event gives back an object containing the following properties:<br>
 <pre>
-time:      current time in the { hour, minute, meridiem } format
+time:      current time in the { hour, minute, meridium } format
 target:    TimeSetting object
 eventName: event name (time-cancel, time-change or time-done)
 </pre>
@@ -76,7 +76,7 @@ The time-done event is fired every time the user hits Enter or click OK.
     \-- <b>build</b>               - Folder containing the generated code to run this component standalone.
     \-- <b>dev</b>                 - Folder containing the source code to run this component standalone.
     \-- <b>screenshot</b>          - Folder containing the screenshots used as a reference to build the GUI.
-    \-- <b>test</b>                - Folder containing the test file used to validate the ringtoneList JavaScript class.
+    \-- <b>test</b>                - Folder containing the test file used to validate the TimeSetting JavaScript class.
     |-- time-setting.html   - HTML code that is generated once the component is instantiated.
     |-- time-setting.js     - JavaScript class with methods and events.
     |-- time-setting.sass   - Style file in Sass format.

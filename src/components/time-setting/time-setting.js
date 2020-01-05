@@ -157,7 +157,7 @@ class TimeSetting {
     }
 
     /**
-     * Get the current time setted in the attributes.
+     * Get the current time set in the attributes.
      * @returns {Object} time in { hour, minute, meridium } format.
      */
     _getAttributesTime() {
@@ -220,7 +220,7 @@ class TimeSetting {
     /**
      * If the meridium argument is in the accepted form, which is 'AM'
      * or 'PM' case-insensitive, the current meridium value will be changed.
-     * @param {String} meridium - the new meridum value ('AM' or 'PM').
+     * @param {String} meridium - the new meridium value ('AM' or 'PM').
      */
     _validateAndSetMeridium(meridium) {
         if (typeof meridium !== 'string') return;
@@ -319,7 +319,7 @@ class TimeSetting {
     }
 
     /**
-     * Add keydown lister to window and call the right method from
+     * Add keydown listener to window and call the right method from
      * this._keyboardEventHandler object on each event.
      */
     _addEventListenerToKeyboard() {
@@ -460,7 +460,7 @@ class TimeSetting {
     }
 
     /**
-     * Handle a hour click event by changing the hour setting to the target hour.
+     * Handle an hour click event by changing the hour setting to the target hour.
      * @param {Object} event - DOM event.
      */
     _handleHourClick(event) {
@@ -636,7 +636,7 @@ class TimeSetting {
     target: TimeSetting object
     event: 'time-cancel'
      </pre>
-     * @param {Function} callback - Function to be called whe the time setting is
+     * @param {Function} callback - Function to be called when the time setting is
      * canceled.
      */
     addTimeCancelListener(callback) {
@@ -679,7 +679,7 @@ class TimeSetting {
     target: TimeSetting object
     event: 'time-done'
      </pre>
-     * @param {Function} callback - Function to be called whe the time setting is
+     * @param {Function} callback - Function to be called when the time setting is
      * done.
      */
     addTimeDoneListener(callback) {
