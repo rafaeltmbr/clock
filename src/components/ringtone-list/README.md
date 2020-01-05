@@ -75,7 +75,7 @@ The ringtone-done event is fired every time the user hits Enter or click OK.
     \-- <b>build</b>               - Folder containing the generated code to run this component standalone.
     \-- <b>dev</b>                 - Folder containing the source code to run this component standalone.
     \-- <b>screenshot</b>          - Folder containing the screenshots used as a reference to build the GUI.
-    \-- <b>test</b>                - Folder containing the test file used to validate the ringtoneList JavaScript class.
+    \-- <b>test</b>                - Folder containing the test file used to validate the RingtoneList JavaScript class.
     |-- ringtone-list.html  - HTML code that is generated once the component is instantiated.
     |-- ringtone-list.js    - JavaScript class with methods and events.
     |-- ringtone-list.sass  - Style file in Sass format.
