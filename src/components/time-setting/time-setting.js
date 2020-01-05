@@ -13,6 +13,7 @@ class TimeSetting {
      */
     constructor() {
         this._time = { hour: 6, minute: 0, meridium: 'AM' };
+        this._previous = { hour: 6, minute: 0, meridium: 'AM' };
         this._timeChangeCallbackList = [];
         this._timeCancelCallbackList = [];
         this._timeDoneCallbackList = [];
@@ -199,6 +200,7 @@ class TimeSetting {
             this._settingContainer.setAttribute('data-hour', hourFormatted);
             this._hourElement.innerText = hourFormatted;
             this._time.hour = hourFormatted;
+            this._previous.hour = hourFormatted;
         }
     }
 
@@ -214,6 +216,7 @@ class TimeSetting {
             this._minuteElement.innerText = (
                 minuteFormmated < 10 ? `0${minuteFormmated}` : minuteFormmated);
             this._time.minute = minuteFormmated;
+            this._previous.minute = minuteFormmated;
         }
     }
 
@@ -229,6 +232,7 @@ class TimeSetting {
         if (meridiumFormatted === 'AM' || meridiumFormatted === 'PM') {
             this._settingContainer.setAttribute('data-meridium', meridiumFormatted);
             this._time.meridium = meridiumFormatted;
+            this._previous.meridium = meridiumFormatted;
         }
     }
 
@@ -491,8 +495,8 @@ class TimeSetting {
         this._settingContainer.setAttribute('data-hour', hourFormatted);
         this._hourElement.innerText = hourFormatted;
 
-        if (hourFormatted !== this._setHourAttributeAndHandleTimeChange.previousHour) {
-            this._setHourAttributeAndHandleTimeChange.previousHour = hourFormatted;
+        if (hourFormatted !== this._previous.hour) {
+            this._previous.hour = hourFormatted;
             this._callChangeListeners();
         }
     }
@@ -506,8 +510,8 @@ class TimeSetting {
         this._settingContainer.setAttribute('data-minute', `${minute}`);
         this._minuteElement.innerText = minute < 10 ? `0${minute}` : minute;
 
-        if (minute !== this._setMinuteAttributeAndHandleTimeChange.previousMinute) {
-            this._setMinuteAttributeAndHandleTimeChange.previousMinute = minute;
+        if (minute !== this._previous.minute) {
+            this._previous.minute = minute;
             this._callChangeListeners();
         }
     }
@@ -520,8 +524,8 @@ class TimeSetting {
     _setMeridiumAttributeAndHandleTimeChange(meridium) {
         this._settingContainer.setAttribute('data-meridium', meridium);
 
-        if (meridium !== this._setMeridiumAttributeAndHandleTimeChange.previousMeridium) {
-            this._setMeridiumAttributeAndHandleTimeChange.previousMeridium = meridium;
+        if (meridium !== this._previous.meridium) {
+            this._previous.meridium = meridium;
             this._callChangeListeners();
         }
     }
