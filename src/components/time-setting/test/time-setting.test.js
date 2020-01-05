@@ -64,7 +64,7 @@ describe('Time Setting Methods', () => {
         } while (hour === previousTime.hour);
 
         timeSetting.setTime({ hour, minute, meridium });
-        expect(timeSetting.getTime().hour).toBe(hour);
+        expect(timeSetting.getTime().hour).toBe(hour || 12);
     });
 
     it('shoud round floating point hour', () => {
@@ -153,7 +153,7 @@ describe('Time Setting Methods', () => {
     });
 });
 
-describe('time-setting change events', () => {
+describe('time-change events', () => {
     it('should add unique event handlers', () => {
         const timeSetting = new TimeSetting();
         expect(timeSetting._timeChangeCallbackList.length).toBe(0);
@@ -208,6 +208,141 @@ describe('time-setting change events', () => {
         timeSetting.addTimeChangeListener(() => { j *= 2; });
 
         timeSetting._callChangeListeners();
+
+        expect(i).toBe(1);
+        expect(j).toBe(30);
+    });
+
+    it('should call event handles when time is changed via setTime method', () => {
+        const timeSetting = new TimeSetting();
+
+        let event = '';
+
+        timeSetting.addTimeChangeListener(({ eventName }) => {
+            event = eventName;
+        });
+
+        timeSetting.setTime({ hour: 12, minute: 17, meridium: 'AM' });
+        expect(event).toBe('time-change');
+    });
+});
+
+describe('time-cancel events', () => {
+    it('should add unique event handlers', () => {
+        const timeSetting = new TimeSetting();
+        expect(timeSetting._timeCancelCallbackList.length).toBe(0);
+
+        const cancelCallback = () => {};
+        timeSetting.addTimeCancelListener(cancelCallback);
+        expect(timeSetting._timeCancelCallbackList.length).toBe(1);
+        expect(timeSetting._timeCancelCallbackList[0]).toBe(cancelCallback);
+
+        timeSetting.addTimeCancelListener(cancelCallback);
+        expect(timeSetting._timeCancelCallbackList.length).toBe(1);
+
+        timeSetting.addTimeCancelListener(() => {});
+        expect(timeSetting._timeCancelCallbackList.length).toBe(2);
+
+        expect(timeSetting._timeCancelCallbackList[0]).toBe(cancelCallback);
+    });
+
+    it('should remove event handlers', () => {
+        const timeSetting = new TimeSetting();
+        const cancelCallback = () => {};
+        const cancelCallback2 = () => {};
+
+        timeSetting.addTimeCancelListener(cancelCallback);
+        timeSetting.addTimeCancelListener(cancelCallback2);
+        expect(timeSetting._timeCancelCallbackList.length).toBe(2);
+
+        timeSetting.removeTimeCancelListener(() => {});
+        expect(timeSetting._timeCancelCallbackList.length).toBe(2);
+
+        timeSetting.removeTimeCancelListener(cancelCallback);
+        expect(timeSetting._timeCancelCallbackList.length).toBe(1);
+
+        timeSetting.removeTimeCancelListener(cancelCallback);
+        expect(timeSetting._timeCancelCallbackList.length).toBe(1);
+
+        timeSetting.removeTimeCancelListener(cancelCallback2);
+        expect(timeSetting._timeCancelCallbackList.length).toBe(0);
+
+        timeSetting.removeTimeCancelListener(cancelCallback2);
+        expect(timeSetting._timeCancelCallbackList.length).toBe(0);
+    });
+
+    it('should call all event handlers', () => {
+        const timeSetting = new TimeSetting();
+
+        let i = 0;
+        timeSetting.addTimeCancelListener(() => { i += 1; });
+
+        let j = 10;
+        timeSetting.addTimeCancelListener(() => { j += 5; });
+        timeSetting.addTimeCancelListener(() => { j *= 2; });
+
+        timeSetting._callCancelListeners();
+
+        expect(i).toBe(1);
+        expect(j).toBe(30);
+    });
+});
+
+describe('time-done events', () => {
+    it('should add unique event handlers', () => {
+        const timeSetting = new TimeSetting();
+        expect(timeSetting._timeDoneCallbackList.length).toBe(0);
+
+        const doneCallback = () => {};
+        timeSetting.addTimeDoneListener(doneCallback);
+        expect(timeSetting._timeDoneCallbackList.length).toBe(1);
+        expect(timeSetting._timeDoneCallbackList[0]).toBe(doneCallback);
+
+        timeSetting.addTimeDoneListener(doneCallback);
+        expect(timeSetting._timeDoneCallbackList.length).toBe(1);
+
+        timeSetting.addTimeDoneListener(() => {});
+        expect(timeSetting._timeDoneCallbackList.length).toBe(2);
+
+        expect(timeSetting._timeDoneCallbackList[0]).toBe(doneCallback);
+    });
+
+    it('should remove event handlers', () => {
+        const timeSetting = new TimeSetting();
+        const doneCallback = () => {};
+        const doneCallback2 = () => {};
+
+        timeSetting.addTimeDoneListener(doneCallback);
+        timeSetting.addTimeDoneListener(doneCallback2);
+        expect(timeSetting._timeDoneCallbackList.length).toBe(2);
+
+        timeSetting.removeTimeDoneListener(() => {});
+        expect(timeSetting._timeDoneCallbackList.length).toBe(2);
+
+        timeSetting.removeTimeDoneListener(doneCallback);
+        expect(timeSetting._timeDoneCallbackList.length).toBe(1);
+
+        timeSetting.removeTimeDoneListener(doneCallback);
+        expect(timeSetting._timeDoneCallbackList.length).toBe(1);
+
+        timeSetting.removeTimeDoneListener(doneCallback2);
+        expect(timeSetting._timeDoneCallbackList.length).toBe(0);
+
+        timeSetting.removeTimeDoneListener(doneCallback2);
+        expect(timeSetting._timeDoneCallbackList.length).toBe(0);
+    });
+
+    it('should call all event handlers', () => {
+        const timeSetting = new TimeSetting();
+
+        let i = 0;
+        timeSetting.addTimeDoneListener(() => { i += 1; });
+
+        let j = 10;
+        timeSetting.addTimeDoneListener(() => { j += 5; });
+        timeSetting.addTimeDoneListener(() => { j *= 2; });
+
+        timeSetting._callDoneListeners();
 
         expect(i).toBe(1);
         expect(j).toBe(30);

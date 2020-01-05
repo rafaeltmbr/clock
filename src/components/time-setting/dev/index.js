@@ -7,8 +7,21 @@ document.body.appendChild(timeSetting.getNodeElement());
 
 timeSetting.show();
 
-timeSetting.addTimeChangeListener(({ time, eventName }) => {
+
+function printEventNameAndTime({ time, eventName }) {
     console.log(eventName, time);
-});
+}
+
+timeSetting.addTimeChangeListener(printEventNameAndTime);
+timeSetting.addTimeCancelListener(printEventNameAndTime);
+timeSetting.addTimeDoneListener(printEventNameAndTime);
+
+function doneCancelHandler() {
+    timeSetting.hide();
+    setTimeout(() => timeSetting.show(), 1000);
+}
+
+timeSetting.addTimeCancelListener(doneCancelHandler);
+timeSetting.addTimeDoneListener(doneCancelHandler);
 
 window.timeSetting = timeSetting;

@@ -14,10 +14,13 @@ class TimeSetting {
     constructor() {
         this._time = { hour: 6, minute: 0, meridium: 'AM' };
         this._timeChangeCallbackList = [];
+        this._timeCancelCallbackList = [];
+        this._timeDoneCallbackList = [];
         this._isTouch = Util.isTouch();
         this._createTimeSettingElement();
         this._createMostFrequentlyUsedElementsShortcuts();
         this._addEventListenerToElements();
+        this._makeKeyboardListeners();
     }
 
     /**
@@ -98,6 +101,9 @@ class TimeSetting {
         this._pmButton = this.nodeElement.children[0].children[1].children[2];
 
         // eslint-disable-next-line prefer-destructuring
+        this._doneButton = this.nodeElement.children[0].children[2];
+
+        // eslint-disable-next-line prefer-destructuring
         this._hourSelectorDisc = this.nodeElement.children[0]
             .children[1].children[1].children[24];
 
@@ -114,6 +120,20 @@ class TimeSetting {
         this._addEventListenerToHour();
         this._addEventListenerToMinute();
         this._addEventListenerToMeridiumButtons();
+        this._addEventListenerToTimeSettingBackground();
+        this._addEventListenerToKeyboard();
+        this._addEventListenerToDoneButton();
+    }
+
+    /**
+     * Create a keyboard handler mapping object where some keyboard keys
+     * maps to an event handler.
+     */
+    _makeKeyboardListeners() {
+        this._keyboardEventHalder = {
+            Escape: this._handleCancelEvent,
+            Enter: this._handleDoneEvent,
+        };
     }
 
     /**
@@ -150,7 +170,8 @@ class TimeSetting {
 
     /**
      * Change the current time. Also, if any invalid data is passed, this
-     * method will ignore it and will change only the right properties.
+     * method will ignore it and will change only the right properties. Also, it
+     * will fire a time-change event if any time setting changes.
      * @param {Object} - the new time in the { hour, minute, meridium } format
      */
     setTime({ hour, minute, meridium }) {
@@ -190,7 +211,8 @@ class TimeSetting {
         if (typeof minute === 'number' && minute >= 0 && minute < 60) {
             const minuteFormmated = Math.round(minute);
             this._settingContainer.setAttribute('data-minute', minuteFormmated);
-            this._minuteElement.innerText = minuteFormmated;
+            this._minuteElement.innerText = (
+                minuteFormmated < 10 ? `0${minuteFormmated}` : minuteFormmated);
             this._time.minute = minuteFormmated;
         }
     }
@@ -285,6 +307,70 @@ class TimeSetting {
     }
 
     /**
+     * Add click listener to time-setting background in order to fire
+     * time-cancel events.
+     */
+    _addEventListenerToTimeSettingBackground() {
+        this.nodeElement.addEventListener('click', (event) => {
+            if (event.target.className === 'time-setting') {
+                this._handleCancelEvent();
+            }
+        });
+    }
+
+    /**
+     * Add keydown lister to window and call the right method from
+     * this._keyboardEventHandler object on each event.
+     */
+    _addEventListenerToKeyboard() {
+        const handleKeyDown = ({ key }) => {
+            const handler = this._keyboardEventHalder[key];
+            if (handler) {
+                handler.bind(this)();
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+    }
+
+    /**
+     * Add a event listener to the click event on Done button and when fired,
+     * the event listener call the time-done listerners.
+     */
+    _addEventListenerToDoneButton() {
+        this._doneButton.addEventListener('click', this._handleDoneEvent.bind(this));
+    }
+
+    /**
+     * Update the current time setting and call the time-done event listeners.
+     */
+    _handleDoneEvent() {
+        const time = this._getAttributesTime();
+        this._validateAndSetHour(time.hour);
+        this._validateAndSetMinute(time.minute);
+        this._validateAndSetMeridium(time.meridium);
+        this._settingContainer.setAttribute('data-select', 'hour');
+        this._settingContainer.setAttribute('data-skip-animation', false);
+        this._callDoneListeners();
+    }
+
+    /**
+     * Restore the setting-container attributes to the previous value.
+     */
+    _restoreSettingAttributes() {
+        const hourFormatted = this._time.hour || 12;
+        const minuteFormmated = this._time.minute < 10 ? `0${this._time.minute}` : this._time.minute;
+
+        this._settingContainer.setAttribute('data-hour', hourFormatted);
+        this._hourElement.innerText = hourFormatted;
+        this._settingContainer.setAttribute('data-minute', this._time.minute);
+        this._minuteElement.innerText = minuteFormmated;
+        this._settingContainer.setAttribute('data-meridium', this._time.meridium);
+        this._settingContainer.setAttribute('data-select', 'hour');
+        this._settingContainer.setAttribute('data-skip-animation', false);
+    }
+
+    /**
      * Add event listeners to track mouse or touch movement over the hour
      * or minute disc selector according to the type argument.
      * @param {String} type - disc selector type can be 'hour' or 'minute'
@@ -321,6 +407,14 @@ class TimeSetting {
         this._settingContainer.setAttribute('data-skip-animation', 'false');
         this._settingContainer.setAttribute('data-select', 'minute');
         this._hourDisc.setAttribute('data-active', 'false');
+    }
+
+    /**
+     * Restore the previous attribute settings and call time-cancel event listeners.
+     */
+    _handleCancelEvent() {
+        this._restoreSettingAttributes();
+        this._callCancelListeners();
     }
 
     /**
@@ -530,6 +624,92 @@ class TimeSetting {
             time: this._getAttributesTime(),
             target: this,
             eventName: 'time-change',
+        }));
+    }
+
+    /**
+     * Register a new time-cancel event listener.<br>
+     * When a time-cancel event happens, the callback functions will be called
+     * receiving as a parameter an object with the following properties:
+     <pre>
+    time: current time {hour, minute, meridium}
+    target: TimeSetting object
+    event: 'time-cancel'
+     </pre>
+     * @param {Function} callback - Function to be called whe the time setting is
+     * canceled.
+     */
+    addTimeCancelListener(callback) {
+        const sameCallbacks = this._timeCancelCallbackList.filter((c) => c === callback);
+        if (sameCallbacks.length) return;
+
+        this._timeCancelCallbackList.push(callback);
+    }
+
+    /**
+     * Remove a previously added time-cancel event listener.
+     * @param {Function} callback - Function registered as a time-cancel event listener
+     * that's going to be removed.
+     */
+    removeTimeCancelListener(callback) {
+        for (let i = this._timeCancelCallbackList.length - 1; i >= 0; i -= 1) {
+            if (this._timeCancelCallbackList[i] === callback) {
+                this._timeCancelCallbackList.splice(i, 1);
+            }
+        }
+    }
+
+    /**
+     * Call every listener registered for time-cancel event.
+     */
+    _callCancelListeners() {
+        this._timeCancelCallbackList.forEach((callback) => callback({
+            time: this._getAttributesTime(),
+            target: this,
+            eventName: 'time-cancel',
+        }));
+    }
+
+    /**
+     * Register a new time-done event listener.<br>
+     * When a time-done event happens, the callback functions will be called
+     * receiving as a parameter an object with the following properties:
+     <pre>
+    time: current time {hour, minute, meridium}
+    target: TimeSetting object
+    event: 'time-done'
+     </pre>
+     * @param {Function} callback - Function to be called whe the time setting is
+     * done.
+     */
+    addTimeDoneListener(callback) {
+        const sameCallbacks = this._timeDoneCallbackList.filter((c) => c === callback);
+        if (sameCallbacks.length) return;
+
+        this._timeDoneCallbackList.push(callback);
+    }
+
+    /**
+     * Remove a previously added time-done event listener.
+     * @param {Function} callback - Function registered as a time-done event listener
+     * that's going to be removed.
+     */
+    removeTimeDoneListener(callback) {
+        for (let i = this._timeDoneCallbackList.length - 1; i >= 0; i -= 1) {
+            if (this._timeDoneCallbackList[i] === callback) {
+                this._timeDoneCallbackList.splice(i, 1);
+            }
+        }
+    }
+
+    /**
+     * Call every listener registered for time-done event.
+     */
+    _callDoneListeners() {
+        this._timeDoneCallbackList.forEach((callback) => callback({
+            time: this._getAttributesTime(),
+            target: this,
+            eventName: 'time-done',
         }));
     }
 }
