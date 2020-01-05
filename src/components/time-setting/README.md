@@ -77,7 +77,7 @@ The time-done event is fired every time the user hits Enter or click OK.
     \-- <b>dev</b>                 - Folder containing the source code to run this component standalone.
     \-- <b>screenshot</b>          - Folder containing the screenshots used as a reference to build the GUI.
     \-- <b>test</b>                - Folder containing the test file used to validate the TimeSetting JavaScript class.
-    |-- time-setting.html   - HTML code that is generated once the component is instantiated.
+    |-- time-setting.pug    - PUG file that is used to generated the components HTML model.
     |-- time-setting.js     - JavaScript class with methods and events.
     |-- time-setting.sass   - Style file in Sass format.
     |-- README.md           - This README file.
