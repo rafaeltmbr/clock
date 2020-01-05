@@ -79,7 +79,7 @@ The label-change event is fired every time the user hits Enter or click OK.
     \-- <b>dev</b>               - Folder containing the source code to run this component standalone.
     \-- <b>screenshot</b>        - Folder containing the screenshots used as a reference to build the GUI.
     \-- <b>test</b>              - Folder containing the test file used to validate the LabelInput JavaScript class.
-    |-- label-input.html  - HTML code that is generated once the component is instantiated.
+    |-- label-input.pug   - PUG file that is used to generate the components HTML model.
     |-- label-input.js    - JavaScript class with methods and events.
     |-- label-input.sass  - Style file in Sass format.
     |-- README.md         - This README file.
