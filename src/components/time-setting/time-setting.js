@@ -29,52 +29,7 @@ class TimeSetting {
      */
     _createTimeSettingElement() {
         this.nodeElement = Util.createNodeElement(
-            '<div class="time-setting" data-display-status="hide">'
-            + `<div class="setting-container" data-meridium="${this._time.meridium}" data-hour="${this._time.hour}" data-minute="${this._time.minute}" data-select="hour"`
-            + 'data-skip-animation="false">'
-            + '<div class="time-container"><span class="hour">6</span><span class="separator">:</span><span '
-            + 'class="minute">00</span><span class="am">AM</span><span class="pm">PM</span></div>'
-            + '<div class="disc-container">'
-            + '<div class="am-button">AM</div>'
-            + '<div class="hour-disc" data-active="false">'
-            + '<div class="hour">1</div>'
-            + '<div class="hour">2</div>'
-            + '<div class="hour">3</div>'
-            + '<div class="hour">4</div>'
-            + '<div class="hour">5</div>'
-            + '<div class="hour">6</div>'
-            + '<div class="hour">7</div>'
-            + '<div class="hour">8</div>'
-            + '<div class="hour">9</div>'
-            + '<div class="hour">10</div>'
-            + '<div class="hour">11</div>'
-            + '<div class="hour">12</div>'
-            + '<div class="minute">00</div>'
-            + '<div class="minute">05</div>'
-            + '<div class="minute">10</div>'
-            + '<div class="minute">15</div>'
-            + '<div class="minute">20</div>'
-            + '<div class="minute">25</div>'
-            + '<div class="minute">30</div>'
-            + '<div class="minute">35</div>'
-            + '<div class="minute">40</div>'
-            + '<div class="minute">45</div>'
-            + '<div class="minute">50</div>'
-            + '<div class="minute">55</div>'
-            + '<div class="hour-selector-disc">'
-            + '<div class="dot"></div>'
-            + '</div>'
-            + '<div class="hour-selector-axis"></div>'
-            + '<div class="minute-selector-disc">'
-            + '<div class="dot"></div>'
-            + '</div>'
-            + '<div class="minute-selector-axis"></div>'
-            + '</div>'
-            + '<div class="pm-button">PM</div>'
-            + '</div>'
-            + '<div class="done-container"><span>Done</span></div>'
-            + '</div>'
-            + '</div>',
+            `<div class="time-setting" data-display-status="hide"><div class="setting-container" data-meridium="${this._time.meridium}" data-hour="${this._time.hour}" data-minute="${this._time.minute}" data-select="hour" data-skip-animation="false"><div class="time-container"><span class="hour">${this._time.hour}</span><span class="separator">:</span><span class="minute">${this._time.minute < 10 ? `0${this._time.minute}` : this._time.minute}</span><span class="am">AM</span><span class="pm">PM</span></div><div class="disc-container"><div class="am-button">AM</div><div class="hour-disc" data-active="false"><div class="hour">1</div><div class="hour">2</div><div class="hour">3</div><div class="hour">4</div><div class="hour">5</div><div class="hour">6</div><div class="hour">7</div><div class="hour">8</div><div class="hour">9</div><div class="hour">10</div><div class="hour">11</div><div class="hour">12</div><div class="minute">00</div><div class="minute">05</div><div class="minute">10</div><div class="minute">15</div><div class="minute">20</div><div class="minute">25</div><div class="minute">30</div><div class="minute">35</div><div class="minute">40</div><div class="minute">45</div><div class="minute">50</div><div class="minute">55</div><div class="hour-selector-disc"><div class="dot"></div></div><div class="hour-selector-axis"></div><div class="minute-selector-disc"><div class="dot"></div></div><div class="minute-selector-axis"></div></div><div class="pm-button">PM</div></div><div class="done-container"><span>Done</span></div></div></div>`,
         );
     }
 
