@@ -9,12 +9,17 @@
     "@babel/cli": "^7.7.0",
     "@babel/core": "^7.7.2",
     "@babel/preset-env": "^7.7.1",
+    "@commitlint/cli": "^8.3.4",
+    "@commitlint/config-conventional": "^8.3.4",
     "babel-loader": "^8.0.6",
+    "commitizen": "^4.0.3",
     "concurrently": "^5.0.1",
+    "cz-conventional-changelog": "3.0.2",
     "eslint": "^6.6.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.18.2",
     "gh-pages": "^2.1.1",
+    "husky": "^4.0.0",
     "jest": "^24.9.0",
     "jsdoc": "^3.6.3",
     "pug-cli": "^1.0.0-alpha6",
@@ -22,27 +27,30 @@
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10"
   },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
   "scripts": {
     "lint": "eslint ./src/script --fix",
     "test": "jest",
     "doc": "jsdoc -r ./src/components -d ./doc",
+    "precommit": "git add .",
+    "commit": "git-cz",
     "jest-debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand",
-
     "dev:label-input:pug": "pug ./src/components/label-input/dev/index.pug -o ./src/components/label-input/build --watch --pretty",
     "dev:label-input:sass": "sass ./src/components/label-input/label-input.sass ./src/components/label-input/build/style.css --watch --no-source-map",
     "dev:label-input:webpack": "webpack --mode=development --config ./src/components/label-input/dev/webpack.config.js -w",
     "dev:label-input": "concurrently \"yarn dev:label-input:pug\" \"yarn dev:label-input:sass\" \"yarn dev:label-input:webpack\"",
-
     "dev:ringtone-list:pug": "pug ./src/components/ringtone-list/dev/index.pug -o ./src/components/ringtone-list/build --watch --pretty",
     "dev:ringtone-list:sass": "sass ./src/components/ringtone-list/ringtone-list.sass ./src/components/ringtone-list/build/style.css --watch --no-source-map",
     "dev:ringtone-list:webpack": "webpack --mode=development --config ./src/components/ringtone-list/dev/webpack.config.js -w",
     "dev:ringtone-list": "concurrently \"yarn dev:ringtone-list:pug\" \"yarn dev:ringtone-list:sass\" \"yarn dev:ringtone-list:webpack\"",
-
     "dev:time-setting:pug": "pug ./src/components/time-setting/dev/index.pug -o ./src/components/time-setting/build --watch --pretty",
     "dev:time-setting:sass": "sass ./src/components/time-setting/time-setting.sass ./src/components/time-setting/build/style.css --watch --no-source-map",
     "dev:time-setting:webpack": "webpack --mode=development --config ./src/components/time-setting/dev/webpack.config.js -w",
     "dev:time-setting": "concurrently \"yarn dev:time-setting:pug\" \"yarn dev:time-setting:sass\" \"yarn dev:time-setting:webpack\"",
-
     "webpack": "webpack --mode=production",
     "webpack-w": "webpack --mode=development -w",
     "pug": "pug ./src/markup/index -o ./public",
@@ -53,5 +61,10 @@
     "dev": "concurrently \"yarn pug-w\" \"yarn sass-w\" \"yarn webpack-w\"",
     "predeploy": "yarn build",
     "deploy": "gh-pages -d public"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
