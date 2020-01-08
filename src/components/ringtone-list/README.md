@@ -71,7 +71,6 @@ The ringtone-done event is fired every time the user hits Enter or click OK.
 ## Folder organization
 <pre>
 \-- <b>ringtone-list</b>           - Folder containing the whole ringtone-list module.
-    \-- <b>assets</b>              - Folder containing the ringtones in ogg audio format.
     \-- <b>build</b>               - Folder containing the generated code to run this component standalone.
     \-- <b>dev</b>                 - Folder containing the source code to run this component standalone.
     \-- <b>screenshot</b>          - Folder containing the screenshots used as a reference to build the GUI.
