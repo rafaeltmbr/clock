@@ -1,48 +1,4 @@
-.clock-container[data-show=true], .clock-container[data-show=max] {
-  background-color: #27292a;
-}
-
-.clock-container[data-status=on] .always-visible .on-off .slider {
-  margin-left: 50%;
-  background-color: #0da6da;
-}
-.clock-container[data-status=on] .always-visible .on-off .slider .on-text {
-  display: inline;
-}
-.clock-container[data-status=on] .always-visible .on-off .slider .off-text {
-  display: none;
-}
-
-.clock-container[data-status=off] {
-  color: #c8c8c8;
-}
-.clock-container[data-status=off] .always-visible .on-off .slider {
-  color: #c8c8c8;
-}
-.clock-container[data-status=off] .delete-field svg {
-  fill: #c8c8c8;
-}
-.clock-container[data-status=off] .hide-control .hide-subject .clock-name {
-  color: #c8c8c8;
-}
-.clock-container[data-status=off] .hide-control .hide-subject .song .music svg {
-  fill: #c8c8c8;
-}
-.clock-container[data-status=off] .hide-control .hide-subject .repeat-days .day[data-selected=true] {
-  border-color: #0da6da;
-}
-.clock-container[data-status=off] .hide-control .hide-button .show-details {
-  fill: #939494;
-}
-.clock-container[data-status=off] .hide-control .hide-button .clock-name-minimized {
-  color: #939494;
-}
-
-.clock-container[data-show=true] .hide-control .hide-button {
-  border-bottom-color: #787878;
-}
-
-.clock-container {
+.alarm {
   max-width: 500px;
   min-width: 320px;
   font-family: sans-serif;
@@ -50,13 +6,15 @@
   color: white;
   transition-duration: 400ms;
   position: relative;
+  -ms-user-select: none;
+  user-select: none;
 }
-.clock-container * {
+.alarm * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
-.clock-container .always-visible {
+.alarm .always-visible {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -64,26 +22,26 @@
   padding: 0 10px;
   height: 60px;
 }
-.clock-container .always-visible .time {
+.alarm .always-visible .time {
   font-size: 40px;
   padding: 0 10px;
   margin-left: -10px;
 }
-.clock-container .always-visible .time .am-pm {
+.alarm .always-visible .time .am-pm {
   font-size: 12px;
   font-weight: bold;
   padding-left: 3px;
 }
-.clock-container .always-visible .on-off {
+.alarm .always-visible .on-off {
   width: 80px;
   height: 20px;
   border: 1px solid #2f2f30;
   background-color: #2f2f30;
 }
-.clock-container .always-visible .on-off .slider:active {
+.alarm .always-visible .on-off .slider:active {
   transition-duration: 0s;
 }
-.clock-container .always-visible .on-off .slider {
+.alarm .always-visible .on-off .slider {
   height: 100%;
   width: 50%;
   display: flex;
@@ -95,13 +53,13 @@
   color: white;
   transition-duration: 0.2s;
 }
-.clock-container .always-visible .on-off .slider .on-text {
+.alarm .always-visible .on-off .slider .on-text {
   display: none;
 }
-.clock-container .always-visible .on-off .slider .off-text {
+.alarm .always-visible .on-off .slider .off-text {
   display: inline;
 }
-.clock-container .delete-field {
+.alarm .delete-field {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -111,18 +69,18 @@
   right: 10px;
   top: 60px;
 }
-.clock-container .delete-field svg {
+.alarm .delete-field svg {
   height: 22px;
   width: 22px;
   fill: white;
 }
-.clock-container .hide-control {
+.alarm .hide-control {
   height: 40px;
   position: relative;
   overflow: hidden;
   transition-duration: 0.45s;
 }
-.clock-container .hide-control .line-separator {
+.alarm .hide-control .line-separator {
   position: absolute;
   width: calc(100% - 20px);
   height: 1px;
@@ -132,7 +90,7 @@
   transition-duration: 0.45s;
   z-index: 1;
 }
-.clock-container .hide-control .hide-button {
+.alarm .hide-control .hide-button {
   position: absolute;
   display: flex;
   flex-direction: row;
@@ -142,7 +100,7 @@
   bottom: 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0);
 }
-.clock-container .hide-control .hide-button .show-details {
+.alarm .hide-control .hide-button .show-details {
   height: 20px;
   width: 20px;
   min-width: 20px;
@@ -151,14 +109,11 @@
   fill: white;
   margin-left: 5px;
 }
-.clock-container .hide-control .hide-button .show-details[data-rotate=true] {
-  transform: rotateZ(270deg);
-}
-.clock-container .hide-control .hide-button .clock-name-minimized {
+.alarm .hide-control .hide-button .clock-name-minimized {
   bottom: 10px;
   color: #c8c8c8;
 }
-.clock-container .hide-control .hide-button .clock-name-minimized, .clock-container .hide-control .hide-button .days-name-minimized {
+.alarm .hide-control .hide-button .clock-name-minimized, .alarm .hide-control .hide-button .days-name-minimized {
   padding-left: 10px;
   font-size: 14px;
   height: 40px;
@@ -166,11 +121,11 @@
   overflow: hidden;
   transition-duration: 0.45s;
 }
-.clock-container .hide-control .hide-button .days-name-minimized {
+.alarm .hide-control .hide-button .days-name-minimized {
   min-width: 16ch;
   opacity: 0;
 }
-.clock-container .hide-control .hide-subject {
+.alarm .hide-control .hide-subject {
   width: 100%;
   position: absolute;
   bottom: 40px;
@@ -178,11 +133,11 @@
   font-size: 16px;
   line-height: 40px;
 }
-.clock-container .hide-control .hide-subject .clock-name::selection {
+.alarm .hide-control .hide-subject .clock-name::selection {
   background-color: #c8c8c8;
   color: black;
 }
-.clock-container .hide-control .hide-subject .clock-name {
+.alarm .hide-control .hide-subject .clock-name {
   cursor: text;
   display: block;
   background-color: transparent;
@@ -199,52 +154,52 @@
   -moz-user-select: text;
   user-select: text;
 }
-.clock-container .hide-control .hide-subject .repeat-days {
+.alarm .hide-control .hide-subject .repeat-days {
   display: none;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   height: 40px;
 }
-.clock-container .hide-control .hide-subject .repeat-days .day {
+.alarm .hide-control .hide-subject .repeat-days .day {
   text-align: center;
   width: 38px;
   line-height: 1.4em;
   font-weight: bold;
   border-bottom: 2px solid #3d3f40;
 }
-.clock-container .hide-control .hide-subject .repeat-days .day[data-selected=true] {
+.alarm .hide-control .hide-subject .repeat-days .day[data-selected=show-partial] {
   border-bottom-color: #0da6da;
 }
-.clock-container .hide-control .hide-subject .song {
+.alarm .hide-control .hide-subject .song {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
 }
-.clock-container .hide-control .hide-subject .song .music {
+.alarm .hide-control .hide-subject .song .music {
   padding-right: 10px;
   padding-left: 10px;
   margin-left: -10px;
 }
-.clock-container .hide-control .hide-subject .song .music svg {
+.alarm .hide-control .hide-subject .song .music svg {
   height: auto;
   width: 8px;
   fill: #c8c8c8;
 }
-.clock-container .hide-control .hide-subject .song .music .song-name {
+.alarm .hide-control .hide-subject .song .music .song-name {
   text-transform: uppercase;
   padding-left: 10px;
 }
-.clock-container .hide-control .hide-subject label {
+.alarm .hide-control .hide-subject label {
   position: relative;
 }
-.clock-container .hide-control .hide-subject label input {
+.alarm .hide-control .hide-subject label input {
   opacity: 0;
   height: 0;
   width: 0;
 }
-.clock-container .hide-control .hide-subject label .checkmark {
+.alarm .hide-control .hide-subject label .checkmark {
   display: inline-block;
   border: 1px solid #939494;
   width: 14px;
@@ -252,10 +207,10 @@
   margin-right: 10px;
   position: relative;
 }
-.clock-container .hide-control .hide-subject label .checkmark svg {
+.alarm .hide-control .hide-subject label .checkmark svg {
   display: none;
 }
-.clock-container .hide-control .hide-subject label input:checked ~ .checkmark svg {
+.alarm .hide-control .hide-subject label input:checked ~ .checkmark svg {
   display: inline-block;
   height: 15px;
   width: 18px;
@@ -264,109 +219,155 @@
   fill: #0da6da;
 }
 
-.clock-container[data-show=true] .hide-control, .clock-container[data-show=all] .hide-control, .clock-container[data-show=min] .hide-control, .clock-container[data-show=max] .hide-control {
-  height: 160px;
+.alarm[data-show-details=initial-hide-all] {
+  transition-duration: 0s;
 }
-.clock-container[data-show=true] .hide-control .hide-button, .clock-container[data-show=all] .hide-control .hide-button, .clock-container[data-show=min] .hide-control .hide-button, .clock-container[data-show=max] .hide-control .hide-button {
-  width: 100%;
-}
-.clock-container[data-show=true] .hide-control .hide-button .clock-name-minimized, .clock-container[data-show=all] .hide-control .hide-button .clock-name-minimized, .clock-container[data-show=min] .hide-control .hide-button .clock-name-minimized, .clock-container[data-show=max] .hide-control .hide-button .clock-name-minimized {
-  opacity: 0;
-}
-.clock-container[data-show=true] .hide-control .line-separator, .clock-container[data-show=all] .hide-control .line-separator, .clock-container[data-show=min] .hide-control .line-separator, .clock-container[data-show=max] .hide-control .line-separator {
-  bottom: 40px;
-}
-
-.clock-container[data-show=all] .hide-control, .clock-container[data-show=max] .hide-control {
-  height: 200px;
-}
-.clock-container[data-show=all] .hide-control .hide-subject .repeat-days, .clock-container[data-show=max] .hide-control .hide-subject .repeat-days {
-  display: flex;
-}
-
-.clock-container[data-show=all] .hide-control, .clock-container[data-show=min] .hide-control {
+.alarm[data-show-details=initial-hide-all] .hide-control .hide-button .show-details {
   transition-duration: 0s;
 }
 
-.clock-container[data-repeat=true][data-show=false] .hide-control .hide-button .days-name-minimized {
-  opacity: 1;
+.alarm[data-status=on] .always-visible .on-off .slider {
+  margin-left: 50%;
+  background-color: #0da6da;
+}
+.alarm[data-status=on] .always-visible .on-off .slider .on-text {
+  display: inline;
+}
+.alarm[data-status=on] .always-visible .on-off .slider .off-text {
+  display: none;
+}
+
+.alarm[data-status=off] {
+  color: #c8c8c8;
+}
+.alarm[data-status=off] .always-visible .on-off .slider {
+  color: #c8c8c8;
+}
+.alarm[data-status=off] .delete-field svg {
+  fill: #c8c8c8;
+}
+.alarm[data-status=off] .hide-control .hide-subject .clock-name {
+  color: #c8c8c8;
+}
+.alarm[data-status=off] .hide-control .hide-subject .song .music svg {
+  fill: #c8c8c8;
+}
+.alarm[data-status=off] .hide-control .hide-subject .repeat-days .day[data-selected=show-partial] {
+  border-color: #0da6da;
+}
+.alarm[data-status=off] .hide-control .hide-button .show-details {
+  fill: #939494;
+}
+.alarm[data-status=off] .hide-control .hide-button .clock-name-minimized {
+  color: #939494;
+}
+
+.alarm[data-show-details=show-partial], .alarm[data-show-details=show-repeat], .alarm[data-show-details=hide-repeat], .alarm[data-show-details=show-all] {
+  background-color: #27292a;
+}
+.alarm[data-show-details=show-partial] .hide-control, .alarm[data-show-details=show-repeat] .hide-control, .alarm[data-show-details=hide-repeat] .hide-control, .alarm[data-show-details=show-all] .hide-control {
+  height: 160px;
+}
+.alarm[data-show-details=show-partial] .hide-control .hide-button, .alarm[data-show-details=show-repeat] .hide-control .hide-button, .alarm[data-show-details=hide-repeat] .hide-control .hide-button, .alarm[data-show-details=show-all] .hide-control .hide-button {
+  border-bottom-color: #787878;
+  width: 100%;
+}
+.alarm[data-show-details=show-partial] .hide-control .hide-button .show-details, .alarm[data-show-details=show-repeat] .hide-control .hide-button .show-details, .alarm[data-show-details=hide-repeat] .hide-control .hide-button .show-details, .alarm[data-show-details=show-all] .hide-control .hide-button .show-details {
+  transform: rotateZ(270deg);
+}
+.alarm[data-show-details=show-partial] .hide-control .hide-button .clock-name-minimized, .alarm[data-show-details=show-repeat] .hide-control .hide-button .clock-name-minimized, .alarm[data-show-details=hide-repeat] .hide-control .hide-button .clock-name-minimized, .alarm[data-show-details=show-all] .hide-control .hide-button .clock-name-minimized {
+  opacity: 0;
+}
+.alarm[data-show-details=show-partial] .hide-control .line-separator, .alarm[data-show-details=show-repeat] .hide-control .line-separator, .alarm[data-show-details=hide-repeat] .hide-control .line-separator, .alarm[data-show-details=show-all] .hide-control .line-separator {
+  bottom: 40px;
+}
+
+.alarm[data-show-details=show-repeat] .hide-control, .alarm[data-show-details=show-all] .hide-control {
+  height: 200px;
+}
+.alarm[data-show-details=show-repeat] .hide-control .hide-subject .repeat-days, .alarm[data-show-details=show-all] .hide-control .hide-subject .repeat-days {
+  display: flex;
+}
+
+.alarm[data-show-details=show-repeat] .hide-control, .alarm[data-show-details=hide-repeat] .hide-control {
+  transition-duration: 0s;
 }
 
 @media (hover: hover) {
-  .clock-container[data-show=true] .always-visible .time:hover, .clock-container[data-show=max] .always-visible .time:hover {
-    background-color: #1c1e20;
-  }
-  .clock-container[data-show=true] .delete-field:hover, .clock-container[data-show=max] .delete-field:hover {
-    background-color: #1c1e20;
-  }
-
-  .clock-container[data-status=off] .hide-control .hide-subject .repeat-days .day:hover {
-    border-color: #c8c8c8;
-  }
-
-  .clock-container .always-visible .time:hover {
+  .alarm .always-visible .time:hover {
     background-color: #27292a;
   }
-  .clock-container .always-visible .on-off:hover {
+  .alarm .always-visible .on-off:hover {
     border-color: #646464;
   }
-  .clock-container .delete-field:hover {
+  .alarm .delete-field:hover {
     background-color: #27292a;
   }
-  .clock-container .hide-control[data-show=true] .hide-button:hover, .clock-container .hide-control[data-show=all] .hide-button:hover, .clock-container .hide-control[data-show=min] .hide-button:hover, .clock-container .hide-control[data-show=max] .hide-button:hover {
-    background-color: #1c1e20;
-  }
-  .clock-container .hide-control .hide-button:hover {
+  .alarm .hide-control .hide-button:hover {
     background-color: #27292a;
   }
-  .clock-container .hide-control .hide-subject .clock-name:hover {
+  .alarm .hide-control .hide-subject .clock-name:hover {
     background-color: #1c1e20;
   }
-  .clock-container .hide-control .hide-subject .repeat-days .day:hover {
+  .alarm .hide-control .hide-subject .repeat-days .day:hover {
     border-color: white;
   }
-  .clock-container .hide-control .hide-subject .song .music:hover {
+  .alarm .hide-control .hide-subject .song .music:hover {
     background-color: #1c1e20;
   }
-  .clock-container .hide-control .hide-subject label:hover .checkmark {
+  .alarm .hide-control .hide-subject label:hover .checkmark {
     border-color: #e6e6e6;
   }
 
-  .clock-container[data-layout=desktop] .always-visible .time:hover {
-    background-color: #1c1e20;
-  }
-  .clock-container[data-layout=desktop] .delete-field:hover {
+  .alarm[data-show-details=show-partial] .hide-control .hide-button:hover, .alarm[data-show-details=show-repeat] .hide-control .hide-button:hover, .alarm[data-show-details=hide-repeat] .hide-control .hide-button:hover, .alarm[data-show-details=show-all] .hide-control .hide-button:hover {
     background-color: #1c1e20;
   }
 
-  .clock-container[data-layout=desktop]:hover {
+  .alarm[data-show-details=show-partial] .always-visible .time:hover, .alarm[data-show-details=show-all] .always-visible .time:hover {
+    background-color: #1c1e20;
+  }
+  .alarm[data-show-details=show-partial] .delete-field:hover, .alarm[data-show-details=show-all] .delete-field:hover {
+    background-color: #1c1e20;
+  }
+
+  .alarm[data-status=off] .hide-control .hide-subject .repeat-days .day:hover {
+    border-color: #c8c8c8;
+  }
+
+  .alarm[data-layout=desktop]:hover {
     background-color: #272727;
   }
 
-  .clock-container[data-layout=desktop] {
+  .alarm[data-layout=desktop] {
     box-shadow: 0 5px 10px black;
     width: 400px;
     margin: 15px auto;
     background-color: #1d1d1d;
     transition-duration: 400ms;
   }
-  .clock-container[data-layout=desktop] .hide-control {
+  .alarm[data-layout=desktop] .hide-control {
     height: 135px;
   }
-  .clock-container[data-layout=desktop] .hide-control .hide-subject {
+  .alarm[data-layout=desktop] .hide-control .hide-subject {
     bottom: 0;
     margin-bottom: 15px;
   }
-  .clock-container[data-layout=desktop] .hide-control .hide-subject .repeat-check {
+  .alarm[data-layout=desktop] .hide-control .hide-subject .repeat-check {
     display: none;
   }
-  .clock-container[data-layout=desktop] .hide-control .hide-subject .repeat-days {
+  .alarm[data-layout=desktop] .hide-control .hide-subject .repeat-days {
     display: flex;
   }
-  .clock-container[data-layout=desktop] .hide-control .hide-button {
+  .alarm[data-layout=desktop] .hide-control .hide-button {
     display: none;
   }
-  .clock-container[data-layout=desktop] .hide-control .line-separator {
+  .alarm[data-layout=desktop] .hide-control .line-separator {
     display: none;
+  }
+  .alarm[data-layout=desktop] .always-visible .time:hover {
+    background-color: #1c1e20;
+  }
+  .alarm[data-layout=desktop] .delete-field:hover {
+    background-color: #1c1e20;
   }
 }

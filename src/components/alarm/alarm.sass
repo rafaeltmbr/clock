@@ -1,83 +1,29 @@
-$color_background_show: rgb(39, 41, 42)
-$color_background_hide: rgb(28, 30, 32)
-$color_on: rgb(13, 166, 218)
-$color_show_button: rgb(147, 148, 148)
+$alarm_color_background_show: rgb(39, 41, 42)
+$alarm_color_background_hide: rgb(28, 30, 32)
+$alarm_color_on: rgb(13, 166, 218)
+$alarm_color_show_button: rgb(147, 148, 148)
+$alarm_details_line_height: 40px
+$alarm_hide_control_height: 40px
+$alarm_color_text: rgb(255, 255, 255)
+$alarm_transition_duration: 400ms
+$alarm_color_text_off: rgb(200, 200, 200)
 
-.clock-container[data-show="true"], .clock-container[data-show="max"]
-    background-color: $color_background_show
-
-.clock-container[data-status="on"]
-    .always-visible
-        .on-off
-            .slider
-                margin-left: 50%
-                background-color: $color_on
-
-                .on-text
-                    display: inline
-
-                .off-text
-                    display: none
-    
-.clock-container[data-status="off"]
-    $color_text_off: rgb(200, 200, 200)
-
-    color: $color_text_off
-
-    .always-visible
-        .on-off
-            .slider
-                color: $color_text_off
-
-    .delete-field
-        svg
-            fill: $color_text_off
-
-    .hide-control
-        .hide-subject
-            .clock-name
-                color: $color_text_off
-
-            .song
-                .music
-                    svg
-                        fill: $color_text_off
-            .repeat-days
-                .day[data-selected="true"]
-                    border-color: $color_on
-
-        .hide-button
-            .show-details
-                fill: $color_show_button
-
-            .clock-name-minimized
-                color: rgb(147, 148, 148)
-
-.clock-container[data-show="true"]
-    .hide-control
-        .hide-button
-            border-bottom-color: rgba(120, 120, 120)
-
-$details_line_height: 40px
-$hide_control_height: 40px
-
-.clock-container
-    $color_text: rgb(255, 255, 255)
+.alarm
     $color_off: rgb(61, 63, 64)
     $color_off_background: rgb(47, 47, 48)
-    $color_text_off: rgb(200, 200, 200)
     $always_visible_line_height: 60px
     $animation_duration: 0.45s
     $container_padding_side: 10px
-    $clock-container-transition-duration: 400ms
     
     max-width: 500px
     min-width: 320px
     font-family: sans-serif
-    background-color: $color_background_hide
-    color: $color_text
-    transition-duration: $clock-container-transition-duration
+    background-color: $alarm_color_background_hide
+    color: $alarm_color_text
+    transition-duration: $alarm_transition_duration
     position: relative
+    -ms-user-select: none
+    user-select: none
 
     *
         box-sizing: border-box
@@ -122,7 +68,7 @@ $hide_control_height: 40px
                 align-items: center
                 font-size: 12px
                 background-color: $slider-color
-                color: $color_text
+                color: $alarm_color_text
                 transition-duration: 0.2s
 
                 .on-text
@@ -138,21 +84,21 @@ $hide_control_height: 40px
         align-items: center
         justify-content: center
         position: absolute
-        height: $hide_control_height
-        width: $hide_control_height
+        height: $alarm_hide_control_height
+        width: $alarm_hide_control_height
         right: $container_padding_side
         top: $always_visible_line_height
 
         svg
             height: 22px
             width: 22px
-            fill: $color_text
+            fill: $alarm_color_text
 
     .hide-control
         $show_details_height: 20px
-        $hide_button_padding_right: $hide_control_height + $container_padding_side * 2
+        $hide_button_padding_right: $alarm_hide_control_height + $container_padding_side * 2
 
-        height: $hide_control_height
+        height: $alarm_hide_control_height
         position: relative
         overflow: hidden
         transition-duration: $animation_duration
@@ -175,7 +121,7 @@ $hide_control_height: 40px
             display: flex
             flex-direction: row
             align-items: center
-            height: $hide_control_height
+            height: $alarm_hide_control_height
             width: calc(100% - #{$hide_button_padding_right})
             bottom: 0
             border-bottom: 1px solid rgba(0, 0, 0, 0)
@@ -186,21 +132,18 @@ $hide_control_height: 40px
                 min-width: $show_details_height
                 transform: rotateZ(90deg)
                 transition-duration: $animation_duration
-                fill: $color_text
+                fill: $alarm_color_text
                 margin-left: 5px
 
-            .show-details[data-rotate="true"]
-                transform: rotateZ(270deg)
-
             .clock-name-minimized
-                bottom: ($hide_control_height - $show_details_height) / 2
-                color: $color_text_off
+                bottom: ($alarm_hide_control_height - $show_details_height) / 2
+                color: $alarm_color_text_off
 
             .clock-name-minimized, .days-name-minimized
                 padding-left: 10px
                 font-size: 14px
-                height: $hide_control_height
-                line-height: $hide_control_height / 2
+                height: $alarm_hide_control_height
+                line-height: $alarm_hide_control_height / 2
                 overflow: hidden
                 transition-duration: $animation_duration
 
@@ -211,10 +154,10 @@ $hide_control_height: 40px
         .hide-subject
             width: 100%
             position: absolute
-            bottom: $hide_control_height
+            bottom: $alarm_hide_control_height
             padding: 0 $container_padding_side
             font-size: 16px
-            line-height: $details_line_height
+            line-height: $alarm_details_line_height
 
             .clock-name::selection
                 background-color: rgb(200, 200, 200)
@@ -226,10 +169,10 @@ $hide_control_height: 40px
                 background-color: transparent
                 outline: none
                 border: 0
-                height: $details_line_height
+                height: $alarm_details_line_height
                 font-size: 18px
-                width: calc(100% - #{$hide_control_height})
-                color: $color_text
+                width: calc(100% - #{$alarm_hide_control_height})
+                color: $alarm_color_text
                 padding-left: $container_padding_side
                 margin-left: -$container_padding_side
 
@@ -243,7 +186,7 @@ $hide_control_height: 40px
                 flex-direction: row
                 align-items: center
                 justify-content: space-between
-                height: $details_line_height
+                height: $alarm_details_line_height
 
                 .day
                     text-align: center
@@ -252,8 +195,8 @@ $hide_control_height: 40px
                     font-weight: bold
                     border-bottom: 2px solid $color_off
 
-                .day[data-selected="true"]
-                    border-bottom-color: $color_on
+                .day[data-selected="show-partial"]
+                    border-bottom-color: $alarm_color_on
 
             .song
                 display: flex
@@ -269,7 +212,7 @@ $hide_control_height: 40px
                     svg
                         height: auto
                         width: 8px
-                        fill: $color_text_off
+                        fill: $alarm_color_text_off
 
                     .song-name
                         text-transform: uppercase
@@ -285,7 +228,7 @@ $hide_control_height: 40px
 
                 .checkmark
                     display: inline-block
-                    border: 1px solid $color_show_button
+                    border: 1px solid $alarm_color_show_button
                     width: 14px
                     height: 14px
                     margin-right: 10px
@@ -300,124 +243,170 @@ $hide_control_height: 40px
                     width: 18px
                     position: absolute
                     top: -3px
-                    fill: $color_on
+                    fill: $alarm_color_on
 
-.clock-container[data-show="true"], .clock-container[data-show="all"], .clock-container[data-show="min"], .clock-container[data-show="max"]
+
+.alarm[data-show-details="initial-hide-all"]
+    transition-duration: 0s
+
     .hide-control
-        height: $details_line_height * 3 + $hide_control_height
+        .hide-button
+            .show-details
+                transition-duration: 0s
+
+.alarm[data-status="on"]
+    .always-visible
+        .on-off
+            .slider
+                margin-left: 50%
+                background-color: $alarm_color_on
+
+                .on-text
+                    display: inline
+
+                .off-text
+                    display: none
+    
+.alarm[data-status="off"]
+    color: $alarm_color_text_off
+
+    .always-visible
+        .on-off
+            .slider
+                color: $alarm_color_text_off
+
+    .delete-field
+        svg
+            fill: $alarm_color_text_off
+
+    .hide-control
+        .hide-subject
+            .clock-name
+                color: $alarm_color_text_off
+
+            .song
+                .music
+                    svg
+                        fill: $alarm_color_text_off
+            .repeat-days
+                .day[data-selected="show-partial"]
+                    border-color: $alarm_color_on
 
         .hide-button
+            .show-details
+                fill: $alarm_color_show_button
+
+            .clock-name-minimized
+                color: rgb(147, 148, 148)
+
+
+.alarm[data-show-details="show-partial"], .alarm[data-show-details="show-repeat"], .alarm[data-show-details="hide-repeat"], .alarm[data-show-details="show-all"]
+    background-color: $alarm_color_background_show
+
+    .hide-control
+        height: $alarm_details_line_height * 3 + $alarm_hide_control_height
+
+        .hide-button
+            border-bottom-color: rgba(120, 120, 120)
             width: 100%
+
+            .show-details
+                transform: rotateZ(270deg)
 
             .clock-name-minimized
                 opacity: 0.0
 
         .line-separator
-            bottom: $hide_control_height
+            bottom: $alarm_hide_control_height
 
 
-.clock-container[data-show="all"], .clock-container[data-show="max"]
+.alarm[data-show-details="show-repeat"], .alarm[data-show-details="show-all"]
     .hide-control
-        height: $details_line_height * 4 + $hide_control_height
+        height: $alarm_details_line_height * 4 + $alarm_hide_control_height
 
         .hide-subject
             .repeat-days
                 display: flex
 
-.clock-container[data-show="all"], .clock-container[data-show="min"]
+.alarm[data-show-details="show-repeat"], .alarm[data-show-details="hide-repeat"]
     .hide-control
         transition-duration: 0s
 
-.clock-container[data-repeat="true"][data-show="false"]
-    .hide-control
-        .hide-button
-            .days-name-minimized
-                opacity: 1.0
-
-$color_background_hide: rgb(28, 30, 32)
-$color_background_show: rgb(39, 41, 42)
-$color_text: rgb(255, 255, 255)
+// .alarm[data-repeat="show-partial"][data-show-details="hide-all"]
+//     .hide-control
+//         .hide-button
+//             .days-name-minimized
+//                 opacity: 1.0
 
 @media (hover: hover)
-    .clock-container[data-show="true"], .clock-container[data-show="max"]
+    $color_background_hover: rgb(39, 39, 39)
+    $color_background: rgb(29, 29, 29)
+    $hide-subject-margin-bottom: 15px
+    $alarm-margin: 15px
+
+    .alarm
         .always-visible
             .time:hover
-                background-color: $color_background_hide
-
-        .delete-field:hover
-            background-color: $color_background_hide
-
-    .clock-container[data-status="off"]
-        $color_text_off: rgb(200, 200, 200)
-
-        .hide-control
-            .hide-subject
-                .repeat-days
-                    .day:hover
-                        border-color: $color_text_off
-
-    .clock-container
-        .always-visible
-            .time:hover
-                background-color: $color_background_show
+                background-color: $alarm_color_background_show
 
             .on-off:hover
                 border-color: rgb(100, 100, 100)
 
         .delete-field:hover
-            background-color: $color_background_show
-
-        .hide-control[data-show="true"], .hide-control[data-show="all"], .hide-control[data-show="min"], .hide-control[data-show="max"]
-            .hide-button:hover
-                background-color: $color_background_hide
+            background-color: $alarm_color_background_show
 
         .hide-control
             .hide-button:hover
-                background-color: $color_background_show
+                background-color: $alarm_color_background_show
 
             .hide-subject
                 .clock-name:hover
-                    background-color: $color_background_hide
+                    background-color: $alarm_color_background_hide
                     
                 .repeat-days
                     .day:hover
-                        border-color: $color_text
+                        border-color: $alarm_color_text
                 
                 .song
                     .music:hover
-                        background-color: $color_background_hide
+                        background-color: $alarm_color_background_hide
 
                 label:hover
                     .checkmark
                         border-color: rgb(230, 230, 230)
 
-    .clock-container[data-layout="desktop"]
+    .alarm[data-show-details="show-partial"], .alarm[data-show-details="show-repeat"], .alarm[data-show-details="hide-repeat"], .alarm[data-show-details="show-all"]
+        .hide-control
+            .hide-button:hover
+                background-color: $alarm_color_background_hide
+
+    .alarm[data-show-details="show-partial"], .alarm[data-show-details="show-all"]
         .always-visible
             .time:hover
-                background-color: $color_background_hide
+                background-color: $alarm_color_background_hide
 
         .delete-field:hover
-            background-color: $color_background_hide
+            background-color: $alarm_color_background_hide
 
-    
-    $color_background_hover: rgb(39, 39, 39)
-    $color_background: rgb(29, 29, 29)
-    $hide-subject-margin-bottom: 15px
-    $clock-container-transition-duration: 400ms
-    $clock-container-margin: 15px
+    .alarm[data-status="off"]
+        .hide-control
+            .hide-subject
+                .repeat-days
+                    .day:hover
+                        border-color: $alarm_color_text_off
 
-    .clock-container[data-layout="desktop"]:hover
+    .alarm[data-layout="desktop"]:hover
         background-color: $color_background_hover
 
-    .clock-container[data-layout="desktop"]
+    .alarm[data-layout="desktop"]
         box-shadow: 0 5px 10px rgb(0, 0, 0)
         width: 400px
-        margin: $clock-container-margin auto
+        margin: $alarm-margin auto
         background-color: $color-background
-        transition-duration: $clock-container-transition-duration
+        transition-duration: $alarm_transition_duration
 
         .hide-control
-            height: $details_line_height * 3 + $hide-subject-margin-bottom
+            height: $alarm_details_line_height * 3 + $hide-subject-margin-bottom
 
             .hide-subject
                 bottom: 0
@@ -434,3 +423,10 @@ $color_text: rgb(255, 255, 255)
 
             .line-separator
                 display: none
+
+        .always-visible
+            .time:hover
+                background-color: $alarm_color_background_hide
+
+        .delete-field:hover
+            background-color: $alarm_color_background_hide
