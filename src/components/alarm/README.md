@@ -1,5 +1,5 @@
 # Alarm
-The alarm component holds all control and information about an alarm clock. It can be instantiated from the Alarm class found in alarm.js file. The following screenshots (from Android v4.4.4 alarm clock) show the expected graphical results with the alarm element being in the
+The alarm component holds all information and control of each alarm. It can be instantiated from the Alarm class found in alarm.js file. The following screenshots (from Android v4.4.4 alarm clock) show the expected graphical results with the alarm element being in the
 spotlight (please, disconsider the background elements):
 
 <div id="images-container" style="display: flex; flex-direction: row; align-items: center; justify-content: space-between">
@@ -63,4 +63,18 @@ alarm.addAlarmChangeListener(printEventNameAndLabel);
     |-- alarm.js          - JavaScript class with methods and events.
     |-- alarm.sass        - Style file in Sass format.
     |-- README.md         - This README file.
+</pre>
+
+## Dependencies
+The alarm component depends on another three components. They are:
+* **label-input** - handle the alarm name setting
+* **ringtone-list** - shows a list o ringtones and let the user preview and choose one of them
+* **time-setting** - allow the user to set the alarm time (hour, minute and meridium)
+
+All these dependencies are supposed to be in a folder at the same level as this with is corresponding module name. For example:
+<pre>
+\-- <b>alarm</b> - this module
+\-- <b>label-input</b> 
+\-- <b>ringtone-list</b>
+\-- <b>time-setting</b>
 </pre>
