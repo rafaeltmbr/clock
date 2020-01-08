@@ -96,7 +96,7 @@
   flex-direction: row;
   align-items: center;
   height: 40px;
-  width: calc(100% - 60px);
+  width: calc(100% - 60px + 10px);
   bottom: 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0);
 }
@@ -112,17 +112,13 @@
 .alarm .hide-control .hide-button .clock-name-minimized {
   bottom: 10px;
   color: #c8c8c8;
-}
-.alarm .hide-control .hide-button .clock-name-minimized, .alarm .hide-control .hide-button .days-name-minimized {
-  padding-left: 10px;
-  font-size: 14px;
-  height: 40px;
-  line-height: 20px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   overflow: hidden;
-  transition-duration: 0.45s;
+  flex: 1;
+  padding: 0 5px;
 }
 .alarm .hide-control .hide-button .days-name-minimized {
-  min-width: 16ch;
   opacity: 0;
 }
 .alarm .hide-control .hide-subject {
@@ -288,6 +284,10 @@
 
 .alarm[data-show-details=show-repeat] .hide-control, .alarm[data-show-details=hide-repeat] .hide-control {
   transition-duration: 0s;
+}
+
+.alarm[data-show-details=hide-all] .hide-control .hide-button .days-name-minimized {
+  opacity: 1;
 }
 
 @media (hover: hover) {

@@ -121,7 +121,7 @@ $alarm_color_text_off: rgb(200, 200, 200)
             flex-direction: row
             align-items: center
             height: $alarm_hide_control_height
-            width: calc(100% - #{$hide_button_padding_right})
+            width: calc(100% - #{$hide_button_padding_right} + #{$container_padding_side})
             bottom: 0
             border-bottom: 1px solid rgba(0, 0, 0, 0)
 
@@ -137,17 +137,13 @@ $alarm_color_text_off: rgb(200, 200, 200)
             .clock-name-minimized
                 bottom: ($alarm_hide_control_height - $show_details_height) / 2
                 color: $alarm_color_text_off
-
-            .clock-name-minimized, .days-name-minimized
-                padding-left: 10px
-                font-size: 14px
-                height: $alarm_hide_control_height
-                line-height: $alarm_hide_control_height / 2
+                text-overflow: ellipsis
+                white-space: nowrap
                 overflow: hidden
-                transition-duration: $animation_duration
+                flex: 1
+                padding: 0 5px
 
             .days-name-minimized
-                min-width: 16ch
                 opacity: 0.0
 
         .hide-subject
@@ -328,11 +324,11 @@ $alarm_color_text_off: rgb(200, 200, 200)
     .hide-control
         transition-duration: 0s
 
-// .alarm[data-repeat="show-partial"][data-show-details="hide-all"]
-//     .hide-control
-//         .hide-button
-//             .days-name-minimized
-//                 opacity: 1.0
+.alarm[data-show-details="hide-all"]
+    .hide-control
+        .hide-button
+            .days-name-minimized
+                opacity: 1.0
 
 @media (hover: hover)
     $color_background_hover: rgb(39, 39, 39)
