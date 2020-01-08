@@ -58,14 +58,15 @@ $color_show_button: rgb(147, 148, 148)
         .hide-button
             border-bottom-color: rgba(120, 120, 120)
 
+$details_line_height: 40px
+$hide_control_height: 40px
+
 .clock-container
     $color_text: rgb(255, 255, 255)
     $color_off: rgb(61, 63, 64)
     $color_off_background: rgb(47, 47, 48)
     $color_text_off: rgb(200, 200, 200)
     $always_visible_line_height: 60px
-    $hide_control_height: 40px
-    $details_line_height: 40px
     $animation_duration: 0.45s
     $container_padding_side: 10px
     $clock-container-transition-duration: 400ms
@@ -146,34 +147,6 @@ $color_show_button: rgb(147, 148, 148)
             height: 22px
             width: 22px
             fill: $color_text
-
-    .hide-control[data-show="true"], .hide-control[data-show="all"], .hide-control[data-show="min"], .hide-control[data-show="max"]
-        height: $details_line_height * 3 + $hide_control_height
-
-        .hide-button
-            width: 100%
-
-            .clock-name-minimized
-                opacity: 0.0
-
-        .line-separator
-            bottom: $hide_control_height
-
-
-    .hide-control[data-show="all"], .hide-control[data-show="max"]
-        height: $details_line_height * 4 + $hide_control_height
-
-        .hide-subject
-            .repeat-days
-                display: flex
-
-    .hide-control[data-show="all"], .hide-control[data-show="min"]
-        transition-duration: 0s
-
-    .hide-control[data-repeat="true"][data-show="false"]
-        .hide-button
-            .days-name-minimized
-                opacity: 1.0
 
     .hide-control
         $show_details_height: 20px
@@ -329,6 +302,38 @@ $color_show_button: rgb(147, 148, 148)
                     top: -3px
                     fill: $color_on
 
+.clock-container[data-show="true"], .clock-container[data-show="all"], .clock-container[data-show="min"], .clock-container[data-show="max"]
+    .hide-control
+        height: $details_line_height * 3 + $hide_control_height
+
+        .hide-button
+            width: 100%
+
+            .clock-name-minimized
+                opacity: 0.0
+
+        .line-separator
+            bottom: $hide_control_height
+
+
+.clock-container[data-show="all"], .clock-container[data-show="max"]
+    .hide-control
+        height: $details_line_height * 4 + $hide_control_height
+
+        .hide-subject
+            .repeat-days
+                display: flex
+
+.clock-container[data-show="all"], .clock-container[data-show="min"]
+    .hide-control
+        transition-duration: 0s
+
+.clock-container[data-repeat="true"][data-show="false"]
+    .hide-control
+        .hide-button
+            .days-name-minimized
+                opacity: 1.0
+
 $color_background_hide: rgb(28, 30, 32)
 $color_background_show: rgb(39, 41, 42)
 $color_text: rgb(255, 255, 255)
@@ -386,11 +391,46 @@ $color_text: rgb(255, 255, 255)
                     .checkmark
                         border-color: rgb(230, 230, 230)
 
-    body[data-layout="desktop"]
-        .clock-container
-            .always-visible
-                .time:hover
-                    background-color: $color_background_hide
-
-            .delete-field:hover
+    .clock-container[data-layout="desktop"]
+        .always-visible
+            .time:hover
                 background-color: $color_background_hide
+
+        .delete-field:hover
+            background-color: $color_background_hide
+
+    
+    $color_background_hover: rgb(39, 39, 39)
+    $color_background: rgb(29, 29, 29)
+    $hide-subject-margin-bottom: 15px
+    $clock-container-transition-duration: 400ms
+    $clock-container-margin: 15px
+
+    .clock-container[data-layout="desktop"]:hover
+        background-color: $color_background_hover
+
+    .clock-container[data-layout="desktop"]
+        box-shadow: 0 5px 10px rgb(0, 0, 0)
+        width: 400px
+        margin: $clock-container-margin auto
+        background-color: $color-background
+        transition-duration: $clock-container-transition-duration
+
+        .hide-control
+            height: $details_line_height * 3 + $hide-subject-margin-bottom
+
+            .hide-subject
+                bottom: 0
+                margin-bottom: $hide-subject-margin-bottom
+
+                .repeat-check
+                    display: none
+
+                .repeat-days
+                    display: flex
+
+            .hide-button
+                display: none
+
+            .line-separator
+                display: none
