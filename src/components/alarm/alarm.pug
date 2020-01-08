@@ -1,4 +1,4 @@
-.alarm(data-status="off" data-show-details="initial-hide-all" data-layout="mobile")
+.alarm(data-status="off" data-show-details="show-all" data-layout="mobile")
     .always-visible
         .time
             span.hour-minute 6:00
@@ -10,7 +10,8 @@
 
     .hide-control
         .hide-subject
-            input(type="text" placeholder="Label").clock-name
+            .clock-name-container
+                .clock-name Label
             label.repeat-check
                 input(type="checkbox" name="repeat").repeat
                 span.checkmark

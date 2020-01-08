@@ -77,9 +77,8 @@ $alarm_color_text_off: rgb(200, 200, 200)
                 .off-text
                     display: inline
 
+    $trash-height: 20px
     .delete-field
-        $trash-height: 20px
-
         display: flex
         align-items: center
         justify-content: center
@@ -159,27 +158,23 @@ $alarm_color_text_off: rgb(200, 200, 200)
             font-size: 16px
             line-height: $alarm_details_line_height
 
-            .clock-name::selection
-                background-color: rgb(200, 200, 200)
-                color: rgb(0, 0, 0)
-
-            .clock-name
-                cursor: text
-                display: block
+            .clock-name-container
                 background-color: transparent
                 outline: none
                 border: 0
                 height: $alarm_details_line_height
                 font-size: 18px
-                width: calc(100% - #{$alarm_hide_control_height})
+                max-width: calc(100% - #{$alarm_hide_control_height} + #{$container_padding_side})
                 color: $alarm_color_text
-                padding-left: $container_padding_side
                 margin-left: -$container_padding_side
 
-                -ms-user-select: text
-                -webkit-user-select: text
-                -moz-user-select: text
-                user-select: text
+                .clock-name
+                    display: inline-block
+                    text-overflow: ellipsis
+                    white-space: nowrap
+                    overflow: hidden
+                    max-width: 100%
+                    padding: 0 $container_padding_side
                 
             .repeat-days
                 display: none
@@ -281,8 +276,9 @@ $alarm_color_text_off: rgb(200, 200, 200)
 
     .hide-control
         .hide-subject
-            .clock-name
-                color: $alarm_color_text_off
+            .clock-name-container
+                .clock-name
+                    color: $alarm_color_text_off
 
             .song
                 .music
@@ -360,8 +356,9 @@ $alarm_color_text_off: rgb(200, 200, 200)
                 background-color: $alarm_color_background_show
 
             .hide-subject
-                .clock-name:hover
-                    background-color: $alarm_color_background_hide
+                .clock-name-container
+                    .clock-name:hover
+                        background-color: $alarm_color_background_hide
                     
                 .repeat-days
                     .day:hover

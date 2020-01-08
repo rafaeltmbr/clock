@@ -133,26 +133,23 @@
   font-size: 16px;
   line-height: 40px;
 }
-.alarm .hide-control .hide-subject .clock-name::selection {
-  background-color: #c8c8c8;
-  color: black;
-}
-.alarm .hide-control .hide-subject .clock-name {
-  cursor: text;
-  display: block;
+.alarm .hide-control .hide-subject .clock-name-container {
   background-color: transparent;
   outline: none;
   border: 0;
   height: 40px;
   font-size: 18px;
-  width: calc(100% - 40px);
+  max-width: calc(100% - 40px + 10px);
   color: white;
-  padding-left: 10px;
   margin-left: -10px;
-  -ms-user-select: text;
-  -webkit-user-select: text;
-  -moz-user-select: text;
-  user-select: text;
+}
+.alarm .hide-control .hide-subject .clock-name-container .clock-name {
+  display: inline-block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 100%;
+  padding: 0 10px;
 }
 .alarm .hide-control .hide-subject .repeat-days {
   display: none;
@@ -246,7 +243,7 @@
 .alarm[data-status=off] .delete-field svg {
   fill: #c8c8c8;
 }
-.alarm[data-status=off] .hide-control .hide-subject .clock-name {
+.alarm[data-status=off] .hide-control .hide-subject .clock-name-container .clock-name {
   color: #c8c8c8;
 }
 .alarm[data-status=off] .hide-control .hide-subject .song .music svg {
@@ -306,7 +303,7 @@
   .alarm .hide-control .hide-button:hover {
     background-color: #27292a;
   }
-  .alarm .hide-control .hide-subject .clock-name:hover {
+  .alarm .hide-control .hide-subject .clock-name-container .clock-name:hover {
     background-color: #1c1e20;
   }
   .alarm .hide-control .hide-subject .repeat-days .day:hover {

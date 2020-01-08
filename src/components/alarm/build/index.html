@@ -7,7 +7,7 @@
     <meta charset="utf-8">
   </head>
   <body>
-    <div class="alarm" data-status="off" data-show-details="initial-hide-all" data-layout="mobile">
+    <div class="alarm" data-status="off" data-show-details="show-all" data-layout="mobile">
       <div class="always-visible">
         <div class="time"><span class="hour-minute">6:00</span><span class="am-pm">AM</span></div>
         <div class="on-off">
@@ -16,7 +16,9 @@
       </div>
       <div class="hide-control">
         <div class="hide-subject">
-          <input class="clock-name" type="text" placeholder="Label">
+          <div class="clock-name-container">
+            <div class="clock-name">Label</div>
+          </div>
           <label class="repeat-check">
             <input class="repeat" type="checkbox" name="repeat"><span class="checkmark"><svg height="32" id="check" viewBox="0 0 32 32" width="32" xmlns="http://www.w3.org/2000/svg"><path d="M1 14 L5 10 L13 18 L27 4 L31 8 L13 26 z"/></svg></span><span>REPEAT</span>
           </label>
