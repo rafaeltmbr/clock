@@ -11,10 +11,12 @@ $alarm_color_text_off: rgb(200, 200, 200)
 .alarm
     $color_off: rgb(61, 63, 64)
     $color_off_background: rgb(47, 47, 48)
-    $always_visible_line_height: 60px
+    $time_font_size: 50px
+    $time_vertical_margin: 20px
+    $always_visible_line_height: $time_font_size + $time_vertical_margin
     $animation_duration: 0.45s
     $container_padding_side: 10px
-    
+
     max-width: 500px
     min-width: 320px
     font-family: sans-serif
@@ -29,6 +31,8 @@ $alarm_color_text_off: rgb(200, 200, 200)
         box-sizing: border-box
         margin: 0
         padding: 0
+        font-stretch: condensed
+        font-weight: bold
 
     .always-visible
         display: flex
@@ -39,13 +43,16 @@ $alarm_color_text_off: rgb(200, 200, 200)
         height: $always_visible_line_height
 
         .time
-            font-size: 40px
+            font-size: $time_font_size
             padding: 0 $container_padding_side
             margin-left: -$container_padding_side
+            
+            .hour-minute
+                font-weight: normal
+                font-stretch: normal
 
             .am-pm
                 font-size: 12px
-                font-weight: bold
                 padding-left: 3px
 
         .on-off
@@ -71,6 +78,9 @@ $alarm_color_text_off: rgb(200, 200, 200)
                 color: $alarm_color_text
                 transition-duration: 0.2s
 
+                .on-text, .off-text
+                    font-weight: normal
+
                 .on-text
                     display: none
 
@@ -95,7 +105,7 @@ $alarm_color_text_off: rgb(200, 200, 200)
 
     .hide-control
         $show_details_height: 20px
-        $hide_button_padding_right: $alarm_hide_control_height + $container_padding_side * 2
+        $hide_button_margin_right: $alarm_hide_control_height + $container_padding_side * 2
 
         height: $alarm_hide_control_height
         position: relative
@@ -116,14 +126,17 @@ $alarm_color_text_off: rgb(200, 200, 200)
             z-index: 1
 
         .hide-button
+            $hide_button_padding_right: 1ch
+
             position: absolute
             display: flex
             flex-direction: row
             align-items: center
             height: $alarm_hide_control_height
-            width: calc(100% - #{$hide_button_padding_right} + #{$container_padding_side})
+            width: calc(100% - #{$hide_button_margin_right})
             bottom: 0
             border-bottom: 1px solid rgba(0, 0, 0, 0)
+            padding-right: $hide_button_padding_right
 
             .show-details
                 height: $show_details_height
@@ -138,13 +151,15 @@ $alarm_color_text_off: rgb(200, 200, 200)
                 bottom: ($alarm_hide_control_height - $show_details_height) / 2
                 color: $alarm_color_text_off
                 text-overflow: ellipsis
-                white-space: nowrap
                 overflow: hidden
-                flex: 1
                 padding: 0 5px
 
             .days-name-minimized
                 opacity: 0.0
+
+            .clock-name-minimized, .days-name-minimized
+                white-space: nowrap
+                font-size: 0.9em
 
         .hide-subject
             width: 100%
@@ -183,7 +198,6 @@ $alarm_color_text_off: rgb(200, 200, 200)
                     text-align: center
                     width: 38px
                     line-height: 1.4em
-                    font-weight: bold
                     border-bottom: 2px solid $color_off
 
                 .day[data-selected="show-partial"]

@@ -13,6 +13,8 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-stretch: condensed;
+  font-weight: bold;
 }
 .alarm .always-visible {
   display: flex;
@@ -20,16 +22,19 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 10px;
-  height: 60px;
+  height: 70px;
 }
 .alarm .always-visible .time {
-  font-size: 40px;
+  font-size: 50px;
   padding: 0 10px;
   margin-left: -10px;
 }
+.alarm .always-visible .time .hour-minute {
+  font-weight: normal;
+  font-stretch: normal;
+}
 .alarm .always-visible .time .am-pm {
   font-size: 12px;
-  font-weight: bold;
   padding-left: 3px;
 }
 .alarm .always-visible .on-off {
@@ -53,6 +58,9 @@
   color: white;
   transition-duration: 0.2s;
 }
+.alarm .always-visible .on-off .slider .on-text, .alarm .always-visible .on-off .slider .off-text {
+  font-weight: normal;
+}
 .alarm .always-visible .on-off .slider .on-text {
   display: none;
 }
@@ -67,7 +75,7 @@
   height: 40px;
   width: 40px;
   right: 10px;
-  top: 60px;
+  top: 70px;
 }
 .alarm .delete-field svg {
   height: 22px;
@@ -96,9 +104,10 @@
   flex-direction: row;
   align-items: center;
   height: 40px;
-  width: calc(100% - 60px + 10px);
+  width: calc(100% - 60px);
   bottom: 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0);
+  padding-right: 1ch;
 }
 .alarm .hide-control .hide-button .show-details {
   height: 20px;
@@ -113,13 +122,15 @@
   bottom: 10px;
   color: #c8c8c8;
   text-overflow: ellipsis;
-  white-space: nowrap;
   overflow: hidden;
-  flex: 1;
   padding: 0 5px;
 }
 .alarm .hide-control .hide-button .days-name-minimized {
   opacity: 0;
+}
+.alarm .hide-control .hide-button .clock-name-minimized, .alarm .hide-control .hide-button .days-name-minimized {
+  white-space: nowrap;
+  font-size: 0.9em;
 }
 .alarm .hide-control .hide-subject {
   width: 100%;
@@ -158,7 +169,6 @@
   text-align: center;
   width: 38px;
   line-height: 1.4em;
-  font-weight: bold;
   border-bottom: 2px solid #3d3f40;
 }
 .alarm .hide-control .hide-subject .repeat-days .day[data-selected=show-partial] {
