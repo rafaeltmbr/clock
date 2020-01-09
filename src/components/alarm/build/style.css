@@ -1,7 +1,19 @@
+@font-face {
+  font-family: Roboto-Light;
+  src: url(../../../assets/fonts/Roboto-Light.ttf);
+}
+@font-face {
+  font-family: RobotoCondensed-Regular;
+  src: url(../../../assets/fonts/RobotoCondensed-Regular.ttf);
+}
+@font-face {
+  font-family: RobotoCondensed-Bold;
+  src: url(../../../assets/fonts/RobotoCondensed-Bold.ttf);
+}
 .alarm {
   max-width: 500px;
   min-width: 320px;
-  font-family: sans-serif;
+  font-family: RobotoCondensed-Regular, sans-serif;
   background-color: #1c1e20;
   color: white;
   transition-duration: 400ms;
@@ -13,8 +25,6 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-stretch: condensed;
-  font-weight: bold;
 }
 .alarm .always-visible {
   display: flex;
@@ -22,24 +32,26 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 10px;
-  height: 70px;
+  height: 68px;
 }
 .alarm .always-visible .time {
-  font-size: 50px;
+  font-size: 48px;
   padding: 0 10px;
   margin-left: -10px;
+  font-family: Roboto-Light, sans-serif;
 }
 .alarm .always-visible .time .hour-minute {
   font-weight: normal;
   font-stretch: normal;
 }
 .alarm .always-visible .time .am-pm {
-  font-size: 12px;
-  padding-left: 3px;
+  font-size: 14px;
+  padding-left: 5px;
+  font-family: RobotoCondensed-Bold, sans-serif;
 }
 .alarm .always-visible .on-off {
-  width: 80px;
-  height: 20px;
+  width: 90px;
+  height: 22px;
   border: 1px solid #2f2f30;
   background-color: #2f2f30;
 }
@@ -53,10 +65,12 @@
   justify-content: center;
   border-radius: 1px;
   align-items: center;
-  font-size: 12px;
+  font-size: 0.9em;
+  font-family: Roboto-Light, sans-serif;
   background-color: #59595a;
-  color: white;
+  color: #eeeeee;
   transition-duration: 0.2s;
+  border-top: 1px solid #858383;
 }
 .alarm .always-visible .on-off .slider .on-text, .alarm .always-visible .on-off .slider .off-text {
   font-weight: normal;
@@ -75,11 +89,11 @@
   height: 40px;
   width: 40px;
   right: 10px;
-  top: 70px;
+  top: 68px;
 }
 .alarm .delete-field svg {
-  height: 22px;
-  width: 22px;
+  height: 40px;
+  width: 40px;
   fill: white;
 }
 .alarm .hide-control {
@@ -160,6 +174,8 @@
 }
 .alarm .hide-control .hide-subject .repeat-days {
   display: none;
+  font-family: RobotoCondensed-Bold, sans-serif;
+  font-size: 1.1em;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -167,12 +183,9 @@
 }
 .alarm .hide-control .hide-subject .repeat-days .day {
   text-align: center;
-  width: 38px;
+  width: 34px;
   line-height: 1.4em;
   border-bottom: 2px solid #3d3f40;
-}
-.alarm .hide-control .hide-subject .repeat-days .day[data-selected=show-partial] {
-  border-bottom-color: #0da6da;
 }
 .alarm .hide-control .hide-subject .song {
   display: flex;
@@ -219,7 +232,7 @@
   width: 18px;
   position: absolute;
   top: -3px;
-  fill: #0da6da;
+  fill: #0990bd;
 }
 
 .alarm[data-show-details=initial-hide-all] {
@@ -231,7 +244,8 @@
 
 .alarm[data-status=on] .always-visible .on-off .slider {
   margin-left: 50%;
-  background-color: #0da6da;
+  background-color: #0990bd;
+  border-top: 1px solid #26b6e6;
 }
 .alarm[data-status=on] .always-visible .on-off .slider .on-text {
   display: inline;
@@ -254,9 +268,6 @@
 }
 .alarm[data-status=off] .hide-control .hide-subject .song .music svg {
   fill: #c8c8c8;
-}
-.alarm[data-status=off] .hide-control .hide-subject .repeat-days .day[data-selected=show-partial] {
-  border-color: #0da6da;
 }
 .alarm[data-status=off] .hide-control .hide-button .show-details {
   fill: #939494;
