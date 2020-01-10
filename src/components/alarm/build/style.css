@@ -52,8 +52,8 @@
 .alarm .always-visible .on-off {
   width: 90px;
   height: 22px;
-  border: 1px solid #2f2f30;
-  background-color: #2f2f30;
+  border: 1px solid #363636;
+  background-color: #363636;
 }
 .alarm .always-visible .on-off .slider:active {
   transition-duration: 0s;
@@ -185,7 +185,8 @@
   text-align: center;
   width: 34px;
   line-height: 1.4em;
-  border-bottom: 2px solid #3d3f40;
+  border-bottom: 2px solid #969696;
+  color: #969696;
 }
 .alarm .hide-control .hide-subject .song {
   display: flex;
@@ -232,7 +233,7 @@
   width: 18px;
   position: absolute;
   top: -3px;
-  fill: #0990bd;
+  fill: #1ec5fd;
 }
 
 .alarm[data-show-details=initial-hide-all] {
@@ -265,6 +266,9 @@
 }
 .alarm[data-status=off] .hide-control .hide-subject .clock-name-container .clock-name {
   color: #c8c8c8;
+}
+.alarm[data-status=off] .hide-control .hide-subject label input:checked ~ .checkmark svg {
+  fill: #2f6a7e;
 }
 .alarm[data-status=off] .hide-control .hide-subject .song .music svg {
   fill: #c8c8c8;
@@ -311,12 +315,86 @@
   opacity: 1;
 }
 
+.alarm[data-repeat-days*=SUN] .hide-control .hide-subject .repeat-days .day:nth-child(1) {
+  color: white;
+  border-bottom: 2px solid #0990bd;
+}
+
+.alarm[data-repeat-days*=SUN][data-status=off] .hide-control .hide-subject .repeat-days .day:nth-child(1) {
+  color: #c8c8c8;
+  border-bottom: 2px solid #2f6a7e;
+}
+
+.alarm[data-repeat-days*=MON] .hide-control .hide-subject .repeat-days .day:nth-child(2) {
+  color: white;
+  border-bottom: 2px solid #0990bd;
+}
+
+.alarm[data-repeat-days*=MON][data-status=off] .hide-control .hide-subject .repeat-days .day:nth-child(2) {
+  color: #c8c8c8;
+  border-bottom: 2px solid #2f6a7e;
+}
+
+.alarm[data-repeat-days*=TUE] .hide-control .hide-subject .repeat-days .day:nth-child(3) {
+  color: white;
+  border-bottom: 2px solid #0990bd;
+}
+
+.alarm[data-repeat-days*=TUE][data-status=off] .hide-control .hide-subject .repeat-days .day:nth-child(3) {
+  color: #c8c8c8;
+  border-bottom: 2px solid #2f6a7e;
+}
+
+.alarm[data-repeat-days*=WED] .hide-control .hide-subject .repeat-days .day:nth-child(4) {
+  color: white;
+  border-bottom: 2px solid #0990bd;
+}
+
+.alarm[data-repeat-days*=WED][data-status=off] .hide-control .hide-subject .repeat-days .day:nth-child(4) {
+  color: #c8c8c8;
+  border-bottom: 2px solid #2f6a7e;
+}
+
+.alarm[data-repeat-days*=THU] .hide-control .hide-subject .repeat-days .day:nth-child(5) {
+  color: white;
+  border-bottom: 2px solid #0990bd;
+}
+
+.alarm[data-repeat-days*=THU][data-status=off] .hide-control .hide-subject .repeat-days .day:nth-child(5) {
+  color: #c8c8c8;
+  border-bottom: 2px solid #2f6a7e;
+}
+
+.alarm[data-repeat-days*=FRI] .hide-control .hide-subject .repeat-days .day:nth-child(6) {
+  color: white;
+  border-bottom: 2px solid #0990bd;
+}
+
+.alarm[data-repeat-days*=FRI][data-status=off] .hide-control .hide-subject .repeat-days .day:nth-child(6) {
+  color: #c8c8c8;
+  border-bottom: 2px solid #2f6a7e;
+}
+
+.alarm[data-repeat-days*=SAT] .hide-control .hide-subject .repeat-days .day:nth-child(7) {
+  color: white;
+  border-bottom: 2px solid #0990bd;
+}
+
+.alarm[data-repeat-days*=SAT][data-status=off] .hide-control .hide-subject .repeat-days .day:nth-child(7) {
+  color: #c8c8c8;
+  border-bottom: 2px solid #2f6a7e;
+}
+
 @media (hover: hover) {
   .alarm .always-visible .time:hover {
     background-color: #27292a;
   }
   .alarm .always-visible .on-off:hover {
-    border-color: #646464;
+    background-color: #1c1e20;
+    border-color: #1c1e20;
+  }
+  .alarm .always-visible .on-off:hover .slider:hover {
+    background-color: #1ec5fd;
   }
   .alarm .delete-field:hover {
     background-color: #27292a;
@@ -348,8 +426,67 @@
     background-color: #1c1e20;
   }
 
+  .alarm[data-status=off] .always-visible .on-off .slider:hover {
+    background-color: #8a8989;
+  }
   .alarm[data-status=off] .hide-control .hide-subject .repeat-days .day:hover {
     border-color: #c8c8c8;
+  }
+
+  .alarm[data-repeat-days*=SUN] .hide-control .hide-subject .repeat-days .day:nth-child(1):hover {
+    border-bottom: 2px solid #1ec5fd;
+  }
+
+  .alarm[data-repeat-days*=MON] .hide-control .hide-subject .repeat-days .day:nth-child(2):hover {
+    border-bottom: 2px solid #1ec5fd;
+  }
+
+  .alarm[data-repeat-days*=TUE] .hide-control .hide-subject .repeat-days .day:nth-child(3):hover {
+    border-bottom: 2px solid #1ec5fd;
+  }
+
+  .alarm[data-repeat-days*=WED] .hide-control .hide-subject .repeat-days .day:nth-child(4):hover {
+    border-bottom: 2px solid #1ec5fd;
+  }
+
+  .alarm[data-repeat-days*=THU] .hide-control .hide-subject .repeat-days .day:nth-child(5):hover {
+    border-bottom: 2px solid #1ec5fd;
+  }
+
+  .alarm[data-repeat-days*=FRI] .hide-control .hide-subject .repeat-days .day:nth-child(6):hover {
+    border-bottom: 2px solid #1ec5fd;
+  }
+
+  .alarm[data-repeat-days*=SAT] .hide-control .hide-subject .repeat-days .day:nth-child(7):hover {
+    border-bottom: 2px solid #1ec5fd;
+  }
+
+  .alarm[data-repeat-days*=SUN][data-status=off] .hide-control .hide-subject .repeat-days .day:nth-child(1):hover {
+    border-bottom: 2px solid #0990bd;
+  }
+
+  .alarm[data-repeat-days*=MON][data-status=off] .hide-control .hide-subject .repeat-days .day:nth-child(2):hover {
+    border-bottom: 2px solid #0990bd;
+  }
+
+  .alarm[data-repeat-days*=TUE][data-status=off] .hide-control .hide-subject .repeat-days .day:nth-child(3):hover {
+    border-bottom: 2px solid #0990bd;
+  }
+
+  .alarm[data-repeat-days*=WED][data-status=off] .hide-control .hide-subject .repeat-days .day:nth-child(4):hover {
+    border-bottom: 2px solid #0990bd;
+  }
+
+  .alarm[data-repeat-days*=THU][data-status=off] .hide-control .hide-subject .repeat-days .day:nth-child(5):hover {
+    border-bottom: 2px solid #0990bd;
+  }
+
+  .alarm[data-repeat-days*=FRI][data-status=off] .hide-control .hide-subject .repeat-days .day:nth-child(6):hover {
+    border-bottom: 2px solid #0990bd;
+  }
+
+  .alarm[data-repeat-days*=SAT][data-status=off] .hide-control .hide-subject .repeat-days .day:nth-child(7):hover {
+    border-bottom: 2px solid #0990bd;
   }
 
   .alarm[data-layout=desktop]:hover {

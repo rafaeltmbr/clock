@@ -13,17 +13,22 @@
 $alarm_color_background_show: rgb(39, 41, 42)
 $alarm_color_background_hide: rgb(28, 30, 32)
 $alarm_color_on: rgb(9, 144, 189)
+$alarm_color_on_super: rgb(30, 197, 253)
+$alarm_color_off: rgb(47, 106, 126)
+$alarm_color_slider_off_hover: rgb(138, 137, 137)
 $alarm_color_show_button: rgb(147, 148, 148)
+$alarm_color_day: rgb(150, 150, 150)
+$alarm_color_day_selected: rgb(220, 220, 220)
+$alarm_color_text: rgb(255, 255, 255)
+$alarm_color_text_off: rgb(200, 200, 200)
 $alarm_details_line_height: 40px
 $alarm_hide_control_height: 40px
-$alarm_color_text: rgb(255, 255, 255)
 $alarm_transition_duration: 400ms
-$alarm_color_text_off: rgb(200, 200, 200)
 $alarm_slider_text_color: rgb(238, 238, 238)
 
 .alarm
     $color_off: rgb(61, 63, 64)
-    $color_off_background: rgb(47, 47, 48)
+    $color_off_background: rgb(54, 54, 54)
     $time_font_size: 48px
     $time_vertical_margin: 20px
     $always_visible_line_height: $time_font_size + $time_vertical_margin
@@ -69,11 +74,10 @@ $alarm_slider_text_color: rgb(238, 238, 238)
                 font-family: RobotoCondensed-Bold, sans-serif
 
         .on-off
-            $on-off-color: $color_off_background
             width: 90px
             height: 22px
-            border: 1px solid $on-off-color
-            background-color: $on-off-color
+            border: 1px solid $color_off_background
+            background-color: $color_off_background
 
             .slider:active
                 transition-duration: 0s
@@ -215,7 +219,8 @@ $alarm_slider_text_color: rgb(238, 238, 238)
                     text-align: center
                     width: 34px
                     line-height: 1.4em
-                    border-bottom: 2px solid $color_off
+                    border-bottom: 2px solid $alarm_color_day
+                    color: $alarm_color_day
 
             .song
                 display: flex
@@ -262,7 +267,7 @@ $alarm_slider_text_color: rgb(238, 238, 238)
                     width: 18px
                     position: absolute
                     top: -3px
-                    fill: $alarm_color_on
+                    fill: $alarm_color_on_super
 
 
 .alarm[data-show-details="initial-hide-all"]
@@ -304,6 +309,10 @@ $alarm_slider_text_color: rgb(238, 238, 238)
             .clock-name-container
                 .clock-name
                     color: $alarm_color_text_off
+
+            label
+                input:checked ~ .checkmark svg
+                    fill: $alarm_color_off
 
             .song
                 .music
@@ -356,6 +365,27 @@ $alarm_slider_text_color: rgb(238, 238, 238)
             .days-name-minimized
                 opacity: 1.0
 
+
+$days: "SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"
+@each $day in $days
+    $i: index($days, $day)
+    .alarm[data-repeat-days*=#{$day}]
+        .hide-control
+            .hide-subject
+                .repeat-days
+                    .day:nth-child(#{$i})
+                        color: $alarm_color_text
+                        border-bottom: 2px solid $alarm_color_on
+
+    .alarm[data-repeat-days*=#{$day}][data-status="off"]
+        .hide-control
+            .hide-subject
+                .repeat-days
+                    .day:nth-child(#{$i})
+                        color: $alarm_color_text_off
+                        border-bottom: 2px solid $alarm_color_off
+
+
 @media (hover: hover)
     $color_background_hover: rgb(39, 39, 39)
     $color_background: rgb(29, 29, 29)
@@ -368,7 +398,11 @@ $alarm_slider_text_color: rgb(238, 238, 238)
                 background-color: $alarm_color_background_show
 
             .on-off:hover
-                border-color: rgb(100, 100, 100)
+                background-color: $alarm_color_background_hide
+                border-color: $alarm_color_background_hide
+
+                .slider:hover
+                    background-color: $alarm_color_on_super
 
         .delete-field:hover
             background-color: $alarm_color_background_show
@@ -393,7 +427,7 @@ $alarm_slider_text_color: rgb(238, 238, 238)
                 label:hover
                     .checkmark
                         border-color: rgb(230, 230, 230)
-
+        
     .alarm[data-show-details="show-partial"], .alarm[data-show-details="show-repeat"], .alarm[data-show-details="hide-repeat"], .alarm[data-show-details="show-all"]
         .hide-control
             .hide-button:hover
@@ -408,11 +442,37 @@ $alarm_slider_text_color: rgb(238, 238, 238)
             background-color: $alarm_color_background_hide
 
     .alarm[data-status="off"]
+        .always-visible
+            .on-off
+                .slider:hover
+                    background-color: $alarm_color_slider_off_hover
+
+
         .hide-control
             .hide-subject
                 .repeat-days
                     .day:hover
                         border-color: $alarm_color_text_off
+
+    $days: "SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"
+    @each $day in $days
+        $i: index($days, $day)
+        .alarm[data-repeat-days*=#{$day}]
+            .hide-control
+                .hide-subject
+                    .repeat-days
+                        .day:nth-child(#{$i}):hover
+                            border-bottom: 2px solid $alarm_color_on_super
+
+    $days: "SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"
+    @each $day in $days
+        $i: index($days, $day)
+        .alarm[data-repeat-days*=#{$day}][data-status="off"]
+            .hide-control
+                .hide-subject
+                    .repeat-days
+                        .day:nth-child(#{$i}):hover
+                            border-bottom: 2px solid $alarm_color_on
 
     .alarm[data-layout="desktop"]:hover
         background-color: $color_background_hover
